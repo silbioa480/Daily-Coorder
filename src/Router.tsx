@@ -24,10 +24,6 @@ function Router() {
             <Feed />
           </Route>
 
-          <Route path="/:memberId">
-            <MyPage />
-          </Route>
-
           <Route path="/upload">
             <Upload />
           </Route>
@@ -42,6 +38,10 @@ function Router() {
 
           <Route path="/board/:boardNumber">
             <Board />
+          </Route>
+
+          <Route path="/:memberId">
+            <MyPage />
           </Route>
         </Switch>
       </Section>
