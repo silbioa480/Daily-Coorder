@@ -16,10 +16,6 @@ function Router() {
 
       <Section>
         <Switch>
-          <Route path="/">
-            <Main />
-          </Route>
-
           <Route path="/feed">
             <Feed />
           </Route>
@@ -42,6 +38,10 @@ function Router() {
 
           <Route path="/:memberId">
             <MyPage />
+          </Route>
+
+          <Route path="/">
+            <Main />
           </Route>
         </Switch>
       </Section>
