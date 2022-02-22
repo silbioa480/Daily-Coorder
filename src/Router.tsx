@@ -40,7 +40,7 @@ function Router() {
             <SignUp />
           </Route>
 
-          <Route path="/:boardNumber">
+          <Route path="/board/:boardNumber">
             <Board />
           </Route>
         </Switch>
