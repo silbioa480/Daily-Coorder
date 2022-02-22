@@ -1,6 +1,14 @@
+import Banner from "../components/Banner";
+
 function Main() {
-  return <h1>Main</h1>;
-  <h2>This is practice</h2>
+  return (
+      <>
+      <Banner />
+      <h1>main</h1>
+      </>
+  );
+
+
 }
 
 export default Main;
