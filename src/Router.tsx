@@ -16,9 +16,6 @@ function Router() {
 
       <Section>
         <Switch>
-
-
-
           <Route path="/feed">
             <Feed />
           </Route>
@@ -46,7 +43,6 @@ function Router() {
           <Route path="/">
             <Main />
           </Route>
-
         </Switch>
       </Section>
     </BrowserRouter>
