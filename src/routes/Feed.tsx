@@ -1,5 +1,5 @@
 function Feed() {
-  return <h1>Feed</h1>;
+  return <h1>This is JH.</h1>;
 }
 
 export default Feed;
