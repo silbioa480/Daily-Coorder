@@ -16,9 +16,7 @@ function Router() {
 
       <Section>
         <Switch>
-          <Route path="/">
-            <Main />
-          </Route>
+          
 
           <Route path="/feed">
             <Feed />
@@ -42,6 +40,10 @@ function Router() {
 
           <Route path="/:boardNumber">
             <Board />
+          </Route>
+
+          <Route path="/">
+            <Main />
           </Route>
         </Switch>
       </Section>
