@@ -26,7 +26,7 @@ function MyPage_MemberInformation(){
                             <input type="file" />
                         </div>
                     
-                        <div>
+                            <div>
                                  <span>아이디:</span>
                                   <span>{member}</span>
                             </div>
