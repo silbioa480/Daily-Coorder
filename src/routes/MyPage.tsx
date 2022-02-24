@@ -1,4 +1,4 @@
-
+import {  Route} from "react-router-dom";
 import MyPage_SideMenubar from "../components/MyPage_SideMenubar";
 import MyPage_Body from "../components/MyPage_Body";
 import MyPage_SizeRegister from "../components/MyPage_SizeRegister";
@@ -12,10 +12,19 @@ function MyPage() {
     <>
       <MyPage_SideMenubar />
       <MyPage_Body>
-          <MyPage_MemberInformation />
-          <MyPage_MemberModify />
-          <MyPage_MemberUnregister />
-          <MyPage_SizeRegister />
+          <Route path="/MyPage_MemberInformation">
+            <MyPage_MemberInformation />
+          </Route>
+          <Route path="/MyPage_MemberModify">
+            <MyPage_MemberModify />
+          </Route>
+          <Route path="/MyPage_MemberUnregister">
+            <MyPage_MemberUnregister />
+          </Route>
+          <Route path="/MyPage_SizeRegister">
+            <MyPage_SizeRegister />
+          </Route>  
+          
       </MyPage_Body>
     </>
   );
