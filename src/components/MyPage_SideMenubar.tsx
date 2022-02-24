@@ -1,5 +1,4 @@
 import MyPage_SideMenubarCss from '../css/MyPage_SideMenubarCss';
-import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Nav from 'react-bootstrap/Nav';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -22,10 +21,10 @@ function MyPage_SideMenubar(){
                 <div className="sdBar">
                     <Nav defaultActiveKey="/home" className="flex-column">
                         
-                                <Nav.Link>회원 정보</Nav.Link>
-                                <Nav.Link eventKey="link-1">회원 정보 수정</Nav.Link>
-                                <Nav.Link eventKey="link-2">체형 등록</Nav.Link>
-                                <Nav.Link eventKey="link-3">회원 탈퇴</Nav.Link>    
+                                <Nav.Link href="/MyPage_MemberInformation">회원 정보</Nav.Link>
+                                <Nav.Link href="/MyPage_MemberModify">회원 정보 수정</Nav.Link>
+                                <Nav.Link href="/MyPage_SizeRegister">체형 등록</Nav.Link>
+                                <Nav.Link href="/MyPage_MemberUnregister">회원 탈퇴</Nav.Link>    
                     </Nav>
 
                     <Nav defaultActiveKey="/home" className="flex-column">     
