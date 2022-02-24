@@ -28,14 +28,14 @@ function MyPage_SideMenubar(){
                     </Nav>
 
                     <Nav defaultActiveKey="/home" className="flex-column">     
-                                <Nav.Link href="/home">광고 등록 신청</Nav.Link>
-                                <Nav.Link eventKey="link-1">게시물 차트 표시</Nav.Link>
+                                <Nav.Link href="/MyPage_Adapplication">광고 등록 신청</Nav.Link>
+                                <Nav.Link href="/MyPage_ChartPage">게시물 차트 표시</Nav.Link>
                     </Nav>
 
                     <Nav defaultActiveKey="/home" className="flex-column">
                         
-                                <Nav.Link href="/home">광고 관리</Nav.Link>
-                                <Nav.Link eventKey="link-1">광고 등록 승인</Nav.Link>
+                                <Nav.Link href="/MyPage_AdManagerPage">광고 관리</Nav.Link>
+                                <Nav.Link href="/MyPage_AdProvePage">광고 등록 승인</Nav.Link>
                         
                     </Nav>
                 </div>
