@@ -3,12 +3,11 @@ import {createGlobalStyle } from "styled-components";
 const MemInfoCss=createGlobalStyle`
     .memberContainer{
         width:40vw;
-        height:auto;
+        height:500px;
         padding:2vw;
-        position:absolute;
-        top:50%; left:50%;
-        transform:translate(-50%,-50%);
+        margin:5em auto;
         background-color:green;
+        
     }
 `;
 
