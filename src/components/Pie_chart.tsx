@@ -15,8 +15,8 @@ class Pie_chart extends React.Component{
                     series={[44,55,13,43,22]}
                     options={{
                         chart:{
-                            width:100,
-                            height:150
+                            width:300,
+                            height:350
                         },
                         legend:{
                             position:"bottom"
@@ -28,7 +28,7 @@ class Pie_chart extends React.Component{
                             breakpoint:280
                         }
                     ]}
-                    
+                style={{width:"400px",height:"550px"}}
                 />
             </>
         );
