@@ -1,9 +1,11 @@
 import Pie_chart from '../components/Pie_chart';
+import { Link } from 'react-router-dom';
 
 function MyPage_ChartPage(){
     return (
         <>
-            <Pie_chart />
+            
+           <Link to="/Pie_chart">상세차트보기</Link>
         </>
     );
 }
