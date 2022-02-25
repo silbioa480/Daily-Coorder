@@ -1,4 +1,4 @@
-import {  Route,Switch} from "react-router-dom";
+import {  BrowserRouter,Route,Switch} from "react-router-dom";
 import MyPage_SideMenubar from "../components/MyPage_SideMenubar";
 import MyPage_Body from "../components/MyPage_Body";
 import MyPage_SizeRegister from "../components/MyPage_SizeRegister";
@@ -14,34 +14,37 @@ function MyPage() {
   return (
     <>
       <MyPage_SideMenubar />
-      <MyPage_Body>
-          <Switch>
-            <Route path="/">
-              <MyPage_MemberInformation />
-            </Route>
-            <Route path="/MyPage_MemberModify">
-              <MyPage_MemberModify />
-            </Route>
-            <Route path="/MyPage_MemberUnregister">
-              <MyPage_MemberUnregister />
-            </Route>
-            <Route path="/MyPage_SizeRegister">
-              <MyPage_SizeRegister />
-            </Route>  
-            <Route path="/MyPage_Adapplication">
-              <MyPage_Adapplication />
-            </Route>
-            <Route path="/MyPage_ChartPage">
-                <MyPage_ChartPage />
-            </Route>
-            <Route path="/MyPage_AdProvePage">
-                <MyPage_AdProvePage />
-            </Route>
-            <Route path="/MyPage_AdManagerPage">
-                <MyPage_AdManagerPage />
-            </Route>
-          </Switch>
-      </MyPage_Body>
+      <BrowserRouter>
+        <MyPage_Body>
+                <Switch>
+                  <Route path="/MyPage_MemberInformation">
+                    <MyPage_MemberInformation />
+                  </Route>
+                  <Route path="/MyPage_MemberModify">
+                    <MyPage_MemberModify />
+                  </Route>
+                  <Route path="/MyPage_MemberUnregister">
+                    <MyPage_MemberUnregister />
+                  </Route>
+                  <Route path="/MyPage_SizeRegister">
+                    <MyPage_SizeRegister />
+                  </Route>  
+                  <Route path="/MyPage_Adapplication">
+                    <MyPage_Adapplication />
+                  </Route>
+                  <Route path="/MyPage_ChartPage">
+                      <MyPage_ChartPage />
+                  </Route>
+                  <Route path="/MyPage_AdProvePage">
+                      <MyPage_AdProvePage />
+                  </Route>
+                  <Route path="/MyPage_AdManagerPage">
+                      <MyPage_AdManagerPage />
+                  </Route>
+              </Switch>
+            
+        </MyPage_Body>
+      </BrowserRouter>
     </>
   );
 }
