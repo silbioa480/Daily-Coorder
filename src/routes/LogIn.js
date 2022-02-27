@@ -11,6 +11,7 @@ function LogIn() {
         setId(e.currentTarget.value);
     };
     const onPasswordHanlder = (e) => {
+
         setPassword(e.currentTarget.value);
     };
 
@@ -30,7 +31,7 @@ function LogIn() {
                 <label>아이디</label>
                 <input style={{marginTop: "15px", borderRadius: "2px", width:"100%", height:"40px",
                     border: "1px solid #e5e5e5", padding: "9px 12px", outline: "none", boxSizing: "border-box"
-                }} type="id" value={Id} placeholder="아이디를 입력해주세요." onChange={onIdHandler}/>
+                }} type="id"  value={Id} placeholder="아이디를 입력해주세요." onChange={onIdHandler}/>
                 <br/><br/>
                 <label>비밀번호</label>
                 <input style={{
@@ -38,19 +39,7 @@ function LogIn() {
                     border: "1px solid #e5e5e5", padding: "9px 12px", outline: "none", boxSizing: "border-box"
                 }} type="password" value={Password} placeholder="비밀번호를 입력해주세요." onChange={onPasswordHanlder}/>
                 <br/>
-                {/*<div className="form-group">*/}
-                {/*    <div className="custom-control custom-checkbox">*/}
-                {/*        <input type="checkbox" className="custom-control-input" id="customCheck1"/>*/}
-                {/*        <label style={{*/}
-                {/*            marginTop: "15px", fontSize: "15px"*/}
-                {/*        }} className="custom-control-label" htmlFor="customCheck1">아이디 저장</label>*/}
-                {/*    </div>*/}
-                {/*    <p style={{*/}
-                {/*        marginTop: "5px",  fontSize: "15px"*/}
-                {/*    }} className="forgot-id text-right">*/}
-                {/*        <Link to="#">아이디 / 비밀번호 찾기</Link>*/}
-                {/*    </p>*/}
-                {/*</div>*/}
+
                 <div style={{
                     display: "flex", justifyContent: "space-between", alignItems: "center"
                 }} className="loginMid">
