@@ -6,6 +6,7 @@ import {ThemeProvider} from "styled-components";
 import { QueryClient, QueryClientProvider } from "react-query";
 import {theme} from "./theme";
 
+
 const queryClient = new QueryClient();
 
 ReactDOM.render(
