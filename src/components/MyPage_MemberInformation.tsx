@@ -1,50 +1,48 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
-import { Container } from 'react-bootstrap';
+import MemInfoCss from '../css/MyPage_MemInfoCss';
 import { Figure } from 'react-bootstrap';
 
 
 
 
 function MyPage_MemberInformation(){
-    const [member,setMember]=useState();
+    const [member,setMember]=useState([]);
 
     return (
             <>
+                <MemInfoCss />
                 <div className="memberContainer">
                         <div>
                             <Figure>
                                 <Figure.Image
                                     width={140}
                                     height={160}
-                                    alt="140 x 160"
+                                    alt="140 x 300"
                                     src="holder.js/140x160"
+                                    className="bg-primary"
                                 />
                             </Figure>
                             <input type="file" />
                         </div>
-                        <div>
+                    
                             <div>
-                                  <span>아이디:</span>
+                                 <span>아이디:</span>
                                   <span>{member}</span>
                             </div>
                            
-                        </div>
-                        <div>
+                     
                             <div>
                                     <span>비밀번호:</span>
                                   <span></span>
                             </div>
                            
-                        </div>
-                        <div>
+                       
                             <div>
                                   <span>이메일:</span>
                                   <span></span>
                             </div>
-                          
-                        </div>
-                        <div>
+                      
                             <div>
                                  체형
                             </div>
@@ -52,7 +50,8 @@ function MyPage_MemberInformation(){
                                 <span>키:</span><span></span>
                                 <span>몸무게:</span><span></span>
                             </div>
-                        </div>
+                           
+                       
 
                 </div>
             </>
