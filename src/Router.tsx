@@ -36,7 +36,7 @@ function Router() {
             <Board />
           </Route>
 
-          <Route path="/:memberId">
+          <Route path="/member">
             <MyPage />
           </Route>
 
