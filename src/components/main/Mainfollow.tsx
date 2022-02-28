@@ -3,7 +3,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Carousel } from "react-bootstrap";
 import React from "react";
 
-import '../../css/main/MainPage.css';
+// css
+import '../../css/main/MainNewFollow.css';
+
+// 사진
 import mainfol1 from '../../img/main/mainfol1.png';
 import mainfol2 from '../../img/main/mainfol2.png';
 import mainfol3 from '../../img/main/mainfol3.png';
@@ -17,35 +20,36 @@ function Mainfollow() {
       <>
           <div className="mainfollow-text">New Followrs Feed</div>
           <hr className="Line"></hr>
-
-              {/*<div className="folpicdiv">*/}
-              {/*    <img src={mainfol1}  className="folpic" style={{width:'420px', height:'520px'}}/>*/}
-              {/*</div>*/}
-              {/*<div className="folpicdiv">*/}
-              {/*    <img src={mainfol2}  className="folpic" style={{width:'420px', height:'520px'}}/>*/}
-              {/*</div>*/}
-              {/*<div className="folpicdiv">*/}
-              {/*    <img src={mainfol3}  className="folpic" style={{width:'420px', height:'520px'}}/>*/}
-              {/*</div>*/}
-          <div className="carousel">
-              <Carousel fade style={{width: '350px'}}>
+              <Carousel fade style={{width: '1200px'}}>
                   <Carousel.Item>
-                      <img className="d-block w-100" src={mainfol1}alt="First slide"/>
-                      <img className="d-block w-100" src={mainfol2}alt="Second slide"/>
-                      <img className="d-block w-100" src={mainfol3}alt="third slide"/>
+                      <div className="folpic"
+                          style={{width: '400px', height: '490px', float: 'left'}}>
+                        <img className="d-block w-100" src={mainfol1}  alt="1-1 slide"/>
+                      </div>
+                      <div className="folpic"
+                          style={{width: '400px', height: '490px', float: 'left'}}>
+                          <img className="d-block w-100" src={mainfol2}  alt="1-2 slide"/>
+                      </div>
+                      <div className="folpic"
+                          style={{width: '400px', height: '490px', float: 'left'}}>
+                         <img className="d-block w-100" src={mainfol3}  alt="1-3 slide"/>
+                      </div>
                   </Carousel.Item>
                   <Carousel.Item>
-                      <img className="d-block w-100" src={mainfol4}alt="First slide"/>
-                      <img className="d-block w-100" src={mainfol5}alt="First slide"/>
-                      <img className="d-block w-100" src={mainfol6}alt="First slide"/>
+                      <div className="folpic"
+                          style={{width: '400px', height: '490px', float: 'left'}}>
+                          <img className="d-block w-100" src={mainfol4}  alt="1-1 slide"/>
+                      </div>
+                      <div className="folpic"
+                          style={{width: '400px', height: '490px', float: 'left'}}>
+                          <img className="d-block w-100" src={mainfol5}  alt="1-2 slide"/>
+                      </div>
+                      <div className="folpic"
+                          style={{width: '400px', height: '490px', float: 'left'}}>
+                          <img className="d-block w-100" src={mainfol6}  alt="1-3 slide"/>
+                      </div>
                   </Carousel.Item>
-
               </Carousel>
-          </div>
-
-
-
-
       </>
   );
 }

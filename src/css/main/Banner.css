@@ -1,6 +1,9 @@
 .carousel {
-    width: 880px;
-    height:388px;
-    margin-left: 145px;
+    width: 1000px;
+    margin-left: 125px;
     margin-bottom:10px
+}
+
+.d-block w-100.img {
+    cursor:pointer;
 }
