@@ -44,7 +44,7 @@ function Board_Picture() {
 function Download() {
   return (
     <div style={{ padding: "10px" }}>
-      <Drop />;
+      <Drop />
     </div>
   );
 }
@@ -82,41 +82,36 @@ function Follow() {
     </div>
   );
 }
-
 function Comment() {
+  return (
+    <div className="c-wrapper">
+      <h1
+        style={{
+          fontsize: "20px",
+          fontWeight: "700",
+          width: "40px",
+          height: "25px",
+          textAlign: "center",
+          padding: "0.2em",
+        }}
+      >
+        댓글
+      </h1>
+      <BsArrowDownShort
+        style={{ width: "40px", height: "25px" }}
+      ></BsArrowDownShort>
+    </div>
+  );
+}
+
+function Comment_text() {
   const textRef = React.createRef();
   const textResize = () => {
     textRef.current.style.height = "auto";
     textRef.current.style.height = textRef.current.scrollHeight + "px";
   };
-
-  // const ref = React.createRef();
-  // const textResize = useCallback(() => {
-  //   if (ref === null || ref.current === null) {
-  //     return;
-  //   }
-  //   ref.current.style.height = "auto";
-  //   ref.current.style.height = ref.current.scrollHeight + "px";
-  // }, []);
   return (
     <div className="t-wrapper">
-      <div className="c-wrapper">
-        <h1
-          style={{
-            fontsize: "20px",
-            fontWeight: "700",
-            width: "40px",
-            height: "25px",
-            textAlign: "center",
-            padding: "0.2em",
-          }}
-        >
-          댓글
-        </h1>
-        <BsArrowDownShort
-          style={{ width: "40px", height: "25px" }}
-        ></BsArrowDownShort>
-      </div>
       {/* 댓글작성시 댓글생김 */}
       <form>
         <div className="wrapper">
@@ -151,44 +146,6 @@ function Comment() {
         </div>
       </form>
     </div>
-
-    // <table>
-    //   <h1>
-    //     댓글
-    //     <BsArrowDownShort />
-    //   </h1>
-    //   <div className="t-wrapper">
-    //     <tr>
-    //       <div className="wrapper">
-    //         <td>
-    //           <Circle src={similar}></Circle>
-    //         </td>
-    //         <td>
-    //           <textarea
-    //             // onKeyDown={textResize}
-    //             // onKeyDown={textResize}
-    //             placeholder="댓글을 입력하세요"
-    //             cols={35}
-    //             required
-    //           ></textarea>
-    //         </td>
-    //       </div>
-    //     </tr>
-    //     <tr>
-    //       <div className="comment_btn">
-    //         <td>
-    //           <button style={{ display: "inline" }}>취소</button>
-    //         </td>
-    //         <br></br>
-    //       </div>
-    //       <div className="comment_btn2">
-    //         <td>
-    //           <button type="submit">완료</button>
-    //         </td>
-    //       </div>
-    //     </tr>
-    //   </div>
-    // </table>
   );
 }
 
@@ -238,6 +195,7 @@ function Board_Posts() {
         <Download />
         <Follow />
         <Comment />
+        <Comment_text />
       </div>
     </div>
   );
