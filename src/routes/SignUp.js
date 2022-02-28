@@ -1,5 +1,7 @@
-import React, {useCallback, useState} from 'react'
+import React, {useCallback, useRef, useState} from 'react'
 import styled from 'styled-components';
+import {Link} from "react-router-dom";
+// import { Avatar } from 'antd';
 
 const ErrorMessage = styled.div`
 `;
@@ -37,6 +39,9 @@ function SignUp() {
     setTerm(e.target.checked);
     setTermError(false);
   }, []);
+
+  // const [Image, setImage] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
+  // const fileInput = useRef(null)
 
 
   // const onPasswordSubmit = (event) => {
@@ -80,16 +85,31 @@ function SignUp() {
         width: '100%', height: '40vh'
       }} class="SignUp">
         <form onSubmit={onSubmit}>
-          <p style={{marginTop: "150px", display: "flex", flexDirection: "column", fontSize: "25px"}}> 회원가입 </p>
+          <p style={{marginTop: "500px", display: "flex", flexDirection: "column", fontSize: "25px"}}> 회원가입 </p>
           <br/><br/>
 
+                  <div className="profile">
+                    <div className="avatar stagger-item">
+                      <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" style={{
+                        width: "180px", height: "180px"
+                      }}alt="Circle Image" className="img-raised rounded-circle img-fluid"/>
+                      <button style={{ width: "180px", height: "30px",fontSize: "14px", padding: "13px 30px", cursor: "pointer",
+                        backgroundColor: "darkslategrey", color: "white", lineHeight: "1px", marginTop: "20px", marginBottom: "12px",borderRadius: "3px",
+                        borderStyle: "none"
+                      }} type="submit" className="profile_button">프로필 업로드
+                      </button>
+                    </div>
+                  </div>
+
           <div>
-            <label htmlFor="user-id">아이디</label>
+            <label htmlFor="user-id" style={{
+              marginTop: "20px"
+            }}>아이디</label>
             <input style={{marginTop: "10px", borderRadius: "2px", width:"100%", height:"40px",
             border: "1px solid #e5e5e5", padding: "9px 12px", outline: "none", boxSizing: "border-box"
           }} name="user-id" type="id" placeholder="아이디" value={Id} onChange={onIdHandler} class="loginregister_input"/>
             <button style={{
-              width: "100%", height: "30px", fontSize: "14px", padding: "13px 30px", cursor:"pointer", backgroundColor: "black",
+              width: "100%", height: "30px", fontSize: "14px", padding: "13px 30px", cursor:"pointer", backgroundColor: "darkslategrey",
               color:"white", lineHeight: "1px", borderRadius: "3px", borderStyle:"none", marginBottom:"10px"
             }} type="submit" class="loginregister_button" onSubmit={onSubmit}>아이디 중복확인</button>
           </div>
@@ -124,7 +144,10 @@ function SignUp() {
 
           <div>
             <input type="checkbox" name="user-term" checked={term} onChange={onChangeTerm}/>아래 약관에 모두 동의합니다.
-            {termError && <ErrorMessage>약관에 동의하셔야 합니다.</ErrorMessage>}
+
+            {termError && <ErrorMessage  style={{
+              color: "red", fontSize: "12px", marginBottom:"10px"
+            }}>약관에 동의하셔야 합니다.</ErrorMessage>}
           </div>
 
           <div><button style={{
