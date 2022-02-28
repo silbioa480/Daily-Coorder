@@ -14,6 +14,7 @@ import { useCallback, useState } from "react";
 import similar from "../img/similar.png";
 import { useRef } from "react";
 import React from "react";
+import Comment from "../components/Board_Comment";
 
 function Board_Picture() {
   return (
@@ -82,72 +83,6 @@ function Follow() {
     </div>
   );
 }
-function Comment() {
-  return (
-    <div className="c-wrapper">
-      <h1
-        style={{
-          fontsize: "20px",
-          fontWeight: "700",
-          width: "40px",
-          height: "25px",
-          textAlign: "center",
-          padding: "0.2em",
-        }}
-      >
-        댓글
-      </h1>
-      <BsArrowDownShort
-        style={{ width: "40px", height: "25px" }}
-      ></BsArrowDownShort>
-    </div>
-  );
-}
-
-function Comment_text() {
-  const textRef = React.createRef();
-  const textResize = () => {
-    textRef.current.style.height = "auto";
-    textRef.current.style.height = textRef.current.scrollHeight + "px";
-  };
-  return (
-    <div className="t-wrapper">
-      {/* 댓글작성시 댓글생김 */}
-      <form>
-        <div className="wrapper">
-          <label for="comment">
-            <Circle
-              src={similar}
-              style={{ display: "inline", marginLeft: "20px" }}
-            ></Circle>
-          </label>
-          <textarea
-            ref={textRef}
-            onKeyUp={textResize}
-            onKeyDown={textResize}
-            id="comment"
-            placeholder="댓글을 입력하세요"
-            cols={35}
-            required
-            style={{ marginLeft: "10px" }}
-          ></textarea>
-          <div
-            className="comment_btn"
-            style={{ display: "flex", padding: "5px" }}
-          >
-            <button style={{ marginLeft: "auto" }}>취소</button>
-            <button
-              type="submit"
-              style={{ marginRight: "20px", marginLeft: "7px" }}
-            >
-              완료
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
-  );
-}
 
 function Qrcode() {
   return (
@@ -195,7 +130,6 @@ function Board_Posts() {
         <Download />
         <Follow />
         <Comment />
-        <Comment_text />
       </div>
     </div>
   );
