@@ -1,19 +1,35 @@
 import "../css/Board_Posts.css";
 import { BsDownload, BsBookmarks, BsPlusSquare } from "react-icons/bs";
+import { ImQrcode } from "react-icons/im";
 import { FiMoreHorizontal, FiX } from "react-icons/fi";
 import { HiOutlineThumbUp } from "react-icons/hi";
 import { RiShareForwardLine } from "react-icons/ri";
-import jini from "../img/jini.png";
 import qr from "../img/qr.png";
-import { Circle, Com, Square } from "../css/Board_Posts";
+import { Circle, Square } from "../css/Board_Posts";
 import { useState } from "react";
 import similar from "../img/similar.png";
+import Comment from "../components/Board_Comment";
 
 function Board_Picture() {
   return (
     <div className="bp">
       <div className="picture">
-        <img src={jini} alt="profile" />
+        <img src={similar} alt=""></img>
+        {/* qr버튼: 누르면 qr나오게해야함*/}
+        <button
+          style={{
+            borderRadius: "50%",
+            border: "none",
+            width: "50px",
+            height: "50px",
+            position: "absolute",
+            top: "10px",
+            left: "10px",
+            zIndex: "2",
+          }}
+        >
+          <ImQrcode></ImQrcode>
+        </button>
       </div>
       <div className="bp1">
         <Square style={{ marginTop: "10px" }}>20대</Square>
@@ -35,47 +51,45 @@ function Board_Picture() {
   );
 }
 
-function Information() {
+function Download() {
   return (
-    <div className="infor">
+    <div style={{ padding: "10px" }}>
       <Drop />
-      <Qrcode />
-      <Comment />
     </div>
   );
 }
 
-function Comment() {
+function Follow() {
   return (
-    <table>
-      <tr>
-        <div className="wrapper">
-          <td>
-            <Circle src={similar}></Circle>
-          </td>
-          <td>
-            <textarea
-              placeholder="댓글을 입력하세요"
-              cols={35}
-              required
-            ></textarea>
-          </td>
+    <div className="infor" style={{ display: "flex" }}>
+      <div style={{ width: "300px", display: "flex" }}>
+        <div>
+          <a href="#">
+            <Circle src={similar} style={{ marginLeft: "20px" }}></Circle>
+          </a>
         </div>
-      </tr>
-      <tr>
-        <div className="comment_btn">
-          <td>
-            <button>취소</button>
-          </td>
-          <br></br>
+        <div style={{ margin: "auto 0", marginLeft: "7px" }}>
+          <a href="#">
+            <p>닉네임</p>
+          </a>
+          <p>팔로워 x명</p>
         </div>
-        <div className="comment_btn2">
-          <td>
-            <button type="submit">완료</button>
-          </td>
-        </div>
-      </tr>
-    </table>
+      </div>
+
+      <div>
+        <button
+          style={{
+            width: "80px",
+            height: "48px",
+            border: "none",
+            borderRadius: "24px",
+          }}
+          // 팔로우누으면 팔로잉으로 바뀌고 backgroundc색 조정
+        >
+          팔로우
+        </button>
+      </div>
+    </div>
   );
 }
 
@@ -121,7 +135,11 @@ function Board_Posts() {
   return (
     <div className="Board_Posts">
       <Board_Picture />
-      <Information />
+      <div>
+        <Download />
+        <Follow />
+        <Comment />
+      </div>
     </div>
   );
 }
