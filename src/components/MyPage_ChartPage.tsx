@@ -1,11 +1,21 @@
 import Pie_chart from '../components/Pie_chart';
-import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+import { useState } from 'react';
+
+
 
 function MyPage_ChartPage(){
+    const [show,setShow]=useState(false);
+    const [hide,setHide]=useState(true);
+
+    const HandleClick=()=>{
+        setShow(true);
+        setHide(false);
+    }
     return (
         <>
-            
-           <Link to="/Pie_chart">상세차트보기</Link>
+               {hide && <Button onClick={HandleClick}>상세 차트 표시</Button>}
+               {show && <Pie_chart />}
         </>
     );
 }
