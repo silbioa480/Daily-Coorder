@@ -3,56 +3,69 @@ import { useState } from 'react';
 import MemInfoCss from '../css/MyPage_MemInfoCss';
 import { Figure } from 'react-bootstrap';
 
+function MemberInformation(){
+    
+    const [member,setMember]=useState([]);
+    return (
+        <> 
+                    <div style={{marginTop:"3vh",border:"1px solid black",borderBottom:"none"}}>
+                            <div style={{display:"flex"}}>
+                                    <p style={{width:"200px",padding:"1vh 1vw",borderRight:"1px solid black",backgroundColor:"#f7f7f7",fontWeight:"bold"}}>아이디</p>
+                                    <p style={{padding:"1vh 1vw"}}>12345</p>
+                            </div>
+                    </div>
 
+                    <div style={{border:"1px solid black",borderBottom:"none"}}>
+                        <div style={{display:"flex"}}>
+                                <p style={{width:"200px",padding:"1vh 1vw",borderRight:"1px solid black",backgroundColor:"#f7f7f7",fontWeight:"bold"}}>비밀번호:</p>
+                                <p style={{padding:"1vh 1vw"}}><strong>●●●●●●●●</strong></p>
+                        </div>
+                    </div>
+
+                    <div style={{border:"1px solid black",borderBottom:"none"}}>
+                        <div style={{display:"flex"}}>
+                                <p style={{width:"200px",padding:"1vh 1vw",borderRight:"1px solid black",backgroundColor:"#f7f7f7",fontWeight:"bold"}}>이메일:</p>
+                                <p style={{padding:"1vh 1vw"}}>1234@2134</p>
+                        </div>
+                    </div>
+            
+                    <div style={{border:"1px solid black"}}>
+                           <p style={{margin:"1.6vh 0 0 2vh",fontWeight:"bold"}}>체형</p>
+                            <div style={{display:"flex",marginTop:"2vh",borderTop:"1px solid black"}}>
+                                <p style={{width:"200px",padding:"1vh 1vw",borderRight:"1px solid black",backgroundColor:"#f7f7f7",fontWeight:"bold"}}>키:</p>
+                                <p style={{width:"125px",padding:"1vh 1vw"}}>189</p>
+                                <p style={{width:"150px",marginLeft:"2vw",padding:"1vh 1vw",borderRight:"1px solid black",backgroundColor:"#f7f7f7",borderLeft:"1px solid black",fontWeight:"bold"}}>몸무게:</p>
+                                <p style={{padding:"1vh 1vw"}}>100</p>
+                            </div>
+                    </div>
+        </>
+    );  
+}
 
 
 function MyPage_MemberInformation(){
     const [member,setMember]=useState([]);
+    
 
     return (
             <>
                 <MemInfoCss />
                 <div className="memberContainer">
-                        <div>
-                            <Figure>
+                        <div style={{width:"150px",height:"150px",margin:"3vh 0",border:"1px solid black",display:"flex",flexDirection:"column",justifyContent:"space-between"}}>
+                            <Figure style={{width:"150px",height:"100px"}}>
                                 <Figure.Image
                                     width={140}
                                     height={160}
-                                    alt="140 x 300"
+                                    alt="140 x 160"
                                     src="holder.js/140x160"
                                     className="bg-primary"
                                 />
                             </Figure>
-                            <input type="file" />
+                            <div>
+                                <input type="file"  />
+                            </div>
                         </div>
-                    
-                            <div>
-                                 <span>아이디:</span>
-                                  <span>{member}</span>
-                            </div>
-                           
-                     
-                            <div>
-                                    <span>비밀번호:</span>
-                                  <span></span>
-                            </div>
-                           
-                       
-                            <div>
-                                  <span>이메일:</span>
-                                  <span></span>
-                            </div>
-                      
-                            <div>
-                                 체형
-                            </div>
-                            <div>
-                                <span>키:</span><span></span>
-                                <span>몸무게:</span><span></span>
-                            </div>
-                           
-                       
-
+                        <MemberInformation />
                 </div>
             </>
 
