@@ -64,5 +64,6 @@
     "@types/react-router-dom": "^5.3.0",
     "@types/styled-components": "^5.1.19",
     "prettier": "^2.5.1"
-  }
+  },
+  "homepage": "https://daily-coorder.vercel.app"
 }
