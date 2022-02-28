@@ -1,0 +1,24 @@
+.mainfollow-text {
+    font-size:30px;
+    text-align:center;
+    margin-top:30px;
+    margin-bottom:30px;
+}
+
+.hr.Line {
+    text-align:center;
+    width:80%;
+}
+
+.folpic {
+    float:left;
+    padding: 10px;
+}
+
+.folpicdiv {
+
+}
+
+.d-block w-100 {
+    text-align:center;
+}
