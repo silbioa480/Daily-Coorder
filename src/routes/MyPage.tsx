@@ -17,30 +17,33 @@ function MyPage() {
       <BrowserRouter>
         <MyPage_Body>
                 <Switch>
-                  <Route path="/MyPage_MemberInformation">
-                    <MyPage_MemberInformation />
-                  </Route>
-                  <Route path="/MyPage_MemberModify">
+                
+                  <Route exact path="/member/MyPage_MemberModify">
                     <MyPage_MemberModify />
                   </Route>
-                  <Route path="/MyPage_MemberUnregister">
+                  <Route exact path="/member/MyPage_MemberUnregister">
                     <MyPage_MemberUnregister />
                   </Route>
-                  <Route path="/MyPage_SizeRegister">
+                  <Route exact path="/member/MyPage_SizeRegister">
                     <MyPage_SizeRegister />
                   </Route>  
-                  <Route path="/MyPage_Adapplication">
+                  <Route exact path="/member/MyPage_Adapplication">
                     <MyPage_Adapplication />
                   </Route>
-                  <Route path="/MyPage_ChartPage">
+                  <Route exact path="/member/MyPage_ChartPage">
                       <MyPage_ChartPage />
                   </Route>
-                  <Route path="/MyPage_AdProvePage">
+                  <Route exact path="/member/MyPage_AdProvePage">
                       <MyPage_AdProvePage />
                   </Route>
-                  <Route path="/MyPage_AdManagerPage">
+                  <Route path="/member/MyPage_AdManagerPage">
                       <MyPage_AdManagerPage />
                   </Route>
+                  <Route path="/member/" >
+                    <MyPage_MemberInformation />
+                  </Route>
+
+                  
               </Switch>
             
         </MyPage_Body>
