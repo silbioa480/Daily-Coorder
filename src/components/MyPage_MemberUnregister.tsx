@@ -16,13 +16,15 @@ function MyPage_MemberUnregister(){
     }
     return (
         <>
-                <div style={{backgroundColor:"yellow",width:"60%",margin:"4em auto",height:"750px"}}>
+                <div style={{width:"60%",margin:"4em auto",height:"750px"}}>
                     <MyPage_MemberInformation />
                 
                     <div style={{width:"100%",display:"flex",justifyContent:"center",marginTop:"5em"}}>
-                        <Button variant="primary" onClick={handleShow}>
-                            회원 탈퇴
-                        </Button>
+                        <div className="d-grid gap-2">
+                            <Button variant="primary" onClick={handleShow} size="lg">
+                                회원 탈퇴
+                            </Button>
+                        </div>
 
                         <Modal show={show} onHide={handleClose}>
                             <Modal.Header closeButton>
