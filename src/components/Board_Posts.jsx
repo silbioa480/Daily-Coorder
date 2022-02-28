@@ -1,26 +1,35 @@
 import "../css/Board_Posts.css";
-import {
-  BsDownload,
-  BsBookmarks,
-  BsPlusSquare,
-  BsArrowDownShort,
-} from "react-icons/bs";
+import { BsDownload, BsBookmarks, BsPlusSquare } from "react-icons/bs";
+import { ImQrcode } from "react-icons/im";
 import { FiMoreHorizontal, FiX } from "react-icons/fi";
 import { HiOutlineThumbUp } from "react-icons/hi";
 import { RiShareForwardLine } from "react-icons/ri";
 import qr from "../img/qr.png";
-import { Circle, Com, Square } from "../css/Board_Posts";
-import { useCallback, useState } from "react";
+import { Circle, Square } from "../css/Board_Posts";
+import { useState } from "react";
 import similar from "../img/similar.png";
-import { useRef } from "react";
-import React from "react";
 import Comment from "../components/Board_Comment";
 
 function Board_Picture() {
   return (
     <div className="bp">
       <div className="picture">
-        <img src={similar} alt="" />
+        <img src={similar} alt=""></img>
+        {/* qr버튼: 누르면 qr나오게해야함*/}
+        <button
+          style={{
+            borderRadius: "50%",
+            border: "none",
+            width: "50px",
+            height: "50px",
+            position: "absolute",
+            top: "10px",
+            left: "10px",
+            zIndex: "2",
+          }}
+        >
+          <ImQrcode></ImQrcode>
+        </button>
       </div>
       <div className="bp1">
         <Square style={{ marginTop: "10px" }}>20대</Square>

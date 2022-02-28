@@ -11,10 +11,18 @@
   width: 50%;
   height: auto;
 }
-.picture img {
-  width: 100%;
+.picture {
   height: 600px;
+  position: relative;
+}
+
+.picture img {
+  width: 400px;
+  height: 600px;
+  max-height: 600px;
   border-radius: 30px 0px 0px 0px;
+  position: absolute;
+  z-index: 1;
 }
 
 .bp1 {
