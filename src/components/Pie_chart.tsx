@@ -28,8 +28,9 @@ class Pie_chart extends React.Component{
                             breakpoint:280
                         }
                     ]}
-                style={{width:"400px",height:"550px"}}
+                style={{width:"350px",height:"450px"}}
                 />
+                
             </>
         );
     }
