@@ -35,3 +35,8 @@ export const Square = styled.div`
   justify-content: center;
   align-items: center;
 `;
+//qr코드
+export const QR = styled.img`
+  width: 300px;
+  height: 300px;
+`;

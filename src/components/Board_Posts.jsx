@@ -5,10 +5,12 @@ import { FiMoreHorizontal, FiX } from "react-icons/fi";
 import { HiOutlineThumbUp } from "react-icons/hi";
 import { RiShareForwardLine } from "react-icons/ri";
 import qr from "../img/qr.png";
-import { Circle, Square } from "../css/Board_Posts";
+import { Circle, Square, QR } from "../css/Board_Posts";
 import { useState } from "react";
 import similar from "../img/similar.png";
 import Comment from "../components/Board_Comment";
+import React from "react";
+import { Button, Modal } from "react-bootstrap";
 
 function Board_Picture() {
   return (
@@ -16,7 +18,8 @@ function Board_Picture() {
       <div className="picture">
         <img src={similar} alt=""></img>
         {/* qr버튼: 누르면 qr나오게해야함*/}
-        <button
+        <Qrcode></Qrcode>
+        {/* <button
           style={{
             borderRadius: "50%",
             border: "none",
@@ -29,7 +32,7 @@ function Board_Picture() {
           }}
         >
           <ImQrcode></ImQrcode>
-        </button>
+        </button> */}
       </div>
       <div className="bp1">
         <Square style={{ marginTop: "10px" }}>20대</Square>
@@ -48,6 +51,46 @@ function Board_Picture() {
         </div>
       </div>
     </div>
+  );
+}
+//qr누르면 modal로 나오는창
+function Click_Qr(props) {
+  return (
+    <Modal
+      {...props}
+      size="sm"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Title id="contained-modal-title-vcenter">
+        <QR src={qr}></QR>
+      </Modal.Title>
+    </Modal>
+  );
+}
+function Qrcode() {
+  const [modalShow, setModalShow] = React.useState(false);
+
+  return (
+    <>
+      <button
+        style={{
+          borderRadius: "50%",
+          border: "none",
+          width: "50px",
+          height: "50px",
+          position: "absolute",
+          top: "10px",
+          left: "10px",
+          zIndex: "2",
+        }}
+        onClick={() => setModalShow(true)}
+      >
+        <ImQrcode />
+      </button>
+
+      <Click_Qr show={modalShow} onHide={() => setModalShow(false)} />
+    </>
   );
 }
 
@@ -88,16 +131,6 @@ function Follow() {
         >
           팔로우
         </button>
-      </div>
-    </div>
-  );
-}
-
-function Qrcode() {
-  return (
-    <div>
-      <div className="qr">
-        <img src={qr} alt="profile" />
       </div>
     </div>
   );
