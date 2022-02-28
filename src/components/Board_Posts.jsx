@@ -17,7 +17,7 @@ function Board_Picture() {
     <div className="bp">
       <div className="picture">
         <img src={similar} alt=""></img>
-        {/* qr버튼: 누르면 qr나오게해야함*(완성)/}
+        {/* qr버튼: 누르면 qr나오게해야함*(완성) */}
         <Qrcode></Qrcode>
         {/* <button
           style={{
