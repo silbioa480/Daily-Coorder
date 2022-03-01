@@ -1,10 +1,11 @@
-import Banner from "../components/Banner";
+import Banner from "../components/main/Banner";
+import Mainfollow from "../components/main/Mainfollow"
 
 function Main() {
   return (
       <>
       <Banner />
-      <h1>main</h1>
+      <Mainfollow />
       </>
   );
 
