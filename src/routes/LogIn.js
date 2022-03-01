@@ -1,24 +1,41 @@
 
-import {useState} from "react";
-import { Link } from "react-router-dom";
+import {useEffect, useState} from "react";
+import {Link} from "react-router-dom";
 
 function LogIn() {
 
     const [Id, setId] = useState("");
     const [Password, setPassword] = useState("");
 
+    const [inputs, setInputs] = useState({
+        Id:"",
+        Password: "",
+    });
+
     const onIdHandler = (e) => {
         setId(e.currentTarget.value);
     };
     const onPasswordHanlder = (e) => {
-
         setPassword(e.currentTarget.value);
     };
 
+    const handleChange = event=> {
+        const name = event.target.name;
+        const value = event.target.value;
+        setInputs(values=>({...values, [name]:value}))
+    }
     const onSubmitHandler = (e) => {
         e.preventDefault();
+        if(inputs.Id=="") {
+            alert("아이디를 입력하세요.");
+            return;
+        }else if(inputs.Password=="") {
+            alert("비밀번호를 입력하세요.");
+            return;
+        }
 
     };
+
 
     return (
         <div style={{
