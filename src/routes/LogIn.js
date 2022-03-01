@@ -26,7 +26,7 @@ function LogIn() {
             width: '100%', height: '40vh'
         }}>
             <form onSubmit={onSubmitHandler}>
-                <p style={{display: "flex", flexDirection: "column", fontSize: "25px"}}>로그인</p>
+                <p style={{marginTop: "300px", display: "flex", flexDirection: "column", fontSize: "25px"}}>로그인</p>
                 <br/><br/>
                 <label>아이디</label>
                 <input style={{marginTop: "15px", borderRadius: "2px", width:"100%", height:"40px",

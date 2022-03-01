@@ -6,6 +6,7 @@ function Board() {
   return (
     <div>
       <Board_Posts />
+      <h1 style={{ textAlign: "center", padding: "30px" }}>유사한 핀 더보기</h1>
       <Board_Similar />
     </div>
   );
