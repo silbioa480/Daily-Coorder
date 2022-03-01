@@ -135,8 +135,6 @@ function SignUp() {
         }} class="SignUp">
           <form onSubmit={onSubmit}>
 
-
-
               <Tabs defaultActiveKey="first">
                 <Tab eventKey="first" title="일반회원가입">
                   <p style={{marginTop: "30px", flexDirection: "column", fontSize: "25px", display: 'block', width: 350, padding: 30}}> 회원가입 </p>
@@ -144,7 +142,7 @@ function SignUp() {
             <div className="profile">
               <div className="avatar stagger-item">
                 <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" style={{
-                  marginTop: "15px", width: "180px", height: "180px"
+                   width: "180px", height: "180px"
                 }} alt="Circle Image" className="img-raised rounded-circle img-fluid"/>
                 <button style={{
                   width: "180px",
@@ -265,16 +263,20 @@ function SignUp() {
                 padding: "9px 12px",
                 outline: "none",
                 boxSizing: "border-box",
-                marginBottom: "10px"
+                marginBottom: "20px"
               }} name="user-phone" type="text" placeholder="-를 제외하고 숫자만 입력하세요" value={phoneNumber}
                      onChange={onPhoneNumberHandler} onBlur={checkPhoneNumber} className="loginregister_input"/></div>
-
+                  <details>
+                    <summary style={{
+                      cursor: "pointer", marginBottom: "10px"
+                    }}>일반회원 약관동의</summary>
              <div>
                 <input style={{
                   marginBottom:"5px"
                 }} type="checkbox" id="all-check" checked={allCheck} onChange={allBtnEvent}/>
                 <label style={{fontSize:"14px"}} htmlFor="all-check">전체동의</label>
              </div>
+
 
               <div>
                 <input style={{
@@ -292,6 +294,7 @@ function SignUp() {
                <input type="checkbox" id="check3" checked={marketingCheck} onChange={marketingBtnEvent}/>
               <label style={{fontSize:"14px"}} htmlFor="check3">마케팅 동의 <span style={{color:"gray"}} className="stylesgray">(선택)</span></label>
               </div>
+                  </details>
 
             <div>
               <button style={{
@@ -431,7 +434,10 @@ function SignUp() {
                     }} name="user-phone" type="text" placeholder="-를 제외하고 숫자만 입력하세요" value={phoneNumber}
                            onChange={onPhoneNumberHandler} onBlur={checkPhoneNumber} className="loginregister_input"/>
                   </div>
-
+                  <details>
+                    <summary style={{
+                      cursor: "pointer", marginBottom: "10px"
+                    }}>사업자회원 약관동의</summary>
                   <div>
                     <input style={{
                       marginBottom: "5px"
@@ -458,6 +464,7 @@ function SignUp() {
                     <label style={{fontSize: "14px"}} htmlFor="check3">마케팅 동의 <span style={{color: "gray"}}
                                                                                     className="stylesgray">(선택)</span></label>
                   </div>
+                    </details>
                   <div>
                     <button style={{
                       width: "420px",
@@ -480,7 +487,6 @@ function SignUp() {
           </form>
 
         </div>
-
 
     );
 
