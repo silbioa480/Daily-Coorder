@@ -14,15 +14,15 @@ function Banner() {
 
             <Carousel fade className="BannerCar">
 
-                <Carousel.Item className="bannerpic" style={{width: '980px', height: '420px'}}>
+                <Carousel.Item className="bannerpic" style={{width: '1000px', height: '280px'}}>
                     <img className="d-block w-100" src={mainBanner1} alt="First slide"/>
                 </Carousel.Item>
 
-                <Carousel.Item className="bannerpic" style={{width: '980px', height: '420px'}}>
+                <Carousel.Item className="bannerpic" style={{width: '1000px', height: '280px'}}>
                     <img className="d-block w-100" src={mainBanner2} alt="Second slide"/>
                 </Carousel.Item>
 
-                <Carousel.Item className="bannerpic" style={{width: '980px', height: '420px'}}>
+                <Carousel.Item className="bannerpic" style={{width: '1000px', height: '280px'}}>
                     <img className="d-block w-100" src={mainBanner3} alt="Second slide"/>
                 </Carousel.Item>
 
