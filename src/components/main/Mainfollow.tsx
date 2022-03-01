@@ -24,7 +24,7 @@ function Mainfollow() {
       <>
           <div className="mainfollow-text">New Followrs Feed</div>
           <hr className="Line"></hr>
-              <Carousel fade className="FeedCar" style={{width: '1250px'}}>
+              <Carousel fade className="feedcar" style={{width: '1250px'}}>
 
                   <Carousel.Item>
                       <div className="folpic">
