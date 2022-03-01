@@ -13,6 +13,8 @@ import mainfol3 from '../../img/main/mainfol3.png';
 import mainfol4 from '../../img/main/mainfol4.png';
 import mainfol5 from '../../img/main/mainfol5.png';
 import mainfol6 from '../../img/main/mainfol6.png';
+import mainfol7 from '../../img/main/mainfol7.png';
+import mainfol8 from '../../img/main/mainfol8.png';
 import like_logoW from '../../img/main/like_logoW.png';
 import like_icon from '../../img/main/like_icon.png';
 import follow_icon from '../../img/main/follow_icon.png';
@@ -34,7 +36,7 @@ function Mainfollow() {
                               <div className="follow_logoA"><img src={follow_logoW} className="follow_logoW"/></div>
                           </div>
                           <div className="group_txt">
-                              <div className="t1">@bn_sj2013</div>
+                              <div className="t1">@shine_1</div>
                               <div className="like_group">
                                   <img src={like_icon} className="like_icon"/>
                                   <span className="like_cnt">435</span>
@@ -87,18 +89,37 @@ function Mainfollow() {
                           </div>
                       </div>
 
-                  </Carousel.Item>
-                  <Carousel.Item>
-
-
                       <div className="folpic">
-                          <img className="d-block w-100" src={mainfol4}  alt="2-1 slide"/>
+                          <img className="d-block w-100" src={mainfol4}  alt="1-3 slide"/>
                           <div className="group_icon">
                               <div className="like_logoA"><img src={like_logoW} className="like_logoW"/></div>
                               <div className="follow_logoA"><img src={follow_logoW} className="follow_logoW"/></div>
                           </div>
                           <div className="group_txt">
-                              <div className="t1">@Tae_Tae</div>
+                              <div className="t1">@tae_v</div>
+                              <div className="like_group">
+                                  <img src={like_icon} className="like_icon"/>
+                                  <span className="like_cnt">635</span>
+                              </div>
+                              <div className="follow_group">
+                                  <img src={follow_icon} className="follow_icon"/>
+                                  <span className="follow_cnt">572</span>
+                              </div>
+                          </div>
+                      </div>
+
+                  </Carousel.Item>
+                  <Carousel.Item>
+
+
+                      <div className="folpic">
+                          <img className="d-block w-100" src={mainfol5}  alt="2-1 slide"/>
+                          <div className="group_icon">
+                              <div className="like_logoA"><img src={like_logoW} className="like_logoW"/></div>
+                              <div className="follow_logoA"><img src={follow_logoW} className="follow_logoW"/></div>
+                          </div>
+                          <div className="group_txt">
+                              <div className="t1">@yahni</div>
                               <div className="like_group">
                                   <img src={like_icon} className="like_icon"/>
                                   <span className="like_cnt">1,157</span>
@@ -112,13 +133,13 @@ function Mainfollow() {
 
 
                       <div className="folpic">
-                          <img className="d-block w-100" src={mainfol5}  alt="2-2 slide"/>
+                          <img className="d-block w-100" src={mainfol6}  alt="2-2 slide"/>
                           <div className="group_icon">
                               <div className="like_logoA"><img src={like_logoW} className="like_logoW"/></div>
                               <div className="follow_logoA"><img src={follow_logoW} className="follow_logoW"/></div>
                           </div>
                           <div className="group_txt">
-                              <div className="t1">@Won_ing</div>
+                              <div className="t1">@won_ing</div>
                               <div className="like_group">
                                   <img src={like_icon} className="like_icon"/>
                                   <span className="like_cnt">23</span>
@@ -132,13 +153,13 @@ function Mainfollow() {
 
 
                       <div className="folpic">
-                          <img className="d-block w-100" src={mainfol6}  alt="2-3 slide"/>
+                          <img className="d-block w-100" src={mainfol7}  alt="2-3 slide"/>
                           <div className="group_icon">
                               <div className="like_logoA"><img src={like_logoW} className="like_logoW"/></div>
                               <div className="follow_logoA"><img src={follow_logoW} className="follow_logoW"/></div>
                           </div>
                           <div className="group_txt">
-                              <div className="t1">@Covi_D</div>
+                              <div className="t1">@covi_d</div>
                               <div className="like_group">
                                   <img src={like_icon} className="like_icon"/>
                                   <span className="like_cnt">198</span>
@@ -146,6 +167,25 @@ function Mainfollow() {
                               <div className="follow_group">
                                   <img src={follow_icon} className="follow_icon"/>
                                   <span className="follow_cnt">347</span>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div className="folpic">
+                          <img className="d-block w-100" src={mainfol8}  alt="2-3 slide"/>
+                          <div className="group_icon">
+                              <div className="like_logoA"><img src={like_logoW} className="like_logoW"/></div>
+                              <div className="follow_logoA"><img src={follow_logoW} className="follow_logoW"/></div>
+                          </div>
+                          <div className="group_txt">
+                              <div className="t1">@hni_b</div>
+                              <div className="like_group">
+                                  <img src={like_icon} className="like_icon"/>
+                                  <span className="like_cnt">1,586</span>
+                              </div>
+                              <div className="follow_group">
+                                  <img src={follow_icon} className="follow_icon"/>
+                                  <span className="follow_cnt">2,476</span>
                               </div>
                           </div>
                       </div>
