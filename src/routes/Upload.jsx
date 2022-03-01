@@ -24,31 +24,31 @@ class FileUpload extends Component {
     return (
       <form>
         {/* 사진 업로드 */}
-        <div>
+        <div className="upload-box">
           <label className="file-uploader">
             <input
               type="file"
               mutiple
               onChange={this.onChange}
-            />사진 올리기
+            /><i className="fa-solid fa-image"></i>
           </label>
           {
             this.state.files.map(x => <div className="file-name" onClick={this.removeFile.bind(this, x)} >{x.name}</div>)
           }
+          {/* 사진 */}
+          <img src={imgA} />
         </div>
-        {/* 사진 */}
-        <img src={imgA} />
         {/* 제목 */}
         <div>
-          <input type="text" id="title" placeholder='제목을 입력하세요.' />
+          <input type="text" id="title" placeholder='제목을 입력하세요' />
         </div>
         {/* 내용 */}
         <div>
-          <input type="text" placeholder="내용을 입력해주세요." />
+          <textarea placeholder="내용을 입력하세요" name="content" id="content" cols="30" rows="5"></textarea>
         </div>
         {/* url */}
         <div>
-          <input type="url" placeholder='상품 url을 입력해주세요.' />
+          <input type="url" placeholder='상품 url을 입력해주세요' />
         </div>
         {/* 해시태그 */}
         <div>
@@ -58,8 +58,8 @@ class FileUpload extends Component {
           />
         </div>
         {/* 업로드 버튼 */}
-        <div>
-          <a href="#">전송</a>
+        <div className="share-box">
+          <a href="#" className="share">공유</a>
         </div>
       </form>
     );

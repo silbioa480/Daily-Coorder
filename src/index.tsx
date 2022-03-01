@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import {RecoilRoot} from "recoil";
-import {ThemeProvider} from "styled-components";
+import { RecoilRoot } from "recoil";
+import { ThemeProvider } from "styled-components";
 import { QueryClient, QueryClientProvider } from "react-query";
-import {theme} from "./theme";
+import { theme } from "./theme";
+import '@fortawesome/fontawesome-free/js/all.js'
+
 
 const queryClient = new QueryClient();
 

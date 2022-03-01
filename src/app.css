@@ -1,0 +1,75 @@
+:root {
+  --font-size : 20px;
+  --border-bottom: 1px solid grey;
+  --input-box-width: 700px; 
+  --input-box-height: 50px;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+img {
+  width: 300px;
+  height: 400px;
+}
+
+div {
+  margin: 5px;
+}
+.upload-box {
+  border-bottom: var(--border-bottom);
+}
+
+.file-uploader {
+  color: grey;
+  font-size: 50px;
+  cursor: pointer;
+}
+
+.file-name {
+  margin: 5px 10px;
+}
+
+input {
+  border: none;
+  border-bottom: var(--border-bottom);
+  width: var(--input-box-width);
+  height: var(--input-box-height);
+  font-size: var(--font-size);
+}
+
+textarea {
+  border: none;
+  border-bottom: var(--border-bottom);
+  width: var(--input-box-width);
+  height: carc(var(--input-box-height * 4));
+  font-size: var(--font-size);
+}
+
+.share-box {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.share {
+  border: 1px solid blue;
+  border-radius: 5px;
+  background-color: white;
+  color: blue;
+  font-size: var(--font-size);
+  text-decoration: none;
+  padding: 10px 20px;
+  transition: 300ms ease-in-out;
+}
+
+.share:hover {
+  background-color: blue;
+  color: white;
+}
