@@ -11,34 +11,26 @@ import mainBanner3 from '../../img/main/mainBanner3.png';
 function Banner() {
     return (
         <>
-            <div className="carousel">
-            <Carousel fade>
-                <Carousel.Item>
-                    <img
-                        className="d-block w-100"
-                        src={mainBanner1}
-                        alt="First slide"
-                    />
+
+            <Carousel fade className="BannerCar">
+
+                <Carousel.Item className="bannerpic" style={{width: '980px', height: '420px'}}>
+                    <img className="d-block w-100" src={mainBanner1} alt="First slide"/>
                 </Carousel.Item>
-                <Carousel.Item>
-                    <img
-                        className="d-block w-100"
-                        src={mainBanner2}
-                        alt="Second slide"
-                    />
+
+                <Carousel.Item className="bannerpic" style={{width: '980px', height: '420px'}}>
+                    <img className="d-block w-100" src={mainBanner2} alt="Second slide"/>
                 </Carousel.Item>
-                <Carousel.Item>
-                    <img
-                        className="d-block w-100"
-                        src={mainBanner3}
-                        alt="Second slide"
-                    />
+
+                <Carousel.Item className="bannerpic" style={{width: '980px', height: '420px'}}>
+                    <img className="d-block w-100" src={mainBanner3} alt="Second slide"/>
                 </Carousel.Item>
+
             </Carousel>
-            </div>
+
         </>
 
-    )
+    );
 }
 
 export default Banner;

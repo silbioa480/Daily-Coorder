@@ -1,9 +1,10 @@
-.carousel {
+.BannerCar {
     width: 1000px;
-    margin-left: 125px;
+    margin-left: 200px;
     margin-bottom:10px
+
 }
 
-.d-block w-100.img {
+.bannerpic>img {
     cursor:pointer;
 }
