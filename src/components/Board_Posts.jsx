@@ -17,22 +17,7 @@ function Board_Picture() {
     <div className="bp">
       <div className="picture">
         <img src={similar} alt=""></img>
-        {/* qr버튼: 누르면 qr나오게해야함*(완성) */}
         <Qrcode></Qrcode>
-        {/* <button
-          style={{
-            borderRadius: "50%",
-            border: "none",
-            width: "50px",
-            height: "50px",
-            position: "absolute",
-            top: "10px",
-            left: "10px",
-            zIndex: "2",
-          }}
-        >
-          <ImQrcode></ImQrcode>
-        </button> */}
       </div>
       <div className="bp1">
         <Square style={{ marginTop: "10px" }}>20대</Square>
@@ -102,17 +87,50 @@ function Download() {
   );
 }
 
+function Explanation() {
+  return (
+    <>
+      <p
+        style={{
+          fontWeight: "bold",
+          fontSize: "36px",
+          padding: "0px 20px 10px 20px",
+          wordBreak: "break-all",
+          wordBreak: "keep-all",
+          lineHeight: "40px",
+        }}
+      >
+        Streetwear Men's MultiPockets Cargo Pants Casual Track Pant Jogger
+        Troisers
+      </p>
+      <p
+        style={{
+          fontWeight: "lighter",
+          fontSize: "14px",
+          padding: "0px 20px 10px 20px",
+          wordBreak: "break-all",
+          wordBreak: "keep-all",
+          lineHeight: "18px",
+        }}
+      >
+        Streetwear Men's MultiPockets Cargo Pants Casual Track Pant Jogger
+        Troisers
+      </p>
+    </>
+  );
+}
+
 function Follow() {
-  const [backgroundcolor, setbackgroundcolor] = useState("lightgray");
-  const [color, setcolor] = useState("black");
+  const [backgroundcolor, setBackgroundcolor] = useState("lightgray");
+  const [color, setColor] = useState("black");
   const [content, setContent] = useState("팔로우");
 
   const onClick = () => {
     backgroundcolor === "lightgray"
-      ? setbackgroundcolor("black")
-      : setbackgroundcolor("lightgray");
+      ? setBackgroundcolor("black")
+      : setBackgroundcolor("lightgray");
 
-    color === "black" ? setcolor("white") : setcolor("black");
+    color === "black" ? setColor("white") : setColor("black");
     content === "팔로우" ? setContent("팔로잉") : setContent("팔로우");
     // setContent((prev) => (prev === "팔로우" ? "팔로잉" : "팔로우")); :방법2
   };
@@ -189,6 +207,7 @@ function Board_Posts() {
       <Board_Picture />
       <div>
         <Download />
+        <Explanation />
         <Follow />
         <Comment />
       </div>
