@@ -5,6 +5,10 @@
   --input-box-height: 50px;
 }
 
+li {
+  list-style: none;
+}
+
 body {
   display: flex;
   justify-content: center;
@@ -16,7 +20,7 @@ input[type="file"] {
 
 img {
   width: 300px;
-  height: 400px;
+  height: 270px;
 }
 
 div {
@@ -24,12 +28,18 @@ div {
 }
 .upload-box {
   border-bottom: var(--border-bottom);
+  width: var(--input-box-width);
 }
 
 .file-uploader {
   color: grey;
-  font-size: 50px;
   cursor: pointer;
+}
+
+.file-image {
+  width: 300px;
+  height: 300px;
+  margin-right: 3rem;
 }
 
 .file-name {
@@ -42,6 +52,7 @@ input {
   width: var(--input-box-width);
   height: var(--input-box-height);
   font-size: var(--font-size);
+  padding: 0.5rem 0;
 }
 
 textarea {
@@ -50,6 +61,45 @@ textarea {
   width: var(--input-box-width);
   height: carc(var(--input-box-height * 4));
   font-size: var(--font-size);
+  padding: 0.5rem 0;
+}
+
+.hashtag-container {
+  width: var(--input-box-width);
+  border-bottom: var(--border-bottom);
+}
+
+.hashtag-list {
+  display: flex;
+  align-items: center;
+  padding-left: 0;
+  flex-wrap: wrap;
+}
+
+.hashtag {
+  font-size: var(--font-size);
+  margin: 0 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid blue;
+  background-color: blue;
+  color: white;
+  border-radius: 5rem;
+}
+
+.hashtag-input {
+  width: 100%;
+  padding: 0;
+  border: none;
+}
+
+.button {
+  border: none;
+  background-color: transparent;
+  color: orange;
+}
+
+.button:hover {
+  cursor: pointer;
 }
 
 .share-box {
@@ -60,7 +110,7 @@ textarea {
 
 .share {
   border: 1px solid blue;
-  border-radius: 5px;
+  border-radius: 1rem;
   background-color: white;
   color: blue;
   font-size: var(--font-size);
