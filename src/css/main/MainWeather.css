@@ -22,7 +22,9 @@ hr>.Line {
     float: left;
     overflow: hidden;
     text-align:center;
-
+    display: inline-block;
+    z-index: 3;
+    cursor:pointer;
 }
 
 .group_icon,
@@ -46,32 +48,36 @@ hr>.Line {
 .folpic:hover .group_txt {transform: translateY(0); opacity: 1;}
 
 .folpic>.d-block {
-    cursor:pointer;
+
     transform: scale(1);
     transition: all 0.35s ease-out;
     display: block;
 
 }
 
-.like_logoA,
+
 .follow_logoA {
     height:35px;
+
+
+
 }
+
 .group_icon {
-    width: 22%;
-    height: 100px;
+
+    width: 30px;
     position: absolute;
     top: 10px;
+
 
 }
 
 .group_txt {
-    width:23%;
+    width:280px;
     position: absolute;
-    bottom: 0;
-    padding:30px;
+    bottom: 25px;
     text-align:center;
-    margin-bottom: 25px;
+
 }
 
 .t1 {
@@ -105,27 +111,28 @@ hr>.Line {
 }
 
 .like_icon {
-    width: 13px;
+    width: 10px;
     vertical-align: middle;
 
 }
 
 .follow_icon {
-    width: 13px;
+    width: 10px;
     vertical-align: middle;
 
 }
 
 .like_logoW {
-    width: 17px;
+    width: 13px;
     float:right;
     margin: 5px;
     cursor: pointer;
     z-index: 3;
+
 }
 
 .follow_logoW {
-    width: 20px;
+    width: 13px;
     float:right;
     margin: 5px;
     cursor: pointer;
@@ -168,7 +175,7 @@ hr>.Line {
 
 .feedcar {
     margin-bottom: 70px;
-    margin-left: 150px;
+
 }
 
 /** {*/
