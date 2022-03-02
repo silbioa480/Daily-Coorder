@@ -4,6 +4,7 @@ import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import axios from 'axios';
 import {Result} from "antd";
+import $ from "jquery";
 
 function SignUp() {
   const [isOnCheck, setIsOnCheck] = useState(false);
@@ -45,14 +46,16 @@ function SignUp() {
 
   const [confirmProPassword, setConfirmProPassword] = useState("");
 
-  const [show, setShow] = useState(false);
-  const [value, setValue] = useState({Id:"",Password: "", name:"", nickname: "",
-    phoneNumber:"", email:"", proNumber:"", usableId: false})
-
+ // 약관동의
   const [allCheck, setAllCheck] = useState(false);
   const [ageCheck, setAgeCheck] = useState(false);
   const [useCheck, setUseCheck] = useState(false);
   const [marketingCheck, setMarketingCheck] = useState(false);
+
+  const [show, setShow] = useState(false);
+  const [value, setValue] = useState({Id:"",Password: "", name:"", nickname: "",
+    phoneNumber:"", email:"", proNumber:"", usableId: false})
+
 
   const onNicknameHandler = (event) => {
     setNickname(event.currentTarget.value)
@@ -151,25 +154,106 @@ function SignUp() {
     setTermError(false);
   };
 
-  const validation = () => {
-    if(!Id) setErrorId(true);
-    if(!Password) setErrorPassword(true);
-    if(!confirmPassword) setConfirmPasswordError(true);
-    if(!name) setErrorEmail(true);
-    if(!email) setErrorEmail(true);
-    if(!term) setTermError(true);
-    if(!phoneNumber) setErrorPhoneNumber(true);
-    if(!proNumber) setErrorProNumber(true);
+  // const validation = () => {
+  //   if(!Id) setErrorId(true);
+  //   if(!Password) setErrorPassword(true);
+  //   if(!confirmPassword) setConfirmPasswordError(true);
+  //   if(!name) setErrorEmail(true);
+  //   if(!email) setErrorEmail(true);
+  //   if(!term) setTermError(true);
+  //   if(!phoneNumber) setErrorPhoneNumber(true);
+  //   if(!proNumber) setErrorProNumber(true);
+  //
+  //   if(Id && Password && confirmPassword && name && email && term && phoneNumber && proNumber) return true;
+  //   else return false;
+  // }
+  const checkId = $('#Id').val();
+  const checkPassword = $('#Password').val();
+  const checkNickName = $('#nickName').val();
+  const checkEmail = $('#email').val();
+  const checkPhoneNumber = $('#phoneNumber').val();
+  const checkConfirmPassword = $('#confirmPassword').val();
 
-    if(Id && Password && confirmPassword && name && email && term && phoneNumber && proNumber) return true;
-    else return false;
-  }
-
-
-  const handleSubmit = (e) => {
+  const onSubmitHandler = (e) => {
     e.preventDefault();
 
+    if(!checkId) {
+      alert("아이디를 입력해주세요");
+      $('#Id').val("");
+      $('#Id').focus();
+      return false;
     }
+    $('#Id').removeClass('borderErr');
+
+    if(!checkPassword) {
+      alert("비밀번호를 입력해주세요");
+      $('#Password').val("");
+      $('#Password').focus();
+      return false;
+    }
+    $('#Password').removeClass('borderErr');
+
+    if(!checkConfirmPassword) {
+      alert("비밀번호를 확인해주세요");
+      $('#confirmPassword').val("");
+      $('#confirmPassword').focus();
+      return false;
+    }
+    $('#confirmPassword').removeClass('borderErr');
+
+    if(!checkNickName) {
+      alert("닉네임을 입력해주세요");
+      $('#nickname').val("");
+      $('#nickname').focus();
+      return false;
+    }
+    $('#nickname').removeClass('borderErr');
+
+    if(!checkEmail) {
+      alert("이메일을 입력해주세요");
+      $('#email').val("");
+      $('#email').focus();
+      return false;
+    }
+    $('#email').removeClass('borderErr');
+
+    if(!checkPhoneNumber) {
+      alert("휴대폰 번호를 입력해주세요");
+      $('#phoneNumber').val("");
+      $('#phoneNumber').focus();
+      return false;
+    }
+    $('#phoneNumber').removeClass('borderErr');
+
+  };
+
+
+  const idKeyPress = (e) => {
+    $('#Id').removeClass('borderErr');
+  };
+
+  const passwordKeyPress = (e) => {
+    $('#Password').removeClass('borderErr');
+  };
+
+  const confirmPasswordKeyPress = (e) => {
+    $('#confirmPassword').removeClass('borderErr');
+  };
+
+  const nickNameKeyPress = (e) => {
+    $('#nickname').removeClass('borderErr');
+  };
+
+  const emailKeyPress = (e) => {
+    $('#email').removeClass('borderErr');
+  };
+
+  const phoneNumberKeyPress = (e) => {
+    $('#phoneNumber').removeClass('borderErr');
+  };
+
+
+
 
   const allBtnEvent =()=>{
     if(allCheck === false) {
@@ -222,7 +306,7 @@ function SignUp() {
           display: 'flex', justifyContent: 'center',
           width: '100%', height: '40vh', marginTop: '50px'
         }} class="SignUp">
-          <form>
+          <form onSubmit={onSubmitHandler}>
 
               <Tabs defaultActiveKey="first">
                 <Tab eventKey="first" title="일반회원가입">
@@ -246,7 +330,7 @@ function SignUp() {
                   marginBottom: "12px",
                   borderRadius: "3px",
                   borderStyle: "none"
-                }} type="submit" className="profile_button">프로필 업로드
+                }}  type="submit" className="profile_button">프로필 업로드
                 </button>
               </div>
             </div>
@@ -258,7 +342,7 @@ function SignUp() {
               <input style={{
                 marginTop: "10px", borderRadius: "2px", width: "100%", height: "40px",
                 border: "1px solid #e5e5e5", padding: "9px 12px", outline: "none", boxSizing: "border-box"
-              }} name="user-id" type="id" placeholder="아이디" value={Id} onChange={onChangeId}
+              }} id="Id" name="user-id" type="id" placeholder="아이디" value={Id} onKeyPress={idKeyPress} onChange={onChangeId}
                      class="loginregister_input"/> {errorId && <div class="invalid-input" style={{
               color: "deepskyblue", fontSize: "12px", marginBottom: "10px"
             }}> 아이디는 숫자를 포함하여 최소 5자 이상</div>}
@@ -275,7 +359,7 @@ function SignUp() {
                 borderRadius: "3px",
                 borderStyle: "none",
                 marginBottom: "10px"
-              }} type="submit" class="loginregister_button" onSubmit={handleSubmit} hidden={show}>아이디 중복확인
+              }} type="submit" class="loginregister_button"  hidden={show}>아이디 중복확인
               </button>
               {show && <Result data={value} /> }
             </div>
@@ -291,7 +375,7 @@ function SignUp() {
                 outline: "none",
                 boxSizing: "border-box",
                 marginBottom: "10px"
-              }} name="user-nickname" type="text" placeholder="닉네임" value={nickname} onChange={onNicknameHandler}
+              }} id="nickname" name="user-nickname" type="text" placeholder="닉네임" value={nickname} onKeyPress={nickNameKeyPress} onChange={onNicknameHandler}
                      className="loginregister_input"/></div>
 
             <div><label htmlFor="user-password">비밀번호</label>
@@ -305,7 +389,7 @@ function SignUp() {
                 outline: "none",
                 boxSizing: "border-box",
                 marginBottom: "10px"
-              }} name="user-password" type="password" placeholder="비밀번호" value={Password} onChange={onChangePassword}
+              }} id="Password" name="user-password" type="password" placeholder="비밀번호" value={Password} onKeyPress={passwordKeyPress} onChange={onChangePassword}
                      class="loginregister_input"/>{errorPassword && <div class="invalid-input" style={{
                 color: "deepskyblue", fontSize: "12px", marginBottom: "10px"
               }}>비밀번호는 숫자와 문자를 포함하여 최소 8자 이상 </div>} </div>
@@ -321,8 +405,8 @@ function SignUp() {
                 outline: "none",
                 boxSizing: "border-box",
                 marginBottom: "5px"
-              }} name="confirmPassword" type="password" placeholder="비밀번호 확인" value={confirmPassword}
-                     onChange={onChangeConfirmPassword} class="loginregister_input"/>
+              }} name="confirmPassword" type="password" placeholder="비밀번호 확인" value={confirmPassword} onKeyPress={confirmPasswordKeyPress}
+                    id={confirmPassword} onChange={onChangeConfirmPassword} class="loginregister_input"/>
               {confirmPasswordError && <div class="invalid-input" style={{
                 color: "red", fontSize: "12px", marginBottom: "10px"
               }}> 비밀번호가 일치하지 않습니다.</div>}
@@ -343,7 +427,7 @@ function SignUp() {
               <input style={{
                 marginTop: "15px", borderRadius: "2px", width: "100%", height: "40px",
                 border: "1px solid #e5e5e5", padding: "9px 12px", outline: "none", boxSizing: "border-box"
-              }} name="user-email" type="text" placeholder="이메일" value={email} onChange={onChangeEmail}
+              }} id="email" name="user-email" type="text" placeholder="이메일" value={email} onKeyPress={emailKeyPress} onChange={onChangeEmail}
                      className="loginregister_input"/>
               {errorEmail && <div class="invalid-input" style={{
                 color: "deepskyblue", fontSize: "12px", marginBottom: "10px"
@@ -362,8 +446,8 @@ function SignUp() {
                 outline: "none",
                 boxSizing: "border-box",
                 marginBottom: "20px"
-              }} name="user-phone" type="text" placeholder="-를 제외하고 숫자만 입력하세요" value={phoneNumber}
-                     onChange={onChangePhoneNumber} className="loginregister_input"/>
+              }} id="phoneNumber" name="user-phone" type="text" placeholder="-를 제외하고 숫자만 입력하세요" value={phoneNumber}
+                     onKeyPress={phoneNumberKeyPress} onChange={onChangePhoneNumber} className="loginregister_input"/>
               {errorPhoneNumber && <div class="invalid-input" style={{
                 color: "deepskyblue", fontSize: "12px", marginBottom: "10px"
               }}>숫자만 입력하세요</div>}</div>
@@ -398,7 +482,7 @@ function SignUp() {
                   </details>
 
             <div>
-              <button style={{
+              <input style={{
                 width: "420px",
                 height: "40px",
                 fontSize: "14px",
@@ -411,8 +495,8 @@ function SignUp() {
                 marginBottom: "12px",
                 borderRadius: "3px",
                 borderStyle: "none"
-              }} type="submit"  class="loginregister_button" >회원가입
-              </button>
+              }} type="submit"  className="loginregister_button"  value="회원가입"/>
+
             </div>
                 </Tab>
                 
