@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import $ from 'jquery';
 
+
 import facebooklogo from '../img/login/facebooklogo.png';
 import kakaologo from '../img/login/kakaologo.png';
 import googlelogo from '../img/login/googlelogo.png';
@@ -14,11 +15,6 @@ function LogIn() {
 
     const [Id, setId] = useState("");
     const [Password, setPassword] = useState("");
-    // const [popup, setPopup] = useState({open: false, title: "", message: "", callback: false});
-    // const [inputs, setInputs] = useState({
-    //     Id:"",
-    //     Password: "",
-    // });
 
     const onIdHandler = (e) => {
         setId(e.currentTarget.value);
@@ -27,36 +23,30 @@ function LogIn() {
         setPassword(e.currentTarget.value);
     };
 
-    // const handleChange = event=> {
-    //     const name = event.target.name;
-    //     const value = event.target.value;
-    //     setInputs(values=>({...values, [name]:value}))
-    // }
-
     const checkId = $('#Id').val();
     const checkPassword = $('#Password').val();
 
-    const submitClick = (e) => {
+    const onSubmitHandler = (e) => {
+        e.preventDefault();
 
-        if(checkId === "") {
-            $('#Id').addClass('borderErr');
+        if(!checkId) {
             alert("아이디를 입력해주세요");
+            $('#Id').val("");
+            $('#Id').focus();
             return false;
         }
         $('#Id').removeClass('borderErr');
 
-        if(checkPassword === "") {
-            $('#Password').addClass('borderErr');
-            alert("비밀번호를 입력해주세요")
+        if(!checkPassword) {
+            alert("비밀번호를 입력해주세요");
+            $('#Password').val("");
+            $('#Password').focus();
             return false;
         }
         $('#Password').removeClass('borderErr');
 
     };
 
-    const onSubmitHandler = (e) => {
-        e.preventDefault();
-    };
 
     const idKeyPress = (e) => {
         $('#Id').removeClass('borderErr');
@@ -75,12 +65,12 @@ function LogIn() {
                 <p style={{marginTop: "300px", display: "flex", flexDirection: "column", fontSize: "25px"}}>로그인</p>
                 <br/><br/>
                 <label>아이디</label>
-                <input style={{marginTop: "15px", borderRadius: "2px", width:"100%", height:"40px",
+                <input id="Id" style={{marginTop: "15px", borderRadius: "2px", width:"100%", height:"40px",
                     border: "1px solid #e5e5e5", padding: "9px 12px", outline: "none", boxSizing: "border-box"
                 }} type="id"  value={Id} placeholder="아이디를 입력해주세요." onKeyPress={idKeyPress} onChange={onIdHandler}/>
                 <br/><br/>
                 <label>비밀번호</label>
-                <input style={{
+                <input id="Password" style={{
                     marginTop: "15px", borderRadius: "2px", width: "100%", height: "40px",
                     border: "1px solid #e5e5e5", padding: "9px 12px", outline: "none", boxSizing: "border-box"
                 }} type="password" value={Password} placeholder="비밀번호를 입력해주세요." onKeyPress={passwordKeyPress} onChange={onPasswordHanlder}/>
@@ -98,10 +88,10 @@ function LogIn() {
                     }} className="searchinfo"><Link to="#">아이디 / 비밀번호 찾기</Link></div>
                 </div>
 
-                <button style={{
+                <input style={{
                     width: "350px", height: "40px", fontSize: "14px", padding: "13px 30px", cursor:"pointer", backgroundColor: "black",
                     color:"white", lineHeight: "1px", marginTop: "20px", marginBottom: "12px", borderRadius: "3px", borderStyle:"none"
-                }} className="btn_login"  type="submit" onClick={(e) => submitClick('login',e)}>로그인</button>
+                }} className="btn_login" type="submit" value="로그인"/>
 
 
                 <div style={{
