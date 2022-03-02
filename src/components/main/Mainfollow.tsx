@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Carousel } from "react-bootstrap";
 import React from "react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 // css
 import '../../css/main/MainNewFollow.css';
@@ -21,11 +22,32 @@ import like_icon from '../../img/main/like_icon.png';
 import follow_icon from '../../img/main/follow_icon.png';
 import follow_logoW from '../../img/main/follow_logoW.png';
 
-const clklike = () => {
-    alert("Hi");
-}
 
 function Mainfollow() {
+
+    const [isShow, setIsShow] =useState(true);
+    const [isDone, setIsDone] =useState(true);
+    const [liked, setLiked] =useState(100);
+    const [followed, setFollowed] =useState(200);
+
+    function likeIn() {
+        setLiked(liked + 1);
+    }
+
+    function likeDe() {
+        setLiked(liked - 1);
+    }
+
+    function toggleShow() {
+            likeIn();
+            setIsShow(!isShow);
+    }
+
+    function togglefollow() {
+        setIsDone(!isDone);
+    }
+
+
   return (
       <>
           <div className="mainfollow-text">New Followrs Feed</div>
@@ -43,15 +65,15 @@ function Mainfollow() {
                           <div className="group_icon">
 
                               <div className="like_logoA">
-                                  <Link to="/login">
-                                      <img src={like_logoW} className="like_logoW"/>
-                                  </Link>
+                                  {isShow ?
+                                      <img src={like_logoW} className="like_logoW" onClick={toggleShow}  /> :
+                                      <img src={like_icon} className="like_logoW" onClick={toggleShow}/> }
                               </div>
 
                               <div className="follow_logoA">
-                                  <Link to="/upload">
-                                    <img src={follow_logoW} className="follow_logoW"/>
-                                  </Link>
+                                  {isDone ?
+                                      <img src={follow_logoW} className="follow_logoW" onClick={togglefollow}/> :
+                                      <img src={follow_icon} className="follow_logoW" onClick={togglefollow}/> }
                               </div>
 
                           </div>
@@ -60,11 +82,11 @@ function Mainfollow() {
                               <div className="t1">@shine_1</div>
                               <div className="like_group">
                                   <img src={like_icon} className="like_icon" />
-                                  <span className="like_cnt">435</span>
+                                  <span className="like_cnt">{liked}</span>
                               </div>
                               <div className="follow_group">
                                   <img src={follow_icon} className="follow_icon"/>
-                                  <span className="follow_cnt">1,573</span>
+                                  <span className="follow_cnt">{followed}</span>
                               </div>
                           </div>
                       </div>
