@@ -1,0 +1,10 @@
+.BannerCar {
+    width: 1000px;
+    margin-left: 200px;
+    margin-bottom:10px
+
+}
+
+.bannerpic>img {
+    cursor:pointer;
+}
