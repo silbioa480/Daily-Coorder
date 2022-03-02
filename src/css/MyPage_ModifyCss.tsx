@@ -2,9 +2,9 @@ import { createGlobalStyle } from "styled-components";
 
 const ModifyCss=createGlobalStyle`
     .containerCss{
-        width:40vw;
+        width:50%;
         height:auto;
-        padding:1vw 2vw;
+        padding:.5vw 1em;
         margin:0 auto;
         
     }
