@@ -1,3 +1,8 @@
+/*.wth {*/
+/*    width: 100%;*/
+/*    background-color: rgba(245, 206, 33, 1);*/
+/*}*/
+
 .mainfollow-text {
     font-size:30px;
     text-align:center;
@@ -5,7 +10,7 @@
     margin-bottom:30px;
 }
 
-hr>Line {
+hr>.Line {
     text-align:center;
     width:80%;
 }
@@ -32,8 +37,11 @@ hr>Line {
 }
 
 /*.folpic:hover ::after { opacity: 0.5; }*/
-.folpic:hover .d-block {transform: scale(1.07); }
-.folpic:hover .d-block { filter:brightness(35%);}
+.folpic:hover .d-block {
+    transform: scale(1.07);
+    filter:brightness(35%);
+
+}
 .folpic:hover .group_icon {transform: translateY(0); opacity: 1; }
 .folpic:hover .group_txt {transform: translateY(0); opacity: 1;}
 
@@ -47,10 +55,10 @@ hr>Line {
 
 .like_logoA,
 .follow_logoA {
-    height:50px;
+    height:35px;
 }
 .group_icon {
-    width: 23%;
+    width: 22%;
     height: 100px;
     position: absolute;
     top: 10px;
@@ -111,7 +119,7 @@ hr>Line {
 .like_logoW {
     width: 17px;
     float:right;
-    margin: 15px;
+    margin: 5px;
     cursor: pointer;
     z-index: 3;
 }
@@ -119,7 +127,7 @@ hr>Line {
 .follow_logoW {
     width: 20px;
     float:right;
-    margin: 15px;
+    margin: 5px;
     cursor: pointer;
     z-index: 3;
 }
@@ -142,17 +150,26 @@ hr>Line {
 }
 
 .feedcar>.carousel-indicators {
-    margin-bottom: 0;
+    margin-bottom: -30px;
+    filter: invert(100%);
 }
 
 .feedcar>.carousel-control-next {
-    margin-right: -40px;
+    margin-right: -50px;
+    filter: invert(100%);
+    width: 80px;
 }
 
 .feedcar>.carousel-control-prev {
-    margin-left: -40px;
+    margin-left: -50px;
+    filter: invert(100%);
+    width: 80px;
 }
 
+.feedcar {
+    margin-bottom: 70px;
+    margin-left: 150px;
+}
 
 /** {*/
 /*    background-color: black;*/

@@ -26,6 +26,7 @@ function MainWeather() {
         <>
             <div className="mainfollow-text">Daily Weather Style</div>
             <hr className="Line"></hr>
+            <div className="wth">
             <Carousel fade className="feedcar" style={{width: '1250px'}}>
 
                 <Carousel.Item>
@@ -192,7 +193,7 @@ function MainWeather() {
 
                 </Carousel.Item>
             </Carousel>
-
+            </div>
         </>
     );
 }

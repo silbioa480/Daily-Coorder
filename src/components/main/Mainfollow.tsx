@@ -26,6 +26,7 @@ function Mainfollow() {
       <>
           <div className="mainfollow-text">New Followrs Feed</div>
           <hr className="Line"></hr>
+          <div className="feed">
               <Carousel fade className="feedcar" style={{width: '1250px'}}>
 
                   <Carousel.Item>
@@ -193,7 +194,7 @@ function Mainfollow() {
 
                   </Carousel.Item>
               </Carousel>
-
+          </div>
       </>
   );
 }
