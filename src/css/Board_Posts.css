@@ -31,10 +31,7 @@
 .bp2 {
   display: flex;
 }
-.img qr {
-  width: 200px;
-  height: 200px;
-}
+
 /* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
 
 /* infor부분*/
@@ -112,4 +109,17 @@ textarea::-webkit-scrollbar {
   color: #333;
   width: 200px;
   border-radius: 10px;
+}
+
+.modification_btn {
+  background-color: white;
+}
+.modification_btn:hover {
+  background-color: lightgray;
+}
+.remove_btn {
+  background-color: white;
+}
+.remove_btn:hover {
+  background-color: lightgray;
 }

@@ -1,9 +1,22 @@
 import "../css/Board_Posts.css";
-import { BsArrowDownShort } from "react-icons/bs";
+import { BsArrowDownShort, BsFillChatDotsFill } from "react-icons/bs";
+import { FiMoreHorizontal } from "react-icons/fi";
+import { AiFillHeart } from "react-icons/ai";
 import { Circle } from "../css/Board_Posts";
 import similar from "../img/similar.png";
-import React from "react";
+import React, { useEffect, useState } from "react";
 function Answer() {
+  const [isActive, setIsActive] = useState({});
+  const toggleActive = (id) => {
+    setIsActive((prevIsActive) => {
+      return {
+        ...prevIsActive,
+        [id]: !prevIsActive[id],
+      };
+    });
+  };
+  useEffect(() => {});
+
   const repeat = [
     {
       id: 1,
@@ -21,50 +34,121 @@ function Answer() {
       content: "안녕하세요3",
     },
   ];
+
   const renderRepeat = repeat.map((rep) => {
     return (
-      <div style={{ display: "flex", marginTop: "10px" }} key={rep.id}>
+      <>
         <div>
-          <a href="#">
-            <Circle
-              src={similar}
-              style={{ display: "inline", marginLeft: "20px" }}
-            ></Circle>
-          </a>
+          <div key={rep.id}>
+            {/* 프로필사진 */}
+            <div style={{ display: "flex", marginTop: "10px" }}>
+              <div>
+                <a href="#">
+                  <Circle
+                    src={similar}
+                    style={{ display: "inline", marginLeft: "20px" }}
+                  ></Circle>
+                </a>
+              </div>
+
+              <div>
+                <div
+                  style={{
+                    margin: "auto 0",
+                    marginLeft: "7px",
+                    border: "1px solid lightgray",
+                    width: "250px",
+                    height: "auto",
+                    minHeight: "59px",
+                    borderRadius: "5px",
+                  }}
+                >
+                  {/*닉네임  */}
+                  <a href="#">
+                    <p
+                      style={{
+                        padding: "5px 5px 3px 5px", //상,우,하,좌
+                        fontWeight: "bold",
+                      }}
+                    >
+                      {rep.name}
+                    </p>
+                  </a>
+                  {/* 댓글 */}
+                  <p
+                    style={{
+                      padding: "0px 0px 0px 5px",
+                    }}
+                  >
+                    {rep.content}
+                  </p>
+                </div>
+                {/* 밑에아이콘 */}
+                <div style={{ cursor: "pointer" }}>
+                  <div style={{ display: "flex", justifyContent: "right" }}>
+                    <div>
+                      <AiFillHeart />
+                    </div>
+                    <div>
+                      <BsFillChatDotsFill />
+                    </div>
+                    <div>
+                      <FiMoreHorizontal
+                        onClick={() => {
+                          toggleActive(rep.id);
+                        }}
+                      />
+                    </div>
+                    {isActive[rep.id] ? (
+                      <div
+                        style={{
+                          position: "absolute",
+                          width: "130px",
+                          height: "60px",
+                          borderRadius: "10px",
+                          boxShadow: "1px 1px 10px 6px rgba(0, 0, 0, 0.06)",
+                          marginTop: "20px",
+                          marginLeft: "200px",
+                        }}
+                      >
+                        <button
+                          className="modification_btn"
+                          style={{
+                            display: "block",
+                            width: "100%",
+                            height: "50%",
+                            padding: "3px 5px 3px 5px",
+                            border: "none",
+                            borderRadius: "10px 10px 0px 0px",
+                          }}
+                        >
+                          수정
+                        </button>
+
+                        <button
+                          className="remove_btn"
+                          style={{
+                            padding: "3px 5px 3px 5px",
+                            width: "100%",
+                            height: "50%",
+                            border: "none",
+                            borderRadius: "0px 0px 10px 10px",
+                          }}
+                        >
+                          삭제
+                        </button>
+                      </div>
+                    ) : null}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div
-          style={{
-            margin: "auto 0",
-            marginLeft: "7px",
-            border: "1px solid lightgray",
-            width: "250px",
-            height: "auto",
-            minHeight: "59px",
-            borderRadius: "5px",
-          }}
-        >
-          <a href="#">
-            <p
-              style={{
-                padding: "5px 5px 3px 5px", //상,우,하,좌
-                fontWeight: "bold",
-              }}
-            >
-              {rep.name}
-            </p>
-          </a>
-          <p
-            style={{
-              padding: "0px 0px 0px 5px",
-            }}
-          >
-            {rep.content}
-          </p>
-        </div>
-      </div>
+      </>
     );
   });
-  return <div>{renderRepeat}</div>;
+  return <>{renderRepeat}</>;
 }
 
 function Comment() {
@@ -72,6 +156,10 @@ function Comment() {
   const textResize = () => {
     textRef.current.style.height = "auto";
     textRef.current.style.height = textRef.current.scrollHeight + "px";
+  };
+  const [content, setContent] = useState("");
+  const handleChange = (e) => {
+    setContent(e.target.value);
   };
   return (
     <div className="t-wrapper">
@@ -112,7 +200,10 @@ function Comment() {
             cols={35}
             required
             style={{ marginLeft: "10px" }}
-          ></textarea>
+            onChange={handleChange}
+          >
+            {content}
+          </textarea>
           <div
             className="comment_btn"
             style={{ display: "flex", padding: "5px" }}
@@ -130,4 +221,5 @@ function Comment() {
     </div>
   );
 }
+
 export default Comment;

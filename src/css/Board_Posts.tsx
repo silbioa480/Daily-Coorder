@@ -23,10 +23,11 @@ export const Com = styled.div`
   height: 50px;
   margin-left: 60px;
 `;
-
+// 20대 여성 등 teg
 export const Square = styled.div`
   font-size: 1em;
   border: 1px solid lightgray;
+  border-radius: 10px;
   color: black;
   width: 40px;
   height: 30px;
