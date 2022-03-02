@@ -2,22 +2,21 @@ import React, { useEffect, useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
-
+import axios from 'axios';
+import {Result} from "antd";
 
 function SignUp() {
-  const [name, setName] = useState("")
+  const [isOnCheck, setIsOnCheck] = useState(false);
+
+  //일반회원
+  const [name, setName] = useState("");
   const [Id, setId] = useState("");
   const [Password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [nickname, setNickname] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [term, setTerm] = useState('');
-  const [proNumber, setProNumber] = useState("");
 
-  // const [checkId, setCheckId] = useState("")
-  // const [checkEmail, setCheckEmail] = useState("");
-  // const [checkPhoneNumber, setCheckPhoneNumber] = useState("");
-  // const [checkProNumber, setCheckProNumber] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const [errorId, setErrorId] = useState(false);
@@ -27,7 +26,28 @@ function SignUp() {
   const [errorEmail, setErrorEmail] = useState(false);
   const [termError, setTermError] = useState(false);
   const [errorPhoneNumber, setErrorPhoneNumber] = useState(false);
+
+  //사업자회원
+  const [proId, setProId] = useState("");
+  const [proPassword, setProPassword] = useState("");
+  const [proName, setProName] = useState("");
+  const [proNumber, setProNumber] = useState("");
+  const [proEmail, setProEmail] = useState("");
+  const [proPhone, setProPhone] = useState("");
+
+  const [errorProId, setErrorProId] = useState(false);
+  const [errorProPassword, setErrorProPassword] = useState(false);
+  const [confirmProPasswordError, setConfirmProPasswordError] = useState(false);
+  const [errorProName, setErrorProName] = useState(false);
+  const [errorProEmail, setErrorProEmail] = useState(false);
   const [errorProNumber, setErrorProNumber] = useState(false);
+  const [errorProPhone, setErrorProPhone] = useState(false);
+
+  const [confirmProPassword, setConfirmProPassword] = useState("");
+
+  const [show, setShow] = useState(false);
+  const [value, setValue] = useState({Id:"",Password: "", name:"", nickname: "",
+    phoneNumber:"", email:"", proNumber:"", usableId: false})
 
   const [allCheck, setAllCheck] = useState(false);
   const [ageCheck, setAgeCheck] = useState(false);
@@ -40,14 +60,26 @@ function SignUp() {
   const onNameHandler = (event) => {
     setName(event.currentTarget.value)
   }
+
+  const onProNameHandler = (event) => {
+    setProName(event.currentTarget.value)
+  }
+
   const onChangePhoneNumber = (e) => {
     const phoneNumberRegex = /^[0-9\b -]{0,13}$/;
     if ((!e.target.value || (phoneNumberRegex.test(e.target.value)))) setErrorPhoneNumber(false);
     else setErrorPhoneNumber(true);
     setPhoneNumber(e.target.value);
+  }
+
+  const onChangeProPhone = (e) => {
+    const proPhoneRegex = /^[0-9\b -]{0,13}$/;
+    if ((!e.target.value || (proPhoneRegex.test(e.target.value)))) setErrorProPhone(false);
+    else setErrorProPhone(true);
+    setProPhone(e.target.value);
   };
 
-  const onProNumber = (e) => {
+  const onChangeProNumber = (e) => {
     const proNumberRegex = /^[0-9\b -]{0,13}$/;
     if ((!e.target.value || (proNumberRegex.test(e.target.value)))) setErrorProNumber(false);
     else setErrorProNumber(true);
@@ -61,6 +93,13 @@ function SignUp() {
     setId(e.target.value);
   };
 
+  const onChangeProId = (e) => {
+    const ProIdRegex = /^[A-Za-z0-9+]{5,}$/;
+    if ((!e.target.value || (ProIdRegex.test(e.target.value)))) setErrorProId(false);
+    else setErrorProId(true);
+    setProId(e.target.value);
+  };
+
   const onChangePassword = (e) => {
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
     if ((!e.target.value || (passwordRegex.test(e.target.value)))) setErrorPassword(false);
@@ -70,10 +109,27 @@ function SignUp() {
     else setConfirmPasswordError(true);
     setPassword(e.target.value);
   };
+
+  const onChangeProPassword = (e) => {
+    const ProPasswordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    if ((!e.target.value || (ProPasswordRegex.test(e.target.value)))) setErrorProPassword(false);
+    else setErrorProPassword(true);
+
+    if (!confirmProPassword || e.target.value === confirmPassword) setConfirmProPasswordError(false);
+    else setConfirmProPasswordError(true);
+    setProPassword(e.target.value);
+  };
+
   const onChangeConfirmPassword = (e) => {
     if (Password === e.target.value) setConfirmPasswordError(false);
     else setConfirmPasswordError(true);
     setConfirmPassword(e.target.value);
+  };
+
+  const onChangeConfirmProPassword = (e) => {
+    if (proPassword === e.target.value) setConfirmProPasswordError(false);
+    else setConfirmProPasswordError(true);
+    setConfirmProPassword(e.target.value);
   };
 
   const onChangeEmail = (e) => {
@@ -81,6 +137,13 @@ function SignUp() {
     if (!e.target.value || emailRegex.test(e.target.value)) setErrorEmail(false);
     else setErrorEmail(true);
     setEmail(e.target.value);
+  };
+
+  const onChangeProEmail = (e) => {
+    const ProEmailRegex = /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
+    if (!e.target.value || ProEmailRegex.test(e.target.value)) setErrorProEmail(false);
+    else setErrorProEmail(true);
+    setProEmail(e.target.value);
   };
 
   const onChangeTerm = (e) => {
@@ -102,9 +165,11 @@ function SignUp() {
     else return false;
   }
 
-  const onSubmit = (e) => {
-    if(validation()) return;
-  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    }
 
   const allBtnEvent =()=>{
     if(allCheck === false) {
@@ -157,7 +222,7 @@ function SignUp() {
           display: 'flex', justifyContent: 'center',
           width: '100%', height: '40vh', marginTop: '50px'
         }} class="SignUp">
-          <form onSubmit={onSubmit}>
+          <form>
 
               <Tabs defaultActiveKey="first">
                 <Tab eventKey="first" title="일반회원가입">
@@ -210,8 +275,9 @@ function SignUp() {
                 borderRadius: "3px",
                 borderStyle: "none",
                 marginBottom: "10px"
-              }} type="submit" class="loginregister_button" onSubmit={onSubmit}>아이디 중복확인
+              }} type="submit" class="loginregister_button" onSubmit={handleSubmit} hidden={show}>아이디 중복확인
               </button>
+              {show && <Result data={value} /> }
             </div>
 
             <div><label htmlFor="user-nickname">닉네임</label>
@@ -355,14 +421,14 @@ function SignUp() {
                   <br/><br/>
 
                   <div>
-                    <label htmlFor="user-id" style={{
+                    <label htmlFor="pro-id" style={{
                       marginTop: "20px"
                     }}>아이디</label>
                     <input style={{
                       marginTop: "10px", borderRadius: "2px", width: "100%", height: "40px",
                       border: "1px solid #e5e5e5", padding: "9px 12px", outline: "none", boxSizing: "border-box"
-                    }} name="user-id" type="id" placeholder="아이디" value={Id} onChange={onChangeId}
-                           class="loginregister_input"/> {errorId && <div class="invalid-input" style={{
+                    }} name="pro-id" type="id" placeholder="아이디" value={proId} onChange={onChangeProId}
+                           class="loginregister_input"/> {errorProId && <div class="invalid-input" style={{
                     color: "deepskyblue", fontSize: "12px", marginBottom: "10px"
                   }}> 아이디는 숫자를 포함하여 최소 5자 이상</div>}
                     <button style={{
@@ -377,11 +443,11 @@ function SignUp() {
                       borderRadius: "3px",
                       borderStyle: "none",
                       marginBottom: "10px"
-                    }} type="submit" className="loginregister_button" onSubmit={onSubmit}>아이디 중복확인
+                    }} type="submit" className="loginregister_button" >아이디 중복확인
                     </button>
                   </div>
 
-                  <div><label htmlFor="user-name">상호명</label>
+                  <div><label htmlFor="pro-name">상호명</label>
                     <input style={{
                       marginTop: "10px",
                       borderRadius: "2px",
@@ -392,10 +458,10 @@ function SignUp() {
                       outline: "none",
                       boxSizing: "border-box",
                       marginBottom: "10px"
-                    }} name="user-name" type="text" placeholder="이름" value={name} onChange={onNameHandler}
+                    }} name="pro-name" type="text" placeholder="이름" value={proName} onChange={onProNameHandler}
                            className="loginregister_input"/></div>
 
-                  <div><label htmlFor="user-password">비밀번호</label>
+                  <div><label htmlFor="pro-password">비밀번호</label>
                     <input style={{
                       marginTop: "15px",
                       borderRadius: "2px",
@@ -406,13 +472,13 @@ function SignUp() {
                       outline: "none",
                       boxSizing: "border-box",
                       marginBottom: "10px"
-                    }} name="user-password" type="password" placeholder="비밀번호" value={Password}
-                           onChange={onChangePassword}
-                           className="loginregister_input"/>{errorPassword && <div className="invalid-input" style={{
+                    }} name="pro-password" type="password" placeholder="비밀번호" value={proPassword}
+                           onChange={onChangeProPassword}
+                           className="loginregister_input"/>{errorProPassword && <div className="invalid-input" style={{
                       color: "deepskyblue", fontSize: "12px", marginBottom: "10px"
                     }}>비밀번호는 숫자와 문자를 포함하여 최소 8자 이상 </div>} </div>
 
-                  <div><label htmlFor="confirmPassword">비밀번호 확인</label>
+                  <div><label htmlFor="confirmProPassword">비밀번호 확인</label>
                     <input style={{
                       marginTop: "15px",
                       borderRadius: "2px",
@@ -423,15 +489,15 @@ function SignUp() {
                       outline: "none",
                       boxSizing: "border-box",
                       marginBottom: "5px"
-                    }} name="confirmPassword" type="password" placeholder="비밀번호 확인" value={confirmPassword}
-                           onChange={onChangeConfirmPassword} className="loginregister_input"/>
-                    {confirmPasswordError && <div className="invalid-input" style={{
+                    }} name="confirmProPassword" type="password" placeholder="비밀번호 확인" value={confirmProPassword}
+                           onChange={onChangeConfirmProPassword} className="loginregister_input"/>
+                    {confirmProPasswordError && <div className="invalid-input" style={{
                       color: "red", fontSize: "12px", marginBottom: "10px"
                     }}> 비밀번호가 일치하지 않습니다.</div>}
                   </div>
 
                   <div>
-                    <label htmlFor="user-phone" style={{
+                    <label htmlFor="pro-phone" style={{
                     marginTop: "15px"
                   }}>사업자 번호</label>
                     <input style={{
@@ -444,25 +510,25 @@ function SignUp() {
                       outline: "none",
                       boxSizing: "border-box",
                       marginBottom: "10px"
-                    }} name="user-phone" type="text" placeholder="-를 제외하고 숫자만 입력하세요" value={proNumber}
-                           onChange={onProNumber} className="loginregister_input"/> {errorProNumber && <div className="invalid-input" style={{
+                    }} name="pro-phone" type="text" placeholder="-를 제외하고 숫자만 입력하세요" value={proNumber}
+                           onChange={onChangeProNumber} className="loginregister_input"/> {errorProNumber && <div className="invalid-input" style={{
                     color: "deepskyblue", fontSize: "12px", marginBottom: "10px"
                   }}>숫자만 입력하세요</div>}</div>
 
 
-                  <div><label htmlFor="user-email" style={{
+                  <div><label htmlFor="pro-email" style={{
                     marginTop: "15px"
                   }}>이메일</label>
                     <input style={{
                       marginTop: "15px", borderRadius: "2px", width: "100%", height: "40px",
                       border: "1px solid #e5e5e5", padding: "9px 12px", outline: "none", boxSizing: "border-box"
-                    }} name="user-email" type="text" placeholder="이메일" value={email} onChange={onChangeEmail}
+                    }} name="pro-email" type="text" placeholder="이메일" value={proEmail} onChange={onChangeProEmail}
                            className="loginregister_input"/>
-                    {errorEmail && <div className="invalid-input" style={{
+                    {errorProEmail && <div className="invalid-input" style={{
                       color: "deepskyblue", fontSize: "12px", marginBottom: "10px"
                     }}>올바른 형식이 아닙니다.</div>}</div>
 
-                  <div><label htmlFor="user-phone" style={{
+                  <div><label htmlFor="pro-phone" style={{
                     marginTop: "15px"
                   }}>휴대폰 번호</label>
                     <input style={{
@@ -475,9 +541,9 @@ function SignUp() {
                       outline: "none",
                       boxSizing: "border-box",
                       marginBottom: "20px"
-                    }} name="user-phone" type="text" placeholder="-를 제외하고 숫자만 입력하세요" value={phoneNumber}
-                           onChange={onChangePhoneNumber} className="loginregister_input"/>
-                    {errorPhoneNumber && <div className="invalid-input" style={{
+                    }} name="pro-phone" type="text" placeholder="-를 제외하고 숫자만 입력하세요" value={proPhone}
+                           onChange={onChangeProPhone} className="loginregister_input"/>
+                    {errorProPhone && <div className="invalid-input" style={{
                       color: "deepskyblue", fontSize: "12px", marginBottom: "10px"
                     }}>숫자만 입력하세요</div>}</div>
 
