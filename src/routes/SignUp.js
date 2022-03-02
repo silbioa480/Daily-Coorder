@@ -51,6 +51,7 @@ function SignUp() {
   const [useCheck, setUseCheck] = useState(false);
   const [marketingCheck, setMarketingCheck] = useState(false);
 
+  const [inputs, setInputs] = useState({ Id: "" });
   const [show, setShow] = useState(false);
   const [value, setValue] = useState({
     Id: "",
@@ -178,6 +179,12 @@ function SignUp() {
   const checkNickName = $("#nickName").val();
   const checkEmail = $("#email").val();
   const checkPhoneNumber = $("#phoneNumber").val();
+  const checkProId = $("#proId").val();
+  const checkProName = $("#proName").val();
+  const checkProPassword = $("#proPassword").val();
+  const checkProEmail = $("#proEmail").val();
+  const checkProPhone = $("#proPhone").val();
+  const checkProNumber = $("#proNumber").val();
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
@@ -238,6 +245,65 @@ function SignUp() {
     }
     $("#phoneNumber").removeClass("borderErr");
   };
+  const onProSubmitHandler = (e) => {
+    e.preventDefault();
+
+    if (!checkProId) {
+      alert("아이디를 입력해주세요");
+      $("#proId").val("");
+      $("#proId").focus();
+      return false;
+    }
+    $("#proId").removeClass("borderErr");
+
+    if (!checkProName) {
+      alert("이름을 입력해주세요");
+      $("#proName").val("");
+      $("#proName").focus();
+      return false;
+    }
+    $("#proName").removeClass("borderErr");
+
+    if (!checkProPassword) {
+      alert("비밀번호를 입력해주세요");
+      $("#proPassword").val("");
+      $("#proPassword").focus();
+      return false;
+    }
+    $("#proPassword").removeClass("borderErr");
+
+    if (confirmProPassword !== proPassword) {
+      alert("비밀번호를 확인해주세요");
+      $("#confirmProPassword").val("");
+      $("#confirmProPassword").focus();
+      return false;
+    }
+    $("#confirmProPassword").removeClass("borderErr");
+
+    if (!checkProNumber) {
+      alert("휴대폰 번호를 입력해주세요");
+      $("#ProNumber").val("");
+      $("#ProNumber").focus();
+      return false;
+    }
+    $("#ProNumber").removeClass("borderErr");
+
+    if (!checkProEmail) {
+      alert("이메일을 입력해주세요");
+      $("#proEmail").val("");
+      $("#proEmail").focus();
+      return false;
+    }
+    $("#proEmail").removeClass("borderErr");
+
+    if (!checkProPhone) {
+      alert("휴대폰 번호를 입력해주세요");
+      $("#ProPhone").val("");
+      $("#ProPhone").focus();
+      return false;
+    }
+    $("#ProPhone").removeClass("borderErr");
+  };
 
   const idKeyPress = (e) => {
     $("#Id").removeClass("borderErr");
@@ -264,6 +330,63 @@ function SignUp() {
 
   const phoneNumberKeyPress = (e) => {
     $("#phoneNumber").removeClass("borderErr");
+  };
+
+  const proIdKeyPress = (e) => {
+    $("#proId").removeClass("borderErr");
+  };
+  const proNameKeyPress = (e) => {
+    $("#proName").removeClass("borderErr");
+  };
+  const proPasswordKeyPress = (e) => {
+    $("#proPassword").removeClass("borderErr");
+  };
+  const proEmailKeyPress = (e) => {
+    $("#proEmail").removeClass("borderErr");
+  };
+  const proPhoneKeyPress = (e) => {
+    $("#proPhone").removeClass("borderErr");
+  };
+  const proNumberKeyPress = (e) => {
+    $("#proNumber").removeClass("borderErr");
+  };
+  const ConfirmProPasswordKeyPress = (e) => {
+    $("#confirmProPassword").removeClass("borderErr");
+  };
+
+  // const validation = () => {
+  //   if (!Id) setErrorId(true);
+  //   if (!Password) setErrorPassword(true);
+  //   if (!confirmPassword) setConfirmPasswordError(true);
+  //   if (!name) setErrorEmail(true);
+  //   if (!email) setErrorEmail(true);
+  //   if (!term) setTermError(true);
+  //   if (!phoneNumber) setErrorPhoneNumber(true);
+  //   if (!proNumber) setErrorProNumber(true);
+  //
+  //   if (
+  //     Id &&
+  //     Password &&
+  //     confirmPassword &&
+  //     name &&
+  //     email &&
+  //     term &&
+  //     phoneNumber &&
+  //     proNumber
+  //   )
+  //   return true;
+  //   else return false;
+  // };
+
+  //아이디 중복확인 샘플 데이터가 없어서 일단 이렇게 만들었음
+  const overSubmitHandler = (e) => {
+    e.preventDefault();
+
+    if (inputs.Id === value.Id) {
+      alert("사용가능한 아이디 입니다.");
+    } else {
+      alert("이미 사용중인 아이디 입니다.");
+    }
   };
 
   const allBtnEvent = () => {
@@ -434,6 +557,7 @@ function SignUp() {
                 type="submit"
                 class="loginregister_button"
                 hidden={show}
+                onClick={overSubmitHandler}
               >
                 아이디 중복확인
               </button>
@@ -805,11 +929,13 @@ function SignUp() {
                   outline: "none",
                   boxSizing: "border-box",
                 }}
+                id="proId"
                 name="pro-id"
                 type="id"
                 placeholder="아이디"
                 value={proId}
                 onChange={onChangeProId}
+                onKeyPress={proIdKeyPress}
                 class="loginregister_input"
               />{" "}
               {errorProId && (
@@ -841,6 +967,7 @@ function SignUp() {
                 }}
                 type="submit"
                 className="loginregister_button"
+                onClick={overSubmitHandler}
               >
                 아이디 중복확인
               </button>
@@ -860,11 +987,13 @@ function SignUp() {
                   boxSizing: "border-box",
                   marginBottom: "10px",
                 }}
+                id="proName"
                 name="pro-name"
                 type="text"
                 placeholder="이름"
                 value={proName}
                 onChange={onProNameHandler}
+                onKeyPress={proNameKeyPress}
                 className="loginregister_input"
               />
             </div>
@@ -883,11 +1012,13 @@ function SignUp() {
                   boxSizing: "border-box",
                   marginBottom: "10px",
                 }}
+                id="proPassword"
                 name="pro-password"
                 type="password"
                 placeholder="비밀번호"
                 value={proPassword}
                 onChange={onChangeProPassword}
+                onKeyPress={proPasswordKeyPress}
                 className="loginregister_input"
               />
               {errorProPassword && (
@@ -918,11 +1049,13 @@ function SignUp() {
                   boxSizing: "border-box",
                   marginBottom: "5px",
                 }}
+                id="confirmProPassword"
                 name="confirmProPassword"
                 type="password"
                 placeholder="비밀번호 확인"
                 value={confirmProPassword}
                 onChange={onChangeConfirmProPassword}
+                onKeyPress={ConfirmProPasswordKeyPress}
                 className="loginregister_input"
               />
               {confirmProPasswordError && (
@@ -961,11 +1094,13 @@ function SignUp() {
                   boxSizing: "border-box",
                   marginBottom: "10px",
                 }}
-                name="pro-phone"
+                id="proNumber"
+                name="pro-number"
                 type="text"
                 placeholder="-를 제외하고 숫자만 입력하세요"
                 value={proNumber}
                 onChange={onChangeProNumber}
+                onKeyPress={proNumberKeyPress}
                 className="loginregister_input"
               />{" "}
               {errorProNumber && (
@@ -1002,11 +1137,13 @@ function SignUp() {
                   outline: "none",
                   boxSizing: "border-box",
                 }}
+                id="proEmail"
                 name="pro-email"
                 type="text"
                 placeholder="이메일"
                 value={proEmail}
                 onChange={onChangeProEmail}
+                onKeyPress={proEmailKeyPress}
                 className="loginregister_input"
               />
               {errorProEmail && (
@@ -1044,11 +1181,13 @@ function SignUp() {
                   boxSizing: "border-box",
                   marginBottom: "20px",
                 }}
+                id="proPhone"
                 name="pro-phone"
                 type="text"
                 placeholder="-를 제외하고 숫자만 입력하세요"
                 value={proPhone}
                 onChange={onChangeProPhone}
+                onKeyPress={proPhoneKeyPress}
                 className="loginregister_input"
               />
               {errorProPhone && (
