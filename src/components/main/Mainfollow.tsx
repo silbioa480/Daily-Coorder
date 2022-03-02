@@ -29,6 +29,8 @@ function Mainfollow() {
     const [isDone, setIsDone] =useState(true);
     const [liked, setLiked] =useState(100);
     const [followed, setFollowed] =useState(200);
+    const empty_like = <img src={like_logoW} className="like_logoW" onClick={toggleShow}  /> ;
+    const full_like = <img src={like_icon} className="like_logoW" onClick={toggleShow}  /> ;
 
     function likeIn() {
         setLiked(liked + 1);
@@ -39,8 +41,9 @@ function Mainfollow() {
     }
 
     function toggleShow() {
-            likeIn();
-            setIsShow(!isShow);
+        setIsShow(!isShow);
+        likeIn();
+
     }
 
     function togglefollow() {
@@ -65,9 +68,7 @@ function Mainfollow() {
                           <div className="group_icon">
 
                               <div className="like_logoA">
-                                  {isShow ?
-                                      <img src={like_logoW} className="like_logoW" onClick={toggleShow}  /> :
-                                      <img src={like_icon} className="like_logoW" onClick={toggleShow}/> }
+                                  { isShow ? empty_like : full_like }
                               </div>
 
                               <div className="follow_logoA">
