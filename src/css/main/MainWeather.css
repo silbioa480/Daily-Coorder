@@ -44,7 +44,7 @@ hr>.Line {
 }
 .folpic:hover .group_icon {transform: translateY(0); opacity: 1; }
 .folpic:hover .group_txt {transform: translateY(0); opacity: 1;}
-.like_logoA:hover .like_logoW {transform: scale(1.22);}
+.like_logoA:hover .like_logoW {transform: scale(1.23);}
 .follow_logoA:hover .follow_logoW {transform: scale(1.23);}
 
 .folpic>.d-block {

@@ -2,6 +2,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Carousel } from "react-bootstrap";
 import React from "react";
+import { Link } from "react-router-dom";
 
 // css
 import '../../css/main/MainNewFollow.css';
@@ -20,6 +21,9 @@ import like_icon from '../../img/main/like_icon.png';
 import follow_icon from '../../img/main/follow_icon.png';
 import follow_logoW from '../../img/main/follow_logoW.png';
 
+const clklike = () => {
+    alert("Hi");
+}
 
 function Mainfollow() {
   return (
@@ -28,18 +32,34 @@ function Mainfollow() {
           <hr className="Line"></hr>
           <div className="feed">
               <Carousel fade className="feedcar" style={{width: '1250px'}}>
-
                   <Carousel.Item>
+
                       <div className="folpic">
-                        <img className="d-block w-100" src={mainfol1}  alt="1-1 slide"/>
+
+                          <Link to="/signup">
+                        <img className="d-block w-100" src={mainfol1}  alt="1-1 slide" />
+                          </Link>
+
                           <div className="group_icon">
-                              <div className="like_logoA"><img src={like_logoW} className="like_logoW"/></div>
-                              <div className="follow_logoA"><img src={follow_logoW} className="follow_logoW"/></div>
+
+                              <div className="like_logoA">
+                                  <Link to="/login">
+                                      <img src={like_logoW} className="like_logoW"/>
+                                  </Link>
+                              </div>
+
+                              <div className="follow_logoA">
+                                  <Link to="/upload">
+                                    <img src={follow_logoW} className="follow_logoW"/>
+                                  </Link>
+                              </div>
+
                           </div>
+
                           <div className="group_txt">
                               <div className="t1">@shine_1</div>
                               <div className="like_group">
-                                  <img src={like_icon} className="like_icon"/>
+                                  <img src={like_icon} className="like_icon" />
                                   <span className="like_cnt">435</span>
                               </div>
                               <div className="follow_group">
