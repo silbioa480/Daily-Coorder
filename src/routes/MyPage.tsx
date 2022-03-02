@@ -9,6 +9,7 @@ import MyPage_AdProvePage from "../components/MyPage_AdProvePage";
 import MyPage_ChartPage from "../components/MyPage_ChartPage";
 import MyPage_AdManagerPage from "../components/MyPage_AdManagerPage";
 import MyPage_Adapplication from "../components/MyPage_Adapplication";
+import MyPage_detailChartPage from "../components/MyPage_detailChartPage";
 
 function MyPage() {
   return (
@@ -39,10 +40,14 @@ function MyPage() {
                   <Route path="/member/MyPage_AdManagerPage">
                       <MyPage_AdManagerPage />
                   </Route>
+                  <Route path="/member/MyPage_ChartPage/MyPage_detailChartPage">
+                      <MyPage_detailChartPage />
+                  </Route>
+
                   <Route path="/member/" >
                     <MyPage_MemberInformation />
                   </Route>
-
+                  
                   
               </Switch>
             
