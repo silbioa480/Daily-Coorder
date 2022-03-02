@@ -29,8 +29,7 @@ hr>.Line {
 
 .group_icon,
 .group_txt {
-
-    z-index:2;
+    z-index:4;
     transform: translateY(20px);
     transition: all .5s ease-out;
     opacity: 0;
@@ -38,7 +37,6 @@ hr>.Line {
 
 }
 
-/*.folpic:hover ::after { opacity: 0.5; }*/
 .folpic:hover .d-block {
     transform: scale(1.07);
     filter:brightness(35%);
@@ -46,29 +44,23 @@ hr>.Line {
 }
 .folpic:hover .group_icon {transform: translateY(0); opacity: 1; }
 .folpic:hover .group_txt {transform: translateY(0); opacity: 1;}
+.like_logoA:hover .like_logoW {transform: scale(1.22);}
+.follow_logoA:hover .follow_logoW {transform: scale(1.23);}
 
 .folpic>.d-block {
-
     transform: scale(1);
     transition: all 0.35s ease-out;
     display: block;
-
 }
-
 
 .follow_logoA {
     height:35px;
-
-
-
 }
 
 .group_icon {
-
     width: 30px;
     position: absolute;
     top: 10px;
-
 
 }
 
@@ -82,12 +74,10 @@ hr>.Line {
 
 .t1 {
     text-align:center;
-    width:100%;
     line-height:20px;
-    font-size:14px;
+    font-size: 0.9em;
     margin: 0;
     padding:0;
-    float:right;
 
 }
 
@@ -96,7 +86,6 @@ hr>.Line {
     width:100%;
     line-height:20px;
     font-size:13px;
-    float:right;
     margin-top: 3px;
 
 }
@@ -106,7 +95,6 @@ hr>.Line {
     width:100%;
     line-height:20px;
     font-size:13px;
-    float:right;
     margin-top: 3px;
 }
 
@@ -124,19 +112,18 @@ hr>.Line {
 
 .like_logoW {
     width: 13px;
-    float:right;
     margin: 5px;
     cursor: pointer;
     z-index: 3;
-
+    transition: all 0.15s ease-out;
 }
 
 .follow_logoW {
     width: 13px;
-    float:right;
     margin: 5px;
     cursor: pointer;
     z-index: 3;
+    transition: all 0.15s ease-out;
 }
 
 .like_cnt {
