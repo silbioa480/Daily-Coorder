@@ -69,7 +69,7 @@ function Mainfollow() {
 
   return (
       <>
-          <div className="mainfollow-text">New Followrs Feed</div>
+          <div className="mainfollow-text">New Followers Feed</div>
           <hr className="Line"></hr>
           <div className="feed">
               <Carousel fade className="feedcar" style={{width: '1250px'}}>
@@ -77,8 +77,9 @@ function Mainfollow() {
 
                       <div className="folpic">
 
+                          <Link to="/signup" className="link">
                         <img className="d-block w-100" src={mainfol1}  alt="1-1 slide" />
-                         <Link to="/signup"></Link>
+                          </Link>
 
                           <div className="group_icon">
 
@@ -110,7 +111,9 @@ function Mainfollow() {
 
 
                       <div className="folpic">
+                          <Link to="/signup" className="link">
                           <img className="d-block w-100" src={mainfol2}  alt="1-2 slide"/>
+                          </Link>
                           <div className="group_icon">
                               <div className="like_logoA"><img src={like_logoW} className="like_logoW"/></div>
                               <div className="follow_logoA"><img src={follow_logoW} className="follow_logoW"/></div>
@@ -130,7 +133,9 @@ function Mainfollow() {
 
 
                       <div className="folpic">
+                          <Link to="/signup" className="link">
                           <img className="d-block w-100" src={mainfol3}  alt="1-3 slide"/>
+                          </Link>
                           <div className="group_icon">
                               <div className="like_logoA"><img src={like_logoW} className="like_logoW"/></div>
                               <div className="follow_logoA"><img src={follow_logoW} className="follow_logoW"/></div>
@@ -149,7 +154,9 @@ function Mainfollow() {
                       </div>
 
                       <div className="folpic">
+                          <Link to="/signup" className="link">
                           <img className="d-block w-100" src={mainfol4}  alt="1-3 slide"/>
+                          </Link>
                           <div className="group_icon">
                               <div className="like_logoA"><img src={like_logoW} className="like_logoW"/></div>
                               <div className="follow_logoA"><img src={follow_logoW} className="follow_logoW"/></div>
@@ -172,7 +179,9 @@ function Mainfollow() {
 
 
                       <div className="folpic">
+                          <Link to="/signup" className="link">
                           <img className="d-block w-100" src={mainfol5}  alt="2-1 slide"/>
+                          </Link>
                           <div className="group_icon">
                               <div className="like_logoA"><img src={like_logoW} className="like_logoW"/></div>
                               <div className="follow_logoA"><img src={follow_logoW} className="follow_logoW"/></div>
@@ -192,7 +201,9 @@ function Mainfollow() {
 
 
                       <div className="folpic">
+                          <Link to="/signup" className="link">
                           <img className="d-block w-100" src={mainfol6}  alt="2-2 slide"/>
+                          </Link>
                           <div className="group_icon">
                               <div className="like_logoA"><img src={like_logoW} className="like_logoW"/></div>
                               <div className="follow_logoA"><img src={follow_logoW} className="follow_logoW"/></div>
@@ -212,7 +223,9 @@ function Mainfollow() {
 
 
                       <div className="folpic">
+                          <Link to="/signup" className="link">
                           <img className="d-block w-100" src={mainfol7}  alt="2-3 slide"/>
+                          </Link>
                           <div className="group_icon">
                               <div className="like_logoA"><img src={like_logoW} className="like_logoW"/></div>
                               <div className="follow_logoA"><img src={follow_logoW} className="follow_logoW"/></div>
@@ -231,7 +244,9 @@ function Mainfollow() {
                       </div>
 
                       <div className="folpic">
+                          <Link to="/signup" className="link">
                           <img className="d-block w-100" src={mainfol8}  alt="2-3 slide"/>
+                          </Link>
                           <div className="group_icon">
                               <div className="like_logoA"><img src={like_logoW} className="like_logoW"/></div>
                               <div className="follow_logoA"><img src={follow_logoW} className="follow_logoW"/></div>
