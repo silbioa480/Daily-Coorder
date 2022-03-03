@@ -1,6 +1,7 @@
 import MyPage_AdManagerPage from "./MyPage_AdManagerPage";
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
+import { Button } from "react-bootstrap";
 function MyPage_AdProvePage(){
     return (
 
@@ -79,6 +80,9 @@ function MyPage_AdProvePage(){
                             </tbody>
 
                     </Table>
+                    <div style={{position:"absolute",left:"50%",bottom:"25%",transform:"translateX(-50%)"}}>
+                        <Button>광고 등록 승인</Button>
+                    </div>
                 </div>
         </>
     );

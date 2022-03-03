@@ -21,13 +21,25 @@ function MyPage_MemberModify(){
             <ModifyCss />
             <div className="containerCss">
                 <Form className="pl-5">
-                    <Row className="my-5 lg">
-                        <Col xs={10}>
+                    <Row className="my-5">
+                        <Col>
+                    
+                                <Form.Group  controlId="formGridEmail">
+                                        <Form.Label>ID</Form.Label>
+                                        <div style={{width:"100%",display:"flex"}}>
+                                            <Form.Control type="text" placeholder="Enter ID"/>
+                                            <Button style={{width:"180px",textAlign:"center"}}>중복 확인</Button>
+                                        </div>
+                                
+                                </Form.Group>
+
+
                             <Form.Group  controlId="formGridEmail">
-                                    <Form.Label>ID</Form.Label>
-                                    <Form.Control type="email" placeholder="Enter ID"/>
-                                    <Button>아이디중복 확인</Button>
-                               
+                                    <Form.Label>닉네임</Form.Label>
+                                    <div style={{width:"100%",display:"flex"}}>
+                                        <Form.Control type="text" placeholder="Enter NickName"/>
+                                        <Button style={{width:"180px",textAlign:"center"}}>닉네임중복 확인</Button>
+                                    </div>
                             </Form.Group>
                         
                             <Form.Group className="my-3" controlId="formGridPassword">
@@ -48,19 +60,20 @@ function MyPage_MemberModify(){
 
                             <Form.Group className="my-3">
                                 <Form.Label>Phone Number</Form.Label>
-                                <Form.Control placeholder="Phone Number" />
+                                <div style={{width:"100%",display:"flex"}}>
+                                    <Form.Control type="text" placeholder="Phone Number" />
+                                    <Button style={{width:"180px",textAlign:"center"}}>인증요청</Button>
+                                </div>
                             </Form.Group>
 
                             <Form.Group className="my-3">
                                 <Form.Label>Email</Form.Label>
-                                <Form.Control type="email" placeholder="Enter Email" />
-                                <Button>인증</Button>
+                                <div style={{width:"100%",display:"flex"}}>
+                                    <Form.Control type="email" placeholder="Enter Email" />
+                                    <Button style={{width:"180px",textAlign:"center"}}>인증요청</Button>
+                                </div>
                             </Form.Group>
                     
-                            <Form.Group controlId="formGridCity">
-                                <Form.Label>City</Form.Label>
-                                <Form.Control />
-                            </Form.Group>
                         </Col>
                     </Row>
 
