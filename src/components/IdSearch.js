@@ -191,7 +191,7 @@ function IdSearch() {
             className="searchinfo"
           >
             <Link to="/login/PasswordSearch">비밀번호 찾기</Link> ||
-            <a href="/signup"> 회원가입</a>
+            <Link to="/signup"> 회원가입 </Link>
           </div>
         </form>
       </div>

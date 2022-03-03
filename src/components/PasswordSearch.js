@@ -69,6 +69,9 @@ function PasswordSearch() {
   const phoneNumberKeyPress = (e) => {
     $("#phoneNumber").removeClass("borderErr");
   };
+  const idKeyPress = (e) => {
+    $("#Id").removeClass("borderErr");
+  };
 
   return (
     <>
@@ -100,6 +103,35 @@ function PasswordSearch() {
           <br />
 
           <div>
+            <label
+              htmlFor="user-id"
+              style={{
+                marginTop: "20px",
+              }}
+            >
+              아이디
+            </label>
+            <input
+              style={{
+                marginBottom: "15px",
+                marginTop: "10px",
+                borderRadius: "2px",
+                width: "100%",
+                height: "40px",
+                border: "1px solid #e5e5e5",
+                padding: "9px 12px",
+                outline: "none",
+                boxSizing: "border-box",
+              }}
+              id="Id"
+              name="user-id"
+              type="id"
+              placeholder="아이디"
+              value={Id}
+              onKeyPress={idKeyPress}
+              onChange={onChangeId}
+              class="loginregister_input"
+            />
             <label htmlFor="user-name">이름</label>
             <input
               style={{
@@ -195,7 +227,7 @@ function PasswordSearch() {
               }}
               type="submit"
               className="loginregister_button"
-              value="아이디 찾기"
+              value="비밀번호 찾기"
             />
           </div>
           <div
@@ -208,7 +240,7 @@ function PasswordSearch() {
             className="searchinfo"
           >
             <Link to="/login/IdSearch">아이디 찾기</Link> ||
-            <a href="/signup"> 회원가입</a>
+            <Link to="/signup"> 회원가입 </Link>
           </div>
         </form>
       </div>
