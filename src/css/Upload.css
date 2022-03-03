@@ -1,31 +1,69 @@
 :root {
-  --font-size : 20px;
+  /* Color */
+  --color-white: #ffffff;
+  --color-blue: #73aace;
+  --color-orange: #feb546;
+  
+  /* Font size */
+  --font-large: 48px;
+  --font-medium: 28px;
+  --font-regular: 18px;
+  --font-small: 16px;
+  --font-micro: 14px;
+
+  /* Font weight */
+  --weight-bold: 700;
+  --weight-semi-bold: 600;
+  --weight-regular: 400;
+
+  /* Size */
   --border-bottom: 1px solid grey;
   --input-box-width: 700px; 
   --input-box-height: 50px;
 }
 
-li {
+/* * {
+  box-sizing: border-box;
+} */
+
+/* li {
   list-style: none;
-}
+} */
 
-body {
-  display: flex;
-  justify-content: center;
-}
+/* ul {
+  padding-left: 0px;
+} */
 
-input[type="file"] {
+.input-file {
   display: none;
 }
 
-img {
-  width: 300px;
-  height: 270px;
+.input {
+  border: none;
+  border-bottom: var(--border-bottom);
+  width: var(--input-box-width);
+  height: var(--input-box-height);
+  font-size: var(--font-medium);
+  padding: 0.5rem 14px;
+  margin: 1.5rem 0;
 }
 
-div {
-  margin: 5px;
+.textarea {
+  border: none;
+  width: var(--input-box-width);
+  height: carc(var(--input-box-height * 4));
+  font-size: var(--font-medium);
+  padding: 0.5rem 0;
+  margin: 1.5rem 0;
 }
+
+#upload-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--color-white);
+}
+
 .upload-box {
   border-bottom: var(--border-bottom);
   width: var(--input-box-width);
@@ -36,7 +74,7 @@ div {
   cursor: pointer;
 }
 
-.file-image {
+.file-icon {
   width: 300px;
   height: 300px;
   margin-right: 3rem;
@@ -46,27 +84,17 @@ div {
   margin: 5px 10px;
 }
 
-input {
-  border: none;
-  border-bottom: var(--border-bottom);
-  width: var(--input-box-width);
-  height: var(--input-box-height);
-  font-size: var(--font-size);
-  padding: 0.5rem 0;
+.uploaded-image {
+  width: 300px;
+  height: 270px;
 }
 
-textarea {
-  border: none;
-  border-bottom: var(--border-bottom);
-  width: var(--input-box-width);
-  height: carc(var(--input-box-height * 4));
-  font-size: var(--font-size);
-  padding: 0.5rem 0;
+.content-container {
+  border-bottom: 1px solid grey;
 }
 
 .hashtag-container {
   width: var(--input-box-width);
-  border-bottom: var(--border-bottom);
 }
 
 .hashtag-list {
@@ -80,14 +108,14 @@ textarea {
   font-size: var(--font-size);
   margin: 0.5rem;
   padding: 0.5rem;
-  border: 1px solid blue;
-  background-color: blue;
+  border: 1px solid var(--color-blue);
+  background-color: var(--color-blue);
   color: white;
   border-radius: 5rem;
 }
 
 .hashtag-input {
-  width: 100%;
+  width: 200px;
   padding: 0;
   border: none;
 }
@@ -95,7 +123,7 @@ textarea {
 .button {
   border: none;
   background-color: transparent;
-  color: orange;
+  color: var(--color-orange);
 }
 
 .button:hover {
@@ -103,23 +131,31 @@ textarea {
 }
 
 .share-box {
-  margin-top: 30px;
+  width: 100%;
+  margin: 50px 0;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
-.share {
-  border: 1px solid blue;
+.share-button {
+  width: var(--input-box-width);
+  border: 1px solid var(--color-blue);
   border-radius: 1rem;
-  background-color: white;
-  color: blue;
-  font-size: var(--font-size);
-  text-decoration: none;
+  background-color: var(--color-blue);
+  font-size: var(--font-medium);
   padding: 10px 20px;
   transition: 300ms ease-in-out;
 }
 
-.share:hover {
-  background-color: blue;
-  color: white;
+.share-button a {
+  color: var(--color-orange);
+}
+
+.share-button:hover {
+  background-color: var(--color-white);
+  color: var(--color-blue);
+}
+
+.share-button a:hover {
+  color: var(--color-white);
 }
