@@ -72,7 +72,7 @@ function Mainfollow() {
         }
     }
 
-    const repeat = [
+    const datas = [
         {
             id: 1,
             title: mainfol1,
@@ -101,43 +101,45 @@ function Mainfollow() {
             liked: 1234,
             followed: 5232,
         },
-        // {
-        //     id: 5,
-        //     title: mainfol5,
-        //     name: "@ewq",
-        //     liked: 11,
-        //     followed: 22,
-        // },
-        // {
-        //     id: 6,
-        //     title: mainfol6,
-        //     name: "@rrwe",
-        //     liked: 14,
-        //     followed: 56,
-        // },
-        // {
-        //     id: 7,
-        //     title: mainfol7,
-        //     name: "@efd",
-        //     liked: 133,
-        //     followed: 1421,
-        // },
-        // {
-        //     id: 8,
-        //     title: mainfol8,
-        //     name: "@ewqeqewew",
-        //     liked: 5456,
-        //     followed: 74745,
-        // },
+        {
+            id: 5,
+            title: mainfol5,
+            name: "@ewq",
+            liked: 11,
+            followed: 22,
+        },
+        {
+            id: 6,
+            title: mainfol6,
+            name: "@rrwe",
+            liked: 14,
+            followed: 56,
+        },
+        {
+            id: 7,
+            title: mainfol7,
+            name: "@efd",
+            liked: 133,
+            followed: 1421,
+        },
+        {
+            id: 8,
+            title: mainfol8,
+            name: "@ewqeqewew",
+            liked: 5456,
+            followed: 74745,
+        },
     ];
 
-    const renderRepeat = repeat.map((rep) => {
+    const renderRepeat = datas.map((data) => {
 
         return (
-            <div className="folpic" key={rep.id}>
+
+
+            <div className="folpic" key={data.id}>
 
                 <Link to="/signup" className="link">
-                    <img className="d-block w-100" src={rep.title} alt="1-1 slide"/>
+                    <img className="d-block w-100" src={data.title} alt="1-1 slide"/>
                 </Link>
 
                 <div className="group_icon">
@@ -153,19 +155,20 @@ function Mainfollow() {
                 </div>
 
                 <div className="group_txt">
-                    <div className="t1">{rep.name}</div>
+                    <div className="t1">{data.name}</div>
                     <div className="like_group">
                         <img src={like_icon} className="like_icon"/>
-                        <span className="like_cnt">{rep.liked}</span>
+                        <span className="like_cnt">{data.liked}</span>
                     </div>
                     <div className="follow_group">
                         <img src={follow_icon} className="follow_icon"/>
-                        <span className="follow_cnt">{rep.followed}</span>
+                        <span className="follow_cnt">{data.followed}</span>
                     </div>
                 </div>
             </div>
+
             );
-        });
+    });
     return (
         <>
             <div className="mainfollow-text">New Followers Feed</div>
@@ -175,22 +178,16 @@ function Mainfollow() {
 
 
                     <Carousel.Item>
-                       <div>{renderRepeat}</div>
-
-
-
+                        <div>{renderRepeat.slice(0,4)}</div>
                     </Carousel.Item>
-                    {/*<Carousel.Item>*/}
-
-
-
-                    {/*</Carousel.Item>*/}
+                    <Carousel.Item>
+                        <div>{renderRepeat.slice(4,8)}</div>
+                    </Carousel.Item>
 
                 </Carousel>
             </div>
 
         </>
     );
-
     }
 export default Mainfollow;
