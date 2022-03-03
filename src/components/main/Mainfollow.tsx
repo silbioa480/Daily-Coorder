@@ -2,6 +2,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Carousel } from "react-bootstrap";
 import React from "react";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
 // css
 import '../../css/main/MainNewFollow.css';
@@ -22,28 +24,74 @@ import follow_logoW from '../../img/main/follow_logoW.png';
 
 
 function Mainfollow() {
+
+    const [isShow, setIsShow] =useState(false);
+    const [isDone, setIsDone] =useState(true);
+    const [liked, setLiked] =useState(100);
+    const [followed, setFollowed] =useState(200);
+    const empty_like = <img src={like_logoW} className="like_logoW" onClick={toggleShow}  /> ;
+    const full_like = <img src={like_icon} className="like_logoW" onClick={toggleShow}  /> ;
+
+    function likeIn() {
+        setLiked(liked + 1);
+    }
+
+    function likeDe() {
+        setLiked(liked - 1);
+    }
+
+    function toggleShow() {
+        setIsShow(!isShow);
+        if(!isShow) {
+            likeIn();
+        }   else {
+            likeDe();
+        }
+
+    }
+
+    function togglefollow() {
+        setIsDone(!isDone);
+    }
+
+
   return (
       <>
           <div className="mainfollow-text">New Followrs Feed</div>
           <hr className="Line"></hr>
+          <div className="feed">
               <Carousel fade className="feedcar" style={{width: '1250px'}}>
-
                   <Carousel.Item>
+
                       <div className="folpic">
-                        <img className="d-block w-100" src={mainfol1}  alt="1-1 slide"/>
+
+                          <Link to="/signup">
+                        <img className="d-block w-100" src={mainfol1}  alt="1-1 slide" />
+                          </Link>
+
                           <div className="group_icon">
-                              <div className="like_logoA"><img src={like_logoW} className="like_logoW"/></div>
-                              <div className="follow_logoA"><img src={follow_logoW} className="follow_logoW"/></div>
+
+                              <div className="like_logoA">
+                                  { isShow ? full_like : empty_like }
+                              </div>
+
+                              <div className="follow_logoA">
+                                  {isDone ?
+                                      <img src={follow_logoW} className="follow_logoW" onClick={togglefollow}/> :
+                                      <img src={follow_icon} className="follow_logoW" onClick={togglefollow}/> }
+                              </div>
+
                           </div>
+
                           <div className="group_txt">
                               <div className="t1">@shine_1</div>
                               <div className="like_group">
-                                  <img src={like_icon} className="like_icon"/>
-                                  <span className="like_cnt">435</span>
+                                  <img src={like_icon} className="like_icon" />
+                                  <span className="like_cnt">{liked}</span>
                               </div>
                               <div className="follow_group">
                                   <img src={follow_icon} className="follow_icon"/>
-                                  <span className="follow_cnt">1,573</span>
+                                  <span className="follow_cnt">{followed}</span>
                               </div>
                           </div>
                       </div>
@@ -193,7 +241,7 @@ function Mainfollow() {
 
                   </Carousel.Item>
               </Carousel>
-
+          </div>
       </>
   );
 }
