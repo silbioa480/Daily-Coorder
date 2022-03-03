@@ -1,8 +1,16 @@
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import $ from "jquery";
+import PopUp from "./PopUp";
 
 function IdSearch() {
+  const [popup, setPopup] = useState({
+    open: false,
+    title: "",
+    message: "",
+    callback: false,
+  });
+
   const [phoneNumber, setPhoneNumber] = useState("");
   const [name, setName] = useState("");
   const [errorPhoneNumber, setErrorPhoneNumber] = useState(false);
@@ -17,40 +25,70 @@ function IdSearch() {
   };
 
   const onNameHandler = (e) => {
-    const nameRegex = /[0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
-    if (!e.target.value || nameRegex.test(e.target.value)) setErrorName(false);
-    else setErrorName(true);
     setName(e.currentTarget.value);
+  };
+  const validation4 = () => {
+    if (!name) setErrorName(true);
+    if (!phoneNumber) setErrorPhoneNumber(true);
+
+    if (name && phoneNumber) return true;
+    else return false;
   };
 
   const checkName = $("#name").val();
+  const validCheckName = () => {
+    if (!checkName) {
+      $("#name").val("");
+      $("#name").focus();
+      return true;
+    }
+  };
   const checkPhoneNumber = $("#phoneNumber").val();
+  const validCheckPhoneNumber = () => {
+    if (!checkPhoneNumber) {
+      $("#phoneNumber").val("");
+      $("#phoneNumber").focus();
+      return true;
+    }
+  };
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
 
-    if (!checkName) {
-      alert("이름을 입력해주세요");
-      $("#name").val("");
-      $("#name").focus();
-      return false;
+    if (validCheckName("")) {
+      setPopup({
+        open: true,
+        title: "아이디 찾기 실패ㅠㅠㅠㅠ",
+        message: "이름을 입력해주세요!!",
+      });
+      return;
     }
-    $("#name").removeClass("borderErr");
 
-    if (!checkPhoneNumber) {
-      alert("휴대폰 번호를 입력해주세요");
-      $("#phoneNumber").val("");
-      $("#phoneNumber").focus();
-      return false;
+    if (validCheckPhoneNumber("")) {
+      setPopup({
+        open: true,
+        title: "아이디 찾기 실패ㅠㅠㅠㅠ",
+        message: "휴대폰 번호를 입력해주세요!!",
+      });
+      return;
     }
-    $("#phoneNumber").removeClass("borderErr");
-  };
 
-  const nameKeyPress = (e) => {
-    $("#name").removeClass("borderErr");
-  };
-  const phoneNumberKeyPress = (e) => {
-    $("#phoneNumber").removeClass("borderErr");
+    if (!validation4()) {
+      setPopup({
+        open: true,
+        title: "아이디 찾기 실패ㅠㅠㅠㅠ",
+        message: "정보가 일치하지 않아요!!",
+      });
+      return;
+    } else {
+    }
+    setPopup({
+      open: true,
+      title: "아이디 찾기 성공♡♡",
+      message: "회원님의 아이디는 '♡♡♡♡' 입니다!!",
+      callback: function () {},
+    });
+    if (validation4()) return;
   };
 
   return (
@@ -65,6 +103,13 @@ function IdSearch() {
         }}
         className="SignUp"
       >
+        <PopUp
+          open={popup.open}
+          setPopup={setPopup}
+          message={popup.message}
+          title={popup.title}
+          callback={popup.callback}
+        />
         <form onSubmit={onSubmitHandler}>
           <p
             style={{
@@ -101,22 +146,9 @@ function IdSearch() {
               type="text"
               placeholder="이름"
               value={name}
-              onKeyPress={nameKeyPress}
               onChange={onNameHandler}
               className="loginregister_input"
             />{" "}
-            {errorName && (
-              <div
-                className="invalid-input"
-                style={{
-                  color: "deepskyblue",
-                  fontSize: "12px",
-                  marginBottom: "10px",
-                }}
-              >
-                이름 형식이 올바르지 않습니다.
-              </div>
-            )}
           </div>
           <div>
             <label
@@ -144,7 +176,6 @@ function IdSearch() {
               type="text"
               placeholder="-를 제외하고 숫자만 입력하세요"
               value={phoneNumber}
-              onKeyPress={phoneNumberKeyPress}
               onChange={onChangePhoneNumber}
               className="loginregister_input"
             />
@@ -169,7 +200,7 @@ function IdSearch() {
                 fontSize: "14px",
                 padding: "13px 30px",
                 cursor: "pointer",
-                backgroundColor: "darkslategrey",
+                backgroundColor: "black",
                 color: "white",
                 lineHeight: "1px",
                 borderRadius: "3px",
@@ -183,7 +214,7 @@ function IdSearch() {
           </div>
           <div
             style={{
-              fontSize: "12px",
+              fontSize: "15px",
               color: "#8d8d8d",
               lineHeight: 3,
               textAlign: "center",

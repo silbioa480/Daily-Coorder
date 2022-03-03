@@ -1,8 +1,16 @@
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import $ from "jquery";
+import PopUp from "./PopUp";
 
 function PasswordSearch() {
+  const [popup, setPopup] = useState({
+    open: false,
+    title: "",
+    message: "",
+    callback: false,
+  });
+
   const [Id, setId] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [name, setName] = useState("");
@@ -26,51 +34,93 @@ function PasswordSearch() {
   };
 
   const onNameHandler = (e) => {
-    const nameRegex = /[0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
-    if (!e.target.value || nameRegex.test(e.target.value)) setErrorName(false);
-    else setErrorName(true);
     setName(e.currentTarget.value);
   };
+  const validation5 = () => {
+    if (!Id) setErrorId(true);
+    if (!name) setErrorName(true);
+    if (!phoneNumber) setErrorPhoneNumber(true);
+
+    if (Id && name && phoneNumber) return true;
+    else return false;
+  };
+
   const checkId = $("#Id").val();
+
+  const validCheckId = () => {
+    if (!checkId) {
+      $("#Id").val("");
+      $("#Id").focus();
+      return true;
+    }
+  };
+
   const checkName = $("#name").val();
+
+  const validCheckName = () => {
+    if (!checkName) {
+      $("#name").val("");
+      $("#name").focus();
+      return true;
+    }
+  };
+
   const checkPhoneNumber = $("#phoneNumber").val();
+
+  const validCheckPhoneNumber = () => {
+    if (!checkPhoneNumber) {
+      $("#phoneNumber").val("");
+      $("#phoneNumber").focus();
+      return true;
+    }
+  };
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
 
-    if (!checkId) {
-      alert("아이디를 입력해주세요");
-      $("#Id").val("");
-      $("#Id").focus();
-      return false;
+    if (validCheckId("")) {
+      setPopup({
+        open: true,
+        title: "비밀번호 찾기 실패ㅠㅠㅠㅠ",
+        message: "아이디를 입력해주세요!!",
+      });
+      return;
     }
-    $("#Id").removeClass("borderErr");
 
-    if (!checkName) {
-      alert("이름을 입력해주세요");
-      $("#name").val("");
-      $("#name").focus();
-      return false;
+    if (validCheckName("")) {
+      setPopup({
+        open: true,
+        title: "비밀번호 찾기 실패ㅠㅠㅠㅠ",
+        message: "이름을 입력해주세요!!",
+      });
+      return;
     }
-    $("#name").removeClass("borderErr");
 
-    if (!checkPhoneNumber) {
-      alert("휴대폰 번호를 입력해주세요");
-      $("#phoneNumber").val("");
-      $("#phoneNumber").focus();
-      return false;
+    if (validCheckPhoneNumber("")) {
+      setPopup({
+        open: true,
+        title: "비밀번호 찾기 실패ㅠㅠㅠㅠ",
+        message: "휴대폰 번호를 입력해주세요!!",
+      });
+      return;
     }
-    $("#phoneNumber").removeClass("borderErr");
-  };
 
-  const nameKeyPress = (e) => {
-    $("#name").removeClass("borderErr");
-  };
-  const phoneNumberKeyPress = (e) => {
-    $("#phoneNumber").removeClass("borderErr");
-  };
-  const idKeyPress = (e) => {
-    $("#Id").removeClass("borderErr");
+    if (!validation5()) {
+      setPopup({
+        open: true,
+        title: "비밀번호 찾기 실패ㅠㅠㅠㅠ",
+        message: "정보가 일치하지 않아요!!",
+      });
+      return;
+    } else {
+    }
+    setPopup({
+      open: true,
+      title: "비밀번호 찾기 성공!!",
+      message: "회원님의 비밀번호는 '♡♡♡♡' 입니다!!",
+      callback: function () {},
+    });
+    if (validation5()) return;
   };
 
   return (
@@ -85,6 +135,13 @@ function PasswordSearch() {
         }}
         className="SignUp"
       >
+        <PopUp
+          open={popup.open}
+          setPopup={setPopup}
+          message={popup.message}
+          title={popup.title}
+          callback={popup.callback}
+        />
         <form onSubmit={onSubmitHandler}>
           <p
             style={{
@@ -128,7 +185,6 @@ function PasswordSearch() {
               type="id"
               placeholder="아이디"
               value={Id}
-              onKeyPress={idKeyPress}
               onChange={onChangeId}
               class="loginregister_input"
             />
@@ -150,22 +206,9 @@ function PasswordSearch() {
               type="text"
               placeholder="이름"
               value={name}
-              onKeyPress={nameKeyPress}
               onChange={onNameHandler}
               className="loginregister_input"
             />{" "}
-            {errorName && (
-              <div
-                className="invalid-input"
-                style={{
-                  color: "deepskyblue",
-                  fontSize: "12px",
-                  marginBottom: "10px",
-                }}
-              >
-                이름 형식이 올바르지 않습니다.
-              </div>
-            )}
           </div>
           <div>
             <label
@@ -193,7 +236,6 @@ function PasswordSearch() {
               type="text"
               placeholder="-를 제외하고 숫자만 입력하세요"
               value={phoneNumber}
-              onKeyPress={phoneNumberKeyPress}
               onChange={onChangePhoneNumber}
               className="loginregister_input"
             />
@@ -218,7 +260,7 @@ function PasswordSearch() {
                 fontSize: "14px",
                 padding: "13px 30px",
                 cursor: "pointer",
-                backgroundColor: "darkslategrey",
+                backgroundColor: "black",
                 color: "white",
                 lineHeight: "1px",
                 borderRadius: "3px",
@@ -232,7 +274,7 @@ function PasswordSearch() {
           </div>
           <div
             style={{
-              fontSize: "12px",
+              fontSize: "15px",
               color: "#8d8d8d",
               lineHeight: 3,
               textAlign: "center",
