@@ -276,10 +276,20 @@ function SignUp() {
     e.preventDefault();
 
     if (inputs.Id === value.Id) {
-      alert("사용가능한 아이디 입니다.");
+      setPopup({
+        open: true,
+        title: "통과 !!",
+        message: "사용가능한 아이디입니다!",
+      });
+      return;
     } else {
-      alert("이미 사용중인 아이디 입니다.");
     }
+    setPopup({
+      open: true,
+      title: "실패!",
+      message: "이미 사용중인 아이디입니다!!",
+      callback: function () {},
+    });
   };
 
   const allBtnEvent = () => {
@@ -689,6 +699,11 @@ function SignUp() {
                 </div>
               )}
             </div>
+            <hr />
+            <h3>선택항목</h3>
+            <br />
+            <br />
+
             <details>
               <summary
                 style={{
