@@ -17,7 +17,16 @@ function PopUp({ open, setPopup, message, title, callback }) {
         </Modal.Header>
         <Modal.Body>{message}</Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={handleClose}>
+          <Button
+            style={{
+              color: "white",
+              backgroundColor: "black",
+              borderStyle: "none",
+              lineHeight: "15px",
+              cursor: "pointer",
+            }}
+            onClick={handleClose}
+          >
             OK
           </Button>
         </Modal.Footer>

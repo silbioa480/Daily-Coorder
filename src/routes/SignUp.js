@@ -3,12 +3,9 @@ import "bootstrap/dist/css/bootstrap.css";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import { Result } from "antd";
-import $ from "jquery";
 import PopUp from "../components/PopUp";
 
 function SignUp() {
-  const [isOnCheck, setIsOnCheck] = useState(false);
-
   const [popup, setPopup] = useState({
     open: false,
     title: "",
@@ -182,13 +179,6 @@ function SignUp() {
     setTermError(false);
   };
 
-  const checkProId = $("#proId").val();
-  const checkProName = $("#proName").val();
-  const checkProPassword = $("#proPassword").val();
-  const checkProEmail = $("#proEmail").val();
-  const checkProPhone = $("#proPhone").val();
-  const checkProNumber = $("#proNumber").val();
-
   //일반회원가입 정규성검사(회원가입 성공/ 실패 모달창)
   const validation1 = () => {
     if (!Id) setErrorId(true);
@@ -214,6 +204,7 @@ function SignUp() {
     else return false;
   };
 
+  //사업자회원가입 정규성검사(회원가입 성공/ 실패 모달창)
   const validation2 = () => {
     if (!proId) setErrorProId(true);
     if (!proPassword) setErrorProPassword(true);
@@ -384,7 +375,7 @@ function SignUp() {
                   alt="Circle Image"
                   className="img-raised rounded-circle img-fluid"
                 />
-                <button
+                <label
                   style={{
                     width: "180px",
                     height: "30px",
@@ -398,12 +389,14 @@ function SignUp() {
                     marginBottom: "12px",
                     borderRadius: "3px",
                     borderStyle: "none",
+                    textAlign: "center",
                   }}
                   type="submit"
                   className="profile_button"
                 >
                   프로필 업로드
-                </button>
+                  <input type="file" style={{ display: "none" }} />
+                </label>
               </div>
             </div>
 
