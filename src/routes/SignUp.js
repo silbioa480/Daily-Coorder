@@ -3,10 +3,15 @@ import "bootstrap/dist/css/bootstrap.css";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import { Result } from "antd";
-import $ from "jquery";
+import PopUp from "../components/PopUp";
 
 function SignUp() {
-  const [isOnCheck, setIsOnCheck] = useState(false);
+  const [popup, setPopup] = useState({
+    open: false,
+    title: "",
+    message: "",
+    callback: false,
+  });
 
   //일반회원
   const [name, setName] = useState("");
@@ -51,6 +56,7 @@ function SignUp() {
   const [useCheck, setUseCheck] = useState(false);
   const [marketingCheck, setMarketingCheck] = useState(false);
 
+  const [inputs, setInputs] = useState({ Id: "" });
   const [show, setShow] = useState(false);
   const [value, setValue] = useState({
     Id: "",
@@ -66,12 +72,13 @@ function SignUp() {
   const onNicknameHandler = (event) => {
     setNickname(event.currentTarget.value);
   };
-  const onNameHandler = (event) => {
-    setName(event.currentTarget.value);
+
+  const onNameHandler = (e) => {
+    setName(e.currentTarget.value);
   };
 
-  const onProNameHandler = (event) => {
-    setProName(event.currentTarget.value);
+  const onProNameHandler = (e) => {
+    setProName(e.currentTarget.value);
   };
 
   const onChangePhoneNumber = (e) => {
@@ -172,98 +179,107 @@ function SignUp() {
     setTermError(false);
   };
 
-  const checkId = $("#Id").val();
-  const checkPassword = $("#Password").val();
-  const checkName = $("#name").val();
-  const checkNickName = $("#nickName").val();
-  const checkEmail = $("#email").val();
-  const checkPhoneNumber = $("#phoneNumber").val();
+  //일반회원가입 정규성검사(회원가입 성공/ 실패 모달창)
+  const validation1 = () => {
+    if (!Id) setErrorId(true);
+    if (!Password) setErrorPassword(true);
+    if (!confirmPassword) setConfirmPasswordError(true);
+    if (!name) setErrorEmail(true);
+    if (!email) setErrorEmail(true);
+    // if (!term) setTermError(true);
+    if (!phoneNumber) setErrorPhoneNumber(true);
+    // if (!proNumber) setErrorProNumber(true);
+
+    if (
+      Id &&
+      Password &&
+      confirmPassword &&
+      name &&
+      email &&
+      // term &&
+      phoneNumber
+      // proNumber
+    )
+      return true;
+    else return false;
+  };
+
+  //사업자회원가입 정규성검사(회원가입 성공/ 실패 모달창)
+  const validation2 = () => {
+    if (!proId) setErrorProId(true);
+    if (!proPassword) setErrorProPassword(true);
+    if (!confirmProPassword) setConfirmProPasswordError(true);
+    if (!proName) setErrorProName(true);
+    if (!proEmail) setErrorProEmail(true);
+    // if (!term) setTermError(true);
+    if (!phoneNumber) setErrorProPhone(true);
+    if (!proNumber) setErrorProNumber(true);
+
+    if (
+      proId &&
+      proPassword &&
+      confirmProPassword &&
+      proName &&
+      proEmail &&
+      // term &&
+      phoneNumber &&
+      proNumber
+    )
+      return true;
+    else return false;
+  };
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
 
-    if (!checkId) {
-      alert("아이디를 입력해주세요");
-      $("#Id").val("");
-      $("#Id").focus();
-      return false;
+    if (!validation1()) {
+      setPopup({
+        open: true,
+        title: "회원가입 실패ㅠㅠ",
+        message: "기입사항을 정확하게 기입해주세요!!",
+      });
+      return;
+    } else {
     }
-    $("#Id").removeClass("borderErr");
-
-    if (!checkName) {
-      alert("이름을 입력해주세요");
-      $("#name").val("");
-      $("#name").focus();
-      return false;
-    }
-    $("#name").removeClass("borderErr");
-
-    if (!checkNickName) {
-      alert("닉네임을 입력해주세요");
-      $("#nickname").val("");
-      $("#nickname").focus();
-      return false;
-    }
-    $("#nickname").removeClass("borderErr");
-
-    if (!checkPassword) {
-      alert("비밀번호를 입력해주세요");
-      $("#Password").val("");
-      $("#Password").focus();
-      return false;
-    }
-    $("#Password").removeClass("borderErr");
-
-    if (confirmPassword !== Password) {
-      alert("비밀번호를 확인해주세요");
-      $("#confirmPassword").val("");
-      $("#confirmPassword").focus();
-      return false;
-    }
-    $("#confirmPassword").removeClass("borderErr");
-
-    if (!checkEmail) {
-      alert("이메일을 입력해주세요");
-      $("#email").val("");
-      $("#email").focus();
-      return false;
-    }
-    $("#email").removeClass("borderErr");
-
-    if (!checkPhoneNumber) {
-      alert("휴대폰 번호를 입력해주세요");
-      $("#phoneNumber").val("");
-      $("#phoneNumber").focus();
-      return false;
-    }
-    $("#phoneNumber").removeClass("borderErr");
+    setPopup({
+      open: true,
+      title: "회원가입 성공♡♡",
+      message: "회원가입에 성공했습니다!!!!",
+      callback: function () {},
+    });
+    if (validation1()) return;
   };
 
-  const idKeyPress = (e) => {
-    $("#Id").removeClass("borderErr");
+  const onProSubmitHandler = (e) => {
+    e.preventDefault();
+    if (!validation2()) {
+      setPopup({
+        open: true,
+        title: "회원가입 실패ㅠㅠ",
+        message: "기입사항을 정확하게 기입해주세요!!",
+      });
+      return;
+    } else {
+    }
+    setPopup({
+      open: true,
+      title: "회원가입 성공♡♡",
+      message: "회원가입에 성공했습니다!!!!",
+      callback: function () {},
+    });
+    if (validation2()) return;
   };
 
-  const passwordKeyPress = (e) => {
-    $("#Password").removeClass("borderErr");
-  };
+  //아이디 중복확인 샘플 데이터가 없어서 일단 이렇게 만들었음
 
-  const confirmPasswordKeyPress = (e) => {
-    $("#confirmPassword").removeClass("borderErr");
-  };
-  const nameKeyPress = (e) => {
-    $("#name").removeClass("borderErr");
-  };
+  const overSubmitHandler = (e) => {
+    e.preventDefault();
 
-  const nickNameKeyPress = (e) => {
-    $("#nickname").removeClass("borderErr");
-  };
-
-  const emailKeyPress = (e) => {
-    $("#email").removeClass("borderErr");
-  };
-
-  const phoneNumberKeyPress = (e) => {
-    $("#phoneNumber").removeClass("borderErr");
+    if (inputs.Id === value.Id) {
+      alert("사용가능한 아이디 입니다.");
+    } else {
+      alert("이미 사용중인 아이디 입니다.");
+    }
   };
 
   const allBtnEvent = () => {
@@ -323,7 +339,14 @@ function SignUp() {
       }}
       class="SignUp"
     >
-      <form onSubmit={onSubmitHandler}>
+      <PopUp
+        open={popup.open}
+        setPopup={setPopup}
+        message={popup.message}
+        title={popup.title}
+        callback={popup.callback}
+      />
+      <form>
         <Tabs defaultActiveKey="first">
           <Tab eventKey="first" title="일반회원가입">
             <p
@@ -352,7 +375,7 @@ function SignUp() {
                   alt="Circle Image"
                   className="img-raised rounded-circle img-fluid"
                 />
-                <button
+                <label
                   style={{
                     width: "180px",
                     height: "30px",
@@ -366,12 +389,14 @@ function SignUp() {
                     marginBottom: "12px",
                     borderRadius: "3px",
                     borderStyle: "none",
+                    textAlign: "center",
                   }}
                   type="submit"
                   className="profile_button"
                 >
                   프로필 업로드
-                </button>
+                  <input type="file" style={{ display: "none" }} />
+                </label>
               </div>
             </div>
 
@@ -400,7 +425,6 @@ function SignUp() {
                 type="id"
                 placeholder="아이디"
                 value={Id}
-                onKeyPress={idKeyPress}
                 onChange={onChangeId}
                 class="loginregister_input"
               />{" "}
@@ -434,6 +458,7 @@ function SignUp() {
                 type="submit"
                 class="loginregister_button"
                 hidden={show}
+                onClick={overSubmitHandler}
               >
                 아이디 중복확인
               </button>
@@ -458,12 +483,10 @@ function SignUp() {
                 type="text"
                 placeholder="이름"
                 value={name}
-                onKeyPress={nameKeyPress}
                 onChange={onNameHandler}
                 className="loginregister_input"
               />
             </div>
-
             <div>
               <label htmlFor="user-nickname">닉네임</label>
               <input
@@ -483,7 +506,6 @@ function SignUp() {
                 type="text"
                 placeholder="닉네임"
                 value={nickname}
-                onKeyPress={nickNameKeyPress}
                 onChange={onNicknameHandler}
                 className="loginregister_input"
               />
@@ -508,7 +530,6 @@ function SignUp() {
                 type="password"
                 placeholder="비밀번호"
                 value={Password}
-                onKeyPress={passwordKeyPress}
                 onChange={onChangePassword}
                 class="loginregister_input"
               />
@@ -544,7 +565,6 @@ function SignUp() {
                 type="password"
                 placeholder="비밀번호 확인"
                 value={confirmPassword}
-                onKeyPress={confirmPasswordKeyPress}
                 id={confirmPassword}
                 onChange={onChangeConfirmPassword}
                 class="loginregister_input"
@@ -610,7 +630,6 @@ function SignUp() {
                 type="text"
                 placeholder="이메일"
                 value={email}
-                onKeyPress={emailKeyPress}
                 onChange={onChangeEmail}
                 className="loginregister_input"
               />
@@ -654,7 +673,6 @@ function SignUp() {
                 type="text"
                 placeholder="-를 제외하고 숫자만 입력하세요"
                 value={phoneNumber}
-                onKeyPress={phoneNumberKeyPress}
                 onChange={onChangePhoneNumber}
                 className="loginregister_input"
               />
@@ -746,7 +764,7 @@ function SignUp() {
             </details>
 
             <div>
-              <input
+              <button
                 style={{
                   width: "420px",
                   height: "40px",
@@ -761,14 +779,20 @@ function SignUp() {
                   borderRadius: "3px",
                   borderStyle: "none",
                 }}
-                type="submit"
+                type="button"
+                onClick={onSubmitHandler}
                 className="loginregister_button"
-                value="회원가입"
-              />
+              >
+                <b>회원가입</b>
+              </button>
             </div>
           </Tab>
 
-          <Tab eventKey="second" title="사업자회원가입">
+          <Tab
+            eventKey="second"
+            title="사업자회원가입"
+            onSubmit={onProSubmitHandler}
+          >
             <p
               style={{
                 marginTop: "30px",
@@ -805,6 +829,7 @@ function SignUp() {
                   outline: "none",
                   boxSizing: "border-box",
                 }}
+                id="proId"
                 name="pro-id"
                 type="id"
                 placeholder="아이디"
@@ -841,6 +866,7 @@ function SignUp() {
                 }}
                 type="submit"
                 className="loginregister_button"
+                onClick={overSubmitHandler}
               >
                 아이디 중복확인
               </button>
@@ -860,13 +886,26 @@ function SignUp() {
                   boxSizing: "border-box",
                   marginBottom: "10px",
                 }}
+                id="proName"
                 name="pro-name"
                 type="text"
                 placeholder="이름"
                 value={proName}
                 onChange={onProNameHandler}
                 className="loginregister_input"
-              />
+              />{" "}
+              {errorProName && (
+                <div
+                  className="invalid-input"
+                  style={{
+                    color: "deepskyblue",
+                    fontSize: "12px",
+                    marginBottom: "10px",
+                  }}
+                >
+                  상호명 형식이 올바르지 않습니다.
+                </div>
+              )}
             </div>
 
             <div>
@@ -883,6 +922,7 @@ function SignUp() {
                   boxSizing: "border-box",
                   marginBottom: "10px",
                 }}
+                id="proPassword"
                 name="pro-password"
                 type="password"
                 placeholder="비밀번호"
@@ -918,6 +958,7 @@ function SignUp() {
                   boxSizing: "border-box",
                   marginBottom: "5px",
                 }}
+                id="confirmProPassword"
                 name="confirmProPassword"
                 type="password"
                 placeholder="비밀번호 확인"
@@ -961,7 +1002,8 @@ function SignUp() {
                   boxSizing: "border-box",
                   marginBottom: "10px",
                 }}
-                name="pro-phone"
+                id="proNumber"
+                name="pro-number"
                 type="text"
                 placeholder="-를 제외하고 숫자만 입력하세요"
                 value={proNumber}
@@ -1002,6 +1044,7 @@ function SignUp() {
                   outline: "none",
                   boxSizing: "border-box",
                 }}
+                id="proEmail"
                 name="pro-email"
                 type="text"
                 placeholder="이메일"
@@ -1044,6 +1087,7 @@ function SignUp() {
                   boxSizing: "border-box",
                   marginBottom: "20px",
                 }}
+                id="proPhone"
                 name="pro-phone"
                 type="text"
                 placeholder="-를 제외하고 숫자만 입력하세요"
@@ -1154,7 +1198,8 @@ function SignUp() {
                   borderRadius: "3px",
                   borderStyle: "none",
                 }}
-                type="submit"
+                type="button"
+                onClick={onProSubmitHandler}
                 className="loginregister_button"
               >
                 회원가입

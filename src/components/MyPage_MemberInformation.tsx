@@ -3,6 +3,8 @@ import { useState } from 'react';
 import MemInfoCss from '../css/MyPage_MemInfoCss';
 import { Figure } from 'react-bootstrap';
 
+
+
 function MemberInformation(){
     
     const [member,setMember]=useState([]);
@@ -79,19 +81,20 @@ function MyPage_MemberInformation(){
             <>
                 <MemInfoCss />
                 <div className="memberContainer">
-                        <div style={{width:"150px",height:"150px",margin:"3vh 0",border:"1px solid black",display:"flex",flexDirection:"column",justifyContent:"space-between"}}>
-                            <Figure style={{width:"150px",height:"100px"}}>
+                        <div style={{width:"170px",height:"150px",margin:"3vh 0",border:"1px solid black"}}>
+                            <Figure style={{width:"170px",height:"130px"}}>
                                 <Figure.Image
                                     width={140}
                                     height={160}
-                                    alt="140 x 160"
+                                    alt="프로필 사진"
                                     src="holder.js/140x160"
-                                    className="bg-primary"
                                 />
                             </Figure>
                         </div>
                         <div>
-                                <input type="file"  />
+                                <label className="btn btn-primary">
+                                    프로필 사진 업로드<input type="file" style={{display:"none"}} name="profileimage"/>
+                                </label>
                         </div>
                         <MemberInformation />
                 </div>
