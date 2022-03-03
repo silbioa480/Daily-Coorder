@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import $ from "jquery";
 
@@ -6,10 +6,24 @@ import facebooklogo from "../img/login/facebooklogo.png";
 import kakaologo from "../img/login/kakaologo.png";
 import googlelogo from "../img/login/googlelogo.png";
 import naverlogo from "../img/login/naverlogo.png";
+import PopUp from "./PopUp";
 
 function LoginMember() {
+  const [popup, setPopup] = useState({
+    open: false,
+    title: "",
+    message: "",
+    callback: false,
+  });
   const [Id, setId] = useState("");
   const [Password, setPassword] = useState("");
+  const [proId, setProId] = useState("");
+  const [proPassword, setProPassword] = useState("");
+
+  const [errorId, setErrorId] = useState(false);
+  const [errorPassword, setErrorPassword] = useState(false);
+  const [errorProId, setErrorProId] = useState(false);
+  const [errorProPassword, setErrorProPassword] = useState(false);
 
   const onIdHandler = (e) => {
     setId(e.currentTarget.value);
@@ -18,35 +32,80 @@ function LoginMember() {
     setPassword(e.currentTarget.value);
   };
 
+  const onProIdHandler = (e) => {
+    setId(e.currentTarget.value);
+  };
+  const onProPasswordHanlder = (e) => {
+    setPassword(e.currentTarget.value);
+  };
+
+  const validation3 = () => {
+    if (!Id) setErrorId(true);
+    if (!Password) setErrorPassword(true);
+    // if (!proId) setErrorProId(true);
+    // if (!proPassword) setErrorProPassword(true);
+
+    if (Id && Password) return true;
+    else return false;
+
+    // if (proId && proPassword) return true;
+    // else return false;
+  };
   const checkId = $("#Id").val();
+  const validCheckId = () => {
+    if (!checkId) {
+      $("#Id").val("");
+      $("#Id").focus();
+      return true;
+    }
+  };
+
   const checkPassword = $("#Password").val();
+  const validCheckPassword = () => {
+    if (!checkPassword) {
+      $("#Password").val("");
+      $("#Password").focus();
+      return true;
+    }
+  };
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
 
-    if (!checkId) {
-      alert("아이디를 입력해주세요");
-      $("#Id").val("");
-      $("#Id").focus();
-      return false;
+    if (validCheckId("")) {
+      setPopup({
+        open: true,
+        title: "로그인 실패ㅠㅠㅠㅠ",
+        message: "아이디를 입력해주세요!!",
+      });
+      return;
     }
-    $("#Id").removeClass("borderErr");
 
-    if (!checkPassword) {
-      alert("비밀번호를 입력해주세요");
-      $("#Password").val("");
-      $("#Password").focus();
-      return false;
+    if (validCheckPassword("")) {
+      setPopup({
+        open: true,
+        title: "로그인 실패ㅠㅠㅠㅠ",
+        message: "비밀번호를 입력해주세요!!",
+      });
+      return;
     }
-    $("#Password").removeClass("borderErr");
-  };
 
-  const idKeyPress = (e) => {
-    $("#Id").removeClass("borderErr");
-  };
-
-  const passwordKeyPress = (e) => {
-    $("#Password").removeClass("borderErr");
+    if (!validation3()) {
+      setPopup({
+        open: true,
+        title: "로그인 실패ㅠㅠㅠㅠ",
+        message: "정보가 일치하지 않아요!!",
+      });
+      return;
+    } else {
+    }
+    setPopup({
+      open: true,
+      title: "로그인 성공♡♡",
+      message: "꺄아아아앗!!!!",
+      callback: function () {},
+    });
+    if (validation3()) return;
   };
 
   return (
@@ -59,7 +118,14 @@ function LoginMember() {
         height: "40vh",
       }}
     >
-      <form onSubmit={onSubmitHandler}>
+      <PopUp
+        open={popup.open}
+        setPopup={setPopup}
+        message={popup.message}
+        title={popup.title}
+        callback={popup.callback}
+      />
+      <form>
         <p
           style={{
             marginTop: "300px",
@@ -88,7 +154,6 @@ function LoginMember() {
           type="id"
           value={Id}
           placeholder="아이디를 입력해주세요."
-          onKeyPress={idKeyPress}
           onChange={onIdHandler}
         />
         <br />
@@ -109,7 +174,6 @@ function LoginMember() {
           type="password"
           value={Password}
           placeholder="비밀번호를 입력해주세요."
-          onKeyPress={passwordKeyPress}
           onChange={onPasswordHanlder}
         />
         <br />
@@ -139,7 +203,7 @@ function LoginMember() {
           </div>
         </div>
 
-        <input
+        <button
           style={{
             width: "350px",
             height: "40px",
@@ -155,9 +219,11 @@ function LoginMember() {
             borderStyle: "none",
           }}
           className="btn_login"
-          type="submit"
-          value="로그인"
-        />
+          type="button"
+          onClick={onSubmitHandler}
+        >
+          로그인
+        </button>
 
         <div
           style={{
