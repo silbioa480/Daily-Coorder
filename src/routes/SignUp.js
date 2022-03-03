@@ -21,6 +21,8 @@ function SignUp() {
   const [nickname, setNickname] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [term, setTerm] = useState("");
+  const [height, setHeight] = useState("");
+  const [weight, setWeight] = useState("");
 
   const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -31,7 +33,8 @@ function SignUp() {
   const [errorEmail, setErrorEmail] = useState(false);
   const [termError, setTermError] = useState(false);
   const [errorPhoneNumber, setErrorPhoneNumber] = useState(false);
-
+  const [errorHeight, setErrorHeight] = useState(false);
+  const [errorWeight, setErrorWeight] = useState(false);
   //사업자회원
   const [proId, setProId] = useState("");
   const [proPassword, setProPassword] = useState("");
@@ -177,6 +180,22 @@ function SignUp() {
   const onChangeTerm = (e) => {
     setTerm(e.target.checked);
     setTermError(false);
+  };
+
+  const onChangeHeight = (e) => {
+    const heightRegex = /^[0-9\b -]{0,13}$/;
+    if (!e.target.value || heightRegex.test(e.target.value))
+      setErrorHeight(false);
+    else setErrorHeight(true);
+    setHeight(e.target.value);
+  };
+
+  const onChangeWeight = (e) => {
+    const weightRegex = /^[0-9\b -]{0,13}$/;
+    if (!e.target.value || weightRegex.test(e.target.value))
+      setErrorWeight(false);
+    else setErrorWeight(true);
+    setWeight(e.target.value);
   };
 
   //일반회원가입 정규성검사(회원가입 성공/ 실패 모달창)
@@ -738,16 +757,16 @@ function SignUp() {
                   boxSizing: "border-box",
                   marginBottom: "20px",
                 }}
-                id="phoneNumber"
-                name="user-phone"
+                id="height"
+                name="height"
                 type="text"
-                value={phoneNumber}
-                onChange={onChangePhoneNumber}
+                value={height}
+                onChange={onChangeHeight}
                 className="loginregister_input"
               />
               cm
               <label
-                htmlFor="user-height"
+                htmlFor="height"
                 style={{
                   marginLeft: "20px",
                   marginTop: "5px",
@@ -767,26 +786,27 @@ function SignUp() {
                   boxSizing: "border-box",
                   marginBottom: "20px",
                 }}
-                id="phoneNumber"
-                name="user-phone"
+                id="weight"
+                name="weight"
                 type="text"
-                value={phoneNumber}
-                onChange={onChangePhoneNumber}
+                value={weight}
+                onChange={onChangeWeight}
                 className="loginregister_input"
               />
               kg
-              {errorPhoneNumber && (
-                <div
-                  className="invalid-input"
-                  style={{
-                    color: "deepskyblue",
-                    fontSize: "12px",
-                    marginBottom: "10px",
-                  }}
-                >
-                  숫자만 입력하세요
-                </div>
-              )}
+              {errorHeight ||
+                errorWeight(
+                  <div
+                    className="invalid-input"
+                    style={{
+                      color: "deepskyblue",
+                      fontSize: "12px",
+                      marginBottom: "10px",
+                    }}
+                  >
+                    숫자만 입력하세요
+                  </div>
+                )}
             </div>
             <hr />
 
