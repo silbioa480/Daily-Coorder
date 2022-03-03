@@ -67,12 +67,20 @@ function SignUp() {
   const onNicknameHandler = (event) => {
     setNickname(event.currentTarget.value);
   };
-  const onNameHandler = (event) => {
-    setName(event.currentTarget.value);
+
+  const onNameHandler = (e) => {
+    const nameRegex = /[0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
+    if (!e.target.value || nameRegex.test(e.target.value)) setErrorName(false);
+    else setErrorName(true);
+    setName(e.currentTarget.value);
   };
 
-  const onProNameHandler = (event) => {
-    setProName(event.currentTarget.value);
+  const onProNameHandler = (e) => {
+    const proNameRegex = /[0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
+    if (!e.target.value || proNameRegex.test(e.target.value))
+      setErrorProName(false);
+    else setErrorProName(true);
+    setProName(e.currentTarget.value);
   };
 
   const onChangePhoneNumber = (e) => {
@@ -586,9 +594,20 @@ function SignUp() {
                 onKeyPress={nameKeyPress}
                 onChange={onNameHandler}
                 className="loginregister_input"
-              />
+              />{" "}
+              {errorName && (
+                <div
+                  className="invalid-input"
+                  style={{
+                    color: "deepskyblue",
+                    fontSize: "12px",
+                    marginBottom: "10px",
+                  }}
+                >
+                  이름 형식이 올바르지 않습니다.
+                </div>
+              )}
             </div>
-
             <div>
               <label htmlFor="user-nickname">닉네임</label>
               <input
@@ -996,7 +1015,19 @@ function SignUp() {
                 onChange={onProNameHandler}
                 onKeyPress={proNameKeyPress}
                 className="loginregister_input"
-              />
+              />{" "}
+              {errorProName && (
+                <div
+                  className="invalid-input"
+                  style={{
+                    color: "deepskyblue",
+                    fontSize: "12px",
+                    marginBottom: "10px",
+                  }}
+                >
+                  상호명 형식이 올바르지 않습니다.
+                </div>
+              )}
             </div>
 
             <div>
