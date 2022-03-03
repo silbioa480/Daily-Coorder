@@ -12,27 +12,36 @@ function CardStyle(){
     const [hashtag,setHashtag]=useState("");
     
     const [hide,setHide]=useState(true);
+    const [isHover,setIsHover]=useState(false);
    
     const HandleClick=()=>{
         setHide(false);    
     }
 
+    const HandleEnter=()=>{
+        setIsHover(true);
+    }
+
+    const HandleLeave=()=>{
+        setIsHover(false);
+    }
+
     return (
             <>
-                {hide && <Card style={{ width: '18rem',height:"400px" }}>
+                {hide && <Card style={{ width: '18rem',height:"400px" ,borderRadius:"20px"}}>
                         <Card.Img variant="top" src="holder.js/100px180" alt="clothes image" style={{marginTop:"3vh"}} />
                         <Card.Body >
                             <Card.Title style={{textAlign:"center",margin:"3vh 0"}}>의류 타이틀</Card.Title>
-                            <Card.Text style={{textAlign:"center",marginBottom:"3vh"}}>
+                            <Card.Text style={{textAlign:"center",margin:"3vh 0"}}>
                                     의류 관련내용
                             </Card.Text>
-                            <Card.Text style={{textAlign:"center",marginBottom:"3vh"}}>
+                            <Card.Text style={{textAlign:"center",margin:"3vh 0"}}>
                                 {hashtag}해시태그
                             </Card.Text>
-                            <div style={{width:"100%",display:"flex",justifyContent:"center"}}>
-                                <Button onClick={HandleClick} style={{textAlign:"center"}}>
-                                        <Link to="/member/MyPage_ChartPage/MyPage_detailChartPage" style={{color:"white"}}>
-                                            상세 차트 표시
+                            <div style={{width:"100%",display:"flex",justifyContent:"center",marginTop:"3vw"}}>
+                                 <Button onClick={HandleClick} style={{textAlign:"center",border:"3px solid black",borderRadius:"20px",padding:".5em 2em"}} className="bg-white" onMouseEnter={HandleEnter} onMouseLeave={HandleLeave}>
+                                        <Link to="/member/MyPage_ChartPage/MyPage_detailChartPage" style={{color:"black",fontWeight:"bold"}}>
+                                            More
                                         </Link>
                                 </Button>
                             </div>
@@ -50,7 +59,7 @@ function MyPage_ChartPage(){
         <>
                
                
-               <Container style={{display:"flex",justifyContent:"space-around",height:"auto"}} className="bg-primary">
+               <Container style={{display:"flex",justifyContent:"space-around",height:"auto"}}>
                         {clothesCard.map(()=>{
                             return (
                                 <CardStyle />
