@@ -5,17 +5,43 @@ import { AiFillHeart } from "react-icons/ai";
 import { Circle } from "../css/Board_Posts";
 import similar from "../img/similar.png";
 import React, { useEffect, useState } from "react";
+//댓글창
 function Answer() {
   const [isActive, setIsActive] = useState({});
-  const toggleActive = (id) => {
-    setIsActive((prevIsActive) => {
-      return {
-        ...prevIsActive,
-        [id]: !prevIsActive[id],
-      };
-    });
+  // const toggleActive = (id) => {
+  //   console.log(id);
+  //   setIsActive((prevIsActive) => {
+  //     console.log(prevIsActive);
+
+  //     return {
+  //       ...prevIsActive,
+  //       [id]: !prevIsActive[id],
+  //     };
+  //   });
+  // };
+  const [isliked, setIsliked] = useState({});
+
+  const toggleClick = (e, id) => {
+    console.log(e);
+    if (e.target.localName == "svg") {
+      setIsActive((prevIsActive) => {
+        console.log(prevIsActive);
+
+        return {
+          ...prevIsActive,
+          [id]: !prevIsActive[id],
+        };
+      });
+    } else {
+      setIsliked((preve) => {
+        console.log(preve);
+        return {
+          ...preve,
+          [id]: !preve[id],
+        };
+      });
+    }
   };
-  useEffect(() => {});
 
   const repeat = [
     {
@@ -86,19 +112,26 @@ function Answer() {
                 {/* 밑에아이콘 */}
                 <div style={{ cursor: "pointer" }}>
                   <div style={{ display: "flex", justifyContent: "right" }}>
-                    <div>
-                      <AiFillHeart />
+                    <div
+                      onClick={(e) => {
+                        toggleClick(e, rep.id);
+                      }}
+                    >
+                      <AiFillHeart color={isliked[rep.id] ? "red" : "black"} />
                     </div>
+
                     <div>
                       <BsFillChatDotsFill />
                     </div>
+
                     <div>
                       <FiMoreHorizontal
-                        onClick={() => {
-                          toggleActive(rep.id);
+                        onClick={(e) => {
+                          toggleClick(e, rep.id);
                         }}
                       />
                     </div>
+
                     {isActive[rep.id] ? (
                       <div
                         style={{
