@@ -365,7 +365,7 @@ function SignUp() {
                 flexDirection: "column",
                 fontSize: "25px",
                 display: "block",
-                width: 350,
+                width: 300,
                 padding: 30,
               }}
             >
@@ -379,20 +379,24 @@ function SignUp() {
                 <img
                   src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
                   style={{
+                    marginLeft: "180px",
                     width: "180px",
                     height: "180px",
                   }}
                   alt="Circle Image"
                   className="img-raised rounded-circle img-fluid"
                 />
+              </div>
+              <div>
                 <label
                   style={{
-                    width: "180px",
+                    marginLeft: "200px",
+                    width: "150px",
                     height: "30px",
                     fontSize: "14px",
                     padding: "13px 30px",
                     cursor: "pointer",
-                    backgroundColor: "darkslategrey",
+                    backgroundColor: "gray",
                     color: "white",
                     lineHeight: "1px",
                     marginTop: "20px",
@@ -419,12 +423,13 @@ function SignUp() {
               >
                 아이디
               </label>
+              <br />
               <input
                 style={{
                   marginTop: "10px",
                   borderRadius: "2px",
-                  width: "100%",
-                  height: "40px",
+                  width: "72%",
+                  height: "30px",
                   border: "1px solid #e5e5e5",
                   padding: "9px 12px",
                   outline: "none",
@@ -453,12 +458,12 @@ function SignUp() {
               )}
               <button
                 style={{
-                  width: "100%",
+                  width: "25%",
                   height: "30px",
                   fontSize: "14px",
                   padding: "13px 30px",
                   cursor: "pointer",
-                  backgroundColor: "darkslategrey",
+                  backgroundColor: "black",
                   color: "white",
                   lineHeight: "1px",
                   borderRadius: "3px",
@@ -470,7 +475,7 @@ function SignUp() {
                 hidden={show}
                 onClick={overSubmitHandler}
               >
-                아이디 중복확인
+                중복확인
               </button>
               {show && <Result data={value} />}
             </div>
@@ -481,7 +486,7 @@ function SignUp() {
                   marginTop: "10px",
                   borderRadius: "2px",
                   width: "100%",
-                  height: "40px",
+                  height: "30px",
                   border: "1px solid #e5e5e5",
                   padding: "9px 12px",
                   outline: "none",
@@ -504,7 +509,7 @@ function SignUp() {
                   marginTop: "10px",
                   borderRadius: "2px",
                   width: "100%",
-                  height: "40px",
+                  height: "30px",
                   border: "1px solid #e5e5e5",
                   padding: "9px 12px",
                   outline: "none",
@@ -528,7 +533,7 @@ function SignUp() {
                   marginTop: "15px",
                   borderRadius: "2px",
                   width: "100%",
-                  height: "40px",
+                  height: "30px",
                   border: "1px solid #e5e5e5",
                   padding: "9px 12px",
                   outline: "none",
@@ -564,7 +569,7 @@ function SignUp() {
                   marginTop: "15px",
                   borderRadius: "2px",
                   width: "100%",
-                  height: "40px",
+                  height: "30px",
                   border: "1px solid #e5e5e5",
                   padding: "9px 12px",
                   outline: "none",
@@ -604,14 +609,17 @@ function SignUp() {
               >
                 성별
               </label>
-              <select className="form-control" id="gender">
-                <option style={{ color: "gray" }} value="M">
-                  {" "}
-                  남
-                </option>
-                <option style={{ color: "gray" }} value="F">
-                  여
-                </option>
+              <select
+                className="form-control"
+                id="gender"
+                style={{
+                  height: "30px",
+                  fontSize: "13px",
+                  color: "gray",
+                }}
+              >
+                <option value="M"> 남</option>
+                <option value="F">여</option>
               </select>
             </div>
 
@@ -629,7 +637,7 @@ function SignUp() {
                   marginTop: "15px",
                   borderRadius: "2px",
                   width: "100%",
-                  height: "40px",
+                  height: "30px",
                   border: "1px solid #e5e5e5",
                   padding: "9px 12px",
                   outline: "none",
@@ -671,7 +679,7 @@ function SignUp() {
                   marginTop: "15px",
                   borderRadius: "2px",
                   width: "100%",
-                  height: "40px",
+                  height: "30px",
                   border: "1px solid #e5e5e5",
                   padding: "9px 12px",
                   outline: "none",
@@ -700,9 +708,87 @@ function SignUp() {
               )}
             </div>
             <hr />
-            <h3>선택항목</h3>
+            <h5
+              style={{
+                color: "gray",
+              }}
+            >
+              선택항목
+            </h5>
             <br />
-            <br />
+            <div>
+              <label
+                htmlFor="user-height"
+                style={{
+                  marginLeft: "15px",
+                  marginTop: "5px",
+                }}
+              >
+                키
+              </label>
+              <input
+                style={{
+                  marginTop: "5px",
+                  borderRadius: "2px",
+                  width: "35%",
+                  height: "30px",
+                  border: "1px solid #e5e5e5",
+                  padding: "9px 12px",
+                  outline: "none",
+                  boxSizing: "border-box",
+                  marginBottom: "20px",
+                }}
+                id="phoneNumber"
+                name="user-phone"
+                type="text"
+                value={phoneNumber}
+                onChange={onChangePhoneNumber}
+                className="loginregister_input"
+              />
+              cm
+              <label
+                htmlFor="user-height"
+                style={{
+                  marginLeft: "20px",
+                  marginTop: "5px",
+                }}
+              >
+                몸무게
+              </label>
+              <input
+                style={{
+                  marginTop: "5px",
+                  borderRadius: "2px",
+                  width: "35%",
+                  height: "30px",
+                  border: "1px solid #e5e5e5",
+                  padding: "9px 12px",
+                  outline: "none",
+                  boxSizing: "border-box",
+                  marginBottom: "20px",
+                }}
+                id="phoneNumber"
+                name="user-phone"
+                type="text"
+                value={phoneNumber}
+                onChange={onChangePhoneNumber}
+                className="loginregister_input"
+              />
+              kg
+              {errorPhoneNumber && (
+                <div
+                  className="invalid-input"
+                  style={{
+                    color: "deepskyblue",
+                    fontSize: "12px",
+                    marginBottom: "10px",
+                  }}
+                >
+                  숫자만 입력하세요
+                </div>
+              )}
+            </div>
+            <hr />
 
             <details>
               <summary
@@ -711,7 +797,10 @@ function SignUp() {
                   marginBottom: "10px",
                 }}
               >
-                일반회원 약관동의
+                일반회원 약관동의{" "}
+                <span style={{ color: "gray" }} className="stylesgray">
+                  (펼쳐보기)
+                </span>
               </summary>
               <div>
                 <input
@@ -781,16 +870,17 @@ function SignUp() {
             <div>
               <button
                 style={{
-                  width: "420px",
-                  height: "40px",
-                  fontSize: "14px",
+                  marginLeft: "60px",
+                  width: "400px",
+                  height: "30px",
+                  fontSize: "15px",
                   padding: "13px 30px",
                   cursor: "pointer",
                   backgroundColor: "black",
                   color: "white",
                   lineHeight: "1px",
-                  marginTop: "20px",
-                  marginBottom: "12px",
+                  marginTop: "40px",
+                  marginBottom: "100px",
                   borderRadius: "3px",
                   borderStyle: "none",
                 }}
@@ -798,7 +888,7 @@ function SignUp() {
                 onClick={onSubmitHandler}
                 className="loginregister_button"
               >
-                <b>회원가입</b>
+                <b>회 원 가 입</b>
               </button>
             </div>
           </Tab>
@@ -833,12 +923,13 @@ function SignUp() {
               >
                 아이디
               </label>
+              <br />
               <input
                 style={{
                   marginTop: "10px",
                   borderRadius: "2px",
-                  width: "100%",
-                  height: "40px",
+                  width: "72%",
+                  height: "30px",
                   border: "1px solid #e5e5e5",
                   padding: "9px 12px",
                   outline: "none",
@@ -867,12 +958,12 @@ function SignUp() {
               )}
               <button
                 style={{
-                  width: "100%",
+                  width: "25%",
                   height: "30px",
                   fontSize: "14px",
                   padding: "13px 30px",
                   cursor: "pointer",
-                  backgroundColor: "darkslategrey",
+                  backgroundColor: "black",
                   color: "white",
                   lineHeight: "1px",
                   borderRadius: "3px",
@@ -883,7 +974,7 @@ function SignUp() {
                 className="loginregister_button"
                 onClick={overSubmitHandler}
               >
-                아이디 중복확인
+                중복확인
               </button>
             </div>
 
@@ -894,7 +985,7 @@ function SignUp() {
                   marginTop: "10px",
                   borderRadius: "2px",
                   width: "100%",
-                  height: "40px",
+                  height: "30px",
                   border: "1px solid #e5e5e5",
                   padding: "9px 12px",
                   outline: "none",
@@ -930,7 +1021,7 @@ function SignUp() {
                   marginTop: "15px",
                   borderRadius: "2px",
                   width: "100%",
-                  height: "40px",
+                  height: "30px",
                   border: "1px solid #e5e5e5",
                   padding: "9px 12px",
                   outline: "none",
@@ -966,7 +1057,7 @@ function SignUp() {
                   marginTop: "15px",
                   borderRadius: "2px",
                   width: "100%",
-                  height: "40px",
+                  height: "30px",
                   border: "1px solid #e5e5e5",
                   padding: "9px 12px",
                   outline: "none",
@@ -1010,7 +1101,7 @@ function SignUp() {
                   marginTop: "15px",
                   borderRadius: "2px",
                   width: "100%",
-                  height: "40px",
+                  height: "30px",
                   border: "1px solid #e5e5e5",
                   padding: "9px 12px",
                   outline: "none",
@@ -1053,7 +1144,7 @@ function SignUp() {
                   marginTop: "15px",
                   borderRadius: "2px",
                   width: "100%",
-                  height: "40px",
+                  height: "30px",
                   border: "1px solid #e5e5e5",
                   padding: "9px 12px",
                   outline: "none",
@@ -1095,7 +1186,7 @@ function SignUp() {
                   marginTop: "15px",
                   borderRadius: "2px",
                   width: "100%",
-                  height: "40px",
+                  height: "30px",
                   border: "1px solid #e5e5e5",
                   padding: "9px 12px",
                   outline: "none",
@@ -1123,6 +1214,7 @@ function SignUp() {
                 </div>
               )}
             </div>
+            <hr />
 
             <details>
               <summary
@@ -1132,6 +1224,9 @@ function SignUp() {
                 }}
               >
                 사업자회원 약관동의
+                <span style={{ color: "gray" }} className="stylesgray">
+                  (펼쳐보기)
+                </span>
               </summary>
               <div>
                 <input
@@ -1200,8 +1295,8 @@ function SignUp() {
             <div>
               <button
                 style={{
-                  width: "420px",
-                  height: "40px",
+                  width: "500px",
+                  height: "30px",
                   fontSize: "14px",
                   padding: "13px 30px",
                   cursor: "pointer",
