@@ -5,6 +5,7 @@ import { Button } from 'react-bootstrap';
 import ModifyCss from '../css/MyPage_ModifyCss';
 import Modal from 'react-bootstrap/Modal';
 import { useState } from 'react';
+import { Figure } from 'react-bootstrap';
 
 function MyPage_MemberModify(){
     const [show,setShow]=useState(false);
@@ -23,6 +24,21 @@ function MyPage_MemberModify(){
                 <Form className="pl-5">
                     <Row className="my-5">
                         <Col>
+                                <div style={{width:"170px",height:"150px",margin:"3vh 0 0 0",border:"1px solid black"}}>
+                                    <Figure style={{width:"170px",height:"150px"}}>
+                                        <Figure.Image
+                                            width={140}
+                                            height={160}
+                                            alt="프로필 사진"
+                                            src="holder.js/140x160"
+                                        />
+                                    </Figure>
+                                </div>
+                                <div style={{margin:"1vh 0"}}>
+                                    <label className="btn btn-primary" style={{overflow:"hidden"}}>
+                                        프로필 사진 업로드<input type="file" style={{display:"none"}}/>
+                                    </label>
+                                </div>
                     
                                 <Form.Group  controlId="formGridEmail">
                                         <Form.Label>ID</Form.Label>
@@ -34,7 +50,7 @@ function MyPage_MemberModify(){
                                 </Form.Group>
 
 
-                            <Form.Group  controlId="formGridEmail">
+                            <Form.Group  controlId="formGridEmail" style={{marginTop:"1vh"}}>
                                     <Form.Label>닉네임</Form.Label>
                                     <div style={{width:"100%",display:"flex"}}>
                                         <Form.Control type="text" placeholder="Enter NickName"/>

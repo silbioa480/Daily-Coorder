@@ -16,8 +16,10 @@ const MyPage_SideMenubarCss=createGlobalStyle`
         padding:1em;
         width:200px;
         height:auto;
-        background-color:yellow;
+        background-color:white;
+        border:1px solid #f7f7f7;
     }
+
 `;
 
 export default MyPage_SideMenubarCss;

@@ -10,7 +10,7 @@ function MyPage_detailChartPage(){
 
                     <div className="dataContainer">
                             <div className="dataimage">
-                                <Image src=""/>
+                                <Image src="" alt="의류 관련 사진"/>
                             </div>
                             <div className="datadescri">
                                 <div>

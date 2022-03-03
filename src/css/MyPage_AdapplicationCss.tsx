@@ -15,11 +15,6 @@ const AdApplicationCss=createGlobalStyle`
         flex-direction:column;
         margin:1vh 0;
     }
-    Image{
-        width:100%;
-        height:200px;
-        background-color:blue;
-    }
     .AdImg{
         width:50%;
         height:300px;
