@@ -36,6 +36,7 @@ import { Circle } from "../css/Board_Posts";
 //   return <Board_Similar_Repeat />;
 // }
 
+//유사한 핀 더보기 map으로 반복
 function Board_Similar() {
   const repeat = [
     {

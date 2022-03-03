@@ -41,6 +41,7 @@ export const QR = styled.img`
   width: 300px;
   height: 300px;
 `;
+//팔로우버튼
 export const CButton = styled.button`
   background-color: ${(props) => props.color};
   color: ${(props) => props.value};

@@ -38,7 +38,7 @@ function Board_Picture() {
     </div>
   );
 }
-//qr누르면 modal로 나오는창(완성)
+//qr누르면 modal로 나오는창
 function Click_Qr(props) {
   return (
     <Modal
@@ -86,7 +86,7 @@ function Download() {
     </div>
   );
 }
-
+//게시물 제목,내용
 function Explanation() {
   return (
     <>
@@ -119,7 +119,7 @@ function Explanation() {
     </>
   );
 }
-
+// 팔로우
 function Follow() {
   const [backgroundcolor, setBackgroundcolor] = useState("lightgray");
   const [color, setColor] = useState("black");
@@ -172,7 +172,7 @@ function Follow() {
     </>
   );
 }
-
+// ...이미지 누르면 나오는거
 function Drop() {
   const [isActive, setIsActive] = useState(false);
 
