@@ -1,0 +1,161 @@
+:root {
+  /* Color */
+  --color-white: #ffffff;
+  --color-blue: #73aace;
+  --color-orange: #feb546;
+  
+  /* Font size */
+  --font-large: 48px;
+  --font-medium: 28px;
+  --font-regular: 18px;
+  --font-small: 16px;
+  --font-micro: 14px;
+
+  /* Font weight */
+  --weight-bold: 700;
+  --weight-semi-bold: 600;
+  --weight-regular: 400;
+
+  /* Size */
+  --border-bottom: 1px solid grey;
+  --input-box-width: 700px; 
+  --input-box-height: 50px;
+}
+
+/* * {
+  box-sizing: border-box;
+} */
+
+/* li {
+  list-style: none;
+} */
+
+/* ul {
+  padding-left: 0px;
+} */
+
+.input-file {
+  display: none;
+}
+
+.input {
+  border: none;
+  border-bottom: var(--border-bottom);
+  width: var(--input-box-width);
+  height: var(--input-box-height);
+  font-size: var(--font-medium);
+  padding: 0.5rem 14px;
+  margin: 1.5rem 0;
+}
+
+.textarea {
+  border: none;
+  width: var(--input-box-width);
+  height: carc(var(--input-box-height * 4));
+  font-size: var(--font-medium);
+  padding: 0.5rem 0;
+  margin: 1.5rem 0;
+}
+
+#upload-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--color-white);
+}
+
+.upload-box {
+  border-bottom: var(--border-bottom);
+  width: var(--input-box-width);
+}
+
+.file-uploader {
+  color: grey;
+  cursor: pointer;
+}
+
+.file-icon {
+  width: 300px;
+  height: 300px;
+  margin-right: 3rem;
+}
+
+.file-name {
+  margin: 5px 10px;
+}
+
+.uploaded-image {
+  width: 300px;
+  height: 270px;
+}
+
+.content-container {
+  border-bottom: 1px solid grey;
+}
+
+.hashtag-container {
+  width: var(--input-box-width);
+}
+
+.hashtag-list {
+  display: flex;
+  align-items: center;
+  padding-left: 0;
+  flex-wrap: wrap;
+}
+
+.hashtag {
+  font-size: var(--font-size);
+  margin: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid var(--color-blue);
+  background-color: var(--color-blue);
+  color: white;
+  border-radius: 5rem;
+}
+
+.hashtag-input {
+  width: 200px;
+  padding: 0;
+  border: none;
+}
+
+.button {
+  border: none;
+  background-color: transparent;
+  color: var(--color-orange);
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.share-box {
+  width: 100%;
+  margin: 50px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.share-button {
+  width: var(--input-box-width);
+  border: 1px solid var(--color-blue);
+  border-radius: 1rem;
+  background-color: var(--color-blue);
+  font-size: var(--font-medium);
+  padding: 10px 20px;
+  transition: 300ms ease-in-out;
+}
+
+.share-button a {
+  color: var(--color-orange);
+}
+
+.share-button:hover {
+  background-color: var(--color-white);
+  color: var(--color-blue);
+}
+
+.share-button a:hover {
+  color: var(--color-white);
+}
