@@ -33,8 +33,7 @@ function SignUp() {
   const [errorEmail, setErrorEmail] = useState(false);
   const [termError, setTermError] = useState(false);
   const [errorPhoneNumber, setErrorPhoneNumber] = useState(false);
-  const [errorHeight, setErrorHeight] = useState(false);
-  const [errorWeight, setErrorWeight] = useState(false);
+
   //사업자회원
   const [proId, setProId] = useState("");
   const [proPassword, setProPassword] = useState("");
@@ -183,18 +182,10 @@ function SignUp() {
   };
 
   const onChangeHeight = (e) => {
-    const heightRegex = /^[0-9\b -]{0,13}$/;
-    if (!e.target.value || heightRegex.test(e.target.value))
-      setErrorHeight(false);
-    else setErrorHeight(true);
     setHeight(e.target.value);
   };
 
   const onChangeWeight = (e) => {
-    const weightRegex = /^[0-9\b -]{0,13}$/;
-    if (!e.target.value || weightRegex.test(e.target.value))
-      setErrorWeight(false);
-    else setErrorWeight(true);
     setWeight(e.target.value);
   };
 
@@ -737,7 +728,7 @@ function SignUp() {
             <br />
             <div>
               <label
-                htmlFor="user-height"
+                htmlFor="height"
                 style={{
                   marginLeft: "15px",
                   marginTop: "5px",
@@ -766,7 +757,7 @@ function SignUp() {
               />
               cm
               <label
-                htmlFor="height"
+                htmlFor="weight"
                 style={{
                   marginLeft: "20px",
                   marginTop: "5px",
@@ -794,19 +785,6 @@ function SignUp() {
                 className="loginregister_input"
               />
               kg
-              {errorHeight ||
-                errorWeight(
-                  <div
-                    className="invalid-input"
-                    style={{
-                      color: "deepskyblue",
-                      fontSize: "12px",
-                      marginBottom: "10px",
-                    }}
-                  >
-                    숫자만 입력하세요
-                  </div>
-                )}
             </div>
             <hr />
 
