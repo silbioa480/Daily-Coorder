@@ -6,7 +6,7 @@ const ClothesDetailCss=createGlobalStyle`
         height:auto;
         display:flex;
         flex-direction:column;
-        background-color:blue;
+    
     }
 
     .dataContainer{
@@ -21,7 +21,7 @@ const ClothesDetailCss=createGlobalStyle`
     }
     .chartContainer{
         width:100%;
-        background-color:green;
+       
     }
 `;
 

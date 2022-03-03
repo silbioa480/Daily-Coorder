@@ -9,18 +9,18 @@ function MyPage_detailChartPage(){
             <div className="detailContainer">
 
                     <div className="dataContainer">
-                            <div className="dataimage">
+                            <div className="dataimage" style={{border:"1px solid black",borderRadius:"20px"}}>
                                 <Image src="" alt="의류 관련 사진"/>
                             </div>
                             <div className="datadescri">
-                                <div>
+                                <div style={{width:"100%",height:"150px",display:"flex",justifyContent:"center",alignItems:"center",border:"1px solid black",borderRadius:"20px"}}>
                                     의류 관련 타이틀
                                 </div>
-                                <div>
+                                <div style={{width:"100%",height:"150px",display:"flex",justifyContent:"center",alignItems:"center",border:"1px solid black",borderRadius:"20px"}}>
                                     의류 관련 업로드한사람
-                                </div>
-                                <div>의류 관련 태그</div>
-                                <div>
+                                </div >
+                                <div style={{width:"100%",height:"150px",display:"flex",justifyContent:"center",alignItems:"center",border:"1px solid black",borderRadius:"20px"}}>의류 관련 태그</div>
+                                <div style={{width:"100%",height:"150px",display:"flex",justifyContent:"center",alignItems:"center",border:"1px solid black",borderRadius:"20px"}}>
                                     의류 관련 내용
                                 </div>
                             </div>
