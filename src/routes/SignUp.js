@@ -375,7 +375,7 @@ function SignUp() {
                   alt="Circle Image"
                   className="img-raised rounded-circle img-fluid"
                 />
-                <button
+                <label
                   style={{
                     width: "180px",
                     height: "30px",
@@ -389,12 +389,14 @@ function SignUp() {
                     marginBottom: "12px",
                     borderRadius: "3px",
                     borderStyle: "none",
+                    textAlign: "center",
                   }}
                   type="submit"
                   className="profile_button"
                 >
                   프로필 업로드
-                </button>
+                  <input type="file" style={{ display: "none" }} />
+                </label>
               </div>
             </div>
 
