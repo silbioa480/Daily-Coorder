@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import imgA from '../img/임시사진';
-import '../css/Upload.css'
+import imgA from '../img/임시사진.png';
+import '../css/Upload.css';
 
 class FileUpload extends Component {
   constructor(props) {
