@@ -25,7 +25,7 @@ import follow_logoW from '../../img/main/follow_logoW.png';
 
 function Mainfollow() {
 
-    const [isShow, setIsShow] =useState(true);
+    const [isShow, setIsShow] =useState(false);
     const [isDone, setIsDone] =useState(true);
     const [liked, setLiked] =useState(100);
     const [followed, setFollowed] =useState(200);
@@ -42,7 +42,11 @@ function Mainfollow() {
 
     function toggleShow() {
         setIsShow(!isShow);
-        likeIn();
+        if(!isShow) {
+            likeIn();
+        }   else {
+            likeDe();
+        }
 
     }
 
@@ -68,7 +72,7 @@ function Mainfollow() {
                           <div className="group_icon">
 
                               <div className="like_logoA">
-                                  { isShow ? empty_like : full_like }
+                                  { isShow ? full_like : empty_like }
                               </div>
 
                               <div className="follow_logoA">
