@@ -36,6 +36,7 @@ function Mainfollow() {
     // 삼항연산자 간단하게 위해 선언 (팔로우)
     const empty_follow = <img src={follow_logoW} className="follow_logoW" onClick={togglefollow}/> ;
     const full_follow = <img src={follow_icon} className="follow_logoW" onClick={togglefollow}/> ;
+
     // 좋아요 + 1
     function likeIn() {
         setLiked(liked + 1);
@@ -78,148 +79,118 @@ function Mainfollow() {
             name: "@shine_1",
             liked: 117,
             followed: 210,
-        }
+        },
+        {
+            id: 2,
+            title: mainfol2,
+            name: "@qew",
+            liked: 1019,
+            followed: 1423,
+        },
+        {
+            id: 3,
+            title: mainfol3,
+            name: "@e",
+            liked: 431,
+            followed: 4571,
+        },
+        {
+            id: 4,
+            title: mainfol4,
+            name: "@ewq",
+            liked: 1234,
+            followed: 5232,
+        },
+        // {
+        //     id: 5,
+        //     title: mainfol5,
+        //     name: "@ewq",
+        //     liked: 11,
+        //     followed: 22,
+        // },
+        // {
+        //     id: 6,
+        //     title: mainfol6,
+        //     name: "@rrwe",
+        //     liked: 14,
+        //     followed: 56,
+        // },
+        // {
+        //     id: 7,
+        //     title: mainfol7,
+        //     name: "@efd",
+        //     liked: 133,
+        //     followed: 1421,
+        // },
+        // {
+        //     id: 8,
+        //     title: mainfol8,
+        //     name: "@ewqeqewew",
+        //     liked: 5456,
+        //     followed: 74745,
+        // },
     ];
 
-    // const renderRepeat = repeat.map((rep) => {
+    const renderRepeat = repeat.map((rep) => {
 
-  return (
-      <>
-          <div className="mainfollow-text">New Followers Feed</div>
-          <hr className="Line"></hr>
-          <div className="feed">
-              <Carousel fade className="feedcar" style={{width: '1250px'}}>
-                  <Carousel.Item>
+        return (
+            <div className="folpic" key={rep.id}>
 
-                      <div className="folpic">
+                <Link to="/signup" className="link">
+                    <img className="d-block w-100" src={rep.title} alt="1-1 slide"/>
+                </Link>
 
-                          <Link to="/signup" className="link">
-                        <img className="d-block w-100" src={mainfol1}  alt="1-1 slide" />
-                          </Link>
+                <div className="group_icon">
 
-                          <div className="group_icon">
+                    <div className="like_logoA">
+                        {isShow ? full_like : empty_like}
+                    </div>
 
-                              <div className="like_logoA">
-                                  { isShow ? full_like : empty_like }
-                              </div>
+                    <div className="follow_logoA">
+                        {isDone ? full_follow : empty_follow}
+                    </div>
 
-                              <div className="follow_logoA">
-                                  {isDone ? full_follow : empty_follow }
-                              </div>
+                </div>
 
-                          </div>
-
-                          <div className="group_txt">
-                              <div className="t1">{name}</div>
-                              <div className="like_group">
-                                  <img src={like_icon} className="like_icon" />
-                                  <span className="like_cnt">{liked}</span>
-                              </div>
-                              <div className="follow_group">
-                                  <img src={follow_icon} className="follow_icon"/>
-                                  <span className="follow_cnt">{followed}</span>
-                              </div>
-                          </div>
-                      </div>
-
-
-
-                  </Carousel.Item>
-                  {/*<Carousel.Item>*/}
+                <div className="group_txt">
+                    <div className="t1">{rep.name}</div>
+                    <div className="like_group">
+                        <img src={like_icon} className="like_icon"/>
+                        <span className="like_cnt">{rep.liked}</span>
+                    </div>
+                    <div className="follow_group">
+                        <img src={follow_icon} className="follow_icon"/>
+                        <span className="follow_cnt">{rep.followed}</span>
+                    </div>
+                </div>
+            </div>
+            );
+        });
+    return (
+        <>
+            <div className="mainfollow-text">New Followers Feed</div>
+            <hr className="Line"></hr>
+            <div className="feed">
+                <Carousel fade className="feedcar" style={{width: '1250px'}}>
 
 
-                  {/*    <div className="folpic">*/}
-                  {/*        <Link to="/signup" className="link">*/}
-                  {/*        <img className="d-block w-100" src={mainfol5}  alt="2-1 slide"/>*/}
-                  {/*        </Link>*/}
-                  {/*        <div className="group_icon">*/}
-                  {/*            <div className="like_logoA"><img src={like_logoW} className="like_logoW"/></div>*/}
-                  {/*            <div className="follow_logoA"><img src={follow_logoW} className="follow_logoW"/></div>*/}
-                  {/*        </div>*/}
-                  {/*        <div className="group_txt">*/}
-                  {/*            <div className="t1">@yahni</div>*/}
-                  {/*            <div className="like_group">*/}
-                  {/*                <img src={like_icon} className="like_icon"/>*/}
-                  {/*                <span className="like_cnt">1,157</span>*/}
-                  {/*            </div>*/}
-                  {/*            <div className="follow_group">*/}
-                  {/*                <img src={follow_icon} className="follow_icon"/>*/}
-                  {/*                <span className="follow_cnt">677</span>*/}
-                  {/*            </div>*/}
-                  {/*        </div>*/}
-                  {/*    </div>*/}
+                    <Carousel.Item>
+                       <div>{renderRepeat}</div>
 
 
-                      {/*<div className="folpic">*/}
-                      {/*    <Link to="/signup" className="link">*/}
-                      {/*    <img className="d-block w-100" src={mainfol6}  alt="2-2 slide"/>*/}
-                      {/*    </Link>*/}
-                      {/*    <div className="group_icon">*/}
-                      {/*        <div className="like_logoA"><img src={like_logoW} className="like_logoW"/></div>*/}
-                      {/*        <div className="follow_logoA"><img src={follow_logoW} className="follow_logoW"/></div>*/}
-                      {/*    </div>*/}
-                      {/*    <div className="group_txt">*/}
-                      {/*        <div className="t1">@won_ing</div>*/}
-                      {/*        <div className="like_group">*/}
-                      {/*            <img src={like_icon} className="like_icon"/>*/}
-                      {/*            <span className="like_cnt">23</span>*/}
-                      {/*        </div>*/}
-                      {/*        <div className="follow_group">*/}
-                      {/*            <img src={follow_icon} className="follow_icon"/>*/}
-                      {/*            <span className="follow_cnt">159</span>*/}
-                      {/*        </div>*/}
-                      {/*    </div>*/}
-                      {/*</div>*/}
+
+                    </Carousel.Item>
+                    {/*<Carousel.Item>*/}
 
 
-                      {/*<div className="folpic">*/}
-                      {/*    <Link to="/signup" className="link">*/}
-                      {/*    <img className="d-block w-100" src={mainfol7}  alt="2-3 slide"/>*/}
-                      {/*    </Link>*/}
-                      {/*    <div className="group_icon">*/}
-                      {/*        <div className="like_logoA"><img src={like_logoW} className="like_logoW"/></div>*/}
-                      {/*        <div className="follow_logoA"><img src={follow_logoW} className="follow_logoW"/></div>*/}
-                      {/*    </div>*/}
-                      {/*    <div className="group_txt">*/}
-                      {/*        <div className="t1">@covi_d</div>*/}
-                      {/*        <div className="like_group">*/}
-                      {/*            <img src={like_icon} className="like_icon"/>*/}
-                      {/*            <span className="like_cnt">198</span>*/}
-                      {/*        </div>*/}
-                      {/*        <div className="follow_group">*/}
-                      {/*            <img src={follow_icon} className="follow_icon"/>*/}
-                      {/*            <span className="follow_cnt">347</span>*/}
-                      {/*        </div>*/}
-                      {/*    </div>*/}
-                      {/*</div>*/}
 
-                      {/*<div className="folpic">*/}
-                      {/*    <Link to="/signup" className="link">*/}
-                      {/*    <img className="d-block w-100" src={mainfol8}  alt="2-3 slide"/>*/}
-                      {/*    </Link>*/}
-                      {/*    <div className="group_icon">*/}
-                      {/*        <div className="like_logoA"><img src={like_logoW} className="like_logoW"/></div>*/}
-                      {/*        <div className="follow_logoA"><img src={follow_logoW} className="follow_logoW"/></div>*/}
-                      {/*    </div>*/}
-                      {/*    <div className="group_txt">*/}
-                      {/*        <div className="t1">@hni_b</div>*/}
-                      {/*        <div className="like_group">*/}
-                      {/*            <img src={like_icon} className="like_icon"/>*/}
-                      {/*            <span className="like_cnt">1,586</span>*/}
-                      {/*        </div>*/}
-                      {/*        <div className="follow_group">*/}
-                      {/*            <img src={follow_icon} className="follow_icon"/>*/}
-                      {/*            <span className="follow_cnt">2,476</span>*/}
-                      {/*        </div>*/}
-                      {/*    </div>*/}
-                      {/*</div>*/}
+                    {/*</Carousel.Item>*/}
 
+                </Carousel>
+            </div>
 
-                  {/*</Carousel.Item>*/}
-              </Carousel>
-          </div>
-      </>
-  );
-}
+        </>
+    );
 
+    }
 export default Mainfollow;
