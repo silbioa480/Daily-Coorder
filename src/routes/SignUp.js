@@ -3,12 +3,9 @@ import "bootstrap/dist/css/bootstrap.css";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import { Result } from "antd";
-import $ from "jquery";
 import PopUp from "../components/PopUp";
 
 function SignUp() {
-  const [isOnCheck, setIsOnCheck] = useState(false);
-
   const [popup, setPopup] = useState({
     open: false,
     title: "",
@@ -182,13 +179,6 @@ function SignUp() {
     setTermError(false);
   };
 
-  const checkProId = $("#proId").val();
-  const checkProName = $("#proName").val();
-  const checkProPassword = $("#proPassword").val();
-  const checkProEmail = $("#proEmail").val();
-  const checkProPhone = $("#proPhone").val();
-  const checkProNumber = $("#proNumber").val();
-
   //일반회원가입 정규성검사(회원가입 성공/ 실패 모달창)
   const validation1 = () => {
     if (!Id) setErrorId(true);
@@ -214,6 +204,7 @@ function SignUp() {
     else return false;
   };
 
+  //사업자회원가입 정규성검사(회원가입 성공/ 실패 모달창)
   const validation2 = () => {
     if (!proId) setErrorProId(true);
     if (!proPassword) setErrorProPassword(true);
