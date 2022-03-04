@@ -10,7 +10,19 @@ hr > .Line {
     width: 80%;
 }
 
+.feed {
+    text-align: center;
+}
 
-/** {*/
-/*    background-color: black;*/
-/*}*/
+.feedcar {
+    display: inline-block;
+
+}
+
+.blue-line-out {
+    margin-top: 15px;
+}
+
+.yellow-line-out {
+    margin-bottom: 50px;
+}

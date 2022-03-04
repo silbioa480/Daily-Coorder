@@ -7,11 +7,11 @@ import MainNewBrand from "../components/main/MainNewBrand";
 function Main() {
   return (
     <>
-      <Banner />
       <Mainfollow />
       <MainWeather />
-      <MainAnother />
+      <Banner />
       <MainNewBrand />
+      <MainAnother />
     </>
   );
 }

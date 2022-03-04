@@ -1,10 +1,23 @@
 .BannerCar {
-    width: 1000px;
-    margin-left: 200px;
-    margin-bottom:10px
+    width: 1200px;
+
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.bannerpic > img {
+    cursor: pointer;
 
 }
 
-.bannerpic>img {
-    cursor:pointer;
+.bannerpic {
+    width: 100%;
+    height: 300px;
+
+}
+
+.banner-out {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }

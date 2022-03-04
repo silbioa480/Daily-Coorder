@@ -82,6 +82,12 @@ function Mainfollow() {
   });
   return (
     <>
+      <div className="blue-line-out">
+        <div className="blue-line-in"></div>
+      </div>
+      <div className="yellow-line-out">
+        <div className="yellow-line-in"></div>
+      </div>
       <div className="mainfollow-text">New Followers Feed</div>
       <hr className="Line"></hr>
       <div className="feed">

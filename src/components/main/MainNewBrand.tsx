@@ -98,9 +98,6 @@ function MainAnother() {
   });
   return (
     <>
-      {/*<div className="yellow-line-out">*/}
-      {/*  <div className="yellow-line-in"></div>*/}
-      {/*</div>*/}
       <div className="mainfollow-text">New In Thursday Island</div>
       <hr className="Line"></hr>
       <div className="wth">

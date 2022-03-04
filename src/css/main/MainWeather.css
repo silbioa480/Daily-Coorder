@@ -9,3 +9,12 @@ hr > .Line {
     text-align: center;
     width: 80%;
 }
+
+.wth {
+    text-align: center;
+}
+
+.feedcar {
+    display: inline-block;
+
+}

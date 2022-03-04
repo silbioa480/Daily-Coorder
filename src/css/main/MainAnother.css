@@ -35,3 +35,11 @@ hr > .Line {
     display: inline-block;
     border-radius: 10px;
 }
+
+.wth {
+    text-align: center;
+}
+
+.anothercar {
+    display: inline-block;
+}
