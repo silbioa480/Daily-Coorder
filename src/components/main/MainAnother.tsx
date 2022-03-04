@@ -8,86 +8,88 @@ import MainComponent5 from "./MainComponent5";
 import "../../css/main/MainAnother.css";
 
 // 사진
-import mainwth1 from "../../img/main/mainwth1.png";
-import mainwth2 from "../../img/main/mainwth2.png";
-import mainwth3 from "../../img/main/mainwth3.png";
-import mainwth4 from "../../img/main/mainwth4.png";
-import mainwth5 from "../../img/main/mainwth5.png";
-import mainwth6 from "../../img/main/mainwth6.png";
-import mainwth7 from "../../img/main/mainwth7.png";
-import mainwth8 from "../../img/main/mainwth8.png";
+import mainano1 from "../../img/main/mainano1.png";
+import mainano2 from "../../img/main/mainano2.png";
+import mainano3 from "../../img/main/mainano3.png";
+import mainano4 from "../../img/main/mainano4.png";
+import mainano5 from "../../img/main/mainano5.png";
+import mainano6 from "../../img/main/mainano6.png";
+import mainano7 from "../../img/main/mainano7.png";
+import mainano8 from "../../img/main/mainano8.png";
+import mainano9 from "../../img/main/mainano9.png";
+import mainano10 from "../../img/main/mainano10.png";
 
 function MainAnother() {
   const datas = [
     {
       id: 1,
-      title: mainwth1,
-      name: "@sang12",
-      liked: 568,
-      followed: 1170,
+      title: mainano1,
+      name: "@Grilsan",
+      liked: 462,
+      followed: 674,
     },
     {
       id: 2,
-      title: mainwth2,
-      name: "@ongsungo",
-      liked: 1241,
-      followed: 2149,
+      title: mainano2,
+      name: "@hello_11",
+      liked: 34,
+      followed: 215,
     },
     {
       id: 3,
-      title: mainwth3,
-      name: "@nana_",
-      liked: 2113,
-      followed: 3471,
+      title: mainano9,
+      name: "@ch_bely",
+      liked: 94,
+      followed: 447,
     },
     {
       id: 4,
-      title: mainwth4,
-      name: "@dong_ha",
-      liked: 243,
-      followed: 319,
+      title: mainano4,
+      name: "@zzzqe11",
+      liked: 41,
+      followed: 95,
     },
     {
       id: 5,
-      title: mainwth5,
-      name: "@_nara",
-      liked: 972,
-      followed: 872,
+      title: mainano5,
+      name: "@Oo_oO",
+      liked: 34,
+      followed: 72,
     },
     {
       id: 6,
-      title: mainwth6,
-      name: "@han_s",
-      liked: 1207,
-      followed: 1529,
+      title: mainano6,
+      name: "@likeso",
+      liked: 112,
+      followed: 275,
     },
     {
       id: 7,
-      title: mainwth7,
-      name: "@unaaa",
-      liked: 742,
-      followed: 1176,
+      title: mainano7,
+      name: "@goodbye",
+      liked: 72,
+      followed: 145,
     },
     {
       id: 8,
-      title: mainwth8,
-      name: "@kim_g",
-      liked: 1721,
-      followed: 2041,
+      title: mainano8,
+      name: "@Sor_but",
+      liked: 159,
+      followed: 431,
     },
     {
       id: 9,
-      title: mainwth8,
-      name: "@kim_g",
-      liked: 1721,
-      followed: 2041,
+      title: mainano3,
+      name: "@son_mi",
+      liked: 79,
+      followed: 196,
     },
     {
       id: 10,
-      title: mainwth8,
-      name: "@kim_g",
-      liked: 1721,
-      followed: 2041,
+      title: mainano10,
+      name: "@gong_0",
+      liked: 972,
+      followed: 1041,
     },
   ];
 

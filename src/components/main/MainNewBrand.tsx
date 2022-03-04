@@ -16,6 +16,8 @@ import mainwth5 from "../../img/main/mainwth5.png";
 import mainwth6 from "../../img/main/mainwth6.png";
 import mainwth7 from "../../img/main/mainwth7.png";
 import mainwth8 from "../../img/main/mainwth8.png";
+import mainfol1 from "../../img/main/mainfol1.png";
+import mainfol7 from "../../img/main/mainfol7.png";
 
 function MainAnother() {
   const datas = [
@@ -77,14 +79,14 @@ function MainAnother() {
     },
     {
       id: 9,
-      title: mainwth8,
+      title: mainfol7,
       name: "@kim_g",
       liked: 1721,
       followed: 2041,
     },
     {
       id: 10,
-      title: mainwth8,
+      title: mainfol1,
       name: "@kim_g",
       liked: 1721,
       followed: 2041,

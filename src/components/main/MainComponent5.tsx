@@ -92,7 +92,7 @@ function MainComponent(props: IProps) {
         <img className="d-block w-100" src={props.data.title} alt="1-1 slide" />
       </Link>
 
-      <div className="group_icon">
+      <div className="group_icon5">
         <div className="like_logoA">{isShow ? full_like : empty_like}</div>
 
         <div className="follow_logoA">
@@ -100,17 +100,19 @@ function MainComponent(props: IProps) {
         </div>
       </div>
 
-      <div className="group_txt">
-        <div className="t1">{props.data.name}</div>
-        <div className="like_group">
-          <img src={like_icon} className="like_icon" />
-          <span className="like_cnt">{liked}</span>
+      <Link to="/feed">
+        <div className="group_txt5">
+          <div className="t1">{props.data.name}</div>
+          <div className="like_group">
+            <img src={like_icon} className="like_icon" />
+            <span className="like_cnt">{liked}</span>
+          </div>
+          <div className="follow_group">
+            <img src={follow_icon} className="follow_icon" />
+            <span className="follow_cnt">{followed}</span>
+          </div>
         </div>
-        <div className="follow_group">
-          <img src={follow_icon} className="follow_icon" />
-          <span className="follow_cnt">{followed}</span>
-        </div>
-      </div>
+      </Link>
     </div>
   );
 }
