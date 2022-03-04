@@ -23,6 +23,7 @@ function SignUp() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [height, setHeight] = useState("");
   const [weight, setWeight] = useState("");
+  const [birth, setBirth] = useState("");
 
   const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -31,6 +32,7 @@ function SignUp() {
   const [confirmPasswordError, setConfirmPasswordError] = useState(false);
   const [errorEmail, setErrorEmail] = useState(false);
   const [errorPhoneNumber, setErrorPhoneNumber] = useState(false);
+  const [errorBirth, setErrorBirth] = useState("");
 
   //사업자회원
   const [proId, setProId] = useState("");
@@ -55,6 +57,9 @@ function SignUp() {
   const [ageCheck, setAgeCheck] = useState(false);
   const [useCheck, setUseCheck] = useState(false);
   const [marketingCheck, setMarketingCheck] = useState(false);
+  const [totalCheck, setTotalCheck] = useState(false);
+  const [personCheck, setPersonCheck] = useState(false);
+  const [gpsCheck, setGpsCheck] = useState(false);
 
   const [inputs, setInputs] = useState({ Id: "" });
   const [show, setShow] = useState(false);
@@ -79,6 +84,14 @@ function SignUp() {
 
   const onProNameHandler = (e) => {
     setProName(e.currentTarget.value);
+  };
+
+  const onChangeBirth = (e) => {
+    const birthRegex = /^[0-9+]{6,}$/;
+    if (!e.target.value || birthRegex.test(e.target.value))
+      setErrorBirth(false);
+    else setErrorBirth(true);
+    setBirth(e.currentTarget.value);
   };
 
   const onChangePhoneNumber = (e) => {
@@ -189,11 +202,17 @@ function SignUp() {
       setAgeCheck(true);
       setUseCheck(true);
       setMarketingCheck(true);
+      setTotalCheck(true);
+      setPersonCheck(true);
+      setGpsCheck(true);
     } else {
       setAllCheck(false);
       setAgeCheck(false);
       setUseCheck(false);
       setMarketingCheck(false);
+      setTotalCheck(false);
+      setPersonCheck(false);
+      setGpsCheck(false);
     }
   };
 
@@ -221,13 +240,44 @@ function SignUp() {
     }
   };
 
+  const totalBtnEvent = () => {
+    if (totalCheck === false) {
+      setTotalCheck(true);
+    } else {
+      setTotalCheck(false);
+    }
+  };
+
+  const personBtnEvent = () => {
+    if (personCheck === false) {
+      setPersonCheck(true);
+    } else {
+      setPersonCheck(false);
+    }
+  };
+
+  const gpsBtnEvent = () => {
+    if (gpsCheck === false) {
+      setGpsCheck(true);
+    } else {
+      setGpsCheck(false);
+    }
+  };
+
   useEffect(() => {
-    if (ageCheck === true && useCheck === true && marketingCheck === true) {
+    if (
+      ageCheck === true &&
+      useCheck === true &&
+      marketingCheck === true &&
+      totalCheck === true &&
+      personCheck === true &&
+      gpsCheck
+    ) {
       setAllCheck(true);
     } else {
       setAllCheck(false);
     }
-  }, [ageCheck, useCheck, marketingCheck]);
+  }, [ageCheck, useCheck, marketingCheck, totalCheck, personCheck, gpsCheck]);
 
   /* 여기까지 약관동의 기능 구현*/
 
@@ -239,8 +289,11 @@ function SignUp() {
     if (!name) setErrorEmail(true);
     if (!email) setErrorEmail(true);
     if (!phoneNumber) setErrorPhoneNumber(true);
+    if (!birth) setErrorBirth(true);
     if (!ageCheck) setAgeCheck(false);
     if (!useCheck) setUseCheck(false);
+    if (!personCheck) setPersonCheck(false);
+    if (!totalCheck) setTotalCheck(false);
 
     if (
       Id &&
@@ -250,7 +303,10 @@ function SignUp() {
       email &&
       ageCheck &&
       phoneNumber &&
-      useCheck
+      useCheck &&
+      personCheck &&
+      totalCheck &&
+      birth
     )
       return true;
     else return false;
@@ -267,6 +323,8 @@ function SignUp() {
     if (!proNumber) setErrorProNumber(true);
     if (!ageCheck) setAgeCheck(false);
     if (!useCheck) setUseCheck(false);
+    if (!personCheck) setPersonCheck(false);
+    if (!totalCheck) setTotalCheck(false);
 
     if (
       proId &&
@@ -277,7 +335,9 @@ function SignUp() {
       phoneNumber &&
       proNumber &&
       ageCheck &&
-      useCheck
+      useCheck &&
+      personCheck &&
+      totalCheck
     )
       return true;
     else return false;
@@ -487,6 +547,26 @@ function SignUp() {
             </div>
 
             <div>
+              <label className="signup_font" htmlFor="birth">
+                생년월일
+              </label>
+              <input
+                className="signup_inputs"
+                id="birth"
+                name="birth"
+                type="text"
+                placeholder="생년월일 6자를 입력해주세요"
+                value={birth}
+                onChange={onChangeBirth}
+              />
+              {errorBirth && (
+                <div className="signup_input_valid">
+                  생년월일 6자를 입력해주세요
+                </div>
+              )}
+            </div>
+
+            <div>
               <label className="signup_font" htmlFor="gender">
                 성별
               </label>
@@ -589,39 +669,52 @@ function SignUp() {
                   (펼쳐보기)
                 </span>
               </summary>
-              <div>
-                <input
-                  style={{
-                    marginBottom: "5px",
-                  }}
-                  type="checkbox"
-                  id="all-check"
-                  checked={allCheck}
-                  onChange={allBtnEvent}
-                />
-                <label style={{ fontSize: "14px" }} htmlFor="all-check">
-                  전체동의
-                </label>
-              </div>
+              <div className="term_form">
+                <h2 className="term_font">
+                  데일리코더(Daily Cooder)
+                  <br />
+                  서비스 약관에 동의해 주세요!
+                </h2>
+                <hr />
 
-              <div>
-                <input
-                  style={{
-                    marginBottom: "5px",
-                  }}
-                  type="checkbox"
-                  id="check1"
-                  checked={ageCheck}
-                  onChange={ageBtnEvent}
-                />
-                <label style={{ fontSize: "14px" }} htmlFor="check1">
-                  만 14세 이상입니다{" "}
-                  <span style={{ color: "deepskyblue" }} className="stylesblue">
-                    (필수)
-                  </span>
-                </label>
-              </div>
-              <div>
+                <div>
+                  <input
+                    style={{
+                      marginBottom: "5px",
+                    }}
+                    type="checkbox"
+                    id="all-check"
+                    checked={allCheck}
+                    onChange={allBtnEvent}
+                  />
+                  <label className="chk_font" htmlFor="all-check">
+                    모두 동의합니다!
+                  </label>
+                  <p className="term_low_font">
+                    전체 동의는 필수 및 선택정보에 대한 동의도 포함되어 있으며,
+                    개별적으로도 동의를 선택하실 수 있습니다.
+                    <br />
+                    선택항목에 대한 동의를 거부하시는 경우에도 서비스는 이용이
+                    가능합니다.
+                  </p>
+                </div>
+
+                <div>
+                  <input
+                    style={{
+                      marginBottom: "5px",
+                    }}
+                    type="checkbox"
+                    id="check1"
+                    checked={ageCheck}
+                    onChange={ageBtnEvent}
+                  />
+                  <label style={{ fontSize: "14px" }} htmlFor="check1">
+                    <span className="chk_font_blue">[필수]</span>만 14세
+                    이상입니다{" "}
+                  </label>
+                </div>
+
                 <input
                   style={{
                     marginBottom: "5px",
@@ -632,25 +725,74 @@ function SignUp() {
                   onChange={useBtnEvent}
                 />
                 <label style={{ fontSize: "14px" }} htmlFor="check2">
-                  이용약관{" "}
-                  <span style={{ color: "deepskyblue" }} className="stylesblue">
-                    (필수)
-                  </span>
+                  <span className="chk_font_blue">[필수]</span>
+                  데일리코더계정 약관{" "}
                 </label>
-              </div>
-              <div>
-                <input
-                  type="checkbox"
-                  id="check3"
-                  checked={marketingCheck}
-                  onChange={marketingBtnEvent}
-                />
-                <label style={{ fontSize: "14px" }} htmlFor="check3">
-                  마케팅 동의{" "}
-                  <span style={{ color: "gray" }} className="stylesgray">
-                    (선택)
-                  </span>
-                </label>
+
+                <div>
+                  <input
+                    style={{
+                      marginBottom: "5px",
+                    }}
+                    type="checkbox"
+                    id="check4"
+                    checked={totalCheck}
+                    onChange={totalBtnEvent}
+                  />
+                  <label style={{ fontSize: "14px" }} htmlFor="check4">
+                    <span className="chk_font_blue">[필수]</span>
+                    데일리코더 통합서비스 약관{" "}
+                  </label>
+                </div>
+                <p className="term_low_font">
+                  본 약관은 데일리코더가 제공하는 서비스에 적용되며, 본 약관에
+                  동의함으로써 해당 서비스들을 이용할 수 있습니다.
+                </p>
+
+                <div>
+                  <input
+                    type="checkbox"
+                    id="check3"
+                    checked={marketingCheck}
+                    onChange={marketingBtnEvent}
+                  />
+                  <label style={{ fontSize: "14px" }} htmlFor="check3">
+                    <span className="chk_font_gray">[선택]</span>
+                    광고메세지 수신{" "}
+                  </label>
+                </div>
+
+                <div>
+                  <input
+                    style={{
+                      marginBottom: "5px",
+                    }}
+                    type="checkbox"
+                    id="check5"
+                    checked={personCheck}
+                    onChange={personBtnEvent}
+                  />
+                  <label style={{ fontSize: "14px" }} htmlFor="check5">
+                    <span className="chk_font_blue">[필수]</span>
+                    개인정보 수집 및 이용 동의{" "}
+                  </label>
+                </div>
+
+                <div>
+                  <input
+                    style={{
+                      marginBottom: "5px",
+                    }}
+                    type="checkbox"
+                    id="check6"
+                    checked={gpsCheck}
+                    onChange={gpsBtnEvent}
+                  />
+                  <label style={{ fontSize: "14px" }} htmlFor="check6">
+                    <span className="chk_font_gray">[선택]</span>
+                    위치정보 수집 및 이용 동의{" "}
+                  </label>
+                </div>
               </div>
             </details>
 
@@ -826,44 +968,57 @@ function SignUp() {
 
             <details>
               <summary className="signup_summary">
-                사업자회원 약관동의
+                사업자회원 약관동의{" "}
                 <span style={{ color: "gray" }} className="stylesgray">
                   (펼쳐보기)
                 </span>
               </summary>
-              <div>
-                <input
-                  style={{
-                    marginBottom: "5px",
-                  }}
-                  type="checkbox"
-                  id="all-check"
-                  checked={allCheck}
-                  onChange={allBtnEvent}
-                />
-                <label style={{ fontSize: "14px" }} htmlFor="all-check">
-                  전체동의
-                </label>
-              </div>
+              <div className="term_form">
+                <h2 className="term_font">
+                  데일리코더(Daily Cooder)
+                  <br />
+                  서비스 약관에 동의해 주세요!
+                </h2>
+                <hr />
 
-              <div>
-                <input
-                  style={{
-                    marginBottom: "5px",
-                  }}
-                  type="checkbox"
-                  id="check1"
-                  checked={ageCheck}
-                  onChange={ageBtnEvent}
-                />
-                <label style={{ fontSize: "14px" }} htmlFor="check1">
-                  만 14세 이상입니다{" "}
-                  <span style={{ color: "deepskyblue" }} className="stylesblue">
-                    (필수)
-                  </span>
-                </label>
-              </div>
-              <div>
+                <div>
+                  <input
+                    style={{
+                      marginBottom: "5px",
+                    }}
+                    type="checkbox"
+                    id="all-check"
+                    checked={allCheck}
+                    onChange={allBtnEvent}
+                  />
+                  <label className="chk_font" htmlFor="all-check">
+                    모두 동의합니다!
+                  </label>
+                  <p className="term_low_font">
+                    전체 동의는 필수 및 선택정보에 대한 동의도 포함되어 있으며,
+                    개별적으로도 동의를 선택하실 수 있습니다.
+                    <br />
+                    선택항목에 대한 동의를 거부하시는 경우에도 서비스는 이용이
+                    가능합니다.
+                  </p>
+                </div>
+
+                <div>
+                  <input
+                    style={{
+                      marginBottom: "5px",
+                    }}
+                    type="checkbox"
+                    id="check1"
+                    checked={ageCheck}
+                    onChange={ageBtnEvent}
+                  />
+                  <label style={{ fontSize: "14px" }} htmlFor="check1">
+                    <span className="chk_font_blue">[필수]</span>만 14세
+                    이상입니다{" "}
+                  </label>
+                </div>
+
                 <input
                   style={{
                     marginBottom: "5px",
@@ -874,27 +1029,77 @@ function SignUp() {
                   onChange={useBtnEvent}
                 />
                 <label style={{ fontSize: "14px" }} htmlFor="check2">
-                  이용약관{" "}
-                  <span style={{ color: "deepskyblue" }} className="stylesblue">
-                    (필수)
-                  </span>
+                  <span className="chk_font_blue">[필수]</span>
+                  데일리코더계정 약관{" "}
                 </label>
-              </div>
-              <div>
-                <input
-                  type="checkbox"
-                  id="check3"
-                  checked={marketingCheck}
-                  onChange={marketingBtnEvent}
-                />
-                <label style={{ fontSize: "14px" }} htmlFor="check3">
-                  마케팅 동의{" "}
-                  <span style={{ color: "gray" }} className="stylesgray">
-                    (선택)
-                  </span>
-                </label>
+
+                <div>
+                  <input
+                    style={{
+                      marginBottom: "5px",
+                    }}
+                    type="checkbox"
+                    id="check4"
+                    checked={totalCheck}
+                    onChange={totalBtnEvent}
+                  />
+                  <label style={{ fontSize: "14px" }} htmlFor="check4">
+                    <span className="chk_font_blue">[필수]</span>
+                    데일리코더 통합서비스 약관{" "}
+                  </label>
+                </div>
+                <p className="term_low_font">
+                  본 약관은 데일리코더가 제공하는 서비스에 적용되며, 본 약관에
+                  동의함으로써 해당 서비스들을 이용할 수 있습니다.
+                </p>
+
+                <div>
+                  <input
+                    type="checkbox"
+                    id="check3"
+                    checked={marketingCheck}
+                    onChange={marketingBtnEvent}
+                  />
+                  <label style={{ fontSize: "14px" }} htmlFor="check3">
+                    <span className="chk_font_gray">[선택]</span>
+                    광고메세지 수신{" "}
+                  </label>
+                </div>
+
+                <div>
+                  <input
+                    style={{
+                      marginBottom: "5px",
+                    }}
+                    type="checkbox"
+                    id="check5"
+                    checked={personCheck}
+                    onChange={personBtnEvent}
+                  />
+                  <label style={{ fontSize: "14px" }} htmlFor="check5">
+                    <span className="chk_font_blue">[필수]</span>
+                    개인정보 수집 및 이용 동의{" "}
+                  </label>
+                </div>
+
+                <div>
+                  <input
+                    style={{
+                      marginBottom: "5px",
+                    }}
+                    type="checkbox"
+                    id="check6"
+                    checked={gpsCheck}
+                    onChange={gpsBtnEvent}
+                  />
+                  <label style={{ fontSize: "14px" }} htmlFor="check6">
+                    <span className="chk_font_gray">[선택]</span>
+                    위치정보 수집 및 이용 동의{" "}
+                  </label>
+                </div>
               </div>
             </details>
+
             <div>
               <button
                 className="signup_btn"
