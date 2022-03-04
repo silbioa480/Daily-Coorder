@@ -11,13 +11,13 @@ function FeedMenu() {
       </Nav.Item>
 
       <Nav.Item>
-        <Nav.Link as={Link} to="/feed">
+        <Nav.Link as={Link} to="/feed/my_liked">
           내가 좋아요한 게시물
         </Nav.Link>
       </Nav.Item>
 
       <Nav.Item>
-        <Nav.Link as={Link} to="/feed">
+        <Nav.Link as={Link} to="/feed/my_uploaded">
           내가 업로드한 게시물
         </Nav.Link>
       </Nav.Item>
