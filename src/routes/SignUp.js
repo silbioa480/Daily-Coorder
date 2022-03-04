@@ -21,7 +21,6 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [nickname, setNickname] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [term, setTerm] = useState("");
   const [height, setHeight] = useState("");
   const [weight, setWeight] = useState("");
 
@@ -30,9 +29,7 @@ function SignUp() {
   const [errorId, setErrorId] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
   const [confirmPasswordError, setConfirmPasswordError] = useState(false);
-  const [errorName, setErrorName] = useState(false);
   const [errorEmail, setErrorEmail] = useState(false);
-  const [termError, setTermError] = useState(false);
   const [errorPhoneNumber, setErrorPhoneNumber] = useState(false);
 
   //사업자회원
@@ -177,11 +174,6 @@ function SignUp() {
     setProEmail(e.target.value);
   };
 
-  const onChangeTerm = (e) => {
-    setTerm(e.target.checked);
-    setTermError(false);
-  };
-
   const onChangeHeight = (e) => {
     setHeight(e.target.value);
   };
@@ -190,16 +182,65 @@ function SignUp() {
     setWeight(e.target.value);
   };
 
-  //일반회원가입 정규성검사(회원가입 성공/ 실패 모달창)
+  /* 여기서부터 약관동의 기능 구현*/
+  const allBtnEvent = () => {
+    if (allCheck === false) {
+      setAllCheck(true);
+      setAgeCheck(true);
+      setUseCheck(true);
+      setMarketingCheck(true);
+    } else {
+      setAllCheck(false);
+      setAgeCheck(false);
+      setUseCheck(false);
+      setMarketingCheck(false);
+    }
+  };
+
+  const ageBtnEvent = () => {
+    if (ageCheck === false) {
+      setAgeCheck(true);
+    } else {
+      setAgeCheck(false);
+    }
+  };
+
+  const useBtnEvent = () => {
+    if (useCheck === false) {
+      setUseCheck(true);
+    } else {
+      setUseCheck(false);
+    }
+  };
+
+  const marketingBtnEvent = () => {
+    if (marketingCheck === false) {
+      setMarketingCheck(true);
+    } else {
+      setMarketingCheck(false);
+    }
+  };
+
+  useEffect(() => {
+    if (ageCheck === true && useCheck === true && marketingCheck === true) {
+      setAllCheck(true);
+    } else {
+      setAllCheck(false);
+    }
+  }, [ageCheck, useCheck, marketingCheck]);
+
+  /* 여기까지 약관동의 기능 구현*/
+
+  //일반회원가입 정규성검사(회원가입 성공/ 실패 모달창에 적용)
   const validation1 = () => {
     if (!Id) setErrorId(true);
     if (!Password) setErrorPassword(true);
     if (!confirmPassword) setConfirmPasswordError(true);
     if (!name) setErrorEmail(true);
     if (!email) setErrorEmail(true);
-    // if (!term) setTermError(true);
     if (!phoneNumber) setErrorPhoneNumber(true);
-    // if (!proNumber) setErrorProNumber(true);
+    if (!ageCheck) setAgeCheck(false);
+    if (!useCheck) setUseCheck(false);
 
     if (
       Id &&
@@ -207,24 +248,25 @@ function SignUp() {
       confirmPassword &&
       name &&
       email &&
-      // term &&
-      phoneNumber
-      // proNumber
+      ageCheck &&
+      phoneNumber &&
+      useCheck
     )
       return true;
     else return false;
   };
 
-  //사업자회원가입 정규성검사(회원가입 성공/ 실패 모달창)
+  //사업자회원가입 정규성검사(회원가입 성공/ 실패 모달창에 적용)
   const validation2 = () => {
     if (!proId) setErrorProId(true);
     if (!proPassword) setErrorProPassword(true);
     if (!confirmProPassword) setConfirmProPasswordError(true);
     if (!proName) setErrorProName(true);
     if (!proEmail) setErrorProEmail(true);
-    // if (!term) setTermError(true);
     if (!phoneNumber) setErrorProPhone(true);
     if (!proNumber) setErrorProNumber(true);
+    if (!ageCheck) setAgeCheck(false);
+    if (!useCheck) setUseCheck(false);
 
     if (
       proId &&
@@ -232,9 +274,10 @@ function SignUp() {
       confirmProPassword &&
       proName &&
       proEmail &&
-      // term &&
       phoneNumber &&
-      proNumber
+      proNumber &&
+      ageCheck &&
+      useCheck
     )
       return true;
     else return false;
@@ -302,52 +345,6 @@ function SignUp() {
       callback: function () {},
     });
   };
-
-  const allBtnEvent = () => {
-    if (allCheck === false) {
-      setAllCheck(true);
-      setAgeCheck(true);
-      setUseCheck(true);
-      setMarketingCheck(true);
-    } else {
-      setAllCheck(false);
-      setAgeCheck(false);
-      setUseCheck(false);
-      setMarketingCheck(false);
-    }
-  };
-
-  const ageBtnEvent = () => {
-    if (ageCheck === false) {
-      setAgeCheck(true);
-    } else {
-      setAgeCheck(false);
-    }
-  };
-
-  const useBtnEvent = () => {
-    if (useCheck === false) {
-      setUseCheck(true);
-    } else {
-      setUseCheck(false);
-    }
-  };
-
-  const marketingBtnEvent = () => {
-    if (marketingCheck === false) {
-      setMarketingCheck(true);
-    } else {
-      setMarketingCheck(false);
-    }
-  };
-
-  useEffect(() => {
-    if (ageCheck === true && useCheck === true && marketingCheck === true) {
-      setAllCheck(true);
-    } else {
-      setAllCheck(false);
-    }
-  }, [ageCheck, useCheck, marketingCheck]);
 
   return (
     <div class="signup">
