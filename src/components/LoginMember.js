@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import $ from "jquery";
 import "../css/LoginMember.css";
@@ -8,14 +8,22 @@ import kakaologo from "../img/login/kakaologo.png";
 import googlelogo from "../img/login/googlelogo.png";
 import naverlogo from "../img/login/naverlogo.png";
 import PopUp from "./PopUp";
+//아이디 기억하기 체크박스 때문에 install 했고, import함
+import { useCookies } from "react-cookie";
 
 function LoginMember() {
+  //모달 설정
   const [popup, setPopup] = useState({
     open: false,
     title: "",
     message: "",
     callback: false,
   });
+
+  //아이디 기억하기(로그인 페이지 내 체크박스)
+  const [cookies, setCookie, removeCookie] = useCookies(["rememberId"]);
+  const [isRemember, setIsRemember] = useState(false);
+
   const [Id, setId] = useState("");
   const [Password, setPassword] = useState("");
   const [proId, setProId] = useState("");
@@ -39,6 +47,24 @@ function LoginMember() {
   const onProPasswordHanlder = (e) => {
     setPassword(e.currentTarget.value);
   };
+
+  /*여기서부터 아이디 기억하기 함수 구현*/
+  useEffect(() => {
+    if (cookies.rememberId !== undefined) {
+      setId(cookies.rememberId);
+      setIsRemember(true);
+    }
+  }, []);
+
+  const remHandleOnChange = (e) => {
+    setIsRemember(e.target.check);
+    if (e.target.check) {
+      setCookie("rememberId", Id, { maxAge: 2000 });
+    } else {
+      removeCookie("rememberId");
+    }
+  };
+  /*여기까지 아이디 기억하기 함수 구현*/
 
   const validation3 = () => {
     if (!Id) setErrorId(true);
@@ -102,8 +128,8 @@ function LoginMember() {
     }
     setPopup({
       open: true,
-      title: "로그인 성공♡♡",
-      message: "꺄아아아앗!!!!",
+      title: "축축!! 로그인 성공",
+      message: "환영합니다!!!!",
       callback: function () {},
     });
     if (validation3()) return;
@@ -147,7 +173,12 @@ function LoginMember() {
         <div className="login_Mid">
           <label className="auto_Login" htmlFor="hint">
             {" "}
-            <input type="checkbox" id="hint" /> 로그인 유지하기
+            <input
+              type="checkbox"
+              onChange={remHandleOnChange}
+              checked={isRemember}
+            />{" "}
+            아이디 기억하기
           </label>
           <div className="login_search_info">
             <Link to="/login/IdSearch">아이디</Link> /
