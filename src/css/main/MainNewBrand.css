@@ -1,0 +1,23 @@
+.mainfollow-text {
+    font-size: 30px;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+hr > .Line {
+    text-align: center;
+    width: 80%;
+}
+
+/*.yellow-line-out {*/
+/*    text-align: center;*/
+/*}*/
+
+/*.yellow-line-in {*/
+/*    width: 90%;*/
+/*    height: 8px;*/
+/*    background-color: rgba(254, 213, 1, 1);*/
+/*    display: inline-block;*/
+/*    border-radius: 10px;*/
+/*}*/
