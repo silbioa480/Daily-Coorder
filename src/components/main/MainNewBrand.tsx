@@ -5,91 +5,91 @@ import React from "react";
 import MainComponent5 from "./MainComponent5";
 
 // css
-import "../../css/main/MainComponent5.css";
+import "../../css/main/MainNewBrand.css";
 
 // 사진
-import mainwth1 from "../../img/main/mainwth1.png";
-import mainwth2 from "../../img/main/mainwth2.png";
-import mainwth3 from "../../img/main/mainwth3.png";
-import mainwth4 from "../../img/main/mainwth4.png";
-import mainwth5 from "../../img/main/mainwth5.png";
-import mainwth6 from "../../img/main/mainwth6.png";
-import mainwth7 from "../../img/main/mainwth7.png";
-import mainwth8 from "../../img/main/mainwth8.png";
-import mainfol1 from "../../img/main/mainfol1.png";
-import mainfol7 from "../../img/main/mainfol7.png";
+import mainbran1 from "../../img/main/mainbran1.png";
+import mainbran2 from "../../img/main/mainbran2.png";
+import mainbran3 from "../../img/main/mainbran3.png";
+import mainbran4 from "../../img/main/mainbran4.png";
+import mainbran5 from "../../img/main/mainbran5.png";
+import mainbran6 from "../../img/main/mainbran6.png";
+import mainbran7 from "../../img/main/mainbran7.png";
+import mainbran8 from "../../img/main/mainbran8.png";
+import mainbran9 from "../../img/main/mainbran9.png";
+import mainbran10 from "../../img/main/mainbran10.png";
 
 function MainAnother() {
   const datas = [
     {
       id: 1,
-      title: mainwth1,
-      name: "@sang12",
-      liked: 568,
-      followed: 1170,
+      title: mainbran1,
+      name: "@official_Thursday Island",
+      liked: 142,
+      followed: 312,
     },
     {
       id: 2,
-      title: mainwth2,
-      name: "@ongsungo",
-      liked: 1241,
-      followed: 2149,
+      title: mainbran2,
+      name: "@official_Thursday Island",
+      liked: 109,
+      followed: 312,
     },
     {
       id: 3,
-      title: mainwth3,
-      name: "@nana_",
-      liked: 2113,
-      followed: 3471,
+      title: mainbran3,
+      name: "@official_Thursday Island",
+      liked: 46,
+      followed: 312,
     },
     {
       id: 4,
-      title: mainwth4,
-      name: "@dong_ha",
-      liked: 243,
-      followed: 319,
+      title: mainbran4,
+      name: "@official_Thursday Island",
+      liked: 79,
+      followed: 312,
     },
     {
       id: 5,
-      title: mainwth5,
-      name: "@_nara",
-      liked: 972,
-      followed: 872,
+      title: mainbran5,
+      name: "@official_Thursday Island",
+      liked: 167,
+      followed: 312,
     },
     {
       id: 6,
-      title: mainwth6,
-      name: "@han_s",
-      liked: 1207,
-      followed: 1529,
+      title: mainbran6,
+      name: "@official_Thursday Island",
+      liked: 82,
+      followed: 312,
     },
     {
       id: 7,
-      title: mainwth7,
-      name: "@unaaa",
-      liked: 742,
-      followed: 1176,
+      title: mainbran7,
+      name: "@official_Thursday Island",
+      liked: 51,
+      followed: 312,
     },
     {
       id: 8,
-      title: mainwth8,
-      name: "@kim_g",
-      liked: 1721,
-      followed: 2041,
+      title: mainbran8,
+      name: "@official_Thursday Island",
+      liked: 83,
+      followed: 312,
     },
     {
       id: 9,
-      title: mainfol7,
-      name: "@kim_g",
+      title: mainbran9,
+      name: "@official_Thursday Island",
       liked: 1721,
-      followed: 2041,
+      followed: 312,
     },
     {
       id: 10,
-      title: mainfol1,
-      name: "@kim_g",
+      title: mainbran10,
+      name: "@official_Thursday Island",
       liked: 1721,
-      followed: 2041,
+      followed: 312,
     },
   ];
 
@@ -98,6 +98,9 @@ function MainAnother() {
   });
   return (
     <>
+      {/*<div className="yellow-line-out">*/}
+      {/*  <div className="yellow-line-in"></div>*/}
+      {/*</div>*/}
       <div className="mainfollow-text">New In Thursday Island</div>
       <hr className="Line"></hr>
       <div className="wth">
