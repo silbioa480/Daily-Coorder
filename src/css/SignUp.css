@@ -14,6 +14,7 @@
     display: block;
     width: 300px;
     padding: 30px;
+    font-weight: bold;
 }
 
 .signup_profile_img {
@@ -119,7 +120,11 @@
 
 .signup_summary {
     cursor: pointer;
-    margin-bottom: 10px;
+    margin-bottom: 25px;
+    margin-top: 25px;
+    margin-inline: 150px;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 .signup_btn {
@@ -136,4 +141,40 @@
     margin-bottom: 100px;
     border-radius: 3px;
     border-style: none;
+}
+
+.term_form {
+
+    width: 350px;
+    margin-inline: 100px;
+}
+
+.term_font {
+    font-size: 18px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.chk_font {
+    font-size: 15px;
+}
+
+.term_low_font {
+    margin-top: 5px;
+    font-size: 13px;
+    margin-inline: 10px;
+    margin-bottom: 5px;
+    color: gray;
+}
+
+.chk_font_blue {
+    color: deepskyblue;
+    text-align: right;
+    margin-left: 3px;
+}
+
+.chk_font_gray {
+    color: gray;
+    text-align: right;
+    margin-left: 3px;
 }
