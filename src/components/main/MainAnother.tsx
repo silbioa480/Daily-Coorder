@@ -2,10 +2,10 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Carousel } from "react-bootstrap";
 import React from "react";
-import MainComponent from "./MainComponent";
+import MainComponent5 from "./MainComponent5";
 
 // css
-import "../../css/main/MainWeather.css";
+import "../../css/main/MainAnother.css";
 
 // 사진
 import mainwth1 from "../../img/main/mainwth1.png";
@@ -17,7 +17,7 @@ import mainwth6 from "../../img/main/mainwth6.png";
 import mainwth7 from "../../img/main/mainwth7.png";
 import mainwth8 from "../../img/main/mainwth8.png";
 
-function MainWeather() {
+function MainAnother() {
   const datas = [
     {
       id: 1,
@@ -75,22 +75,36 @@ function MainWeather() {
       liked: 1721,
       followed: 2041,
     },
+    {
+      id: 9,
+      title: mainwth8,
+      name: "@kim_g",
+      liked: 1721,
+      followed: 2041,
+    },
+    {
+      id: 10,
+      title: mainwth8,
+      name: "@kim_g",
+      liked: 1721,
+      followed: 2041,
+    },
   ];
 
   const renderRepeat = datas.map((data) => {
-    return <MainComponent data={data} key={data.id} />;
+    return <MainComponent5 data={data} key={data.id} />;
   });
   return (
     <>
-      <div className="mainfollow-text">Daily Weather Style</div>
+      <div className="mainfollow-text">New Another</div>
       <hr className="Line"></hr>
       <div className="wth">
-        <Carousel fade className="feedcar" style={{ width: "1250px" }}>
+        <Carousel fade className="anothercar" style={{ width: "1400px" }}>
           <Carousel.Item>
-            <div>{renderRepeat.slice(0, 4)}</div>
+            <div>{renderRepeat.slice(0, 5)}</div>
           </Carousel.Item>
           <Carousel.Item>
-            <div>{renderRepeat.slice(4, 8)}</div>
+            <div>{renderRepeat.slice(5, 10)}</div>
           </Carousel.Item>
         </Carousel>
       </div>
@@ -98,4 +112,4 @@ function MainWeather() {
   );
 }
 
-export default MainWeather;
+export default MainAnother;

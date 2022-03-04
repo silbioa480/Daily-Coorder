@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 // css
-import "../../css/main/MainComponemt.css";
+import "../../css/main/MainComponent5.css";
 
 // 사진
 import like_logoW from "../../img/main/like_logoW.png";
@@ -87,7 +87,7 @@ function MainComponent(props: IProps) {
 
   // 이부분을 Component화.
   return (
-    <div className="folpic">
+    <div className="anopic">
       <Link to="/feed" className="link">
         <img className="d-block w-100" src={props.data.title} alt="1-1 slide" />
       </Link>
