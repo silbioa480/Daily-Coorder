@@ -1,0 +1,135 @@
+.login_member {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 40vh;
+}
+
+.login_upper_font {
+    margin-top: 300px;
+    display: flex;
+    flex-direction: column;
+    font-size: 25px;
+}
+
+.login_font {
+    margin-top: 15px;
+}
+
+.login_inputs {
+    margin-top: 15px;
+    border-radius: 2px;
+    width: 100%;
+    height: 40px;
+    border: 1px solid #e5e5e5;
+    padding: 9px 12px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.login_Mid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.login_search_info {
+    font-size: 12px;
+    color: #8d8d8d;
+    line-height: 3;
+}
+
+.login_button {
+    width: 350px;
+    height: 40px;
+    font-size: 14px;
+    padding: 13px 30px;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    line-height: 1px;
+    margin-top: 20px;
+    margin-bottom: 12px;
+    border-radius: 3px;
+    border-style: none;
+}
+
+.social_box {
+    margin-bottom: 30px;
+}
+
+.social_google {
+    background-color: white;
+    border-color: black;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    border-radius: 3px;
+
+}
+
+.social_naver {
+    background-color: #00c300;
+    border-color: #00c300;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    border-radius: 3px;
+}
+
+.social_kakao {
+    background-color: #feec34;
+    border-color: #feec34;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    border-radius: 3px;
+}
+
+.social_facebook {
+    background-color: #3a559f;
+    border-color: #3a559f;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    border-radius: 3px;
+}
+
+.social_logo {
+    width: 24px;
+    height: 25px;
+}
+
+.social_button {
+    width: 300px;
+    font-size: 15px;
+    text-align: center;
+    display: inline-block;
+    box-sizing: border-box;
+
+}
+
+.login_end {
+    text-align: center;
+    font-size: 10px;
+}
+
+.login_line {
+    color: #bcbcbc;
+    font-size: 15px;
+    margin-bottom: 35px;
+    cursor: pointer;
+}
