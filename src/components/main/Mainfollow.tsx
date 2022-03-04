@@ -4,6 +4,7 @@ import { Carousel } from "react-bootstrap";
 import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import MainComponent from "./MainComponent";
 
 // css
 import '../../css/main/MainNewFollow.css';
@@ -25,52 +26,6 @@ import follow_logoW from '../../img/main/follow_logoW.png';
 
 function Mainfollow() {
 
-    const [isShow, setIsShow] =useState(false);
-    const [isDone, setIsDone] =useState(false);
-    const [liked, setLiked] =useState(100);
-    const [followed, setFollowed] =useState(200);
-    const [name, setName] = useState("");
-    // 삼항연산자 간단하게 위해 선언 (좋아요)
-    const empty_like = <img src={like_logoW} className="like_logoW" onClick={toggleShow}  /> ;
-    const full_like = <img src={like_icon} className="like_logoW" onClick={toggleShow}  /> ;
-    // 삼항연산자 간단하게 위해 선언 (팔로우)
-    const empty_follow = <img src={follow_logoW} className="follow_logoW" onClick={togglefollow}/> ;
-    const full_follow = <img src={follow_icon} className="follow_logoW" onClick={togglefollow}/> ;
-
-    // 좋아요 + 1
-    function likeIn() {
-        setLiked(liked + 1);
-    }
-    // 좋아요 - 1
-    function likeDe() {
-        setLiked(liked - 1);
-    }
-    // 팔로우 + 1
-    function followIn() {
-        setFollowed(followed + 1);
-    }
-    // 팔로우 - 1
-    function followDe() {
-        setFollowed(followed - 1);
-    }
-    // 좋아요 색깔 toglle and 좋아요 + 1 or - 1
-    function toggleShow() {
-        setIsShow(!isShow);
-        if(!isShow) {
-            likeIn();
-        }   else {
-            likeDe();
-        }
-    }
-    // 팔로우 색깔 toglle and 팔로우 + 1 or - 1
-    function togglefollow() {
-        setIsDone(!isDone);
-        if(!isDone) {
-            followIn();
-        }   else {
-            followDe();
-        }
-    }
 
     const datas = [
         {
@@ -134,38 +89,7 @@ function Mainfollow() {
     const renderRepeat = datas.map((data) => {
 
         return (
-
-
-            <div className="folpic" key={data.id}>
-
-                <Link to="/signup" className="link">
-                    <img className="d-block w-100" src={data.title} alt="1-1 slide"/>
-                </Link>
-
-                <div className="group_icon">
-
-                    <div className="like_logoA">
-                        {isShow ? full_like : empty_like}
-                    </div>
-
-                    <div className="follow_logoA">
-                        {isDone ? full_follow : empty_follow}
-                    </div>
-
-                </div>
-
-                <div className="group_txt">
-                    <div className="t1">{data.name}</div>
-                    <div className="like_group">
-                        <img src={like_icon} className="like_icon"/>
-                        <span className="like_cnt">{data.liked}</span>
-                    </div>
-                    <div className="follow_group">
-                        <img src={follow_icon} className="follow_icon"/>
-                        <span className="follow_cnt">{data.followed}</span>
-                    </div>
-                </div>
-            </div>
+            <MainComponent data={data} key={data.id}/>
 
             );
     });
@@ -180,6 +104,7 @@ function Mainfollow() {
                     <Carousel.Item>
                         <div>{renderRepeat.slice(0,4)}</div>
                     </Carousel.Item>
+
                     <Carousel.Item>
                         <div>{renderRepeat.slice(4,8)}</div>
                     </Carousel.Item>
