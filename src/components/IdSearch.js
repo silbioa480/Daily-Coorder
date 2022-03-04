@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import $ from "jquery";
 import PopUp from "./PopUp";
+import "../css/Search.css";
 
 function IdSearch() {
   const [popup, setPopup] = useState({
@@ -84,8 +85,8 @@ function IdSearch() {
     }
     setPopup({
       open: true,
-      title: "아이디 찾기 성공♡♡",
-      message: "회원님의 아이디는 '♡♡♡♡' 입니다!!",
+      title: "아이디 찾기 성공!!",
+      message: "회원님의 아이디는 '0000' 입니다!!",
       callback: function () {},
     });
     if (validation4()) return;
@@ -93,16 +94,7 @@ function IdSearch() {
 
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          width: "100%",
-          height: "40vh",
-          marginTop: "50px",
-        }}
-        className="SignUp"
-      >
+      <div className="search_signup">
         <PopUp
           open={popup.open}
           setPopup={setPopup}
@@ -111,116 +103,49 @@ function IdSearch() {
           callback={popup.callback}
         />
         <form onSubmit={onSubmitHandler}>
-          <p
-            style={{
-              marginTop: "30px",
-              flexDirection: "column",
-              fontSize: "25px",
-              display: "block",
-              width: 350,
-              padding: 30,
-            }}
-          >
-            {" "}
-            아이디 찾기{" "}
-          </p>
+          <p className="search_upper_font"> 아이디 찾기 </p>
           <br />
           <br />
 
           <div>
-            <label htmlFor="user-name">이름</label>
+            <label htmlFor="user-name" className="search_font">
+              이름
+            </label>
             <input
-              style={{
-                marginTop: "10px",
-                borderRadius: "2px",
-                width: "100%",
-                height: "40px",
-                border: "1px solid #e5e5e5",
-                padding: "9px 12px",
-                outline: "none",
-                boxSizing: "border-box",
-                marginBottom: "10px",
-              }}
+              className="search_inputs"
               id="name"
               name="user-name"
               type="text"
               placeholder="이름"
               value={name}
               onChange={onNameHandler}
-              className="loginregister_input"
             />{" "}
           </div>
           <div>
-            <label
-              htmlFor="user-phone"
-              style={{
-                marginTop: "15px",
-              }}
-            >
+            <label className="search_font" htmlFor="user-phone">
               휴대폰 번호
             </label>
             <input
-              style={{
-                marginTop: "15px",
-                borderRadius: "2px",
-                width: "100%",
-                height: "40px",
-                border: "1px solid #e5e5e5",
-                padding: "9px 12px",
-                outline: "none",
-                boxSizing: "border-box",
-                marginBottom: "20px",
-              }}
+              className="search_inputs"
               id="phoneNumber"
               name="user-phone"
               type="text"
               placeholder="-를 제외하고 숫자만 입력하세요"
               value={phoneNumber}
               onChange={onChangePhoneNumber}
-              className="loginregister_input"
             />
             {errorPhoneNumber && (
-              <div
-                className="invalid-input"
-                style={{
-                  color: "deepskyblue",
-                  fontSize: "12px",
-                  marginBottom: "10px",
-                }}
-              >
-                숫자만 입력하세요
-              </div>
+              <div className="search_input_valid">숫자만 입력하세요</div>
             )}
           </div>
           <div>
             <input
-              style={{
-                width: "100%",
-                height: "30px",
-                fontSize: "14px",
-                padding: "13px 30px",
-                cursor: "pointer",
-                backgroundColor: "black",
-                color: "white",
-                lineHeight: "1px",
-                borderRadius: "3px",
-                borderStyle: "none",
-                marginBottom: "10px",
-              }}
               type="submit"
-              className="loginregister_button"
+              className="search_button"
               value="아이디 찾기"
             />
           </div>
-          <div
-            style={{
-              fontSize: "15px",
-              color: "#8d8d8d",
-              lineHeight: 3,
-              textAlign: "center",
-            }}
-            className="searchinfo"
-          >
+          <div className="search_search">
             <Link to="/login/PasswordSearch">비밀번호 찾기</Link> ||
             <Link to="/signup"> 회원가입 </Link>
           </div>
