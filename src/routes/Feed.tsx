@@ -6,12 +6,18 @@ import FeedMenu from "../components/feed/FeedMenu";
 
 function Feed() {
   return (
-    <div style={{ display: "flex" }}>
-      <div style={{ width: "30%" }}>
+    <div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginBottom: "20px",
+        }}
+      >
         <FeedMenu />
       </div>
 
-      <div style={{ width: "70%", display: "flex", justifyContent: "center" }}>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <Switch>
           <Route path="/feed/my_liked">
             <MyLiked />
