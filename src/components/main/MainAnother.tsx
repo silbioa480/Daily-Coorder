@@ -19,6 +19,10 @@ import mainano10 from "../../img/main/mainano10.png";
 import MainAnotherComponent from "./MainAnotherComponent";
 
 function MainAnother() {
+  function load() {
+    alert("돌아가거라");
+  }
+
   const datas = [
     {
       id: 1,
@@ -110,8 +114,8 @@ function MainAnother() {
           </div>
 
           <div className="btn-out">
-            <button className="plus-btn">
-              <span>더보기</span>
+            <button className="plus-btn" onClick={load}>
+              <span></span>
             </button>
           </div>
         </div>
