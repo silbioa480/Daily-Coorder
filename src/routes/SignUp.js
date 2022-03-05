@@ -15,6 +15,9 @@ function SignUp() {
   });
 
   //일반회원
+  const [fileImage, setFileImage] = useState(
+    "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+  );
   const [name, setName] = useState("");
   const [Id, setId] = useState("");
   const [Password, setPassword] = useState("");
@@ -84,6 +87,16 @@ function SignUp() {
 
   const onProNameHandler = (e) => {
     setProName(e.currentTarget.value);
+  };
+  const saveFileImage = (e) => {
+    setFileImage(URL.createObjectURL(e.target.files[0]));
+  };
+
+  const deleteFileImage = () => {
+    URL.revokeObjectURL(fileImage);
+    setFileImage(
+      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+    );
   };
 
   const onChangeBirth = (e) => {
@@ -424,18 +437,28 @@ function SignUp() {
             <div className="signup_profile">
               <div className="avatar stagger-item">
                 <img
-                  src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
-                  alt="Circle Image"
-                  className="signup_profile_img img-raised rounded-circle img-fluid"
+                  src={fileImage}
+                  alt="sample"
+                  className="signup_profile_img rounded-circle"
                 />
               </div>
               <div>
-                <label type="submit" className="signup_profile_btn">
-                  프로필 업로드
+                <label type="submit" className="signup_profile_upbtn">
+                  업로드
                   <input
                     className="signup_profile_upbtn"
                     type="file"
+                    accept="image/*"
                     style={{ display: "none" }}
+                    onChange={saveFileImage}
+                  />
+                </label>
+                <label type="submit" className="signup_profile_delbtn">
+                  삭제하기
+                  <input
+                    className="signup_profile_delbtn"
+                    style={{ display: "none" }}
+                    onClick={() => deleteFileImage()}
                   />
                 </label>
               </div>
@@ -659,8 +682,8 @@ function SignUp() {
                 onChange={onChangeWeight}
               />
               kg
+              <hr />
             </div>
-            <hr />
 
             <details>
               <summary className="signup_summary">
@@ -714,21 +737,21 @@ function SignUp() {
                     이상입니다{" "}
                   </label>
                 </div>
-
-                <input
-                  style={{
-                    marginBottom: "5px",
-                  }}
-                  type="checkbox"
-                  id="check2"
-                  checked={useCheck}
-                  onChange={useBtnEvent}
-                />
-                <label style={{ fontSize: "14px" }} htmlFor="check2">
-                  <span className="chk_font_blue">[필수]</span>
-                  데일리코더계정 약관{" "}
-                </label>
-
+                <div>
+                  <input
+                    style={{
+                      marginBottom: "5px",
+                    }}
+                    type="checkbox"
+                    id="check2"
+                    checked={useCheck}
+                    onChange={useBtnEvent}
+                  />
+                  <label style={{ fontSize: "14px" }} htmlFor="check2">
+                    <span className="chk_font_blue">[필수]</span>
+                    데일리코더계정 약관{" "}
+                  </label>
+                </div>
                 <div>
                   <input
                     style={{
