@@ -23,11 +23,10 @@ export const Com = styled.div`
   height: 50px;
   margin-left: 60px;
 `;
-// 20대 여성 등 teg
+
 export const Square = styled.div`
   font-size: 1em;
   border: 1px solid lightgray;
-  border-radius: 10px;
   color: black;
   width: 40px;
   height: 30px;
@@ -41,8 +40,12 @@ export const QR = styled.img`
   width: 300px;
   height: 300px;
 `;
-//팔로우버튼
 export const CButton = styled.button`
   background-color: ${(props) => props.color};
   color: ${(props) => props.value};
+
+  width: 80px;
+  height: 48px;
+  border: none;
+  border-radius: 24px;
 `;

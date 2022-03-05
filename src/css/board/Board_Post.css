@@ -1,0 +1,8 @@
+.Board_Posts {
+  width: 800px;
+  height: auto;
+  border-radius: 30px;
+  margin: 0 auto;
+  box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
+  display: flex;
+}

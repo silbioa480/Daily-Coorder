@@ -1,217 +1,23 @@
-import "../css/Board_Posts.css";
-import { BsDownload, BsBookmarks, BsPlusSquare } from "react-icons/bs";
-import { ImQrcode } from "react-icons/im";
-import { FiMoreHorizontal, FiX } from "react-icons/fi";
-import { HiOutlineThumbUp } from "react-icons/hi";
-import { RiShareForwardLine } from "react-icons/ri";
-import qr from "../img/qr.png";
-import { Circle, Square, QR, CButton } from "../css/Board_Posts";
-import { useState } from "react";
-import similar from "../img/similar.png";
 import Comment from "../components/Board_Comment";
-import React from "react";
-import { Button, Modal } from "react-bootstrap";
-
-function Board_Picture() {
-  return (
-    <div className="bp">
-      <div className="picture">
-        <img src={similar} alt=""></img>
-        <Qrcode></Qrcode>
-      </div>
-      <div className="bp1">
-        <Square style={{ marginTop: "10px" }}>20대</Square>
-        <Square style={{ marginTop: "10px" }}>여성</Square>
-        <Square style={{ marginTop: "10px" }}>핫</Square>
-      </div>
-      <div className="bp2">
-        <div style={{ margin: "5px" }} type="button">
-          <HiOutlineThumbUp />
-        </div>
-        <div style={{ margin: "5px" }} type="button">
-          <BsPlusSquare />
-        </div>
-        <div style={{ margin: "5px" }} type="button">
-          <RiShareForwardLine />
-        </div>
-      </div>
-    </div>
-  );
-}
-//qr누르면 modal로 나오는창
-function Click_Qr(props) {
-  return (
-    <Modal
-      {...props}
-      size="sm"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      <Modal.Title id="contained-modal-title-vcenter">
-        <QR src={qr}></QR>
-      </Modal.Title>
-    </Modal>
-  );
-}
-function Qrcode() {
-  const [modalShow, setModalShow] = React.useState(false);
-
-  return (
-    <>
-      <button
-        style={{
-          borderRadius: "50%",
-          border: "none",
-          width: "50px",
-          height: "50px",
-          position: "absolute",
-          top: "10px",
-          left: "10px",
-          zIndex: "2",
-        }}
-        onClick={() => setModalShow(true)}
-      >
-        <ImQrcode />
-      </button>
-
-      <Click_Qr show={modalShow} onHide={() => setModalShow(false)} />
-    </>
-  );
-}
-
-function Download() {
-  return (
-    <div style={{ padding: "10px" }}>
-      <Drop />
-    </div>
-  );
-}
-//게시물 제목,내용
-function Explanation() {
-  return (
-    <>
-      <p
-        style={{
-          fontWeight: "bold",
-          fontSize: "36px",
-          padding: "0px 20px 10px 20px",
-          wordBreak: "break-all",
-          wordBreak: "keep-all",
-          lineHeight: "40px",
-        }}
-      >
-        Streetwear Men's MultiPockets Cargo Pants Casual Track Pant Jogger
-        Troisers
-      </p>
-      <p
-        style={{
-          fontWeight: "lighter",
-          fontSize: "14px",
-          padding: "0px 20px 10px 20px",
-          wordBreak: "break-all",
-          wordBreak: "keep-all",
-          lineHeight: "18px",
-        }}
-      >
-        Streetwear Men's MultiPockets Cargo Pants Casual Track Pant Jogger
-        Troisers
-      </p>
-    </>
-  );
-}
-// 팔로우
-function Follow() {
-  const [backgroundcolor, setBackgroundcolor] = useState("lightgray");
-  const [color, setColor] = useState("black");
-  const [content, setContent] = useState("팔로우");
-
-  const onClick = () => {
-    backgroundcolor === "lightgray"
-      ? setBackgroundcolor("black")
-      : setBackgroundcolor("lightgray");
-
-    color === "black" ? setColor("white") : setColor("black");
-    content === "팔로우" ? setContent("팔로잉") : setContent("팔로우");
-    // setContent((prev) => (prev === "팔로우" ? "팔로잉" : "팔로우")); :방법2
-  };
-
-  return (
-    <>
-      <div className="infor" style={{ display: "flex" }}>
-        <div style={{ width: "300px", display: "flex" }}>
-          <div>
-            <a href="#">
-              <Circle src={similar} style={{ marginLeft: "20px" }}></Circle>
-            </a>
-          </div>
-          <div style={{ margin: "auto 0", marginLeft: "7px" }}>
-            <a href="#">
-              <p>닉네임</p>
-            </a>
-            <p>팔로워 x명</p>
-          </div>
-        </div>
-
-        <div>
-          <CButton
-            color={backgroundcolor}
-            value={color}
-            onClick={onClick}
-            style={{
-              width: "80px",
-              height: "48px",
-              border: "none",
-              borderRadius: "24px",
-            }}
-            // 팔로우누으면 팔로잉으로 바뀌고 색조정
-          >
-            {content}
-          </CButton>
-        </div>
-      </div>
-    </>
-  );
-}
-// ...이미지 누르면 나오는거
-function Drop() {
-  const [isActive, setIsActive] = useState(false);
-
-  return (
-    <div className="dropdown">
-      <div className="dropdown-btn" onClick={(e) => setIsActive(!isActive)}>
-        <FiMoreHorizontal />
-      </div>
-      {isActive && (
-        <div className="dropdown-content">
-          <div className="dropdown-item">
-            <BsDownload style={{ marginRight: "10px" }} />
-            이미지 다운로드
-          </div>
-          <div className="dropdown-item">
-            <BsBookmarks style={{ marginRight: "10px" }} />
-            게시물 저장
-          </div>
-          <div className="dropdown-item">
-            <FiX style={{ marginRight: "10px" }} />
-            게시물 숨기기
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
+import Explanation from "./board/Explanation";
+import FollowButton from "./board/FollowButton";
+import PictureQr from "./board/PictureQr";
+import DownBtn from "./board/DownBtn";
 
 function Board_Posts() {
   return (
-    <div className="Board_Posts">
-      <Board_Picture />
-      <div>
-        <Download />
-        <Explanation />
-        <Follow />
-        <Comment />
+    <>
+      <div className="Board_Posts">
+        <PictureQr />
+        <div>
+          <DownBtn />
+          <Explanation />
+          <FollowButton />
+
+          <Comment />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 export default Board_Posts;

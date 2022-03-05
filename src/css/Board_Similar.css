@@ -1,20 +1,18 @@
-.similar{
-    width: 235px;
-    height: 300px;
-    float: left;
-    margin-left:20px;
-    
+.similar {
+  width: 235px;
+  height: 300px;
+  float: left;
+  margin-left: 20px;
 }
-.similar_img img{
-    width: 235px;
-    height: 235px;
-    border-radius: 20px;
+.similar_img img {
+  width: 235px;
+  height: 235px;
+  border-radius: 20px;
 }
-.by{
-    display: flex;
-    padding:10px;
+.by {
+  display: flex;
+  padding: 10px;
 }
-.nickname{
-   padding:1em;
+.nickname {
+  padding: 1em;
 }
-

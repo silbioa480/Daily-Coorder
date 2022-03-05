@@ -1,0 +1,16 @@
+.explanation_title {
+  font-weight: bold;
+  font-size: 36px;
+  padding: 0px 20px 10px 20px;
+  word-break: break-all;
+  word-break: keep-all;
+  line-height: 40px;
+}
+.explanation_content {
+  font-weight: lighter;
+  font-size: 14px;
+  padding: 0px 20px 10px 20px;
+  word-break: break-all;
+  word-break: keep-all;
+  line-height: 18px;
+}
