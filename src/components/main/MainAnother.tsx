@@ -1,8 +1,6 @@
 // 부트 스트랩 Carousel
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Carousel } from "react-bootstrap";
 import React from "react";
-import MainComponent5 from "./MainComponent5";
 
 // css
 import "../../css/main/MainAnother.css";
@@ -18,6 +16,7 @@ import mainano7 from "../../img/main/mainano7.png";
 import mainano8 from "../../img/main/mainano8.png";
 import mainano9 from "../../img/main/mainano9.png";
 import mainano10 from "../../img/main/mainano10.png";
+import MainAnotherComponent from "./MainAnotherComponent";
 
 function MainAnother() {
   const datas = [
@@ -94,21 +93,28 @@ function MainAnother() {
   ];
 
   const renderRepeat = datas.map((data) => {
-    return <MainComponent5 data={data} key={data.id} />;
+    return <MainAnotherComponent data={data} key={data.id} />;
   });
   return (
     <>
       <div className="mainfollow-text">New Another</div>
       <hr className="Line"></hr>
       <div className="wth">
-        <Carousel fade className="anothercar" style={{ width: "1400px" }}>
-          <Carousel.Item>
-            <div>{renderRepeat.slice(0, 5)}</div>
-          </Carousel.Item>
-          <Carousel.Item>
-            <div>{renderRepeat.slice(5, 10)}</div>
-          </Carousel.Item>
-        </Carousel>
+        <div className="anothercar" style={{ width: "1400px" }}>
+          <div style={{ display: "inline-block" }}>
+            {renderRepeat.slice(0, 5)}
+          </div>
+
+          <div style={{ display: "inline-block" }}>
+            {renderRepeat.slice(5, 10)}
+          </div>
+
+          <div className="btn-out">
+            <button className="plus-btn">
+              <span>더보기</span>
+            </button>
+          </div>
+        </div>
       </div>
     </>
   );
