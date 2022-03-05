@@ -91,11 +91,6 @@ function MyPage_MemberInformation(){
                                 />
                             </Figure>
                         </div>
-                        <div>
-                                <label className="btn btn-primary">
-                                    프로필 사진 업로드<input type="file" style={{display:"none"}} name="profileimage"/>
-                                </label>
-                        </div>
                         <MemberInformation />
                 </div>
             </>

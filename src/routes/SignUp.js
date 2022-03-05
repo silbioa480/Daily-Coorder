@@ -4,6 +4,7 @@ import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import { Result } from "antd";
 import PopUp from "../components/PopUp";
+import "../css/SignUp.css";
 
 function SignUp() {
   const [popup, setPopup] = useState({
@@ -20,17 +21,18 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [nickname, setNickname] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [term, setTerm] = useState("");
+  const [height, setHeight] = useState("");
+  const [weight, setWeight] = useState("");
+  const [birth, setBirth] = useState("");
 
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const [errorId, setErrorId] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
   const [confirmPasswordError, setConfirmPasswordError] = useState(false);
-  const [errorName, setErrorName] = useState(false);
   const [errorEmail, setErrorEmail] = useState(false);
-  const [termError, setTermError] = useState(false);
   const [errorPhoneNumber, setErrorPhoneNumber] = useState(false);
+  const [errorBirth, setErrorBirth] = useState("");
 
   //사업자회원
   const [proId, setProId] = useState("");
@@ -55,6 +57,9 @@ function SignUp() {
   const [ageCheck, setAgeCheck] = useState(false);
   const [useCheck, setUseCheck] = useState(false);
   const [marketingCheck, setMarketingCheck] = useState(false);
+  const [totalCheck, setTotalCheck] = useState(false);
+  const [personCheck, setPersonCheck] = useState(false);
+  const [gpsCheck, setGpsCheck] = useState(false);
 
   const [inputs, setInputs] = useState({ Id: "" });
   const [show, setShow] = useState(false);
@@ -79,6 +84,14 @@ function SignUp() {
 
   const onProNameHandler = (e) => {
     setProName(e.currentTarget.value);
+  };
+
+  const onChangeBirth = (e) => {
+    const birthRegex = /^[0-9+]{6,}$/;
+    if (!e.target.value || birthRegex.test(e.target.value))
+      setErrorBirth(false);
+    else setErrorBirth(true);
+    setBirth(e.currentTarget.value);
   };
 
   const onChangePhoneNumber = (e) => {
@@ -174,21 +187,113 @@ function SignUp() {
     setProEmail(e.target.value);
   };
 
-  const onChangeTerm = (e) => {
-    setTerm(e.target.checked);
-    setTermError(false);
+  const onChangeHeight = (e) => {
+    setHeight(e.target.value);
   };
 
-  //일반회원가입 정규성검사(회원가입 성공/ 실패 모달창)
+  const onChangeWeight = (e) => {
+    setWeight(e.target.value);
+  };
+
+  /* 여기서부터 약관동의 기능 구현*/
+  const allBtnEvent = () => {
+    if (allCheck === false) {
+      setAllCheck(true);
+      setAgeCheck(true);
+      setUseCheck(true);
+      setMarketingCheck(true);
+      setTotalCheck(true);
+      setPersonCheck(true);
+      setGpsCheck(true);
+    } else {
+      setAllCheck(false);
+      setAgeCheck(false);
+      setUseCheck(false);
+      setMarketingCheck(false);
+      setTotalCheck(false);
+      setPersonCheck(false);
+      setGpsCheck(false);
+    }
+  };
+
+  const ageBtnEvent = () => {
+    if (ageCheck === false) {
+      setAgeCheck(true);
+    } else {
+      setAgeCheck(false);
+    }
+  };
+
+  const useBtnEvent = () => {
+    if (useCheck === false) {
+      setUseCheck(true);
+    } else {
+      setUseCheck(false);
+    }
+  };
+
+  const marketingBtnEvent = () => {
+    if (marketingCheck === false) {
+      setMarketingCheck(true);
+    } else {
+      setMarketingCheck(false);
+    }
+  };
+
+  const totalBtnEvent = () => {
+    if (totalCheck === false) {
+      setTotalCheck(true);
+    } else {
+      setTotalCheck(false);
+    }
+  };
+
+  const personBtnEvent = () => {
+    if (personCheck === false) {
+      setPersonCheck(true);
+    } else {
+      setPersonCheck(false);
+    }
+  };
+
+  const gpsBtnEvent = () => {
+    if (gpsCheck === false) {
+      setGpsCheck(true);
+    } else {
+      setGpsCheck(false);
+    }
+  };
+
+  useEffect(() => {
+    if (
+      ageCheck === true &&
+      useCheck === true &&
+      marketingCheck === true &&
+      totalCheck === true &&
+      personCheck === true &&
+      gpsCheck
+    ) {
+      setAllCheck(true);
+    } else {
+      setAllCheck(false);
+    }
+  }, [ageCheck, useCheck, marketingCheck, totalCheck, personCheck, gpsCheck]);
+
+  /* 여기까지 약관동의 기능 구현*/
+
+  //일반회원가입 정규성검사(회원가입 성공/ 실패 모달창에 적용)
   const validation1 = () => {
     if (!Id) setErrorId(true);
     if (!Password) setErrorPassword(true);
     if (!confirmPassword) setConfirmPasswordError(true);
     if (!name) setErrorEmail(true);
     if (!email) setErrorEmail(true);
-    // if (!term) setTermError(true);
     if (!phoneNumber) setErrorPhoneNumber(true);
-    // if (!proNumber) setErrorProNumber(true);
+    if (!birth) setErrorBirth(true);
+    if (!ageCheck) setAgeCheck(false);
+    if (!useCheck) setUseCheck(false);
+    if (!personCheck) setPersonCheck(false);
+    if (!totalCheck) setTotalCheck(false);
 
     if (
       Id &&
@@ -196,24 +301,30 @@ function SignUp() {
       confirmPassword &&
       name &&
       email &&
-      // term &&
-      phoneNumber
-      // proNumber
+      ageCheck &&
+      phoneNumber &&
+      useCheck &&
+      personCheck &&
+      totalCheck &&
+      birth
     )
       return true;
     else return false;
   };
 
-  //사업자회원가입 정규성검사(회원가입 성공/ 실패 모달창)
+  //사업자회원가입 정규성검사(회원가입 성공/ 실패 모달창에 적용)
   const validation2 = () => {
     if (!proId) setErrorProId(true);
     if (!proPassword) setErrorProPassword(true);
     if (!confirmProPassword) setConfirmProPasswordError(true);
     if (!proName) setErrorProName(true);
     if (!proEmail) setErrorProEmail(true);
-    // if (!term) setTermError(true);
     if (!phoneNumber) setErrorProPhone(true);
     if (!proNumber) setErrorProNumber(true);
+    if (!ageCheck) setAgeCheck(false);
+    if (!useCheck) setUseCheck(false);
+    if (!personCheck) setPersonCheck(false);
+    if (!totalCheck) setTotalCheck(false);
 
     if (
       proId &&
@@ -221,9 +332,12 @@ function SignUp() {
       confirmProPassword &&
       proName &&
       proEmail &&
-      // term &&
       phoneNumber &&
-      proNumber
+      proNumber &&
+      ageCheck &&
+      useCheck &&
+      personCheck &&
+      totalCheck
     )
       return true;
     else return false;
@@ -276,69 +390,24 @@ function SignUp() {
     e.preventDefault();
 
     if (inputs.Id === value.Id) {
-      alert("사용가능한 아이디 입니다.");
+      setPopup({
+        open: true,
+        title: "통과 !!",
+        message: "사용가능한 아이디입니다!",
+      });
+      return;
     } else {
-      alert("이미 사용중인 아이디 입니다.");
     }
+    setPopup({
+      open: true,
+      title: "실패!",
+      message: "이미 사용중인 아이디입니다!!",
+      callback: function () {},
+    });
   };
-
-  const allBtnEvent = () => {
-    if (allCheck === false) {
-      setAllCheck(true);
-      setAgeCheck(true);
-      setUseCheck(true);
-      setMarketingCheck(true);
-    } else {
-      setAllCheck(false);
-      setAgeCheck(false);
-      setUseCheck(false);
-      setMarketingCheck(false);
-    }
-  };
-
-  const ageBtnEvent = () => {
-    if (ageCheck === false) {
-      setAgeCheck(true);
-    } else {
-      setAgeCheck(false);
-    }
-  };
-
-  const useBtnEvent = () => {
-    if (useCheck === false) {
-      setUseCheck(true);
-    } else {
-      setUseCheck(false);
-    }
-  };
-
-  const marketingBtnEvent = () => {
-    if (marketingCheck === false) {
-      setMarketingCheck(true);
-    } else {
-      setMarketingCheck(false);
-    }
-  };
-
-  useEffect(() => {
-    if (ageCheck === true && useCheck === true && marketingCheck === true) {
-      setAllCheck(true);
-    } else {
-      setAllCheck(false);
-    }
-  }, [ageCheck, useCheck, marketingCheck]);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        width: "100%",
-        height: "40vh",
-        marginTop: "50px",
-      }}
-      class="SignUp"
-    >
+    <div class="signup">
       <PopUp
         open={popup.open}
         setPopup={setPopup}
@@ -349,233 +418,126 @@ function SignUp() {
       <form>
         <Tabs defaultActiveKey="first">
           <Tab eventKey="first" title="일반회원가입">
-            <p
-              style={{
-                marginTop: "30px",
-                flexDirection: "column",
-                fontSize: "25px",
-                display: "block",
-                width: 350,
-                padding: 30,
-              }}
-            >
-              {" "}
-              회원가입{" "}
-            </p>
+            <p className="signup_upper_font"> 회원가입 </p>
             <br />
             <br />
-            <div className="profile">
+            <div className="signup_profile">
               <div className="avatar stagger-item">
                 <img
                   src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
-                  style={{
-                    width: "180px",
-                    height: "180px",
-                  }}
                   alt="Circle Image"
-                  className="img-raised rounded-circle img-fluid"
+                  className="signup_profile_img img-raised rounded-circle img-fluid"
                 />
-                <label
-                  style={{
-                    width: "180px",
-                    height: "30px",
-                    fontSize: "14px",
-                    padding: "13px 30px",
-                    cursor: "pointer",
-                    backgroundColor: "darkslategrey",
-                    color: "white",
-                    lineHeight: "1px",
-                    marginTop: "20px",
-                    marginBottom: "12px",
-                    borderRadius: "3px",
-                    borderStyle: "none",
-                    textAlign: "center",
-                  }}
-                  type="submit"
-                  className="profile_button"
-                >
+              </div>
+              <div>
+                <label type="submit" className="signup_profile_btn">
                   프로필 업로드
-                  <input type="file" style={{ display: "none" }} />
+                  <input
+                    className="signup_profile_upbtn"
+                    type="file"
+                    style={{ display: "none" }}
+                  />
                 </label>
               </div>
             </div>
 
             <div>
-              <label
-                htmlFor="user-id"
-                style={{
-                  marginTop: "20px",
-                }}
-              >
+              <label className="signup_font" htmlFor="user-id">
                 아이디
               </label>
+              <br />
               <input
-                style={{
-                  marginTop: "10px",
-                  borderRadius: "2px",
-                  width: "100%",
-                  height: "40px",
-                  border: "1px solid #e5e5e5",
-                  padding: "9px 12px",
-                  outline: "none",
-                  boxSizing: "border-box",
-                }}
+                className="signup_id_inputs"
                 id="Id"
                 name="user-id"
                 type="id"
                 placeholder="아이디"
                 value={Id}
                 onChange={onChangeId}
-                class="loginregister_input"
               />{" "}
               {errorId && (
-                <div
-                  class="invalid-input"
-                  style={{
-                    color: "deepskyblue",
-                    fontSize: "12px",
-                    marginBottom: "10px",
-                  }}
-                >
+                <div class="signup_input_valid">
                   {" "}
                   아이디는 숫자를 포함하여 최소 5자 이상
                 </div>
               )}
               <button
-                style={{
-                  width: "100%",
-                  height: "30px",
-                  fontSize: "14px",
-                  padding: "13px 30px",
-                  cursor: "pointer",
-                  backgroundColor: "darkslategrey",
-                  color: "white",
-                  lineHeight: "1px",
-                  borderRadius: "3px",
-                  borderStyle: "none",
-                  marginBottom: "10px",
-                }}
                 type="submit"
-                class="loginregister_button"
+                class="signup_idchk_btn"
                 hidden={show}
                 onClick={overSubmitHandler}
               >
-                아이디 중복확인
+                중복확인
               </button>
               {show && <Result data={value} />}
             </div>
             <div>
-              <label htmlFor="user-name">이름</label>
+              <label className="signup_font" htmlFor="user-name">
+                이름
+              </label>
               <input
-                style={{
-                  marginTop: "10px",
-                  borderRadius: "2px",
-                  width: "100%",
-                  height: "40px",
-                  border: "1px solid #e5e5e5",
-                  padding: "9px 12px",
-                  outline: "none",
-                  boxSizing: "border-box",
-                  marginBottom: "10px",
-                }}
+                className="signup_inputs"
                 id="name"
                 name="user-name"
                 type="text"
                 placeholder="이름"
                 value={name}
                 onChange={onNameHandler}
-                className="loginregister_input"
               />
             </div>
             <div>
-              <label htmlFor="user-nickname">닉네임</label>
+              <label className="signup_font" htmlFor="user-nickname">
+                닉네임
+              </label>
               <input
-                style={{
-                  marginTop: "10px",
-                  borderRadius: "2px",
-                  width: "100%",
-                  height: "40px",
-                  border: "1px solid #e5e5e5",
-                  padding: "9px 12px",
-                  outline: "none",
-                  boxSizing: "border-box",
-                  marginBottom: "10px",
-                }}
+                className="signup_inputs"
                 id="nickName"
                 name="user-nickname"
                 type="text"
                 placeholder="닉네임"
                 value={nickname}
                 onChange={onNicknameHandler}
-                className="loginregister_input"
               />
             </div>
 
             <div>
-              <label htmlFor="user-password">비밀번호</label>
+              <label className="signup_font" htmlFor="user-password">
+                비밀번호
+              </label>
               <input
-                style={{
-                  marginTop: "15px",
-                  borderRadius: "2px",
-                  width: "100%",
-                  height: "40px",
-                  border: "1px solid #e5e5e5",
-                  padding: "9px 12px",
-                  outline: "none",
-                  boxSizing: "border-box",
-                  marginBottom: "10px",
-                }}
+                className="signup_inputs"
                 id="Password"
                 name="user-password"
                 type="password"
                 placeholder="비밀번호"
                 value={Password}
                 onChange={onChangePassword}
-                class="loginregister_input"
               />
               {errorPassword && (
-                <div
-                  class="invalid-input"
-                  style={{
-                    color: "deepskyblue",
-                    fontSize: "12px",
-                    marginBottom: "10px",
-                  }}
-                >
+                <div className="signup_input_valid">
                   비밀번호는 숫자와 문자를 포함하여 최소 8자 이상{" "}
                 </div>
               )}{" "}
             </div>
 
             <div>
-              <label htmlFor="confirmPassword">비밀번호 확인</label>
+              <label className="signup_font" htmlFor="confirmPassword">
+                비밀번호 확인
+              </label>
               <input
-                style={{
-                  marginTop: "15px",
-                  borderRadius: "2px",
-                  width: "100%",
-                  height: "40px",
-                  border: "1px solid #e5e5e5",
-                  padding: "9px 12px",
-                  outline: "none",
-                  boxSizing: "border-box",
-                  marginBottom: "5px",
-                }}
+                className="signup_inputs"
                 name="confirmPassword"
                 type="password"
                 placeholder="비밀번호 확인"
                 value={confirmPassword}
                 id={confirmPassword}
                 onChange={onChangeConfirmPassword}
-                class="loginregister_input"
               />
               {confirmPasswordError && (
                 <div
-                  class="invalid-input"
+                  className="signup_input_valid"
                   style={{
                     color: "red",
-                    fontSize: "12px",
-                    marginBottom: "10px",
                   }}
                 >
                   {" "}
@@ -585,28 +547,38 @@ function SignUp() {
             </div>
 
             <div>
-              <label
-                htmlFor="gender"
-                style={{
-                  marginBottom: "10px",
-                  marginTop: "10px",
-                }}
-              >
+              <label className="signup_font" htmlFor="birth">
+                생년월일
+              </label>
+              <input
+                className="signup_inputs"
+                id="birth"
+                name="birth"
+                type="text"
+                placeholder="생년월일 6자를 입력해주세요"
+                value={birth}
+                onChange={onChangeBirth}
+              />
+              {errorBirth && (
+                <div className="signup_input_valid">
+                  생년월일 6자를 입력해주세요
+                </div>
+              )}
+            </div>
+
+            <div>
+              <label className="signup_font" htmlFor="gender">
                 성별
               </label>
-              <select className="form-control" id="gender">
-                <option style={{ color: "gray" }} value="M">
-                  {" "}
-                  남
-                </option>
-                <option style={{ color: "gray" }} value="F">
-                  여
-                </option>
+              <select className="signup_gender_control" id="gender">
+                <option value="M"> 남</option>
+                <option value="F">여</option>
               </select>
             </div>
 
             <div>
               <label
+                className="signup_font"
                 htmlFor="user-email"
                 style={{
                   marginTop: "15px",
@@ -615,122 +587,134 @@ function SignUp() {
                 이메일
               </label>
               <input
-                style={{
-                  marginTop: "15px",
-                  borderRadius: "2px",
-                  width: "100%",
-                  height: "40px",
-                  border: "1px solid #e5e5e5",
-                  padding: "9px 12px",
-                  outline: "none",
-                  boxSizing: "border-box",
-                }}
+                className="signup_inputs"
                 id="email"
                 name="user-email"
                 type="text"
                 placeholder="이메일"
                 value={email}
                 onChange={onChangeEmail}
-                className="loginregister_input"
               />
               {errorEmail && (
-                <div
-                  class="invalid-input"
-                  style={{
-                    color: "deepskyblue",
-                    fontSize: "12px",
-                    marginBottom: "10px",
-                  }}
-                >
-                  올바른 형식이 아닙니다.
-                </div>
+                <div class="signup_input_valid">올바른 형식이 아닙니다.</div>
               )}
             </div>
 
             <div>
-              <label
-                htmlFor="user-phone"
-                style={{
-                  marginTop: "15px",
-                }}
-              >
+              <label className="signup_font" htmlFor="user-phone">
                 휴대폰 번호
               </label>
               <input
-                style={{
-                  marginTop: "15px",
-                  borderRadius: "2px",
-                  width: "100%",
-                  height: "40px",
-                  border: "1px solid #e5e5e5",
-                  padding: "9px 12px",
-                  outline: "none",
-                  boxSizing: "border-box",
-                  marginBottom: "20px",
-                }}
+                className="signup_inputs"
                 id="phoneNumber"
                 name="user-phone"
                 type="text"
                 placeholder="-를 제외하고 숫자만 입력하세요"
                 value={phoneNumber}
                 onChange={onChangePhoneNumber}
-                className="loginregister_input"
+                style={{ marginBottom: "15px" }}
               />
               {errorPhoneNumber && (
-                <div
-                  class="invalid-input"
-                  style={{
-                    color: "deepskyblue",
-                    fontSize: "12px",
-                    marginBottom: "10px",
-                  }}
-                >
-                  숫자만 입력하세요
-                </div>
+                <div class="signup_input_valid">숫자만 입력하세요</div>
               )}
             </div>
-            <details>
-              <summary
+            <hr />
+            <h5
+              style={{
+                color: "gray",
+              }}
+            >
+              선택항목
+            </h5>
+            <br />
+            <div>
+              <label className="signup_size_font" htmlFor="height">
+                키
+              </label>
+              <input
+                id="height"
+                name="height"
+                type="text"
+                value={height}
+                onChange={onChangeHeight}
+                className="signup_size_input"
+              />
+              cm
+              <label
+                className="signup_size_font"
+                htmlFor="weight"
                 style={{
-                  cursor: "pointer",
-                  marginBottom: "10px",
+                  marginLeft: "20px",
+                  marginTop: "5px",
                 }}
               >
-                일반회원 약관동의
-              </summary>
-              <div>
-                <input
-                  style={{
-                    marginBottom: "5px",
-                  }}
-                  type="checkbox"
-                  id="all-check"
-                  checked={allCheck}
-                  onChange={allBtnEvent}
-                />
-                <label style={{ fontSize: "14px" }} htmlFor="all-check">
-                  전체동의
-                </label>
-              </div>
+                몸무게
+              </label>
+              <input
+                className="signup_size_input"
+                id="weight"
+                name="weight"
+                type="text"
+                value={weight}
+                onChange={onChangeWeight}
+              />
+              kg
+            </div>
+            <hr />
 
-              <div>
-                <input
-                  style={{
-                    marginBottom: "5px",
-                  }}
-                  type="checkbox"
-                  id="check1"
-                  checked={ageCheck}
-                  onChange={ageBtnEvent}
-                />
-                <label style={{ fontSize: "14px" }} htmlFor="check1">
-                  만 14세 이상입니다{" "}
-                  <span style={{ color: "deepskyblue" }} className="stylesblue">
-                    (필수)
-                  </span>
-                </label>
-              </div>
-              <div>
+            <details>
+              <summary className="signup_summary">
+                일반회원 약관동의{" "}
+                <span style={{ color: "gray" }} className="stylesgray">
+                  (펼쳐보기)
+                </span>
+              </summary>
+              <div className="term_form">
+                <h2 className="term_font">
+                  데일리코더(Daily Cooder)
+                  <br />
+                  서비스 약관에 동의해 주세요!
+                </h2>
+                <hr />
+
+                <div>
+                  <input
+                    style={{
+                      marginBottom: "5px",
+                    }}
+                    type="checkbox"
+                    id="all-check"
+                    checked={allCheck}
+                    onChange={allBtnEvent}
+                  />
+                  <label className="chk_font" htmlFor="all-check">
+                    모두 동의합니다!
+                  </label>
+                  <p className="term_low_font">
+                    전체 동의는 필수 및 선택정보에 대한 동의도 포함되어 있으며,
+                    개별적으로도 동의를 선택하실 수 있습니다.
+                    <br />
+                    선택항목에 대한 동의를 거부하시는 경우에도 서비스는 이용이
+                    가능합니다.
+                  </p>
+                </div>
+
+                <div>
+                  <input
+                    style={{
+                      marginBottom: "5px",
+                    }}
+                    type="checkbox"
+                    id="check1"
+                    checked={ageCheck}
+                    onChange={ageBtnEvent}
+                  />
+                  <label style={{ fontSize: "14px" }} htmlFor="check1">
+                    <span className="chk_font_blue">[필수]</span>만 14세
+                    이상입니다{" "}
+                  </label>
+                </div>
+
                 <input
                   style={{
                     marginBottom: "5px",
@@ -741,49 +725,84 @@ function SignUp() {
                   onChange={useBtnEvent}
                 />
                 <label style={{ fontSize: "14px" }} htmlFor="check2">
-                  이용약관{" "}
-                  <span style={{ color: "deepskyblue" }} className="stylesblue">
-                    (필수)
-                  </span>
+                  <span className="chk_font_blue">[필수]</span>
+                  데일리코더계정 약관{" "}
                 </label>
-              </div>
-              <div>
-                <input
-                  type="checkbox"
-                  id="check3"
-                  checked={marketingCheck}
-                  onChange={marketingBtnEvent}
-                />
-                <label style={{ fontSize: "14px" }} htmlFor="check3">
-                  마케팅 동의{" "}
-                  <span style={{ color: "gray" }} className="stylesgray">
-                    (선택)
-                  </span>
-                </label>
+
+                <div>
+                  <input
+                    style={{
+                      marginBottom: "5px",
+                    }}
+                    type="checkbox"
+                    id="check4"
+                    checked={totalCheck}
+                    onChange={totalBtnEvent}
+                  />
+                  <label style={{ fontSize: "14px" }} htmlFor="check4">
+                    <span className="chk_font_blue">[필수]</span>
+                    데일리코더 통합서비스 약관{" "}
+                  </label>
+                </div>
+                <p className="term_low_font">
+                  본 약관은 데일리코더가 제공하는 서비스에 적용되며, 본 약관에
+                  동의함으로써 해당 서비스들을 이용할 수 있습니다.
+                </p>
+
+                <div>
+                  <input
+                    type="checkbox"
+                    id="check3"
+                    checked={marketingCheck}
+                    onChange={marketingBtnEvent}
+                  />
+                  <label style={{ fontSize: "14px" }} htmlFor="check3">
+                    <span className="chk_font_gray">[선택]</span>
+                    광고메세지 수신{" "}
+                  </label>
+                </div>
+
+                <div>
+                  <input
+                    style={{
+                      marginBottom: "5px",
+                    }}
+                    type="checkbox"
+                    id="check5"
+                    checked={personCheck}
+                    onChange={personBtnEvent}
+                  />
+                  <label style={{ fontSize: "14px" }} htmlFor="check5">
+                    <span className="chk_font_blue">[필수]</span>
+                    개인정보 수집 및 이용 동의{" "}
+                  </label>
+                </div>
+
+                <div>
+                  <input
+                    style={{
+                      marginBottom: "5px",
+                    }}
+                    type="checkbox"
+                    id="check6"
+                    checked={gpsCheck}
+                    onChange={gpsBtnEvent}
+                  />
+                  <label style={{ fontSize: "14px" }} htmlFor="check6">
+                    <span className="chk_font_gray">[선택]</span>
+                    위치정보 수집 및 이용 동의{" "}
+                  </label>
+                </div>
               </div>
             </details>
 
             <div>
               <button
-                style={{
-                  width: "420px",
-                  height: "40px",
-                  fontSize: "14px",
-                  padding: "13px 30px",
-                  cursor: "pointer",
-                  backgroundColor: "black",
-                  color: "white",
-                  lineHeight: "1px",
-                  marginTop: "20px",
-                  marginBottom: "12px",
-                  borderRadius: "3px",
-                  borderStyle: "none",
-                }}
                 type="button"
                 onClick={onSubmitHandler}
-                className="loginregister_button"
+                className="signup_btn"
               >
-                <b>회원가입</b>
+                <b>회 원 가 입</b>
               </button>
             </div>
           </Tab>
@@ -793,188 +812,96 @@ function SignUp() {
             title="사업자회원가입"
             onSubmit={onProSubmitHandler}
           >
-            <p
-              style={{
-                marginTop: "30px",
-                flexDirection: "column",
-                fontSize: "25px",
-                display: "block",
-                width: 350,
-                padding: 30,
-              }}
-            >
-              {" "}
-              사업자 회원가입{" "}
-            </p>
+            <p className="signup_upper_font"> 사업자 회원가입 </p>
             <br />
             <br />
 
             <div>
-              <label
-                htmlFor="pro-id"
-                style={{
-                  marginTop: "20px",
-                }}
-              >
+              <label className="signup_font" htmlFor="pro-id">
                 아이디
               </label>
+              <br />
               <input
-                style={{
-                  marginTop: "10px",
-                  borderRadius: "2px",
-                  width: "100%",
-                  height: "40px",
-                  border: "1px solid #e5e5e5",
-                  padding: "9px 12px",
-                  outline: "none",
-                  boxSizing: "border-box",
-                }}
+                className="signup_id_inputs"
+                style={{ width: "70%" }}
                 id="proId"
                 name="pro-id"
                 type="id"
                 placeholder="아이디"
                 value={proId}
                 onChange={onChangeProId}
-                class="loginregister_input"
               />{" "}
               {errorProId && (
-                <div
-                  class="invalid-input"
-                  style={{
-                    color: "deepskyblue",
-                    fontSize: "12px",
-                    marginBottom: "10px",
-                  }}
-                >
+                <div className="signup_input_valid">
                   {" "}
                   아이디는 숫자를 포함하여 최소 5자 이상
                 </div>
               )}
               <button
-                style={{
-                  width: "100%",
-                  height: "30px",
-                  fontSize: "14px",
-                  padding: "13px 30px",
-                  cursor: "pointer",
-                  backgroundColor: "darkslategrey",
-                  color: "white",
-                  lineHeight: "1px",
-                  borderRadius: "3px",
-                  borderStyle: "none",
-                  marginBottom: "10px",
-                }}
+                className="signup_idchk_btn"
+                style={{ width: "27%" }}
                 type="submit"
-                className="loginregister_button"
                 onClick={overSubmitHandler}
               >
-                아이디 중복확인
+                중복확인
               </button>
             </div>
 
             <div>
-              <label htmlFor="pro-name">상호명</label>
+              <label className="signup_font" htmlFor="pro-name">
+                상호명
+              </label>
               <input
-                style={{
-                  marginTop: "10px",
-                  borderRadius: "2px",
-                  width: "100%",
-                  height: "40px",
-                  border: "1px solid #e5e5e5",
-                  padding: "9px 12px",
-                  outline: "none",
-                  boxSizing: "border-box",
-                  marginBottom: "10px",
-                }}
+                className="signup_inputs"
                 id="proName"
                 name="pro-name"
                 type="text"
                 placeholder="이름"
                 value={proName}
                 onChange={onProNameHandler}
-                className="loginregister_input"
               />{" "}
               {errorProName && (
-                <div
-                  className="invalid-input"
-                  style={{
-                    color: "deepskyblue",
-                    fontSize: "12px",
-                    marginBottom: "10px",
-                  }}
-                >
+                <div className="signup_input_valid">
                   상호명 형식이 올바르지 않습니다.
                 </div>
               )}
             </div>
 
             <div>
-              <label htmlFor="pro-password">비밀번호</label>
+              <label className="signup_font" htmlFor="pro-password">
+                비밀번호
+              </label>
               <input
-                style={{
-                  marginTop: "15px",
-                  borderRadius: "2px",
-                  width: "100%",
-                  height: "40px",
-                  border: "1px solid #e5e5e5",
-                  padding: "9px 12px",
-                  outline: "none",
-                  boxSizing: "border-box",
-                  marginBottom: "10px",
-                }}
+                className="signup_inputs"
                 id="proPassword"
                 name="pro-password"
                 type="password"
                 placeholder="비밀번호"
                 value={proPassword}
                 onChange={onChangeProPassword}
-                className="loginregister_input"
               />
               {errorProPassword && (
-                <div
-                  className="invalid-input"
-                  style={{
-                    color: "deepskyblue",
-                    fontSize: "12px",
-                    marginBottom: "10px",
-                  }}
-                >
+                <div className="signup_input_valid">
                   비밀번호는 숫자와 문자를 포함하여 최소 8자 이상{" "}
                 </div>
               )}{" "}
             </div>
 
             <div>
-              <label htmlFor="confirmProPassword">비밀번호 확인</label>
+              <label className="signup_font" htmlFor="confirmProPassword">
+                비밀번호 확인
+              </label>
               <input
-                style={{
-                  marginTop: "15px",
-                  borderRadius: "2px",
-                  width: "100%",
-                  height: "40px",
-                  border: "1px solid #e5e5e5",
-                  padding: "9px 12px",
-                  outline: "none",
-                  boxSizing: "border-box",
-                  marginBottom: "5px",
-                }}
+                className="signup_inputs"
                 id="confirmProPassword"
                 name="confirmProPassword"
                 type="password"
                 placeholder="비밀번호 확인"
                 value={confirmProPassword}
                 onChange={onChangeConfirmProPassword}
-                className="loginregister_input"
               />
               {confirmProPasswordError && (
-                <div
-                  className="invalid-input"
-                  style={{
-                    color: "red",
-                    fontSize: "12px",
-                    marginBottom: "10px",
-                  }}
-                >
+                <div className="signup_input_valid">
                   {" "}
                   비밀번호가 일치하지 않습니다.
                 </div>
@@ -982,175 +909,116 @@ function SignUp() {
             </div>
 
             <div>
-              <label
-                htmlFor="pro-phone"
-                style={{
-                  marginTop: "15px",
-                }}
-              >
+              <label className="signup_font" htmlFor="pro-phone">
                 사업자 번호
               </label>
               <input
-                style={{
-                  marginTop: "15px",
-                  borderRadius: "2px",
-                  width: "100%",
-                  height: "40px",
-                  border: "1px solid #e5e5e5",
-                  padding: "9px 12px",
-                  outline: "none",
-                  boxSizing: "border-box",
-                  marginBottom: "10px",
-                }}
+                className="signup_inputs"
                 id="proNumber"
                 name="pro-number"
                 type="text"
                 placeholder="-를 제외하고 숫자만 입력하세요"
                 value={proNumber}
                 onChange={onChangeProNumber}
-                className="loginregister_input"
               />{" "}
               {errorProNumber && (
-                <div
-                  className="invalid-input"
-                  style={{
-                    color: "deepskyblue",
-                    fontSize: "12px",
-                    marginBottom: "10px",
-                  }}
-                >
-                  숫자만 입력하세요
-                </div>
+                <div className="signup_input_valid">숫자만 입력하세요</div>
               )}
             </div>
 
             <div>
-              <label
-                htmlFor="pro-email"
-                style={{
-                  marginTop: "15px",
-                }}
-              >
+              <label className="signup_font" htmlFor="pro-email">
                 이메일
               </label>
               <input
-                style={{
-                  marginTop: "15px",
-                  borderRadius: "2px",
-                  width: "100%",
-                  height: "40px",
-                  border: "1px solid #e5e5e5",
-                  padding: "9px 12px",
-                  outline: "none",
-                  boxSizing: "border-box",
-                }}
+                className="signup_inputs"
                 id="proEmail"
                 name="pro-email"
                 type="text"
                 placeholder="이메일"
                 value={proEmail}
                 onChange={onChangeProEmail}
-                className="loginregister_input"
               />
               {errorProEmail && (
-                <div
-                  className="invalid-input"
-                  style={{
-                    color: "deepskyblue",
-                    fontSize: "12px",
-                    marginBottom: "10px",
-                  }}
-                >
+                <div className="signup_input_valid">
                   올바른 형식이 아닙니다.
                 </div>
               )}
             </div>
 
             <div>
-              <label
-                htmlFor="pro-phone"
-                style={{
-                  marginTop: "15px",
-                }}
-              >
+              <label className="signup_font" htmlFor="pro-phone">
                 휴대폰 번호
               </label>
               <input
-                style={{
-                  marginTop: "15px",
-                  borderRadius: "2px",
-                  width: "100%",
-                  height: "40px",
-                  border: "1px solid #e5e5e5",
-                  padding: "9px 12px",
-                  outline: "none",
-                  boxSizing: "border-box",
-                  marginBottom: "20px",
-                }}
+                className="signup_inputs"
                 id="proPhone"
                 name="pro-phone"
                 type="text"
                 placeholder="-를 제외하고 숫자만 입력하세요"
                 value={proPhone}
                 onChange={onChangeProPhone}
-                className="loginregister_input"
+                style={{ marginBottom: "15px" }}
               />
               {errorProPhone && (
-                <div
-                  className="invalid-input"
-                  style={{
-                    color: "deepskyblue",
-                    fontSize: "12px",
-                    marginBottom: "10px",
-                  }}
-                >
-                  숫자만 입력하세요
-                </div>
+                <div className="signup_input_valid">숫자만 입력하세요</div>
               )}
             </div>
+            <hr />
 
             <details>
-              <summary
-                style={{
-                  cursor: "pointer",
-                  marginBottom: "10px",
-                }}
-              >
-                사업자회원 약관동의
+              <summary className="signup_summary">
+                사업자회원 약관동의{" "}
+                <span style={{ color: "gray" }} className="stylesgray">
+                  (펼쳐보기)
+                </span>
               </summary>
-              <div>
-                <input
-                  style={{
-                    marginBottom: "5px",
-                  }}
-                  type="checkbox"
-                  id="all-check"
-                  checked={allCheck}
-                  onChange={allBtnEvent}
-                />
-                <label style={{ fontSize: "14px" }} htmlFor="all-check">
-                  전체동의
-                </label>
-              </div>
+              <div className="term_form">
+                <h2 className="term_font">
+                  데일리코더(Daily Cooder)
+                  <br />
+                  서비스 약관에 동의해 주세요!
+                </h2>
+                <hr />
 
-              <div>
-                <input
-                  style={{
-                    marginBottom: "5px",
-                  }}
-                  type="checkbox"
-                  id="check1"
-                  checked={ageCheck}
-                  onChange={ageBtnEvent}
-                />
-                <label style={{ fontSize: "14px" }} htmlFor="check1">
-                  만 14세 이상입니다{" "}
-                  <span style={{ color: "deepskyblue" }} className="stylesblue">
-                    (필수)
-                  </span>
-                </label>
-              </div>
-              <div>
+                <div>
+                  <input
+                    style={{
+                      marginBottom: "5px",
+                    }}
+                    type="checkbox"
+                    id="all-check"
+                    checked={allCheck}
+                    onChange={allBtnEvent}
+                  />
+                  <label className="chk_font" htmlFor="all-check">
+                    모두 동의합니다!
+                  </label>
+                  <p className="term_low_font">
+                    전체 동의는 필수 및 선택정보에 대한 동의도 포함되어 있으며,
+                    개별적으로도 동의를 선택하실 수 있습니다.
+                    <br />
+                    선택항목에 대한 동의를 거부하시는 경우에도 서비스는 이용이
+                    가능합니다.
+                  </p>
+                </div>
+
+                <div>
+                  <input
+                    style={{
+                      marginBottom: "5px",
+                    }}
+                    type="checkbox"
+                    id="check1"
+                    checked={ageCheck}
+                    onChange={ageBtnEvent}
+                  />
+                  <label style={{ fontSize: "14px" }} htmlFor="check1">
+                    <span className="chk_font_blue">[필수]</span>만 14세
+                    이상입니다{" "}
+                  </label>
+                </div>
+
                 <input
                   style={{
                     marginBottom: "5px",
@@ -1161,46 +1029,82 @@ function SignUp() {
                   onChange={useBtnEvent}
                 />
                 <label style={{ fontSize: "14px" }} htmlFor="check2">
-                  이용약관{" "}
-                  <span style={{ color: "deepskyblue" }} className="stylesblue">
-                    (필수)
-                  </span>
+                  <span className="chk_font_blue">[필수]</span>
+                  데일리코더계정 약관{" "}
                 </label>
-              </div>
-              <div>
-                <input
-                  type="checkbox"
-                  id="check3"
-                  checked={marketingCheck}
-                  onChange={marketingBtnEvent}
-                />
-                <label style={{ fontSize: "14px" }} htmlFor="check3">
-                  마케팅 동의{" "}
-                  <span style={{ color: "gray" }} className="stylesgray">
-                    (선택)
-                  </span>
-                </label>
+
+                <div>
+                  <input
+                    style={{
+                      marginBottom: "5px",
+                    }}
+                    type="checkbox"
+                    id="check4"
+                    checked={totalCheck}
+                    onChange={totalBtnEvent}
+                  />
+                  <label style={{ fontSize: "14px" }} htmlFor="check4">
+                    <span className="chk_font_blue">[필수]</span>
+                    데일리코더 통합서비스 약관{" "}
+                  </label>
+                </div>
+                <p className="term_low_font">
+                  본 약관은 데일리코더가 제공하는 서비스에 적용되며, 본 약관에
+                  동의함으로써 해당 서비스들을 이용할 수 있습니다.
+                </p>
+
+                <div>
+                  <input
+                    type="checkbox"
+                    id="check3"
+                    checked={marketingCheck}
+                    onChange={marketingBtnEvent}
+                  />
+                  <label style={{ fontSize: "14px" }} htmlFor="check3">
+                    <span className="chk_font_gray">[선택]</span>
+                    광고메세지 수신{" "}
+                  </label>
+                </div>
+
+                <div>
+                  <input
+                    style={{
+                      marginBottom: "5px",
+                    }}
+                    type="checkbox"
+                    id="check5"
+                    checked={personCheck}
+                    onChange={personBtnEvent}
+                  />
+                  <label style={{ fontSize: "14px" }} htmlFor="check5">
+                    <span className="chk_font_blue">[필수]</span>
+                    개인정보 수집 및 이용 동의{" "}
+                  </label>
+                </div>
+
+                <div>
+                  <input
+                    style={{
+                      marginBottom: "5px",
+                    }}
+                    type="checkbox"
+                    id="check6"
+                    checked={gpsCheck}
+                    onChange={gpsBtnEvent}
+                  />
+                  <label style={{ fontSize: "14px" }} htmlFor="check6">
+                    <span className="chk_font_gray">[선택]</span>
+                    위치정보 수집 및 이용 동의{" "}
+                  </label>
+                </div>
               </div>
             </details>
+
             <div>
               <button
-                style={{
-                  width: "420px",
-                  height: "40px",
-                  fontSize: "14px",
-                  padding: "13px 30px",
-                  cursor: "pointer",
-                  backgroundColor: "black",
-                  color: "white",
-                  lineHeight: "1px",
-                  marginTop: "20px",
-                  marginBottom: "12px",
-                  borderRadius: "3px",
-                  borderStyle: "none",
-                }}
+                className="signup_btn"
                 type="button"
                 onClick={onProSubmitHandler}
-                className="loginregister_button"
               >
                 회원가입
               </button>

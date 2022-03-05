@@ -1,0 +1,180 @@
+.signup {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 40vh;
+    margin-top: 50px;
+
+}
+
+.signup_upper_font {
+    margin-top: 30px;
+    flex-direction: column;
+    font-size: 25px;
+    display: block;
+    width: 300px;
+    padding: 30px;
+    font-weight: bold;
+}
+
+.signup_profile_img {
+    margin-left: 180px;
+    width: 180px;
+    height: 180px;
+
+}
+
+.signup_profile_btn {
+    margin-left: 200px;
+    width: 150px;
+    height: 30px;
+    font-size: 14px;
+    padding: 13px 30px;
+    cursor: pointer;
+    background-color: gray;
+    color: white;
+    line-height: 1px;
+    margin-top: 20px;
+    margin-bottom: 12px;
+    border-radius: 3px;
+    border-style: none;
+    text-align: center;
+}
+
+.signup_font {
+    margin-top: 8px;
+
+}
+
+.signup_id_inputs {
+    margin-top: 10px;
+    border-radius: 2px;
+    width: 72%;
+    height: 30px;
+    border: 1px solid #e5e5e5;
+    padding: 9px 12px;
+    outline: none;
+    box-sizing: border-box;
+
+}
+
+.signup_inputs {
+    margin-top: 10px;
+    border-radius: 2px;
+    width: 100%;
+    height: 30px;
+    border: 1px solid #e5e5e5;
+    padding: 9px 12px;
+    outline: none;
+    box-sizing: border-box;
+
+}
+
+.signup_input_valid {
+    color: deepskyblue;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.signup_idchk_btn {
+    width: 25%;
+    height: 30px;
+    font-size: 14px;
+    padding: 13px 30px;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    line-height: 1px;
+    border-radius: 3px;
+    border-style: none;
+    margin-bottom: 10px;
+
+}
+
+.signup_gender_control {
+    margin-top: 10px;
+    height: 30px;
+    font-size: 13px;
+    color: gray;
+    width: 100%;
+    border: 1px solid #e5e5e5;
+
+}
+
+.signup_size_font {
+    margin-left: 15px;
+    margin-top: 5px;
+}
+
+.signup_size_input {
+    margin-top: 5px;
+    border-radius: 2px;
+    width: 35%;
+    height: 30px;
+    border: 1px solid #e5e5e5;
+    padding: 9px 12px;
+    outline: none;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+.signup_summary {
+    cursor: pointer;
+    margin-bottom: 25px;
+    margin-top: 25px;
+    margin-inline: 150px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.signup_btn {
+    margin-left: 60px;
+    width: 400px;
+    height: 30px;
+    font-size: 15px;
+    padding: 13px 30px;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    line-height: 1px;
+    margin-top: 40px;
+    margin-bottom: 100px;
+    border-radius: 3px;
+    border-style: none;
+}
+
+.term_form {
+
+    width: 350px;
+    margin-inline: 100px;
+}
+
+.term_font {
+    font-size: 18px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.chk_font {
+    font-size: 15px;
+}
+
+.term_low_font {
+    margin-top: 5px;
+    font-size: 13px;
+    margin-inline: 10px;
+    margin-bottom: 5px;
+    color: gray;
+}
+
+.chk_font_blue {
+    color: deepskyblue;
+    text-align: right;
+    margin-left: 3px;
+}
+
+.chk_font_gray {
+    color: gray;
+    text-align: right;
+    margin-left: 3px;
+}
