@@ -14,7 +14,7 @@ const MyPage_SideMenubarCss=createGlobalStyle`
         transform:translateY(-50%);
         left:0;
         padding:1em 1em 1em 0;
-        width:250px;
+        width:200px;
         height:auto;
         background-color:white;
         border:1px solid #f7f7f7;
