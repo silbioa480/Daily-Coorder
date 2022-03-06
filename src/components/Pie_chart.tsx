@@ -1,35 +1,45 @@
-import React from "react";
-import ApexCharts from "react-apexcharts";
+import React, { ComponentLifecycle } from "react";
+import ReactApexChart from "react-apexcharts";
 
-type props = {
-  props: any;
-};
+interface Component <P={},S={}> extends ComponentLifecycle <P,S>{}
 
-class Pie_chart extends React.Component {
+class Pie_chart extends React.Component<{},{options:object , series:Array<Object>}> {
+    
+
+    constructor(props : object){
+      super(props);
+      this.state={
+          series:[44,55,13,24,42],
+          options:{
+            chart:{
+              width:"380px",
+              type:"pie"
+            },
+            labels:["Like","Age","Man","Woman","Reply"],
+            responsive:[{
+              breakpoint:"480",
+              options:{
+                chart:{
+                  width:"800px",
+                },
+                legend:{
+                  position:"right"
+                }
+              }
+            }]
+          }
+      };
+    }
+
   render() {
     return (
-      <>
-        <ApexCharts
-          type="pie"
-          series={[44, 55, 13, 43, 22]}
-          options={{
-            chart: {
-              width: 300,
-              height: 350,
-            },
-            legend: {
-              position: "bottom",
-            },
-          }}
-          labels={["Team A", "Team B", "Team C", "Team D", "Team E"]}
-          responsive={[
-            {
-              breakpoint: 280,
-            },
-          ]}
-          style={{ width: "400px", height: "550px" ,margin:"0 auto",marginTop:"5vh"}}
-        />
-      </>
+     
+          <>
+            <div style={{display:"flex",justifyContent:"flex-end",marginTop:"3vw"}}>
+                <ReactApexChart options={this.state.options}  series={this.state.series} type="pie" width={700}/>
+            </div>
+          </>
+      
     );
   }
 }
