@@ -12,10 +12,8 @@ import { Figure } from 'react-bootstrap';
 function MyPage_MemberModify(){
     const [show,setShow]=useState(false);
     const [userId,setId]=useState("user1234");
-    const [userNickname,setNickname]=useState("");
+    const [userNickname,setNickname]=useState("nickname");
     const [userPassword,setPassword]=useState("");
-    const [userPhone,setPhone]=useState("");
-    const [userEmail,setEmail]=useState("");
 
     const [userInfo,setUserInfo]=useState({
         id:"",
@@ -45,9 +43,9 @@ function MyPage_MemberModify(){
    }
 
    const passwordCheck=(event:any)=>{
-       const comparePwd=event.target.value;
-       if(userInfo.password!=comparePwd){
-           console.log("비밀번호가 다릅니다");
+        setPassword(event.target.value);
+       if(userInfo.password!=userPassword){
+           alert("비밀번호가 다릅니다");
        }
    }
 
@@ -65,6 +63,14 @@ function MyPage_MemberModify(){
         }else{
             alert("사용가능한 닉네임입니다.");
         }
+   }
+
+   const assignRequest=()=>{
+       alert("입력하신 전화번호로 인증요청을 보냈습니다");
+   }
+
+   const assignEmail=()=>{
+       alert("입력하신 이메일로 인증메일을 보냈습니다.");
    }
     return(
         <>
@@ -103,7 +109,7 @@ function MyPage_MemberModify(){
                                     <Form.Label>닉네임</Form.Label>
                                     <div style={{width:"100%",display:"flex"}}>
                                         <Form.Control type="text" placeholder="Enter NickName" name="nickname" value={userInfo.nickname} onChange={handleChange}/>
-                                        <Button style={{width:"180px",textAlign:"center"}}>닉네임중복 확인</Button>
+                                        <Button style={{width:"180px",textAlign:"center"}} onClick={compareNickName}>닉네임중복 확인</Button>
                                     </div>
                             </Form.Group>
                         
@@ -127,7 +133,7 @@ function MyPage_MemberModify(){
                                 <Form.Label>Phone Number</Form.Label>
                                 <div style={{width:"100%",display:"flex"}}>
                                     <Form.Control type="text" placeholder="Phone Number" name="phoneNumber" value={userInfo.phone} onChange={handleChange}/>
-                                    <Button style={{width:"180px",textAlign:"center"}}>인증요청</Button>
+                                    <Button style={{width:"180px",textAlign:"center"}} onClick={assignRequest}>인증요청</Button>
                                 </div>
                             </Form.Group>
 
@@ -135,7 +141,7 @@ function MyPage_MemberModify(){
                                 <Form.Label>Email</Form.Label>
                                 <div style={{width:"100%",display:"flex"}}>
                                     <Form.Control type="email" placeholder="Enter Email" name="email" value={userInfo.email} onChange={handleChange}/>
-                                    <Button style={{width:"180px",textAlign:"center"}}>인증요청</Button>
+                                    <Button style={{width:"180px",textAlign:"center"}} onClick={assignEmail}>인증요청</Button>
                                 </div>
                             </Form.Group>
                     
