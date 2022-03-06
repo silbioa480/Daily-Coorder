@@ -21,13 +21,28 @@ function MyPage_SideMenubar(){
     const [show2,setShow2]=useState(false);
 
     const handleshow=()=>{
-        setShow(true);
+       setShow(!show)
+       if(!show){
+           setShow(true);
+       }else{
+           setShow(false);
+       }
     }
     const handleshow1=()=>{
-        setShow1(true);
+        setShow1(!show1)
+       if(!show1){
+           setShow1(true);
+       }else{
+           setShow1(false);
+       }
     }
     const handleshow2=()=>{
-        setShow2(true);
+        setShow2(!show2)
+       if(!show2){
+           setShow2(true);
+       }else{
+           setShow2(false);
+       }
     }
     return (
 
