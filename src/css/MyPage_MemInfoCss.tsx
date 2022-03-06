@@ -8,8 +8,9 @@ const MemInfoCss=createGlobalStyle`
         height:auto;
         padding:2vw;
         margin:5em auto;
-        border:1px solid black;
+        border:1px solid #f7f7f7;
         background-color:white;
+        border-radius:20px;
         
     }
     body{
