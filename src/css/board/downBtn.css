@@ -1,0 +1,18 @@
+.dropdown {
+  position: relative;
+}
+.dropdown .dropdown-btn {
+  padding: 15px 20px;
+  background-color: transparent;
+}
+.dropdown .dropdown-content {
+  position: absolute;
+  left: -65px;
+  padding: 10px 5px;
+  background-color: #fff;
+  box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
+  font-weight: 500;
+  color: #333;
+  width: 200px;
+  border-radius: 10px;
+}
