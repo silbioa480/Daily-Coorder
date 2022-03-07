@@ -7,6 +7,7 @@ import PopUp from "../components/PopUp";
 import "../css/SignUp.css";
 
 function SignUp() {
+  //모달관련
   const [popup, setPopup] = useState({
     open: false,
     title: "",
@@ -406,7 +407,7 @@ function SignUp() {
       setPopup({
         open: true,
         title: "통과 !!",
-        message: "사용가능한 아이디입니다!",
+        message: "사용가능 합니다!",
       });
       return;
     } else {
@@ -512,8 +513,9 @@ function SignUp() {
               <label className="signup_font" htmlFor="user-nickname">
                 닉네임
               </label>
+              <br />
               <input
-                className="signup_inputs"
+                className="signup_id_inputs"
                 id="nickName"
                 name="user-nickname"
                 type="text"
@@ -521,6 +523,16 @@ function SignUp() {
                 value={nickname}
                 onChange={onNicknameHandler}
               />
+              <button
+                type="submit"
+                class="signup_idchk_btn"
+                hidden={show}
+                onClick={overSubmitHandler}
+                style={{ marginLeft: "5px" }}
+              >
+                중복확인
+              </button>
+              {show && <Result data={value} />}
             </div>
 
             <div>
@@ -688,9 +700,7 @@ function SignUp() {
             <details>
               <summary className="signup_summary">
                 일반회원 약관동의{" "}
-                <span style={{ color: "gray" }} className="stylesgray">
-                  (펼쳐보기)
-                </span>
+                <span style={{ color: "gray" }}>(펼쳐보기)</span>
               </summary>
               <div className="term_form">
                 <h2 className="term_font">
@@ -698,7 +708,7 @@ function SignUp() {
                   <br />
                   서비스 약관에 동의해 주세요!
                 </h2>
-                <hr />
+                <hr style={{ color: "#015bbb" }}></hr>
 
                 <div>
                   <input
