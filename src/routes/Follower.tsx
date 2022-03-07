@@ -3,22 +3,23 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
 
 // css
-import "../../css/main/MainAnother.css";
+import "../css/main/MainAnother.css";
 
 // 사진
-import mainano1 from "../../img/main/mainano1.png";
-import mainano2 from "../../img/main/mainano2.png";
-import mainano3 from "../../img/main/mainano3.png";
-import mainano4 from "../../img/main/mainano4.png";
-import mainano5 from "../../img/main/mainano5.png";
-import mainano6 from "../../img/main/mainano6.png";
-import mainano7 from "../../img/main/mainano7.png";
-import mainano8 from "../../img/main/mainano8.png";
-import mainano9 from "../../img/main/mainano9.png";
-import mainano10 from "../../img/main/mainano10.png";
-import MainAnotherComponent from "./MainAnotherComponent";
+import mainano1 from "../img/main/mainano1.png";
+import mainano2 from "../img/main/mainano2.png";
+import mainano3 from "../img/main/mainano3.png";
+import mainano4 from "../img/main/mainano4.png";
+import mainano5 from "../img/main/mainano5.png";
+import mainano6 from "../img/main/mainano6.png";
+import mainano7 from "../img/main/mainano7.png";
+import mainano8 from "../img/main/mainano8.png";
+import mainano9 from "../img/main/mainano9.png";
+import mainano10 from "../img/main/mainano10.png";
+import MainAnotherComponent from "../components/main/MainAnotherComponent";
+import { Figure } from "react-bootstrap";
 
-function MainAnother() {
+function Follower() {
   const [datas, setDatas] = useState([
     {
       id: 1,
@@ -149,12 +150,26 @@ function MainAnother() {
   });
 
   return (
-    <>
-      <div className="mainfollow-text">New Another</div>
-      <hr className="Line"></hr>
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      <Figure.Image
+        src={require("../img/main/follow_icon.png")}
+        alt="thumbnail"
+        style={{
+          alignSelf: "center",
+          width: "150px",
+          height: "150px",
+          borderRadius: "50%",
+        }}
+      />
+      <div className="mainfollow-text">{"Follower"}</div>
+      <div style={{ marginTop: "16px", textAlign: "center" }}>
+        팔로우 수 {0}
+      </div>
+
+      <hr className="Line" />
       <div className="wth">
-        <div className="anothercar">
-          {renderRepeat}
+        <div className="anothercar" style={{ width: "1400px" }}>
+          <div style={{ display: "inline-block" }}>{renderRepeat}</div>
 
           <div className="btn-out">
             <button className="plus-btn" onClick={load}>
@@ -163,8 +178,8 @@ function MainAnother() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
-export default MainAnother;
+export default Follower;

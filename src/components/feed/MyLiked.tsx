@@ -16,9 +16,9 @@ import mainano7 from "../../img/main/mainano7.png";
 import mainano8 from "../../img/main/mainano8.png";
 import mainano9 from "../../img/main/mainano9.png";
 import mainano10 from "../../img/main/mainano10.png";
-import MainAnotherComponent from "./MainAnotherComponent";
+import MainAnotherComponent from "../main/MainAnotherComponent";
 
-function MainAnother() {
+function MyLiked() {
   const [datas, setDatas] = useState([
     {
       id: 1,
@@ -149,12 +149,12 @@ function MainAnother() {
   });
 
   return (
-    <>
-      <div className="mainfollow-text">New Another</div>
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      <div className="mainfollow-text">My Liked</div>
       <hr className="Line"></hr>
       <div className="wth">
-        <div className="anothercar">
-          {renderRepeat}
+        <div className="anothercar" style={{ width: "1400px" }}>
+          <div style={{ display: "inline-block" }}>{renderRepeat}</div>
 
           <div className="btn-out">
             <button className="plus-btn" onClick={load}>
@@ -163,8 +163,8 @@ function MainAnother() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
-export default MainAnother;
+export default MyLiked;
