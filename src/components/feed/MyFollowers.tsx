@@ -31,7 +31,7 @@ function MyFollowers() {
 
   return (
     <div>
-      <div style={{ margin: "20px" }}>팔로워 {0}</div>
+      <div style={{ margin: "20px", textAlign: "center" }}>팔로워 {0}</div>
       {repeat()}
     </div>
   );
