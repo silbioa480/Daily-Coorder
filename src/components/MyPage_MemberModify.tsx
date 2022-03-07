@@ -11,6 +11,7 @@ import { Figure } from 'react-bootstrap';
 
 function MyPage_MemberModify(){
     const [show,setShow]=useState(false);
+    const [imgfile,setImgFile]=useState('');
     const [userId,setId]=useState("user1234");
     const [userNickname,setNickname]=useState("nickname");
     const [userPassword,setPassword]=useState("");
@@ -41,6 +42,11 @@ function MyPage_MemberModify(){
         setUserInfo((userinfo)=>({...userinfo,[name]:[value]}));
 
    }
+
+   const onloadfile=(event: any)=>{
+    const file=event.target.files;
+    setImgFile(URL.createObjectURL(file[0]));
+    }
 
    const passwordCheck=(event:any)=>{
         setPassword(event.target.value);
@@ -85,18 +91,18 @@ function MyPage_MemberModify(){
                                             width={170}
                                             height={200}
                                             alt="프로필 사진"
-                                            src="holder.js/170x200"
+                                            src={imgfile}
                                         />
                                     </Figure>
                                 </div>
                                 <div style={{margin:"1vh 0"}}>
-                                    <label className="btn btn-white" style={{overflow:"hidden",border:"1px solid #dbdbdb",fontWeight:"bold",padding:".3vw .75vw",borderRadius:"5px"}}>
-                                        프로필 사진 업로드<input type="file" style={{display:"none"}}/>
+                                    <label className="btn btn-white" htmlFor="ppimage" style={{overflow:"hidden",border:"1px solid #dbdbdb",fontWeight:"bold",padding:".3vw .75vw",borderRadius:"5px"}}>
+                                        프로필 사진 업로드<input type="file" style={{display:"none"}} id="ppimage" accept='image/*' onChange={onloadfile}/>
                                     </label>
                                 </div>
                     
                                 <Form.Group  controlId="formGridEmail">
-                                        <Form.Label>ID</Form.Label>
+                                        <Form.Label>아이디</Form.Label>
                                         <div style={{width:"100%",display:"flex"}}>
                                             <Form.Control type="text" placeholder="Enter ID" name="id" value={userInfo.id} onChange={handleChange}/>
                                             <Button style={{width:"180px",textAlign:"center"}}  onClick={compareIdCheck}>중복 확인</Button>
@@ -114,23 +120,23 @@ function MyPage_MemberModify(){
                             </Form.Group>
                         
                             <Form.Group className="my-3" controlId="formGridPassword">
-                                <Form.Label>Password</Form.Label>
+                                <Form.Label>비밀번호</Form.Label>
                                 <Form.Control type="password" placeholder="Password" name="password" value={userInfo.password} onChange={handleChange}/>
                             </Form.Group>
 
                             <Form.Group className="my-3" controlId="formGridPassword">
-                                <Form.Label>Password check</Form.Label>
+                                <Form.Label>비밀번호 확인</Form.Label>
                                 <Form.Control type="password" placeholder="Password check" name="passwordCheck" onChange={passwordCheck}/>
                             </Form.Group>
                     
                             <Form.Group className="my-3">
-                                <Form.Label>Birth</Form.Label>
+                                <Form.Label>생년월일</Form.Label>
                                 <Form.Control type="text" placeholder="생년월일 6자리입력" name="birth"/>
                             </Form.Group>
 
 
                             <Form.Group className="my-3">
-                                <Form.Label>Phone Number</Form.Label>
+                                <Form.Label>전화번호</Form.Label>
                                 <div style={{width:"100%",display:"flex"}}>
                                     <Form.Control type="text" placeholder="Phone Number" name="phoneNumber" value={userInfo.phone} onChange={handleChange}/>
                                     <Button style={{width:"180px",textAlign:"center"}} onClick={assignRequest}>인증요청</Button>
@@ -138,7 +144,7 @@ function MyPage_MemberModify(){
                             </Form.Group>
 
                             <Form.Group className="my-3">
-                                <Form.Label>Email</Form.Label>
+                                <Form.Label>이메일</Form.Label>
                                 <div style={{width:"100%",display:"flex"}}>
                                     <Form.Control type="email" placeholder="Enter Email" name="email" value={userInfo.email} onChange={handleChange}/>
                                     <Button style={{width:"180px",textAlign:"center"}} onClick={assignEmail}>인증요청</Button>
