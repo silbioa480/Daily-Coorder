@@ -19,7 +19,7 @@ function LoggedInNav() {
         <BsBookmarkHeart style={{ width: "24px", height: "24px" }} />
       </NavButton>
 
-      <NavButton to="/">
+      <NavButton to="#">
         <BsBell style={{ width: "24px", height: "24px" }} />
       </NavButton>
 
