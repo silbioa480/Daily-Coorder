@@ -6,6 +6,7 @@ import MainComponent from "./MainComponent";
 
 // css
 import "../../css/main/MainWeather.css";
+import "../../css/main/animation.css";
 
 // 사진
 import mainwth1 from "../../img/main/mainwth1.png";
@@ -82,10 +83,10 @@ function MainWeather() {
   });
   return (
     <>
-      <div className="mainfollow-text">Daily Weather Style</div>
-      <hr className="Line"></hr>
+      <div className="aa mainfollow-text">Daily Weather Style</div>
+      <hr className="aa Line"></hr>
 
-      <div className="wth">
+      <div className="aa wth">
         <Carousel fade className="feedcar" style={{ width: "1250px" }}>
           <Carousel.Item>
             <div>{renderRepeat.slice(0, 4)}</div>

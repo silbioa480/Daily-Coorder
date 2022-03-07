@@ -5,6 +5,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import "../../css/main/Banner.css";
+import "../../css/main/animation.css";
+
 import mainBanner1 from "../../img/main/mainBanner1.png";
 import mainBanner2 from "../../img/main/mainBanner2.png";
 import mainBanner3 from "../../img/main/mainBanner3.png";
@@ -12,7 +14,7 @@ import mainBanner3 from "../../img/main/mainBanner3.png";
 function Banner() {
   return (
     <>
-      <div className="banner-out">
+      <div className="aa banner-out">
         <Carousel fade className="BannerCar">
           <Carousel.Item className="bannerpic">
             <Link to="/signup">
