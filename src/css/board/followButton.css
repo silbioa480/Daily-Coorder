@@ -1,0 +1,8 @@
+.information_button {
+  display: flex;
+  padding: 10px 0px 10px 0px;
+}
+.information {
+  width: 300px;
+  display: flex;
+}

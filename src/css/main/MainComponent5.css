@@ -1,0 +1,153 @@
+.anopic {
+    padding: 10px;
+    width: 270px;
+    height: 300px;
+    float: left;
+    overflow: hidden;
+    text-align: center;
+    display: inline-block;
+    z-index: 3;
+    cursor: pointer;
+}
+
+.group_icon5,
+.group_txt5 {
+    z-index: 1;
+    transform: translateY(20px);
+    transition: all .5s ease-out;
+    opacity: 0;
+    color: #fff;
+
+}
+
+.anopic > .link {
+    transform: scale(1);
+    transition: all 0.35s ease-out;
+    display: block;
+
+}
+
+.anopic:hover .link {
+    transform: scale(1.07);
+    filter: brightness(35%);
+    transition: all 0.35s ease-in;
+
+}
+
+.anopic:hover .group_icon5 {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.anopic:hover .group_txt5 {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.like_logoA:hover .like_logoW {
+    transform: scale(1.23);
+}
+
+.follow_logoA:hover .follow_logoW {
+    transform: scale(1.23);
+}
+
+.follow_logoA {
+    height: 35px;
+}
+
+.group_icon5 {
+    width: 30px;
+    position: absolute;
+    top: 10px;
+
+}
+
+.group_txt5 {
+    width: 255px;
+    position: absolute;
+    bottom: 25px;
+    text-align: center;
+
+}
+
+.t1 {
+    text-align: center;
+    line-height: 20px;
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0;
+
+}
+
+.like_group {
+    text-align: center;
+    width: 100%;
+    line-height: 20px;
+    font-size: 13px;
+    margin-top: 3px;
+
+}
+
+.follow_group {
+    text-align: center;
+    width: 100%;
+    line-height: 20px;
+    font-size: 13px;
+    margin-top: 3px;
+}
+
+.like_icon,
+.follow_icon {
+    width: 10px;
+}
+
+.like_logoW {
+    width: 13px;
+    margin: 5px;
+    cursor: pointer;
+    z-index: 3;
+    transition: all 0.15s ease-out;
+}
+
+.follow_logoW {
+    width: 13px;
+    margin: 5px;
+    cursor: pointer;
+    z-index: 3;
+    transition: all 0.15s ease-out;
+}
+
+.like_cnt {
+    margin-left: 5px;
+}
+
+.follow_cnt {
+    margin-left: 5px;
+}
+
+.anothercar {
+    margin-left: 10px;
+    margin-bottom: 70px;
+}
+
+.anothercar > .carousel-inner {
+    margin-left: 25px;
+}
+
+.anothercar > .carousel-indicators {
+    margin-bottom: -30px;
+    filter: invert(100%);
+}
+
+.anothercar > .carousel-control-next {
+    margin-right: -50px;
+    filter: invert(100%);
+    width: 80px;
+}
+
+.anothercar > .carousel-control-prev {
+    margin-left: -50px;
+    filter: invert(100%);
+    width: 80px;
+}
