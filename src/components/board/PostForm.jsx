@@ -24,6 +24,7 @@ function PostForm() {
   const [commentsList, setCommentList] = useState([]);
 
   const removeComment = (id) => {
+    console.log(id);
     setCommentList(
       commentsList.filter((comment) => {
         return comment.id !== id;
@@ -38,7 +39,7 @@ function PostForm() {
       {
         id: Date.now(),
         content: content,
-        time: moment().format("YYYY년 MM월 DD일 HH시 mm분 ss초"),
+        time: moment().format("YYYY년 MM월 DD일 HH시 mm분 "),
       },
     ]);
     setContent(""); //입력하고나면 비워줌

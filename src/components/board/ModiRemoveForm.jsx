@@ -2,7 +2,7 @@ import "../../css/board/modiRemoveForm.css";
 import { FiMoreHorizontal } from "react-icons/fi";
 
 import { useEffect, useRef, useState } from "react";
-
+//
 const useClickOutside = (handler) => {
   const domNode = useRef();
   useEffect(() => {
@@ -38,6 +38,7 @@ function ModiRemoveForm({ comments, removeComment }) {
           <button
             className="remove_btn"
             onClick={() => removeComment(comments.id)}
+            // onClick={() => console.log(comments)}
           >
             삭제
           </button>
