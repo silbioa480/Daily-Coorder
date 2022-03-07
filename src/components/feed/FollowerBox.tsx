@@ -8,8 +8,8 @@ import mainfol5 from "../../img/main/mainfol5.png";
 import mainfol6 from "../../img/main/mainfol6.png";
 import mainfol7 from "../../img/main/mainfol7.png";
 import mainfol8 from "../../img/main/mainfol8.png";
-import FollowerPicture from "./FollowerPicture";
 import { Link } from "react-router-dom";
+import MainComponent from "../main/MainComponent";
 
 interface IProps {
   follower: IFollower;
@@ -81,7 +81,7 @@ function FollowerBox(props: IProps) {
   ];
 
   const renderRepeat = datas.map((data) => {
-    return <FollowerPicture data={data} key={data.id} />;
+    return <MainComponent data={data} key={data.id} />;
   });
 
   return (
