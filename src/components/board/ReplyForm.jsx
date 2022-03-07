@@ -3,7 +3,7 @@ import similar from "../../img/similar.png";
 import ReplyFormfunction from "./ReplyFormFunction";
 import "../../css/board/replyForm.css";
 //댓글을달았을때 입력받아서 나오는 폼
-function ReplyForm(prop) {
+function ReplyForm({ comments, removeComment }) {
   return (
     <>
       <div>
@@ -22,16 +22,22 @@ function ReplyForm(prop) {
             <div className="reply_nick_content">
               {/*닉네임  */}
               <a href="#">
-                <p>둘리</p>
+                <span>둘리</span>
               </a>
+              {/* 시간 */}
+              <span>{comments.time}</span>
               {/* 댓글 */}
-              <p>{prop.content}</p>
+
+              <p>{comments.content}</p>
             </div>
             <div></div>
           </div>
         </div>
         <div>
-          <ReplyFormfunction />
+          <ReplyFormfunction
+            comments={comments}
+            removeComment={removeComment}
+          />
         </div>
       </div>
     </>

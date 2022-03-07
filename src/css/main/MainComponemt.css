@@ -48,17 +48,24 @@
     opacity: 1;
 }
 
-.like_logoA:hover .like_logoW {
+.like_logoA:hover {
     transform: scale(1.23);
 }
 
-.follow_logoA:hover .follow_logoW {
+.like_logoA {
+    transition: all 0.15s ease-in-out;
+
+}
+
+.follow_logoA:hover {
     transform: scale(1.23);
 }
 
 .follow_logoA {
-    height: 35px;
+    margin-top: 5px;
+    transition: all 0.15s ease-out;
 }
+
 
 .group_icon {
     width: 30px;
@@ -72,7 +79,6 @@
     position: absolute;
     bottom: 25px;
     text-align: center;
-    z-index: 3;
 }
 
 .t1 {
@@ -103,23 +109,15 @@
 
 .like_icon,
 .follow_icon {
-    width: 10px;
+    width: 13px;
 }
 
-.like_logoW {
-    width: 13px;
-    margin: 5px;
-    cursor: pointer;
-    z-index: 3;
-    transition: all 0.15s ease-out;
+.like_icon {
+    color: rgba(30, 66, 141, 1);
 }
 
-.follow_logoW {
-    width: 13px;
-    margin: 5px;
-    cursor: pointer;
-    z-index: 3;
-    transition: all 0.15s ease-out;
+.follow_icon {
+    color: rgba(254, 68, 161, 1);
 }
 
 .like_cnt {
