@@ -153,8 +153,8 @@ function MainAnother() {
       <div className="mainfollow-text">New Another</div>
       <hr className="Line"></hr>
       <div className="wth">
-        <div className="anothercar" style={{ width: "1400px" }}>
-          <div style={{ display: "inline-block" }}>{renderRepeat}</div>
+        <div className="anothercar">
+          {renderRepeat}
 
           <div className="btn-out">
             <button className="plus-btn" onClick={load}>
