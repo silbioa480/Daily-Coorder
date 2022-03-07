@@ -86,7 +86,7 @@ function MainWeather() {
       <div className="aa mainfollow-text">Daily Weather Style</div>
       <hr className="aa Line"></hr>
 
-      <div className="aa wth">
+      <div className="bb wth">
         <Carousel fade className="feedcar" style={{ width: "1250px" }}>
           <Carousel.Item>
             <div>{renderRepeat.slice(0, 4)}</div>

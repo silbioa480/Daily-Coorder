@@ -11,8 +11,27 @@
     }
 }
 
+@keyframes showbox {
+    from {
+        transform: translateY(0px);
+        opacity: 0;
+
+    }
+
+    to {
+        transform: translateY(0px);
+        opacity: 1;
+
+    }
+}
+
+.bb {
+    animation: showbox 1s;
+    animation-fill-mode: both;
+}
+
 .aa {
-    animation: showText 0.5s;
+    animation: showText 0.7s;
     animation-fill-mode: both;
 }
 
@@ -20,7 +39,7 @@
     animation-delay: 0.07s;
 }
 
-.aa-item:nth-child(2) {
+.aa:nth-child(2) {
     animation-delay: 0.14s;
 }
 
@@ -29,21 +48,53 @@
 }
 
 .aa:nth-child(4) {
-    animation-delay: 0.28s;
+    animation-delay: 0.30s;
 }
 
 .aa:nth-child(5) {
-    animation-delay: 0.35s;
+    animation-delay: 0.39s;
 }
 
 .aa:nth-child(6) {
-    animation-delay: 0.42s;
+    animation-delay: 0.48s;
 }
 
 .aa:nth-child(7) {
-    animation-delay: 0.49s;
+    animation-delay: 0.57s;
 }
 
 .aa:nth-child(8) {
+    animation-delay: 0.66s;
+}
+
+.bb:nth-child(1) {
+    animation-delay: 0.13s;
+}
+
+.bb:nth-child(2) {
+    animation-delay: 0.30s;
+}
+
+.bb:nth-child(3) {
+    animation-delay: 0.39s;
+}
+
+.bb:nth-child(4) {
+    animation-delay: 0.52s;
+}
+
+.bb:nth-child(5) {
+    animation-delay: 0.35s;
+}
+
+.bb:nth-child(6) {
+    animation-delay: 0.42s;
+}
+
+.bb:nth-child(7) {
+    animation-delay: 0.49s;
+}
+
+.bb:nth-child(8) {
     animation-delay: 0.56s;
 }

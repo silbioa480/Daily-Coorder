@@ -151,9 +151,9 @@ function MainAnother() {
 
   return (
     <>
-      <div className="aa mainfollow-text">New Another</div>
-      <hr className="aa Line"></hr>
-      <div className="aa wth">
+      <div className="bb mainfollow-text">New Another</div>
+      <hr className="bb Line"></hr>
+      <div className="bb wth">
         <div className="anothercar">
           {renderRepeat}
 

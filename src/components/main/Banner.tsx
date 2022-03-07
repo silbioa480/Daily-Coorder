@@ -14,7 +14,7 @@ import mainBanner3 from "../../img/main/mainBanner3.png";
 function Banner() {
   return (
     <>
-      <div className="aa banner-out">
+      <div className="bb banner-out">
         <Carousel fade className="BannerCar">
           <Carousel.Item className="bannerpic">
             <Link to="/signup">

@@ -91,7 +91,7 @@ function Mainfollow() {
       </div>
       <div className="aa mainfollow-text">New Followers Feed</div>
       <hr className="aa Line"></hr>
-      <div className="aa feed">
+      <div className="bb feed">
         <Carousel fade className="feedcar" style={{ width: "1250px" }}>
           <Carousel.Item>
             <div>{renderRepeat.slice(0, 4)}</div>

@@ -99,9 +99,9 @@ function MainAnother() {
   });
   return (
     <>
-      <div className="aa mainfollow-text">New In Thursday Island</div>
-      <hr className="aa Line"></hr>
-      <div className="aa wth">
+      <div className="bb mainfollow-text">New In Thursday Island</div>
+      <hr className="bb Line"></hr>
+      <div className="bb wth">
         <Carousel fade className="anothercar" style={{ width: "1400px" }}>
           <Carousel.Item>
             <div>{renderRepeat.slice(0, 5)}</div>
