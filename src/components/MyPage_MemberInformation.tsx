@@ -5,14 +5,26 @@ import { Figure } from 'react-bootstrap';
 
 
 function MemberInformation(){
+    const [memberInfo,setMemberInfo]=useState({
+        id:"",
+        password:"",
+        nickname:"",
+        email:"",
+        phone:"",
+        gender:"",
+        birth:"",
+        body:{
+            weight:"",
+            height:""
+        }
+    })
     
-    const [member,setMember]=useState([]);
     return (
         <> 
                     <div style={{marginTop:"3vh",border:"1px solid #f7f7f7",borderBottom:"none"}}>
                             <div style={{display:"flex"}}>
                                     <p style={{width:"200px",padding:"1vh 1vw",borderRight:"1px solid #f7f7f7",backgroundColor:"#f7f7f7",fontWeight:"bold"}}>아이디</p>
-                                    <p style={{padding:"1vh 1vw"}}>12345</p>
+                                    <p style={{padding:"1vh 1vw"}}>{memberInfo.id}</p>
                             </div>
                     </div>
 
@@ -26,35 +38,35 @@ function MemberInformation(){
                     <div style={{border:"1px solid #f7f7f7",borderBottom:"none"}}>
                         <div style={{display:"flex"}}>
                                 <p style={{width:"200px",padding:"1vh 1vw",borderRight:"1px solid #f7f7f7",backgroundColor:"#f7f7f7",fontWeight:"bold"}}>닉네임</p>
-                                <p style={{padding:"1vh 1vw"}}>닉네임공간</p>
+                                <p style={{padding:"1vh 1vw"}}>{memberInfo.nickname}</p>
                         </div>
                     </div>
 
                     <div style={{border:"1px solid #f7f7f7",borderBottom:"none"}}>
                         <div style={{display:"flex"}}>
                                 <p style={{width:"200px",padding:"1vh 1vw",borderRight:"1px solid #f7f7f7",backgroundColor:"#f7f7f7",fontWeight:"bold"}}>이메일</p>
-                                <p style={{padding:"1vh 1vw"}}>1234@2134</p>
+                                <p style={{padding:"1vh 1vw"}}>{memberInfo.email}</p>
                         </div>
                     </div>
 
                     <div style={{border:"1px solid #f7f7f7",borderBottom:"none"}}>
                         <div style={{display:"flex"}}>
                                 <p style={{width:"200px",padding:"1vh 1vw",borderRight:"1px solid #f7f7f7",backgroundColor:"#f7f7f7",fontWeight:"bold"}}>전화번호</p>
-                                <p style={{padding:"1vh 1vw"}}>010-1●●●-●●●●</p>
+                                <p style={{padding:"1vh 1vw"}}>{memberInfo.phone}</p>
                         </div>
                     </div>
 
                     <div style={{border:"1px solid #f7f7f7",borderBottom:"none"}}>
                         <div style={{display:"flex"}}>
                                 <p style={{width:"200px",padding:"1vh 1vw",borderRight:"1px solid #f7f7f7",backgroundColor:"#f7f7f7",fontWeight:"bold"}}>성별</p>
-                                <p style={{padding:"1vh 1vw"}}>man or woman</p>
+                                <p style={{padding:"1vh 1vw"}}>{memberInfo.gender}</p>
                         </div>
                     </div>
 
                     <div style={{border:"1px solid #f7f7f7",borderBottom:"none"}}>
                         <div style={{display:"flex"}}>
                                 <p style={{width:"200px",padding:"1vh 1vw",borderRight:"1px solid #f7f7f7",backgroundColor:"#f7f7f7",fontWeight:"bold"}}>생년월일</p>
-                                <p style={{padding:"1vh 1vw"}}>0000-00-00</p>
+                                <p style={{padding:"1vh 1vw"}}>{memberInfo.birth}</p>
                         </div>
                     </div>
             
@@ -62,9 +74,9 @@ function MemberInformation(){
                            <p style={{margin:"1.6vh 0 0 2vh",fontWeight:"bold"}}>체형</p>
                             <div style={{display:"flex",marginTop:"2vh",borderTop:"1px solid #f7f7f7"}}>
                                 <p style={{width:"200px",padding:"1vh 1vw",borderRight:"1px solid #f7f7f7",backgroundColor:"#f7f7f7",fontWeight:"bold"}}>키</p>
-                                <p style={{width:"125px",padding:"1vh 1vw"}}>189</p>
+                                <p style={{width:"125px",padding:"1vh 1vw"}}>{memberInfo.body.height}</p>
                                 <p style={{width:"150px",marginLeft:"2vw",padding:"1vh 1vw",borderRight:"1px solid #f7f7f7",backgroundColor:"#f7f7f7",borderLeft:"1px solid #f7f7f7",fontWeight:"bold"}}>몸무게</p>
-                                <p style={{padding:"1vh 1vw"}}>100</p>
+                                <p style={{padding:"1vh 1vw"}}>{memberInfo.body.weight}</p>
                             </div>
                     </div>
         </>

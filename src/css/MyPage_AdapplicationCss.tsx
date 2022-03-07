@@ -20,7 +20,6 @@ const AdApplicationCss=createGlobalStyle`
     .AdImg{
         width:50%;
         height:300px;
-        background-color:green;
         margin:2vw 0;
         display:flex;
         flex-direction:column;
@@ -36,6 +35,30 @@ const AdApplicationCss=createGlobalStyle`
         margin-top:3vw;
         display:flex;
         justify-content:center;
+    }
+    .Addescription{
+        width:100%;
+        margin-top:3vh;
+        display:flex;
+        flex-direction:column;
+    }
+
+    .innertag{
+        width:100px;
+        margin-top: 5px;
+        background: #ffeee7;
+        border-radius: 56px;
+        padding: 8px 12px;
+        color: #ff6e35;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        font-size: 1rem;
+        line-height: 20px;
+        text-align:center;
+        margin-right: 5px;
+        cursor: pointer;
     }
 `;
 
