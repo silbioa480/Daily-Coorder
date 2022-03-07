@@ -1,4 +1,4 @@
-import {  BrowserRouter,Route,Switch} from "react-router-dom";
+import {  Route,Switch} from "react-router-dom";
 import MyPage_SideMenubar from "../components/MyPage_SideMenubar";
 import MyPage_Body from "../components/MyPage_Body";
 import MyPage_SizeRegister from "../components/MyPage_SizeRegister";
@@ -15,7 +15,7 @@ function MyPage() {
   return (
     <>
       <MyPage_SideMenubar />
-      <BrowserRouter>
+    
         <MyPage_Body>
                 <Switch>
                 
@@ -52,7 +52,7 @@ function MyPage() {
               </Switch>
             
         </MyPage_Body>
-      </BrowserRouter>
+     
     </>
   );
 }

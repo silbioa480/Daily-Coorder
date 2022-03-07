@@ -4,6 +4,7 @@ import React, { useState } from "react";
 
 // css
 import "../../css/main/MainAnother.css";
+import "../../css/main/animation.css";
 
 // 사진
 import mainano1 from "../../img/main/mainano1.png";
@@ -140,7 +141,7 @@ function MainAnother() {
         followed: 1041,
       },
     ]);
-    lastindex = datas[datas.length - 1].id + 5;
+    lastindex = datas[datas.length - 1].id;
     console.log("이제 마지막 데이터의 번호는 " + lastindex);
   };
 
@@ -150,9 +151,9 @@ function MainAnother() {
 
   return (
     <>
-      <div className="mainfollow-text">New Another</div>
-      <hr className="Line"></hr>
-      <div className="wth">
+      <div className="bb mainfollow-text">New Another</div>
+      <hr className="bb Line"></hr>
+      <div className="bb wth">
         <div className="anothercar">
           {renderRepeat}
 

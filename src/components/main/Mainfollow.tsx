@@ -6,6 +6,7 @@ import MainComponent from "./MainComponent";
 
 // css
 import "../../css/main/MainNewFollow.css";
+import "../../css/main/animation.css";
 
 // 사진
 import mainfol1 from "../../img/main/mainfol1.png";
@@ -82,15 +83,15 @@ function Mainfollow() {
   });
   return (
     <>
-      <div className="blue-line-out">
-        <div className="blue-line-in"></div>
+      <div className="aa blue-line-out">
+        <div className="aa blue-line-in"></div>
       </div>
-      <div className="yellow-line-out">
-        <div className="yellow-line-in"></div>
+      <div className="aa yellow-line-out">
+        <div className="aa yellow-line-in"></div>
       </div>
-      <div className="mainfollow-text">New Followers Feed</div>
-      <hr className="Line"></hr>
-      <div className="feed">
+      <div className="aa mainfollow-text">New Followers Feed</div>
+      <hr className="aa Line"></hr>
+      <div className="bb feed">
         <Carousel fade className="feedcar" style={{ width: "1250px" }}>
           <Carousel.Item>
             <div>{renderRepeat.slice(0, 4)}</div>
