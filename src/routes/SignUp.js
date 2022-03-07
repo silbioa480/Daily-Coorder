@@ -16,9 +16,7 @@ function SignUp() {
   });
 
   //일반회원
-  const [fileImage, setFileImage] = useState(
-    "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
-  );
+  const [fileImage, setFileImage] = useState("/signup/profile.png");
   const [name, setName] = useState("");
   const [Id, setId] = useState("");
   const [Password, setPassword] = useState("");
@@ -95,9 +93,7 @@ function SignUp() {
 
   const deleteFileImage = () => {
     URL.revokeObjectURL(fileImage);
-    setFileImage(
-      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
-    );
+    setFileImage("/signup/profile.png");
   };
 
   const onChangeBirth = (e) => {
@@ -421,7 +417,7 @@ function SignUp() {
   };
 
   return (
-    <div class="signup">
+    <div className="signup">
       <PopUp
         open={popup.open}
         setPopup={setPopup}
@@ -480,14 +476,14 @@ function SignUp() {
                 onChange={onChangeId}
               />{" "}
               {errorId && (
-                <div class="signup_input_valid">
+                <div className="signup_input_valid">
                   {" "}
                   아이디는 숫자를 포함하여 최소 5자 이상
                 </div>
               )}
               <button
                 type="submit"
-                class="signup_idchk_btn"
+                className="signup_idchk_btn"
                 hidden={show}
                 onClick={overSubmitHandler}
               >
@@ -525,7 +521,7 @@ function SignUp() {
               />
               <button
                 type="submit"
-                class="signup_idchk_btn"
+                className="signup_idchk_btn"
                 hidden={show}
                 onClick={overSubmitHandler}
                 style={{ marginLeft: "5px" }}
@@ -631,7 +627,9 @@ function SignUp() {
                 onChange={onChangeEmail}
               />
               {errorEmail && (
-                <div class="signup_input_valid">올바른 형식이 아닙니다.</div>
+                <div className="signup_input_valid">
+                  올바른 형식이 아닙니다.
+                </div>
               )}
             </div>
 
@@ -650,7 +648,7 @@ function SignUp() {
                 style={{ marginBottom: "15px" }}
               />
               {errorPhoneNumber && (
-                <div class="signup_input_valid">숫자만 입력하세요</div>
+                <div className="signup_input_valid">숫자만 입력하세요</div>
               )}
             </div>
             <hr />
