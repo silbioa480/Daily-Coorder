@@ -4,10 +4,7 @@ import { AiFillHeart } from "react-icons/ai";
 import { useState } from "react";
 import ModiRemoveForm from "./ModiRemoveForm";
 import ReplyPostForm from "./ReplyPostForm";
-import Heart from "./ReplyFormFunction/heart";
-import Modi from "./ReplyFormFunction/modi";
-import Reply from "./ReplyFormFunction/reply";
-//댓글달았을때 나오는폼의 좋아요 대댓글 수정삭제 폼
+//대댓글달았을때 나오는폼의 좋아요 대댓글 수정삭제 폼
 function ReReplyFormFunction() {
   const [color, setColor] = useState("");
   const heartClick = () => {
@@ -22,8 +19,7 @@ function ReReplyFormFunction() {
         <AiFillHeart onClick={heartClick} style={{ color: color }} />
         <BsFillChatDotsFill onClick={(e) => setIsreply(!isreply)} />
 
-        <FiMoreHorizontal onClick={(e) => setIsActive(!isActive)} />
-        {isActive && <ModiRemoveForm />}
+        <ModiRemoveForm />
       </div>
       {isreply && <ReplyPostForm />}
     </>

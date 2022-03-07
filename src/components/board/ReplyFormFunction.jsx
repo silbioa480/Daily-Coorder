@@ -4,9 +4,8 @@ import { AiFillHeart } from "react-icons/ai";
 import { useState } from "react";
 import ModiRemoveForm from "./ModiRemoveForm";
 import ReplyPostForm from "./ReplyPostForm";
-import Re_ReplyForm from "./Re_ReplyForm";
 //댓글달았을때 나오는폼의 좋아요 대댓글 수정삭제 폼
-function ReplyFormfunction() {
+function ReplyFormfunction({ comments, removeComment }) {
   const [color, setColor] = useState("");
   const heartClick = () => {
     color === "" ? setColor("red") : setColor("");
@@ -19,8 +18,7 @@ function ReplyFormfunction() {
         <AiFillHeart onClick={heartClick} style={{ color: color }} />
 
         <BsFillChatDotsFill onClick={(e) => setIsreply(!isreply)} />
-        <FiMoreHorizontal onClick={(e) => setIsActive(!isActive)} />
-        {isActive && <ModiRemoveForm />}
+        <ModiRemoveForm comments={comments} removeComment={removeComment} />
       </div>
       {isreply && <ReplyPostForm />}
     </>

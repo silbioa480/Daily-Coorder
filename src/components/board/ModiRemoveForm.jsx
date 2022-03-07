@@ -1,14 +1,49 @@
 import "../../css/board/modiRemoveForm.css";
+import { FiMoreHorizontal } from "react-icons/fi";
+
+import { useEffect, useRef, useState } from "react";
+//
+const useClickOutside = (handler) => {
+  const domNode = useRef();
+  useEffect(() => {
+    const maybeHandler = (e) => {
+      if (!domNode.current.contains(e.target)) {
+        handler();
+      }
+    };
+    document.addEventListener("mousedown", maybeHandler);
+
+    return () => {
+      document.addEventListener("mousedown", maybeHandler);
+    };
+  });
+  return domNode;
+};
+
 //...눌렀을떄 나오는 수정 삭제 폼
-function ModiRemoveForm(id) {
-  const deleteComment = (id) => {};
+function ModiRemoveForm({ comments, removeComment }) {
+  const [isActive, setIsActive] = useState(false);
+
+  const domNode = useClickOutside(() => {
+    setIsActive(false);
+  });
+
   return (
     <>
-      <div className="modification_remove">
-        <button className="modification_btn">수정</button>
+      <FiMoreHorizontal onClick={(e) => setIsActive(!isActive)} />
+      {isActive && (
+        <div ref={domNode} className="modification_remove">
+          <button className="modification_btn">수정</button>
 
-        <button className="remove_btn">삭제</button>
-      </div>
+          <button
+            className="remove_btn"
+            onClick={() => removeComment(comments.id)}
+            // onClick={() => console.log(comments)}
+          >
+            삭제
+          </button>
+        </div>
+      )}
     </>
   );
 }

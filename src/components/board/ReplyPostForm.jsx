@@ -2,9 +2,12 @@ import { BsArrowDownShort } from "react-icons/bs";
 import { Circle } from "../../css/Board_Posts";
 import similar from "../../img/similar.png";
 import React, { useState } from "react";
+import moment from "moment";
+import ReplyForm from "./ReplyForm";
+import Re_ReplyForm from "./Re_ReplyForm";
 
 //대댓글 눌렀을떄 밑에나오는 댓글입력폼
-function SmollPostForm() {
+function ReplyPostForm() {
   //textarea 늘려주는 기능
   const textRef = React.createRef();
   const textResize = () => {
@@ -16,9 +19,41 @@ function SmollPostForm() {
   const handleChange = (e) => {
     setContent(e.target.value);
   };
+  const [commentsList, setCommentList] = useState([]);
 
+  const removeComment = (id) => {
+    setCommentList(
+      commentsList.filter((comment) => {
+        return comment.id !== id;
+      })
+    );
+  };
+  const click = (e) => {
+    e.preventDefault();
+
+    setCommentList([
+      ...commentsList,
+      {
+        id: Date.now(),
+        content: content,
+        time: moment().format("YYYY년 MM월 DD일 HH시 mm분 ss초"),
+      },
+    ]);
+    setContent(""); //입력하고나면 비워줌
+  };
+  const renderComments = commentsList.map((comments) => {
+    return (
+      <Re_ReplyForm
+        comments={comments}
+        key={comments.id}
+        removeComment={removeComment}
+      />
+    );
+  });
   return (
-    <form>
+    <>
+      {renderComments}
+
       <div style={{ marginTop: "10px" }}>
         <div className="wrapper">
           <div style={{ display: "flex", justifyContent: "center" }}>
@@ -39,9 +74,8 @@ function SmollPostForm() {
                 cols={35}
                 required
                 onChange={handleChange}
-              >
-                {content}
-              </textarea>
+                value={content}
+              ></textarea>
             </div>
           </div>
           <div
@@ -50,7 +84,8 @@ function SmollPostForm() {
           >
             <button style={{ marginLeft: "auto" }}>취소</button>
             <button
-              type="submit"
+              onClick={click}
+              type="button"
               style={{ marginRight: "20px", marginLeft: "7px" }}
             >
               완료
@@ -58,7 +93,7 @@ function SmollPostForm() {
           </div>
         </div>
       </div>
-    </form>
+    </>
   );
 }
-export default SmollPostForm;
+export default ReplyPostForm;
