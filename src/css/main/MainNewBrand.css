@@ -10,14 +10,10 @@ hr > .Line {
     width: 80%;
 }
 
-/*.yellow-line-out {*/
-/*    text-align: center;*/
-/*}*/
+.wth {
+    text-align: center;
+}
 
-/*.yellow-line-in {*/
-/*    width: 90%;*/
-/*    height: 8px;*/
-/*    background-color: rgba(254, 213, 1, 1);*/
-/*    display: inline-block;*/
-/*    border-radius: 10px;*/
-/*}*/
+.anothercar {
+    display: inline-block;
+}

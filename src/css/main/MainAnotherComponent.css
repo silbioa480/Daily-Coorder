@@ -1,4 +1,4 @@
-.anopic {
+.anotherpic {
     padding: 10px;
     width: 270px;
     height: 300px;
@@ -8,39 +8,41 @@
     display: inline-block;
     z-index: 3;
     cursor: pointer;
+
 }
 
-.group_icon5,
-.group_txt5 {
+.ano-group_icon5,
+.ano-group_txt5 {
     z-index: 1;
     transform: translateY(20px);
     transition: all .5s ease-out;
     opacity: 0;
     color: #fff;
-    
 
 }
 
-.anopic > .link {
+.anotherpic > .link {
     transform: scale(1);
     transition: all 0.35s ease-out;
     display: block;
+    width: 250px;
+    height: 300px;
 
 }
 
-.anopic:hover .link {
+.anotherpic:hover .link {
     transform: scale(1.07);
     filter: brightness(35%);
     transition: all 0.35s ease-in;
 
 }
 
-.anopic:hover .group_icon5 {
+.anotherpic:hover .ano-group_icon5 {
     transform: translateY(0);
     opacity: 1;
 }
 
-.anopic:hover .group_txt5 {
+.anotherpic:hover .ano-group_txt5 {
     transform: translateY(0);
     opacity: 1;
 }
@@ -57,18 +59,17 @@
     height: 35px;
 }
 
-.group_icon5 {
+.ano-group_icon5 {
     width: 30px;
     position: absolute;
-    top: 10px;
+    margin-top: -300px;
 
 }
 
-.group_txt5 {
+.ano-group_txt5 {
     width: 255px;
     position: absolute;
-    bottom: 25px;
-    text-align: center;
+    margin-top: -100px;
 
 }
 
@@ -125,29 +126,4 @@
 
 .follow_cnt {
     margin-left: 5px;
-}
-
-.anothercar {
-    margin-bottom: 70px;
-}
-
-.anothercar > .carousel-inner {
-    margin-left: 25px;
-}
-
-.anothercar > .carousel-indicators {
-    margin-bottom: -30px;
-    filter: invert(100%);
-}
-
-.anothercar > .carousel-control-next {
-    margin-right: -50px;
-    filter: invert(100%);
-    width: 80px;
-}
-
-.anothercar > .carousel-control-prev {
-    margin-left: -50px;
-    filter: invert(100%);
-    width: 80px;
 }
