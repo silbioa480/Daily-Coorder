@@ -43,4 +43,9 @@ export const QR = styled.img`
 export const CButton = styled.button`
   background-color: ${(props) => props.color};
   color: ${(props) => props.value};
+
+  width: 80px;
+  height: 48px;
+  border: none;
+  border-radius: 24px;
 `;

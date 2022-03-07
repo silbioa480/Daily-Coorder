@@ -1,0 +1,20 @@
+.reply {
+  display: flex;
+  margin-top: 10px;
+}
+.reply_nick_content {
+  margin: auto 0;
+  margin-left: 7px;
+  border: 1px solid lightgray;
+  width: 250px;
+  height: auto;
+  min-height: 59px;
+  border-radius: 5px;
+}
+.reply_nick_content > a > p:nth-child(1) {
+  padding: 5px 5px 3px 5px;
+  font-weight: bold;
+}
+.reply_nick_content > p:nth-child(2) {
+  padding: 0px 0px 0px 5px;
+}
