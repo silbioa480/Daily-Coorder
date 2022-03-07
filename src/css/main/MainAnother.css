@@ -76,9 +76,7 @@ hr > .Line {
     height: 60px;
     position: relative;
     transition: all 0.2s linear;
-    will-change: transform;
     z-index: 1;
-    transform: translate3d(0, 0, 0);
 
 }
 
