@@ -12,46 +12,39 @@ import mainBanner3 from "../../img/main/mainBanner3.png";
 function Banner() {
   return (
     <>
-      <Carousel fade className="BannerCar">
-        <Carousel.Item
-          className="bannerpic"
-          style={{ width: "1000px", height: "320px" }}
-        >
-          <Link to="/signup">
-            <img
-              className="d-block w-100"
-              src={mainBanner1}
-              alt="First slide"
-            />
-          </Link>
-        </Carousel.Item>
+      <div className="banner-out">
+        <Carousel fade className="BannerCar">
+          <Carousel.Item className="bannerpic">
+            <Link to="/signup">
+              <img
+                className="d-block w-100"
+                src={mainBanner1}
+                alt="First slide"
+              />
+            </Link>
+          </Carousel.Item>
 
-        <Carousel.Item
-          className="bannerpic"
-          style={{ width: "1000px", height: "320px" }}
-        >
-          <Link to="/signup">
-            <img
-              className="d-block w-100"
-              src={mainBanner2}
-              alt="Second slide"
-            />
-          </Link>
-        </Carousel.Item>
+          <Carousel.Item className="bannerpic">
+            <Link to="/signup">
+              <img
+                className="d-block w-100"
+                src={mainBanner2}
+                alt="Second slide"
+              />
+            </Link>
+          </Carousel.Item>
 
-        <Carousel.Item
-          className="bannerpic"
-          style={{ width: "1000px", height: "320px" }}
-        >
-          <Link to="/signup">
-            <img
-              className="d-block w-100"
-              src={mainBanner3}
-              alt="Second slide"
-            />
-          </Link>
-        </Carousel.Item>
-      </Carousel>
+          <Carousel.Item className="bannerpic">
+            <Link to="/signup">
+              <img
+                className="d-block w-100"
+                src={mainBanner3}
+                alt="Second slide"
+              />
+            </Link>
+          </Carousel.Item>
+        </Carousel>
+      </div>
       <div style={{ width: "100%", height: "30px" }}></div>
     </>
   );

@@ -10,7 +10,45 @@ hr > .Line {
     width: 80%;
 }
 
+.feed {
+    text-align: center;
+}
 
-/** {*/
-/*    background-color: black;*/
-/*}*/
+.feedcar {
+    display: inline-block;
+
+}
+
+.blue-line-out {
+    text-align: center;
+    height: 6px;
+}
+
+.blue-line-in {
+    width: 90%;
+    height: 6px;
+    background-color: rgba(1, 91, 187, 1);
+    display: inline-block;
+    border-radius: 10px;
+}
+
+.yellow-line-out {
+    text-align: center;
+    height: 6px;
+}
+
+.yellow-line-in {
+    width: 90%;
+    height: 6px;
+    background-color: rgba(254, 213, 1, 1);
+    display: inline-block;
+    border-radius: 10px;
+}
+
+.blue-line-out {
+    margin-top: 15px;
+}
+
+.yellow-line-out {
+    margin-bottom: 50px;
+}

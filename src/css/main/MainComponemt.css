@@ -10,6 +10,10 @@
     cursor: pointer;
 }
 
+.folpic-in {
+    display: inline-block;
+}
+
 .group_icon,
 .group_txt {
     z-index: 1;
@@ -77,7 +81,7 @@
     font-size: 0.9em;
     margin: 0;
     padding: 0;
-    
+
 }
 
 .like_group {
@@ -127,7 +131,6 @@
 }
 
 .feedcar {
-    margin-left: 80px;
     margin-bottom: 70px;
 }
 

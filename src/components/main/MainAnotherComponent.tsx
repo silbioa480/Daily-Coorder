@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 // css
-import "../../css/main/MainComponent5.css";
+import "../../css/main/MainAnotherComponent.css";
 
 // 사진
 import like_logoW from "../../img/main/like_logoW.png";
@@ -87,12 +87,12 @@ function MainComponent(props: IProps) {
 
   // 이부분을 Component화.
   return (
-    <div className="anopic">
+    <div className="anotherpic">
       <Link to="/board/board1" className="link">
         <img className="d-block w-100" src={props.data.title} alt="1-1 slide" />
       </Link>
 
-      <div className="group_icon5">
+      <div className="ano-group_icon5">
         <div className="like_logoA">{isShow ? full_like : empty_like}</div>
 
         <div className="follow_logoA">
@@ -101,7 +101,7 @@ function MainComponent(props: IProps) {
       </div>
 
       <Link to="/feed">
-        <div className="group_txt5">
+        <div className="ano-group_txt5">
           <div className="t1">{props.data.name}</div>
           <div className="like_group">
             <img src={like_icon} className="like_icon" />

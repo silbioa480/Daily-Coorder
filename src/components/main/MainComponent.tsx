@@ -88,7 +88,7 @@ function MainComponent(props: IProps) {
   // 이부분을 Component화.
   return (
     <div className="folpic">
-      <Link to="/feed" className="link">
+      <Link to="/board/board1" className="link">
         <img className="d-block w-100" src={props.data.title} alt="1-1 slide" />
       </Link>
       <div className="group_icon">
