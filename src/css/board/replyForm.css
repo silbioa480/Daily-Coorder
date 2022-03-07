@@ -10,11 +10,20 @@
   height: auto;
   min-height: 59px;
   border-radius: 5px;
+  padding: 5px 3px 1px 1px;
 }
-.reply_nick_content > a > p:nth-child(1) {
+.reply_nick_content > a > span:nth-child(1) {
   padding: 5px 5px 3px 5px;
   font-weight: bold;
 }
-.reply_nick_content > p:nth-child(2) {
-  padding: 0px 0px 0px 5px;
+.reply_nick_content > span:nth-child(2) {
+  font-weight: lighter;
+  font-size: small;
+  /* visibility: hidden; */
+}
+/* .reply_nick_content > span:nth-child(2):hover {
+  visibility: visible;
+} */
+.reply_nick_content > p {
+  padding: 5px 5px 5px 5px;
 }
