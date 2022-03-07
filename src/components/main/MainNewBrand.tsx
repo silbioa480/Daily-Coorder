@@ -6,6 +6,7 @@ import MainComponent5 from "./MainComponent5";
 
 // css
 import "../../css/main/MainNewBrand.css";
+import "../../css/main/animation.css";
 
 // 사진
 import mainbran1 from "../../img/main/mainbran1.png";
@@ -98,9 +99,9 @@ function MainAnother() {
   });
   return (
     <>
-      <div className="mainfollow-text">New In Thursday Island</div>
-      <hr className="Line"></hr>
-      <div className="wth">
+      <div className="bb mainfollow-text">New In Thursday Island</div>
+      <hr className="bb Line"></hr>
+      <div className="bb wth">
         <Carousel fade className="anothercar" style={{ width: "1400px" }}>
           <Carousel.Item>
             <div>{renderRepeat.slice(0, 5)}</div>
