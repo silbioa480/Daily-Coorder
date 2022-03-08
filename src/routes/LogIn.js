@@ -14,6 +14,7 @@ function LogIn() {
         <Route exact path="/login/PasswordSearch">
           <PasswordSearch />
         </Route>
+
         <Route exact path="/signup">
           <SignUp />
         </Route>
