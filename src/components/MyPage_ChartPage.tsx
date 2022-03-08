@@ -1,6 +1,6 @@
 
 import { Button } from 'react-bootstrap';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
 import { Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -54,10 +54,14 @@ function CardStyle(){
 
 
 function MyPage_ChartPage(){
-    const [clothesCard,setClothesCard]=useState(["sadf","sadf","sdef","asdf"]);
+    const [clothesCard,setClothesCard]=useState([]);
+    const [clothesData,setClothesData]=useState();
+
+    useEffect(()=>{
+        
+    })
     return (
         <>
-               
                
                <Container style={{display:"flex",justifyContent:"space-around",height:"auto"}}>
                         {clothesCard.map(()=>{
