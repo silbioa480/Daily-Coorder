@@ -30,10 +30,17 @@ function Navigation() {
         zIndex: "100",
         width: "100%",
         height: "80px",
+        padding: "0 120px"
       }}
     >
-      <NavLine>
-        <div>
+      <div className='nav-box'>
+        <NavLine>
+          <form className="search">
+            <input type="text" name="search" id="search" placeholder="검색" />
+            <BsSearch
+              style={{ width: "24px", height: "24px", margin: "0 10px" }}
+            />
+          </form>
           <Link to="/" style={{ margin: "0 20px" }}>
             <Navbar.Brand
               style={{
@@ -46,19 +53,12 @@ function Navigation() {
               Daily Coorder
             </Navbar.Brand>
           </Link>
-          <form className="search">
-            <input type="text" name="search" id="search" placeholder="검색" />
-            <BsSearch
-              style={{ width: "24px", height: "24px", margin: "0 10px" }}
-            />
-          </form>
-        </div>
-
-        <Nav>
-          <NotLogInNav />
-          <LoggedInNav />
-        </Nav>
-      </NavLine>
+          <Nav className='login'>
+            <NotLogInNav />
+            <LoggedInNav />
+          </Nav>
+        </NavLine>
+      </div>
     </Navbar>
   );
 }
