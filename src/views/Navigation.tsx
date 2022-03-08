@@ -29,31 +29,38 @@ function Navigation() {
         right: "0",
         zIndex: "100",
         width: "100%",
-        height: "80px",
-        padding: "0 120px"
+        height: "65px",
+        padding: "0 120px",
       }}
     >
-      <div className='nav-box'>
+      <div className="nav-box">
         <NavLine>
           <form className="search">
-            <input type="text" name="search" id="search" placeholder="검색" />
+            <input
+              type="text"
+              name="search"
+              id="search"
+              placeholder="검색"
+              style={{ height: "23px" }}
+            />
             <BsSearch
-              style={{ width: "24px", height: "24px", margin: "0 10px" }}
+              style={{ width: "20px", height: "20px", margin: "0 10px" }}
             />
           </form>
           <Link to="/" style={{ margin: "0 20px" }}>
             <Navbar.Brand
               style={{
-                fontSize: "2.3em",
+                fontSize: "1.8em",
                 color: "white",
                 verticalAlign: "middle",
-                lineHeight: "80px",
+                lineHeight: "65px",
+                marginLeft: "270px",
               }}
             >
               Daily Coorder
             </Navbar.Brand>
           </Link>
-          <Nav className='login'>
+          <Nav className="login">
             <NotLogInNav />
             <LoggedInNav />
           </Nav>

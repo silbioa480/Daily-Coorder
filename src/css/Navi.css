@@ -8,6 +8,8 @@
     color: white;
     display: flex;
     align-items: center;
+    font-weight: bold;
+    font-size: 13px;
 }
 
 .header {
@@ -15,8 +17,20 @@
 }
 
 .nav-box {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.signupp {
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.logoutt {
+    color: white;
+    display: flex;
+    align-items: center;
 }
