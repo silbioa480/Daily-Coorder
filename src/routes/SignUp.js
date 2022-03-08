@@ -427,10 +427,15 @@ function SignUp() {
       />
       <form className="signup_form">
         <Tabs defaultActiveKey="first">
-          <Tab eventKey="first" title="일반회원가입">
+          <Tab eventKey="first" title="일반회원가입" className="signup_tab">
             <p className="signup_upper_font"> 회원가입 </p>
-            <br />
-            <br />
+
+            <div className="blue-line-out">
+              <div className="blue-line-in"></div>
+            </div>
+            <div className="yellow-line-out">
+              <div className="yellow-line-in"></div>
+            </div>
             <div className="signup_profile">
               <div className="avatar stagger-item">
                 <img
@@ -652,7 +657,7 @@ function SignUp() {
                 <div className="signup_input_valid">숫자만 입력하세요</div>
               )}
             </div>
-            <hr />
+
             <h5
               style={{
                 color: "gray",
@@ -693,9 +698,13 @@ function SignUp() {
                 onChange={onChangeWeight}
               />
               kg
-              <hr />
             </div>
-
+            <div className="blue-line-out">
+              <div className="blue-line-in"></div>
+            </div>
+            <div className="yellow-line-out">
+              <div className="yellow-line-in"></div>
+            </div>
             <details>
               <summary className="signup_summary">
                 일반회원 약관동의{" "}
@@ -840,13 +849,48 @@ function SignUp() {
           </Tab>
 
           <Tab
+            className="signup_tab"
             eventKey="second"
             title="사업자회원가입"
             onSubmit={onProSubmitHandler}
           >
             <p className="signup_upper_font"> 사업자 회원가입 </p>
-            <br />
-            <br />
+
+            <div className="blue-line-out">
+              <div className="blue-line-in"></div>
+            </div>
+            <div className="yellow-line-out">
+              <div className="yellow-line-in"></div>
+            </div>
+            <div className="signup_profile">
+              <div className="avatar stagger-item">
+                <img
+                  src={fileImage}
+                  alt="sample"
+                  className="signup_profile_img rounded-circle"
+                />
+              </div>
+              <div>
+                <label type="submit" className="signup_profile_upbtn">
+                  업로드
+                  <input
+                    className="signup_profile_upbtn"
+                    type="file"
+                    accept="image/*"
+                    style={{ display: "none" }}
+                    onChange={saveFileImage}
+                  />
+                </label>
+                <label type="submit" className="signup_profile_delbtn">
+                  삭제하기
+                  <input
+                    className="signup_profile_delbtn"
+                    style={{ display: "none" }}
+                    onClick={() => deleteFileImage()}
+                  />
+                </label>
+              </div>
+            </div>
 
             <div>
               <label className="signup_font" htmlFor="pro-id">
@@ -996,7 +1040,12 @@ function SignUp() {
                 <div className="signup_input_valid">숫자만 입력하세요</div>
               )}
             </div>
-            <hr />
+            <div className="blue-line-out">
+              <div className="blue-line-in"></div>
+            </div>
+            <div className="yellow-line-out">
+              <div className="yellow-line-in"></div>
+            </div>
 
             <details>
               <summary className="signup_summary">
