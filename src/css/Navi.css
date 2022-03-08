@@ -1,28 +1,22 @@
 .search {
-    display: inline;
-    margin: 0 auto;
+    display: flex;
+    align-items: center;
     color: white;
-
 }
 
 .login {
     color: white;
-    font-size: 13px;
-    font-weight: bold;
+    display: flex;
+    align-items: center;
 }
 
 .header {
-    text-align: center;
+    float: right;
 }
 
-.signupp {
-    font-size: 13px;
-    font-weight: bold;
-    color: white;
-}
-
-.logoutt {
-    font-size: 13px;
-    font-weight: bold;
-    color: white;
+.nav-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }

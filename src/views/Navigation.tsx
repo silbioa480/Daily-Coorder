@@ -29,42 +29,36 @@ function Navigation() {
         right: "0",
         zIndex: "100",
         width: "100%",
-        height: "55px",
+        height: "80px",
+        padding: "0 120px"
       }}
     >
-      <NavLine className="header">
-        <div>
+      <div className='nav-box'>
+        <NavLine>
+          <form className="search">
+            <input type="text" name="search" id="search" placeholder="검색" />
+            <BsSearch
+              style={{ width: "24px", height: "24px", margin: "0 10px" }}
+            />
+          </form>
           <Link to="/" style={{ margin: "0 20px" }}>
             <Navbar.Brand
               style={{
-                fontSize: "2.1em",
+                fontSize: "2.3em",
                 color: "white",
                 verticalAlign: "middle",
-                lineHeight: "55px",
+                lineHeight: "80px",
               }}
             >
               Daily Coorder
             </Navbar.Brand>
           </Link>
-          <form className="search">
-            <input
-              type="text"
-              name="search"
-              id="search"
-              placeholder="검색"
-              style={{ marginLeft: "40px", height: "25px" }}
-            />
-            <BsSearch
-              style={{ width: "20px", height: "20px", margin: "0 13px" }}
-            />
-          </form>
-        </div>
-
-        <Nav style={{ lineHeight: "55px" }}>
-          <NotLogInNav />
-          <LoggedInNav />
-        </Nav>
-      </NavLine>
+          <Nav className='login'>
+            <NotLogInNav />
+            <LoggedInNav />
+          </Nav>
+        </NavLine>
+      </div>
     </Navbar>
   );
 }

@@ -123,8 +123,10 @@
 }
 
 .social_logo {
+    margin-top: 5px;
     width: 24px;
     height: 25px;
+
 }
 
 .social_button {
