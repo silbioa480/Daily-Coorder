@@ -5,6 +5,8 @@ import { BsSearch } from "react-icons/bs";
 import NotLogInNav from "../components/NotLogInNav";
 import LoggedInNav from "../components/LoggedInNav";
 
+import "../css/Navi.css";
+
 const NavLine = styled.div`
   display: flex;
   justify-content: space-between;
@@ -19,32 +21,39 @@ function Navigation() {
       bg="black"
       variant="light"
       style={{
-        display: "flex",
+        display: "table",
         flexDirection: "column",
         position: "sticky",
         top: "0",
         left: "0",
         right: "0",
         zIndex: "100",
+        width: "100%",
+        height: "80px",
       }}
     >
       <NavLine>
         <div>
           <Link to="/" style={{ margin: "0 20px" }}>
-            <Navbar.Brand style={{ fontSize: "2.3em", color: "white" }}>
+            <Navbar.Brand
+              style={{
+                fontSize: "2.3em",
+                color: "white",
+                verticalAlign: "middle",
+                lineHeight: "80px",
+              }}
+            >
               Daily Coorder
             </Navbar.Brand>
           </Link>
-          <form style={{ display: "inline", margin: "auto 0", color: "white" }}>
+          <form className="search">
             <input type="text" name="search" id="search" placeholder="검색" />
             <BsSearch
               style={{ width: "24px", height: "24px", margin: "0 10px" }}
             />
           </form>
         </div>
-      </NavLine>
 
-      <NavLine style={{ margin: "20px 0" }}>
         <Nav>
           <NotLogInNav />
           <LoggedInNav />

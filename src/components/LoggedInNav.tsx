@@ -1,3 +1,5 @@
+import "../css/Navi.css";
+
 import {
   BsBell,
   BsBookmarkHeart,
