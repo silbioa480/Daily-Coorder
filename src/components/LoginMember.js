@@ -11,6 +11,7 @@ import googlelogo from "../img/login/googlelogo.png";
 import PopUp from "./PopUp";
 //아이디 기억하기 체크박스 때문에 install 했고, import함
 import { useCookies } from "react-cookie";
+import GoogleLogin from "react-google-login";
 
 function LoginMember() {
   //모달 설정
@@ -215,10 +216,34 @@ function LoginMember() {
 
         <div className="social_box">
           <div className="social_google">
-            <img className="social_logo" src={googlelogo} />
-            <button type="submit" className="social_button btn" value="로그인">
-              구글 계정으로 로그인
-            </button>
+            <GoogleLogin
+              clientId={
+                "549626971624-5ph29id2ioj9veqq6ut6bel3sa1vq9nf.apps.googleusercontent.com"
+              }
+              buttonText="Login"
+              render={(renderProps) => (
+                <div
+                  onClick={renderProps.onClick}
+                  disabled={renderProps.disabled}
+                >
+                  <img
+                    className="social_logo"
+                    src={googlelogo}
+                    resizeMode={"contain"}
+                  />
+                  <button
+                    type="submit"
+                    className="social_button btn"
+                    value="로그인"
+                  >
+                    구글 계정으로 로그인
+                  </button>
+                </div>
+              )}
+              onSuccess={(e) => clickSnsLoginGoogle(e)}
+              onFailure={console.log}
+              cookiePolicy={"single_host_origin"}
+            />
           </div>
 
           <div className="social_naver">
