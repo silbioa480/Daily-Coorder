@@ -78,6 +78,20 @@ function FollowerBox(props: IProps) {
       liked: 1240,
       followed: 1446,
     },
+    {
+      id: 9,
+      title: mainfol3,
+      name: "@aaa_A",
+      liked: 418,
+      followed: 847,
+    },
+    {
+      id: 10,
+      title: mainfol5,
+      name: "@minkue",
+      liked: 172,
+      followed: 351,
+    },
   ];
 
   const renderRepeat = datas.map((data) => {
@@ -86,9 +100,10 @@ function FollowerBox(props: IProps) {
 
   return (
     <div
+      className="aa"
       style={{
         display: "flex",
-        justifyContent: "space-around",
+        justifyContent: "center",
         width: "100vw",
         margin: "50px auto",
       }}
@@ -99,6 +114,7 @@ function FollowerBox(props: IProps) {
           flexDirection: "column",
           justifyContent: "center",
           width: "150px",
+          marginRight: "50px",
         }}
       >
         <Link to="#">
@@ -125,13 +141,13 @@ function FollowerBox(props: IProps) {
       </Figure>
 
       <div className="feed">
-        <Carousel style={{ width: "900px" }}>
+        <Carousel fade className="feedcar" style={{ width: "1600px" }}>
           <Carousel.Item>
-            <div>{renderRepeat.slice(0, 3)}</div>
+            <div>{renderRepeat.slice(0, 5)}</div>
           </Carousel.Item>
 
           <Carousel.Item>
-            <div>{renderRepeat.slice(3, 6)}</div>
+            <div>{renderRepeat.slice(5, 10)}</div>
           </Carousel.Item>
         </Carousel>
       </div>
