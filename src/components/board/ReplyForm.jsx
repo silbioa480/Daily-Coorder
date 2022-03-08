@@ -3,7 +3,7 @@ import similar from "../../img/similar.png";
 import ReplyFormfunction from "./ReplyFormFunction";
 import "../../css/board/replyForm.css";
 //댓글을달았을때 입력받아서 나오는 폼
-function ReplyForm({ comments, removeComment }) {
+function ReplyForm({ comments, removeComment, modification }) {
   return (
     <>
       <div>
@@ -37,6 +37,7 @@ function ReplyForm({ comments, removeComment }) {
           <ReplyFormfunction
             comments={comments}
             removeComment={removeComment}
+            modification={modification}
           />
         </div>
       </div>

@@ -10,12 +10,13 @@ import React from "react";
 import { Modal } from "react-bootstrap";
 import Picture_Tag from "./Picture_Tag";
 import "../../css/board/pictureQr.css";
+import mainano1 from "../../img/main/mainano1.png";
 //게시물사진 및 qr코드
 function Board_Picture() {
   return (
     <div className="board_picture">
       <div className="picture">
-        <img src={similar} alt=""></img>
+        <img src={mainano1} alt=""></img>
         <Qrcode></Qrcode>
       </div>
       <Picture_Tag />

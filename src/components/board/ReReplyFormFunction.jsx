@@ -6,9 +6,9 @@ import ModiRemoveForm from "./ModiRemoveForm";
 import ReplyPostForm from "./ReplyPostForm";
 //대댓글달았을때 나오는폼의 좋아요 대댓글 수정삭제 폼
 function ReReplyFormFunction() {
-  const [color, setColor] = useState("");
+  const [color, setColor] = useState("gray");
   const heartClick = () => {
-    color === "" ? setColor("red") : setColor("");
+    color === "gray" ? setColor("rgba(254,68,161,1)") : setColor("gray");
   };
   const [isActive, setIsActive] = useState(false);
   const [isreply, setIsreply] = useState(false);

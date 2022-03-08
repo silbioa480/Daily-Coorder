@@ -7,9 +7,9 @@ import DownBtn from "./board/DownBtn";
 function Board_Posts() {
   return (
     <>
-      <div className="Board_Posts">
+      <div className="aa Board_Posts">
         <PictureQr />
-        <div>
+        <div className="aa">
           <DownBtn />
           <Explanation />
           <FollowButton />

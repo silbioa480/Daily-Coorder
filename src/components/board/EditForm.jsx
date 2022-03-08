@@ -8,10 +8,8 @@ import ReplyForm from "./ReplyForm";
 import momment from "moment";
 import moment from "moment";
 import ReplyPostForm from "./ReplyPostForm";
-import EditForm from "./EditForm";
-import { renderIntoDocument } from "react-dom/test-utils";
 //댓글입력하면나오는폼
-function PostForm() {
+function EditForm({ modcontent }) {
   //textarea 늘려주는 기능
   const textRef = React.createRef();
   const textResize = () => {
@@ -19,12 +17,12 @@ function PostForm() {
     textRef.current.style.height = textRef.current.scrollHeight + "px";
   };
   //댓글입력하는기능
-  const [content, setContent] = useState("");
+  const [content, setcontent] = useState("");
   const handleChange = (e) => {
-    setContent(e.target.value);
+    setcontent(e.target.value);
   };
-  const [aaa, setAaa] = useState("");
   const [con, SetCon] = useState("");
+
   const [commentsList, setCommentList] = useState([]);
   const removeComment = (id) => {
     setCommentList(
@@ -33,26 +31,16 @@ function PostForm() {
       })
     );
   };
-  // const onClick = {
-  //   function(e) {
-  //     e.currentTarget.value = con;
-  //   },
-  // };
-  // onClick={function (e) {
-  //   e.currentTarget.value = con;
-  // }}
   const [formLocation, SetFormLocation] = useState(false);
 
-  const modification = (content) => {
-    SetCon(content);
-    SetFormLocation(!formLocation);
-    console.log(content);
+  const modification = () => {
+    SetFormLocation();
   };
 
   const click = (e) => {
     e.preventDefault();
     if (!content) {
-      alert("여긴 포스트 폼입니다");
+      alert("여긴 에디터 폼입니다");
     } else {
       setCommentList([
         ...commentsList,
@@ -64,7 +52,7 @@ function PostForm() {
       ]);
     }
 
-    setContent(""); //입력하고나면 비워줌
+    setcontent(""); //입력하고나면 비워줌
   };
   const renderComments = commentsList.map((comments, index) => {
     return (
@@ -75,50 +63,37 @@ function PostForm() {
           removeComment={removeComment}
           modification={modification}
           index={index}
+
           // id={comments.id}
           // isEdit={false}
         />
-        {/* {formLocation == index ? <EditForm /> : null} */}
+        {/* {formLocation == index ? null : <EditForm />} */}
       </div>
     );
   });
 
   return (
     <>
-      {/* {renderComments} */}
+      {renderComments}
       {formLocation == false ? (
-        renderComments
-      ) : (
-        <EditForm modcontent={content} />
-      )}
+        <div>
+          <a href="#">
+            <Circle
+              src={similar}
+              style={{ display: "inline", marginLeft: "20px" }}
+            ></Circle>
+          </a>
 
-      <div style={{ marginTop: "10px", position: "relative" }}>
-        <div className="wrapper">
-          <div style={{ marginLeft: "20px" }}>
-            <div style={{ display: "flex" }}>
-              <div>
-                <a href="#">
-                  <Circle
-                    src={similar}
-                    style={{ display: "inline", marginLeft: "20px" }}
-                  ></Circle>
-                </a>
-              </div>
-              <div>
-                <textarea
-                  ref={textRef}
-                  onKeyUp={textResize}
-                  onKeyDown={textResize}
-                  id="comment"
-                  placeholder="댓글을 입력해주세요"
-                  cols={35}
-                  required
-                  onChange={handleChange}
-                  value={content}
-                ></textarea>
-              </div>
-            </div>
-          </div>
+          <textarea
+            ref={textRef}
+            onKeyUp={textResize}
+            onKeyDown={textResize}
+            onChange={handleChange}
+            onClick={function (e) {
+              e.currentTarget.value = con;
+            }}
+            value={modcontent}
+          ></textarea>
           <div
             className="comment_btn"
             style={{ display: "flex", padding: "5px" }}
@@ -136,9 +111,12 @@ function PostForm() {
             </button>
           </div>
         </div>
-      </div>
+      ) : (
+        renderComments
+      )}
+      )
     </>
   );
 }
 
-export default PostForm;
+export default EditForm;

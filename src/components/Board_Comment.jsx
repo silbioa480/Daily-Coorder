@@ -1,19 +1,24 @@
 import "../css/board/Board_Post.css";
 import ReplyForm from "./board/ReplyForm";
 import PostForm from "./board/PostForm";
+import { useState } from "react";
+import { AiOutlineArrowRight, AiOutlineArrowDown } from "react-icons/ai";
 function Comment() {
+  const [isShow, setIsShow] = useState(false);
+
+  const toggle = () => {
+    setIsShow(!isShow);
+  };
+
   return (
     <>
-      <div
-        style={{
-          marginLeft: "20px",
-          padding: "20px 0px 0px 0px",
-        }}
-      >
+      <div className="arrow_btn">
         댓글
+        <button onClick={() => setIsShow(!isShow)}>
+          {isShow ? <AiOutlineArrowDown /> : <AiOutlineArrowRight />}
+        </button>
       </div>
-
-      <PostForm />
+      {isShow && <PostForm />}
     </>
   );
 }
