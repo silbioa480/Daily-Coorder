@@ -4,8 +4,8 @@ import $ from "jquery";
 import "../css/LoginMember.css";
 
 import NaverLogin from "react-naver-login";
+import KakaoLogin from "react-kakao-login";
 import naverlogo from "../img/login/naverlogo.png";
-import facebooklogo from "../img/login/facebooklogo.png";
 import kakaologo from "../img/login/kakaologo.png";
 import googlelogo from "../img/login/googlelogo.png";
 import PopUp from "./PopUp";
@@ -37,6 +37,14 @@ function LoginMember() {
 
   const clickSnsLoginNaver = (e) => {
     let naverid = e.id;
+  };
+
+  const clickSnsLoginKakao = (e) => {
+    let kakaoid = e.profile.id;
+  };
+
+  const clickSnsLoginGoogle = (e) => {
+    let googleid = e.Ft.NT;
   };
 
   const onIdHandler = (e) => {
@@ -240,24 +248,33 @@ function LoginMember() {
               onFailure={(result) => console.error(result)}
             />
           </div>
-          {/*<div className="social_naver">*/}
-          {/*  <img className="social_logo" src={naverlogo} />*/}
-          {/*  <button type="submit" className="social_button btn" value="로그인">*/}
-          {/*    네이버 계정으로 로그인*/}
-          {/*  </button>*/}
-          {/*</div>*/}
-          {/*<Link to="/naverlogin" />*/}
+
           <div className="social_kakao">
-            <img src={kakaologo} className="social_logo" />
-            <button type="submit" className="social_button btn" value="로그인">
-              카카오 계정으로 로그인
-            </button>
-          </div>
-          <div className="social_facebook">
-            <img className="social_logo" src={facebooklogo} />
-            <button type="submit" className="social_button btn" value="로그인">
-              페이스북 계정으로 로그인
-            </button>
+            <KakaoLogin
+              token={"636dc8497c246f21793ea4457306dd54"}
+              render={(renderProps) => (
+                <div
+                  onClick={renderProps.onClick}
+                  disabled={renderProps.disabled}
+                >
+                  <img
+                    className="social_logo"
+                    src={kakaologo}
+                    resizeMode={"contain"}
+                  />
+                  <button
+                    type="submit"
+                    className="social_button btn"
+                    value="로그인"
+                  >
+                    카카오 계정으로 로그인
+                  </button>
+                </div>
+              )}
+              onSuccess={(e) => clickSnsLoginKakao(e)}
+              onFail={console.error}
+              onLogout={console.Info}
+            />
           </div>
         </div>
 
