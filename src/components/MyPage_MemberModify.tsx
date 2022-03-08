@@ -7,6 +7,125 @@ import Modal from 'react-bootstrap/Modal';
 import { useState } from 'react';
 import { Figure } from 'react-bootstrap';
 
+function CeoModify(){
+    const [imgfile,setImgFile]=useState('');
+
+    const [ceoinfo,setCeoinfo]=useState({
+        id:"",
+        password:"",
+        ceonumber:"",
+        brandname:"",
+        email:"",
+        phone:""
+    });
+
+    const handleChange=(event: any)=>{
+        const name=event.target.name;
+        const value=event.target.value;
+        setCeoinfo((ceoinfos)=>({...ceoinfos,[name]:[value]}));
+
+    }
+
+    const onloadfile=(event : any)=>{
+        const file=event?.target.files;
+        setImgFile(URL.createObjectURL(file[0]));
+    }
+
+    const handleSubmit=(event :any)=>{
+        event.preventDefault();
+
+    }
+
+    const compareIdCheck=()=>{
+
+    }
+
+    const assignRequest=()=>{
+        alert("입력하신 전화번호로 인증요청을 보냈습니다");
+    }
+ 
+    const assignEmail=()=>{
+        alert("입력하신 이메일로 인증메일을 보냈습니다.");
+    }
+    return(
+        <>
+                     <Form className="pl-5" onSubmit={handleSubmit}>
+                    <Row className="my-5">
+                        <Col>
+                                <div style={{width:"170px",height:"200px",margin:"3vh 0 0 0",border:"1px solid #dbdbdb"}}>
+                                    <Figure style={{width:"170px",height:"200px"}}>
+                                        <Figure.Image
+                                            width={170}
+                                            height={200}
+                                            alt="프로필 사진"
+                                            src={imgfile}
+                                        />
+                                    </Figure>
+                                </div>
+                                <div style={{margin:"1vh 0"}}>
+                                    <label className="btn btn-white" htmlFor="ppimage" style={{overflow:"hidden",border:"1px solid #dbdbdb",fontWeight:"bold",padding:".3vw .75vw",borderRadius:"5px"}}>
+                                        프로필 사진 업로드<input type="file" style={{display:"none"}} id="ppimage" accept='image/*' onChange={onloadfile}/>
+                                    </label>
+                                </div>
+                    
+                                <Form.Group  controlId="formGridEmail">
+                                        <Form.Label>아이디</Form.Label>
+                                        <div style={{width:"100%",display:"flex"}}>
+                                            <Form.Control type="text" placeholder="Enter ID" name="id" value={ceoinfo.id} onChange={handleChange}/>
+                                            <Button style={{width:"180px",textAlign:"center"}}  onClick={compareIdCheck}>중복 확인</Button>
+                                        </div>
+                                
+                                </Form.Group>
+
+
+                            <Form.Group  controlId="formGridEmail" style={{marginTop:"1vh"}}>
+                                    <Form.Label>상호명</Form.Label>
+                                    <div style={{width:"100%",display:"flex"}}>
+                                        <Form.Control type="text" placeholder="Enter NickName" name="brandname" value={ceoinfo.brandname} onChange={handleChange}/>
+                                      
+                                    </div>
+                            </Form.Group>
+                        
+                            <Form.Group className="my-3" controlId="formGridPassword">
+                                <Form.Label>비밀번호</Form.Label>
+                                <Form.Control type="password" placeholder="Password" name="password" value={ceoinfo.password} onChange={handleChange}/>
+                            </Form.Group>
+
+                            <Form.Group className="my-3" controlId="formGridPassword">
+                                <Form.Label>비밀번호 확인</Form.Label>
+                                <Form.Control type="password" placeholder="Password check" name="passwordCheck"/>
+                            </Form.Group>
+
+                            <Form.Group className="my-3" controlId="formGridPassword">
+                                <Form.Label>사업자 번호</Form.Label>
+                                <Form.Control type="text" placeholder="ceo number" name="ceonumber" value={ceoinfo.ceonumber} onChange={handleChange}/>
+                            </Form.Group>
+                    
+
+                            <Form.Group className="my-3">
+                                <Form.Label>전화번호</Form.Label>
+                                <div style={{width:"100%",display:"flex"}}>
+                                    <Form.Control type="text" placeholder="Phone Number" name="phoneNumber" value={ceoinfo.phone} onChange={handleChange}/>
+                                    <Button style={{width:"180px",textAlign:"center"}} onClick={assignRequest}>인증요청</Button>
+                                </div>
+                            </Form.Group>
+
+                            <Form.Group className="my-3">
+                                <Form.Label>이메일</Form.Label>
+                                <div style={{width:"100%",display:"flex"}}>
+                                    <Form.Control type="email" placeholder="Enter Email" name="email" value={ceoinfo.email} onChange={handleChange}/>
+                                    <Button style={{width:"180px",textAlign:"center"}} onClick={assignEmail}>인증요청</Button>
+                                </div>
+                            </Form.Group>
+                    
+                        </Col>
+                    </Row>
+
+                  
+                </Form> 
+        </>
+    );
+}
 
 
 function MyPage_MemberModify(){
@@ -15,6 +134,8 @@ function MyPage_MemberModify(){
     const [userId,setId]=useState("user1234");
     const [userNickname,setNickname]=useState("nickname");
     const [userPassword,setPassword]=useState("");
+    const [isceo,setIsceo]=useState(false);
+    const [isuser,setIsuser]=useState(true);
 
     const [userInfo,setUserInfo]=useState({
         id:"",
@@ -78,11 +199,28 @@ function MyPage_MemberModify(){
    const assignEmail=()=>{
        alert("입력하신 이메일로 인증메일을 보냈습니다.");
    }
+    const handleUser=()=>{
+        setIsuser(true);
+        setIsceo(false);
+    }
+
+    const handleCeo=()=>{
+        setIsuser(false);
+        setIsceo(true);
+    }
     return(
         <>
             <ModifyCss />
+            <div className="memberOrceo">
+                <div style={{padding:"1vw 2vw",borderRight:"1px solid #dbdbdb",cursor:"pointer"}} onClick={handleUser}>
+                                일반 회원 정보
+                            </div>
+                            <div style={{padding:"1vw 2vw",cursor:"pointer"}} onClick={handleCeo}>
+                                사업자 회원 정보
+                            </div>
+                </div>
             <div className="containerCss">
-                <Form className="pl-5" onSubmit={handleSubmit}>
+                {isuser && <Form className="pl-5" onSubmit={handleSubmit}>
                     <Row className="my-5">
                         <Col>
                                 <div style={{width:"170px",height:"200px",margin:"3vh 0 0 0",border:"1px solid #dbdbdb"}}>
@@ -153,13 +291,15 @@ function MyPage_MemberModify(){
                     
                         </Col>
                     </Row>
-
-                    <div style={{width:"100%",display:"flex",justifyContent:"center"}}>
+                    
+                   
+                </Form> }
+                {isceo && <CeoModify />}
+                <div style={{width:"100%",display:"flex",justifyContent:"center"}}>
                         <Button variant="primary" type="submit" onClick={handleShow}>
                                 회원 정보 수정
                         </Button>
-                    </div>
-                </Form> 
+                </div>
             </div> 
 
             <Modal show={show} onHide={handleClose}>
