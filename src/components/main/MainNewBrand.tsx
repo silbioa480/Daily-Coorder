@@ -82,14 +82,14 @@ function MainAnother() {
       id: 9,
       title: mainbran9,
       name: "@official_Thursday Island",
-      liked: 1721,
+      liked: 143,
       followed: 312,
     },
     {
       id: 10,
       title: mainbran10,
       name: "@official_Thursday Island",
-      liked: 1721,
+      liked: 174,
       followed: 312,
     },
   ];

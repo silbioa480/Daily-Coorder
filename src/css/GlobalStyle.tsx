@@ -51,8 +51,8 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Source Sans Pro', sans-serif;
     background-color: ${({ theme }) => theme.bgColor};
     color: ${({ theme }) => theme.textColor};
-    margin: 0 auto;
-    max-width: 150vh;
+    margin: 0;
+    max-width: 100%;
   }
   a {
     text-decoration: none;
