@@ -52,7 +52,7 @@ const GlobalStyle = createGlobalStyle`
     background-color: ${({ theme }) => theme.bgColor};
     color: ${({ theme }) => theme.textColor};
     margin: 0 auto;
-    max-width: 150vh;
+    max-width: 100%;
   }
   a {
     text-decoration: none;
