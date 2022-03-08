@@ -69,15 +69,12 @@
   width: var(--input-box-width);
 }
 
-.file-uploader {
-  color: grey;
-  cursor: pointer;
-}
-
 .file-icon {
   width: 300px;
   height: 300px;
   margin-right: 3rem;
+  color: grey;
+  cursor: pointer;
 }
 
 .file-name {
