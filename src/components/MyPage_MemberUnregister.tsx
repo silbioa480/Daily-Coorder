@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
+import { Link } from 'react-router-dom';
 import MyPage_MemberInformation from './MyPage_MemberInformation';
 
 
@@ -19,9 +20,9 @@ function MyPage_MemberUnregister(){
                 <div style={{width:"60%",margin:"4em auto",height:"750px"}}>
                     <MyPage_MemberInformation />
                 
-                    <div style={{width:"100%",display:"flex",justifyContent:"center",marginTop:"5em"}}>
+                    <div style={{width:"100%",display:"flex",justifyContent:"center",marginTop:"1vw"}}>
                         <div className="d-grid gap-2">
-                            <Button variant="primary" onClick={handleShow} size="lg">
+                            <Button variant="white" onClick={handleShow} style={{padding:".3vw 2vw",borderRadius:"20px",fontWeight:"bold",border:"3px solid #dbdbdb"}}>
                                 회원 탈퇴
                             </Button>
                         </div>
@@ -36,7 +37,7 @@ function MyPage_MemberUnregister(){
                                 이전
                             </Button>
                             <Button variant="primary" onClick={handleClose}>
-                            회원 탈퇴
+                                <Link to="/">회원 탈퇴</Link>
                             </Button>
                             </Modal.Footer>
                         </Modal>
