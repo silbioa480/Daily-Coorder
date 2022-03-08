@@ -425,7 +425,7 @@ function SignUp() {
         title={popup.title}
         callback={popup.callback}
       />
-      <form>
+      <form className="signup_form">
         <Tabs defaultActiveKey="first">
           <Tab eventKey="first" title="일반회원가입">
             <p className="signup_upper_font"> 회원가입 </p>
@@ -491,6 +491,7 @@ function SignUp() {
               </button>
               {show && <Result data={value} />}
             </div>
+
             <div>
               <label className="signup_font" htmlFor="user-name">
                 이름
@@ -621,7 +622,7 @@ function SignUp() {
                 className="signup_inputs"
                 id="email"
                 name="user-email"
-                type="text"
+                type="email"
                 placeholder="이메일"
                 value={email}
                 onChange={onChangeEmail}
@@ -965,7 +966,7 @@ function SignUp() {
                 className="signup_inputs"
                 id="proEmail"
                 name="pro-email"
-                type="text"
+                type="email"
                 placeholder="이메일"
                 value={proEmail}
                 onChange={onChangeProEmail}

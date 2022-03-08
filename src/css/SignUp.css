@@ -1,4 +1,5 @@
 .signup {
+
     display: flex;
     justify-content: center;
     width: 100%;
@@ -6,6 +7,10 @@
     margin-top: 50px;
 
 
+}
+
+.signup_form {
+    backgroundColor: white;
 }
 
 .signup_upper_font {
@@ -70,10 +75,13 @@
     border-radius: 2px;
     width: 72%;
     height: 30px;
-    border: 1px solid #e5e5e5;
+    /*border: 1px solid #e5e5e5;*/
     padding: 9px 12px;
     outline: none;
     box-sizing: border-box;
+
+    border: none;
+    border-bottom: 1px solid #015bbb;
 
 }
 
@@ -82,10 +90,13 @@
     border-radius: 2px;
     width: 100%;
     height: 30px;
-    border: 1px solid #e5e5e5;
+    /*border: 1px solid #e5e5e5;*/
     padding: 9px 12px;
     outline: none;
     box-sizing: border-box;
+
+    border: none;
+    border-bottom: 1px solid #015bbb;
 
 }
 

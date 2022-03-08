@@ -138,6 +138,12 @@ function PasswordSearch() {
           <p className="search_upper_font"> 비밀번호 찾기 </p>
           <br />
           <br />
+          <div className="blue-line-out">
+            <div className="blue-line-in"></div>
+          </div>
+          <div className="yellow-line-out">
+            <div className="yellow-line-in"></div>
+          </div>
 
           <div>
             <label htmlFor="user-id" className="search_font">
