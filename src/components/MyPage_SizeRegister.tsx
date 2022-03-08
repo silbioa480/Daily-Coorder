@@ -1,7 +1,33 @@
 import { useState } from "react";
-import { Container } from "react-bootstrap";
+import { Container, Modal } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import Form from 'react-bootstrap/Form'; 
+
+function AlertResister(){
+    const [close,setClose]=useState(false);
+
+    const handleClose=()=>{
+        setClose(true);
+    }
+    return (
+        <>
+            <Modal close={close} onHide={handleClose}>
+                <Modal.Header closeButton>
+                        <Modal.Title>정보 수정 확인</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>회원정보를 정말 수정하시겠습니까?</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        이전
+                    </Button>
+                    <Button variant="primary" onClick={handleClose}>
+                        수정 완료
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </>
+    );
+}
 
 function MyPage_SizeRegister(){
     const [memberId,setMemberId]=useState({id:""});
@@ -11,11 +37,17 @@ function MyPage_SizeRegister(){
         height:""
     });
 
+    const [show,setShow]=useState(false);
+
     const handleChange=(event : any)=>{
             const name=event.target.name;
             const value=event.target.value;
 
             setBody((values) =>({...values,[name]:[value]}));
+    }
+
+    const handleResister=()=>{
+        setShow(true);
     }
     return(
 
@@ -51,9 +83,11 @@ function MyPage_SizeRegister(){
                             </div>
                         </div>
                         <div style={{width:"100%",display:"flex",justifyContent:"center",margin:"3.5em 0"}}>
-                            <Button>체형 등록 하기</Button>
+                            <Button onClick={handleResister}>체형 등록 하기</Button>
                         </div>
                 </Container>  
+
+                {show && <AlertResister />}
         </>
     );
 }

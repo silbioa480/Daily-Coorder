@@ -3,6 +3,63 @@ import { useState } from 'react';
 import MemInfoCss from '../css/MyPage_MemInfoCss';
 import { Figure } from 'react-bootstrap';
 
+function Ceoinformation(){
+    const [ceoInfo,setCeoInfo]=useState({
+        id:"",
+        brandname:"",
+        password:"",
+        ceonumber:"",
+        email:"",
+        phone:""
+    })
+    return (
+        <>
+            <div style={{marginTop:"3vh",border:"1px solid #f7f7f7",borderBottom:"none"}}>
+                            <div style={{display:"flex"}}>
+                                    <p style={{width:"200px",padding:"1vh 1vw",borderRight:"1px solid #f7f7f7",backgroundColor:"#f7f7f7",fontWeight:"bold"}}>아이디</p>
+                                    <p style={{padding:"1vh 1vw"}}>{ceoInfo.id}</p>
+                            </div>
+                    </div>
+
+                    <div style={{border:"1px solid #f7f7f7",borderBottom:"none"}}>
+                        <div style={{display:"flex"}}>
+                                <p style={{width:"200px",padding:"1vh 1vw",borderRight:"1px solid #f7f7f7",backgroundColor:"#f7f7f7",fontWeight:"bold"}}>비밀번호</p>
+                                <p style={{padding:"1vh 1vw"}}><strong>●●●●●●●●{ceoInfo.password}</strong></p>
+                        </div>
+                    </div>
+
+                    <div style={{border:"1px solid #f7f7f7",borderBottom:"none"}}>
+                        <div style={{display:"flex"}}>
+                                <p style={{width:"200px",padding:"1vh 1vw",borderRight:"1px solid #f7f7f7",backgroundColor:"#f7f7f7",fontWeight:"bold"}}>상호명</p>
+                                <p style={{padding:"1vh 1vw"}}>{ceoInfo.brandname}</p>
+                        </div>
+                    </div>
+
+                    <div style={{border:"1px solid #f7f7f7",borderBottom:"none"}}>
+                        <div style={{display:"flex"}}>
+                                <p style={{width:"200px",padding:"1vh 1vw",borderRight:"1px solid #f7f7f7",backgroundColor:"#f7f7f7",fontWeight:"bold"}}>사업자번호</p>
+                                <p style={{padding:"1vh 1vw"}}>{ceoInfo.ceonumber}</p>
+                        </div>
+                    </div>
+
+                    <div style={{border:"1px solid #f7f7f7",borderBottom:"none"}}>
+                        <div style={{display:"flex"}}>
+                                <p style={{width:"200px",padding:"1vh 1vw",borderRight:"1px solid #f7f7f7",backgroundColor:"#f7f7f7",fontWeight:"bold"}}>이메일</p>
+                                <p style={{padding:"1vh 1vw"}}>{ceoInfo.email}</p>
+                        </div>
+                    </div>
+
+                    <div style={{border:"1px solid #f7f7f7",borderBottom:"none"}}>
+                        <div style={{display:"flex"}}>
+                                <p style={{width:"200px",padding:"1vh 1vw",borderRight:"1px solid #f7f7f7",backgroundColor:"#f7f7f7",fontWeight:"bold"}}>전화번호</p>
+                                <p style={{padding:"1vh 1vw"}}>{ceoInfo.phone}</p>
+                        </div>
+                    </div>
+                   
+        </>
+    );
+}
+
 
 function MemberInformation(){
     const [memberInfo,setMemberInfo]=useState({
@@ -85,12 +142,29 @@ function MemberInformation(){
 
 
 function MyPage_MemberInformation(){
-    const [member,setMember]=useState([]);
-    
+    const [isceo,setIsceo]=useState(false);
+    const [isuser,setIsuser]=useState(true);
 
+    const handleUser=()=>{
+        setIsuser(true);
+        setIsceo(false);
+    }
+
+    const handleCeo=()=>{
+        setIsuser(false);
+        setIsceo(true);
+    }
     return (
             <>
                 <MemInfoCss />
+                <div className="memberOrceo">
+                        <div style={{padding:"1vw 2vw",borderRight:"1px solid #dbdbdb",cursor:"pointer"}} onClick={handleUser}>
+                            일반 회원 정보
+                        </div>
+                        <div style={{padding:"1vw 2vw",cursor:"pointer"}} onClick={handleCeo}>
+                            사업자 회원 정보
+                        </div>
+                </div>
                 <div className="memberContainer">
                         <div style={{width:"170px",height:"200px",margin:"3vh 0",border:"1px solid #dbdbdb"}}>
                             <Figure style={{width:"170px",height:"200px"}}>
@@ -102,8 +176,11 @@ function MyPage_MemberInformation(){
                                 />
                             </Figure>
                         </div>
-                        <MemberInformation />
+                        {isuser && <MemberInformation />}
+                        {isceo && <Ceoinformation />}
                 </div>
+                
+
             </>
 
     );

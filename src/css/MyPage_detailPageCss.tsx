@@ -5,8 +5,7 @@ const ClothesDetailCss=createGlobalStyle`
         width:100%;
         height:auto;
         display:flex;
-        flex-direction:column;
-    
+        box-sizing:border-box;
     }
 
     .dataContainer{
@@ -18,6 +17,11 @@ const ClothesDetailCss=createGlobalStyle`
     }
     .datadescri{
         width:50%;
+        display:flex;
+        flex-direction:column;
+        justify-content:space-between;
+        box-sizing:border-box;
+        margin-left:1vw;
     }
     .chartContainer{
         width:100%;
