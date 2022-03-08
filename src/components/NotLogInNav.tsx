@@ -7,7 +7,7 @@ function NotLogInNav() {
       <NavButton to="/login" className="login">
         로그인
       </NavButton>
-      <NavButton to="/signup" style={{ color: "white" }}>
+      <NavButton to="/signup" className="signupp">
         회원가입
       </NavButton>
     </>

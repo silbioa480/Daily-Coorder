@@ -2,14 +2,27 @@
     display: inline;
     margin: 0 auto;
     color: white;
+
 }
 
 .login {
     color: white;
-
+    font-size: 13px;
+    font-weight: bold;
 }
 
 .header {
-    float: right;
+    text-align: center;
 }
 
+.signupp {
+    font-size: 13px;
+    font-weight: bold;
+    color: white;
+}
+
+.logoutt {
+    font-size: 13px;
+    font-weight: bold;
+    color: white;
+}
