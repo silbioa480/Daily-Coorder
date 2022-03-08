@@ -52,7 +52,7 @@ function MyPage_SideMenubar(){
                     <div className="sdBar">
                         <Nav className="flex-column">
                                     <Nav.Link style={{color:"black"}}>
-                                            <div style={{width:"100%",display:"flex", justifyContent:"space-between",padding:".5vw 0",margin:".2vw 0"}}>
+                                            <div style={{width:"100%",display:"flex", justifyContent:"space-between",padding:".5vw 0",margin:".2vw 0"}} onClick={handleshow}>
                                                 회원 관련<BsPlusLg onClick={handleshow}/>
                                             </div>
                                     </Nav.Link>
@@ -66,7 +66,7 @@ function MyPage_SideMenubar(){
 
                         <Nav className="flex-column">     
                                     <Nav.Link style={{color:"black"}}>
-                                        <div style={{width:"100%",display:"flex", justifyContent:"space-between",padding:".5vw 0",margin:".2vw 0"}}>
+                                        <div style={{width:"100%",display:"flex", justifyContent:"space-between",padding:".5vw 0",margin:".2vw 0"}} onClick={handleshow1}>
                                             사업자 관련 광고<BsPlusLg onClick={handleshow1}/>
                                         </div>
                                     </Nav.Link>
@@ -79,7 +79,7 @@ function MyPage_SideMenubar(){
                         <Nav className="flex-column">
                             
                                     <Nav.Link style={{color:"black"}}>
-                                        <div style={{width:"100%",display:"flex", justifyContent:"space-between",padding:".5vw 0",margin:".2vw 0"}}>
+                                        <div style={{width:"100%",display:"flex", justifyContent:"space-between",padding:".5vw 0",margin:".2vw 0"}} onClick={handleshow2}>
                                             관리자 관련 광고<BsPlusLg onClick={handleshow2}/>
                                         </div>
                                     </Nav.Link>
