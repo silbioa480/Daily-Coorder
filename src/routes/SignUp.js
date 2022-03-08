@@ -7,6 +7,7 @@ import PopUp from "../components/PopUp";
 import "../css/SignUp.css";
 
 function SignUp() {
+  //모달관련
   const [popup, setPopup] = useState({
     open: false,
     title: "",
@@ -15,9 +16,7 @@ function SignUp() {
   });
 
   //일반회원
-  const [fileImage, setFileImage] = useState(
-    "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
-  );
+  const [fileImage, setFileImage] = useState("/signup/profile.png");
   const [name, setName] = useState("");
   const [Id, setId] = useState("");
   const [Password, setPassword] = useState("");
@@ -94,9 +93,7 @@ function SignUp() {
 
   const deleteFileImage = () => {
     URL.revokeObjectURL(fileImage);
-    setFileImage(
-      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
-    );
+    setFileImage("/signup/profile.png");
   };
 
   const onChangeBirth = (e) => {
@@ -406,7 +403,7 @@ function SignUp() {
       setPopup({
         open: true,
         title: "통과 !!",
-        message: "사용가능한 아이디입니다!",
+        message: "사용가능 합니다!",
       });
       return;
     } else {
@@ -420,7 +417,7 @@ function SignUp() {
   };
 
   return (
-    <div class="signup">
+    <div className="signup">
       <PopUp
         open={popup.open}
         setPopup={setPopup}
@@ -428,7 +425,7 @@ function SignUp() {
         title={popup.title}
         callback={popup.callback}
       />
-      <form>
+      <form className="signup_form">
         <Tabs defaultActiveKey="first">
           <Tab eventKey="first" title="일반회원가입">
             <p className="signup_upper_font"> 회원가입 </p>
@@ -479,14 +476,14 @@ function SignUp() {
                 onChange={onChangeId}
               />{" "}
               {errorId && (
-                <div class="signup_input_valid">
+                <div className="signup_input_valid">
                   {" "}
                   아이디는 숫자를 포함하여 최소 5자 이상
                 </div>
               )}
               <button
                 type="submit"
-                class="signup_idchk_btn"
+                className="signup_idchk_btn"
                 hidden={show}
                 onClick={overSubmitHandler}
               >
@@ -494,6 +491,7 @@ function SignUp() {
               </button>
               {show && <Result data={value} />}
             </div>
+
             <div>
               <label className="signup_font" htmlFor="user-name">
                 이름
@@ -512,8 +510,9 @@ function SignUp() {
               <label className="signup_font" htmlFor="user-nickname">
                 닉네임
               </label>
+              <br />
               <input
-                className="signup_inputs"
+                className="signup_id_inputs"
                 id="nickName"
                 name="user-nickname"
                 type="text"
@@ -521,6 +520,16 @@ function SignUp() {
                 value={nickname}
                 onChange={onNicknameHandler}
               />
+              <button
+                type="submit"
+                className="signup_idchk_btn"
+                hidden={show}
+                onClick={overSubmitHandler}
+                style={{ marginLeft: "5px" }}
+              >
+                중복확인
+              </button>
+              {show && <Result data={value} />}
             </div>
 
             <div>
@@ -613,13 +622,15 @@ function SignUp() {
                 className="signup_inputs"
                 id="email"
                 name="user-email"
-                type="text"
+                type="email"
                 placeholder="이메일"
                 value={email}
                 onChange={onChangeEmail}
               />
               {errorEmail && (
-                <div class="signup_input_valid">올바른 형식이 아닙니다.</div>
+                <div className="signup_input_valid">
+                  올바른 형식이 아닙니다.
+                </div>
               )}
             </div>
 
@@ -638,7 +649,7 @@ function SignUp() {
                 style={{ marginBottom: "15px" }}
               />
               {errorPhoneNumber && (
-                <div class="signup_input_valid">숫자만 입력하세요</div>
+                <div className="signup_input_valid">숫자만 입력하세요</div>
               )}
             </div>
             <hr />
@@ -688,9 +699,7 @@ function SignUp() {
             <details>
               <summary className="signup_summary">
                 일반회원 약관동의{" "}
-                <span style={{ color: "gray" }} className="stylesgray">
-                  (펼쳐보기)
-                </span>
+                <span style={{ color: "gray" }}>(펼쳐보기)</span>
               </summary>
               <div className="term_form">
                 <h2 className="term_font">
@@ -698,7 +707,7 @@ function SignUp() {
                   <br />
                   서비스 약관에 동의해 주세요!
                 </h2>
-                <hr />
+                <hr style={{ color: "#015bbb" }}></hr>
 
                 <div>
                   <input
@@ -957,7 +966,7 @@ function SignUp() {
                 className="signup_inputs"
                 id="proEmail"
                 name="pro-email"
-                type="text"
+                type="email"
                 placeholder="이메일"
                 value={proEmail}
                 onChange={onChangeProEmail}

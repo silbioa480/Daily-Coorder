@@ -148,6 +148,12 @@ function LoginMember() {
         <p className="login_upper_font">로그인</p>
         <br />
         <br />
+        <div className="blue-line-out">
+          <div className="blue-line-in"></div>
+        </div>
+        <div className="yellow-line-out">
+          <div className="yellow-line-in"></div>
+        </div>
         <label className="login_font">아이디</label>
         <input
           className="login_inputs"

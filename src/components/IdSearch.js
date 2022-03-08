@@ -106,7 +106,12 @@ function IdSearch() {
           <p className="search_upper_font"> 아이디 찾기 </p>
           <br />
           <br />
-
+          <div className="blue-line-out">
+            <div className="blue-line-in"></div>
+          </div>
+          <div className="yellow-line-out">
+            <div className="yellow-line-in"></div>
+          </div>
           <div>
             <label htmlFor="user-name" className="search_font">
               이름
