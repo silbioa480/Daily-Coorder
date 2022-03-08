@@ -2,7 +2,7 @@ import "../../css/board/modiRemoveForm.css";
 import { FiMoreHorizontal } from "react-icons/fi";
 
 import { useEffect, useRef, useState } from "react";
-//
+//다른데 클릭하면 꺼짐
 const useClickOutside = (handler) => {
   const domNode = useRef();
   useEffect(() => {
@@ -21,7 +21,7 @@ const useClickOutside = (handler) => {
 };
 
 //...눌렀을떄 나오는 수정 삭제 폼
-function ModiRemoveForm({ comments, removeComment }) {
+function ModiRemoveForm({ comments, removeComment, modification, index }) {
   const [isActive, setIsActive] = useState(false);
 
   const domNode = useClickOutside(() => {
@@ -33,12 +33,16 @@ function ModiRemoveForm({ comments, removeComment }) {
       <FiMoreHorizontal onClick={(e) => setIsActive(!isActive)} />
       {isActive && (
         <div ref={domNode} className="modification_remove">
-          <button className="modification_btn">수정</button>
+          <button
+            className="modification_btn"
+            onClick={() => modification(comments.content)}
+          >
+            수정
+          </button>
 
           <button
             className="remove_btn"
             onClick={() => removeComment(comments.id)}
-            // onClick={() => console.log(comments)}
           >
             삭제
           </button>

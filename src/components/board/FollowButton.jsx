@@ -2,6 +2,8 @@ import { Circle, Square, QR, CButton } from "../../css/Board_Posts";
 import { useState } from "react";
 import similar from "../../img/similar.png";
 import "../../css/board/followButton.css";
+import mainano1 from "../../img/main/mainano1.png";
+
 //팔로우버튼
 //userinformation도들어있음
 function FollowButton() {
@@ -25,7 +27,7 @@ function FollowButton() {
         <div className="information">
           <div>
             <a href="#">
-              <Circle src={similar} style={{ marginLeft: "20px" }}></Circle>
+              <Circle src={mainano1} style={{ marginLeft: "20px" }}></Circle>
             </a>
           </div>
           <div style={{ margin: "auto 0", marginLeft: "7px" }}>

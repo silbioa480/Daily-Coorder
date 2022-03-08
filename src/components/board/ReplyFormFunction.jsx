@@ -5,10 +5,10 @@ import { useState } from "react";
 import ModiRemoveForm from "./ModiRemoveForm";
 import ReplyPostForm from "./ReplyPostForm";
 //댓글달았을때 나오는폼의 좋아요 대댓글 수정삭제 폼
-function ReplyFormfunction({ comments, removeComment }) {
-  const [color, setColor] = useState("");
+function ReplyFormfunction({ comments, removeComment, modification }) {
+  const [color, setColor] = useState("gray");
   const heartClick = () => {
-    color === "" ? setColor("red") : setColor("");
+    color === "gray" ? setColor("rgba(254,68,161,1)") : setColor("gray");
   };
   const [isActive, setIsActive] = useState(false);
   const [isreply, setIsreply] = useState(false);
@@ -18,11 +18,15 @@ function ReplyFormfunction({ comments, removeComment }) {
         <AiFillHeart onClick={heartClick} style={{ color: color }} />
 
         <BsFillChatDotsFill onClick={(e) => setIsreply(!isreply)} />
-        <ModiRemoveForm comments={comments} removeComment={removeComment} />
+        <ModiRemoveForm
+          comments={comments}
+          removeComment={removeComment}
+          modification={modification}
+        />
       </div>
       {isreply && <ReplyPostForm />}
     </>
   );
 }
-
+// "rgba(254,68,161,1)"
 export default ReplyFormfunction;
