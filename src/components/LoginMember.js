@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import $ from "jquery";
 import "../css/LoginMember.css";
 
+import NaverLogin from "react-naver-login";
+import naverlogo from "../img/login/naverlogo.png";
 import facebooklogo from "../img/login/facebooklogo.png";
 import kakaologo from "../img/login/kakaologo.png";
 import googlelogo from "../img/login/googlelogo.png";
-import naverlogo from "../img/login/naverlogo.png";
 import PopUp from "./PopUp";
 //아이디 기억하기 체크박스 때문에 install 했고, import함
 import { useCookies } from "react-cookie";
@@ -33,6 +34,10 @@ function LoginMember() {
   const [errorPassword, setErrorPassword] = useState(false);
   const [errorProId, setErrorProId] = useState(false);
   const [errorProPassword, setErrorProPassword] = useState(false);
+
+  const clickSnsLoginNaver = (e) => {
+    let naverid = e.id;
+  };
 
   const onIdHandler = (e) => {
     setId(e.currentTarget.value);
@@ -207,12 +212,41 @@ function LoginMember() {
               구글 계정으로 로그인
             </button>
           </div>
+
           <div className="social_naver">
-            <img className="social_logo" src={naverlogo} />
-            <button type="submit" className="social_button btn" value="로그인">
-              네이버 계정으로 로그인
-            </button>
+            <NaverLogin
+              clientId={"elBauADvgkBV6aphmaxs"}
+              callbackUrl="http://localhost:3000/"
+              render={(renderProps) => (
+                <div
+                  onClick={renderProps.onClick}
+                  disabled={renderProps.disabled}
+                >
+                  <img
+                    className="social_logo"
+                    src={naverlogo}
+                    resizeMode={"contain"}
+                  />
+                  <button
+                    type="submit"
+                    className="social_button btn"
+                    value="로그인"
+                  >
+                    네이버 계정으로 로그인
+                  </button>
+                </div>
+              )}
+              onSuccess={(e) => clickSnsLoginNaver(e)}
+              onFailure={(result) => console.error(result)}
+            />
           </div>
+          {/*<div className="social_naver">*/}
+          {/*  <img className="social_logo" src={naverlogo} />*/}
+          {/*  <button type="submit" className="social_button btn" value="로그인">*/}
+          {/*    네이버 계정으로 로그인*/}
+          {/*  </button>*/}
+          {/*</div>*/}
+          {/*<Link to="/naverlogin" />*/}
           <div className="social_kakao">
             <img src={kakaologo} className="social_logo" />
             <button type="submit" className="social_button btn" value="로그인">
