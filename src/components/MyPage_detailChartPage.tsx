@@ -26,7 +26,7 @@ function MyPage_detailChartPage(){
                             </div>
                     </div>
                     <div className="chartContainer">
-                        <Pie_chart />
+                        <Pie_chart /><span></span>
                     </div> 
             </div>
         </>
