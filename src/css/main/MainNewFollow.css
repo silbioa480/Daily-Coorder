@@ -21,10 +21,11 @@ hr > .Line {
 
 .blue-line-out {
     text-align: center;
+
 }
 
 .blue-line-in {
-    width: 90%;
+    width: 100%;
     height: 6px;
     background-color: rgba(1, 91, 187, 1);
     display: inline-block;
