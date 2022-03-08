@@ -8,6 +8,15 @@ const ModifyCss=createGlobalStyle`
         margin:0 auto;
         
     }
+
+    .memberOrceo{
+        display:flex;
+        background-color:white;
+        margin:3em auto 0;
+        border-radius:20px;
+        border:2px solid #dbdbdb;
+        width:20.5vw;
+    }
 `;
 
 export default ModifyCss;
