@@ -57,6 +57,23 @@
   margin: 1.5rem 0;
 }
 
+.img-box {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  background-color: #ffffff;
+}
+
+.img-box img {
+  width: 690px;
+  height: 690px;
+  cursor: pointer;
+}
+
+.img-box button {
+  font-size: var(--font-large);
+}
+
 #upload-form {
   display: flex;
   flex-direction: column;
@@ -64,26 +81,8 @@
   background-color: var(--color-white);
 }
 
-.upload-box {
-  border-bottom: var(--border-bottom);
-  width: var(--input-box-width);
-}
-
-.file-icon {
-  width: 300px;
-  height: 300px;
-  margin-right: 3rem;
-  color: grey;
-  cursor: pointer;
-}
-
-.file-name {
-  margin: 5px 10px;
-}
-
-.uploaded-image {
-  width: 300px;
-  height: 270px;
+.upload-input {
+  display: none;
 }
 
 .content-container {
@@ -117,13 +116,13 @@
   border: none;
 }
 
-.button {
+.delete-button {
   border: none;
   background-color: transparent;
   color: var(--color-orange);
 }
 
-.button:hover {
+.delete-button:hover {
   cursor: pointer;
 }
 

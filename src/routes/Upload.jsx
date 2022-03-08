@@ -56,30 +56,29 @@ const Upload = (props) => {
     setTags(newTags);
   };
 
+  // 이미지 클릭시 input[type: file]로 연결
+
 
   return (
     <>
-      <img src={previewImg ? previewImg : "https://previews.123rf.com/images/sulikns/sulikns1707/sulikns170700286/82176269-%EC%B9%B4%EB%A9%94%EB%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%82%AC%EC%A7%84-%EC%82%AC%EC%A7%84-%EC%82%AC%EC%A7%84-%EC%95%84%EC%9D%B4%EC%BD%98.jpg"} alt="" />
-      <button onClick={deleteImg}>❌</button>
+
       <form onSubmit={handleSubmit(onSubmit)} id="upload-form">
+        {/* 업로드 */}
         <input
+          className='upload-input'
           type="file"
           accept="image/*"
           onChange={e => insertImg(e)}
+          id='upload-input'
           ref={register({ required: true })}
         />
+        <label for="upload-input">
+          <div className='img-box'>
+            <img src={previewImg ? previewImg : "https://media.istockphoto.com/vectors/image-upload-icon-vector-id1206577970?k=20&m=1206577970&s=170667a&w=0&h=53at7rxKBtZd8woBU2fXSN9nUygXzabXPN4QPxgdsCA="} alt="noImg" />
+            <button className='delete-button' onClick={deleteImg}><i class="fa-solid fa-delete-left"></i></button>
+          </div>
+        </label>
         {errors.upload && <h4>사진을 업로드하세요.</h4>}
-
-        {/* 이전 사진 업로드
-        <div div className="upload-box" >
-          <input
-            name='upload'
-            className="input input-file"
-          /><i
-            className="file-icon fa-solid fa-image"
-          ></i>
-        </div > */}
-
         {/* 제목 */}
         <div className="title-container">
           <input
@@ -117,8 +116,9 @@ const Upload = (props) => {
                 {tag}
                 <button
                   type="button"
+                  className='delete-button'
                   onClick={(i) => removeTag(i)}
-                >Remove</button>
+                ><i class="fa-solid fa-delete-left"></i></button>
               </li>
             ))}
           </ul>
