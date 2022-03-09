@@ -1,8 +1,8 @@
 import "../css/board/Board_Post.css";
-import ReplyForm from "./board/ReplyForm";
-import PostForm from "./board/PostForm";
 import { useState } from "react";
-import { AiOutlineArrowRight, AiOutlineArrowDown } from "react-icons/ai";
+import { AiOutlineArrowDown, AiOutlineArrowRight } from "react-icons/ai";
+import PostForm from "./board/PostForm";
+
 function Comment() {
   const [isShow, setIsShow] = useState(false);
 
@@ -22,4 +22,5 @@ function Comment() {
     </>
   );
 }
+
 export default Comment;
