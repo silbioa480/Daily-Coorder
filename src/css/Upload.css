@@ -34,6 +34,30 @@
   padding-left: 0px;
 } */
 
+/* .title-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;;
+}
+
+.title-container label {
+  position: absolute;
+  top: 40px;
+  left: 18px;
+}
+
+.title-container input:focus + label,
+.title-container input:valid + label {
+  top: 0;
+} */
+
+.errorMsg {
+  color: red;
+  padding: 0px 8px;
+  font-weight: bold;
+  font-size: var(--font-regular);
+}
+
 .input-file {
   display: none;
 }
@@ -51,7 +75,7 @@
 .textarea {
   border: none;
   width: var(--input-box-width);
-  height: carc(var(--input-box-height * 4));
+  height: 120px;
   font-size: var(--font-medium);
   padding: 0.5rem 0;
   margin: 1.5rem 0;

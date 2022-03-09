@@ -56,12 +56,8 @@ const Upload = (props) => {
     setTags(newTags);
   };
 
-  // 이미지 클릭시 input[type: file]로 연결
-
-
   return (
     <>
-
       <form onSubmit={handleSubmit(onSubmit)} id="upload-form">
         {/* 업로드 */}
         <input
@@ -78,7 +74,7 @@ const Upload = (props) => {
             <button className='delete-button' onClick={deleteImg}><i class="fa-solid fa-delete-left"></i></button>
           </div>
         </label>
-        {errors.upload && <h4>사진을 업로드하세요.</h4>}
+        {errors.upload && <h4 className="errorMsg">사진을 업로드하세요.</h4>}
         {/* 제목 */}
         <div className="title-container">
           <input
@@ -88,7 +84,8 @@ const Upload = (props) => {
             placeholder='제목을 입력하세요'
             ref={register({ required: true })}
           />
-          {errors.title && <h4>제목을 입력하세요.</h4>}
+          {/* <label for="title">제목을 입력하세요</label> */}
+          {errors.title && <h4 className='errorMsg'>제목은 필수입력 항목입니다.</h4>}
         </div>
         {/* 내용 */}
         <div className="content-container">
@@ -126,12 +123,11 @@ const Upload = (props) => {
         {/* 업로드 버튼 */}
         <div className="share-box ">
           <button className="share-button">
-            <a href="#">공유</a>
+            <a href="/src/routes/Main.tsx">공유</a>
           </button>
         </div>
       </form >
     </>
-
   );
 };
 
