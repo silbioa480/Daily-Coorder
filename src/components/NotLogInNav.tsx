@@ -1,13 +1,14 @@
+import { Link } from 'react-router-dom';
 import "../css/Navi.css";
 
 function NotLogInNav() {
   return (
     <ul className='login-list'>
       <li className="login-btn">
-        <a href='/src/routes/LogIn.js'>로그인</a>
+        <Link to='/login'>로그인</Link>
       </li>
       <li className="signup-btn">
-        <a href='/src/routes/SignUp.js'>회원가입</a>
+        <Link to='/signup'>회원가입</Link>
       </li>
     </ul>
   );
