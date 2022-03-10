@@ -31,4 +31,4 @@ class BusinessService {
   }
 }
 
-export default BusinessService;
+export default new BusinessService();

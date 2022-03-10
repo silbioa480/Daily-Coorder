@@ -29,4 +29,4 @@ class BoardService {
   }
 }
 
-export default BoardService;
+export default new BoardService();
