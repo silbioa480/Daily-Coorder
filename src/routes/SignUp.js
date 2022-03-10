@@ -841,13 +841,13 @@ function SignUp() {
                             </div>
                         </details>
 
-                        <div>
+                        <div className="signup_btn_out">
                             <button
                                 type="button"
                                 onClick={onSubmitHandler}
                                 className="signup_btn"
                             >
-                                <b>회 원 가 입</b>
+                                <span><b>회 원 가 입</b></span>
                             </button>
                         </div>
                     </Tab>
@@ -1185,13 +1185,13 @@ function SignUp() {
                             </div>
                         </details>
 
-                        <div>
+                        <div className="signup_btn_out">
                             <button
                                 className="signup_btn"
                                 type="button"
                                 onClick={onProSubmitHandler}
                             >
-                                회원가입
+                                <span><b>회원가입</b></span>
                             </button>
                         </div>
                     </Tab>

@@ -152,7 +152,7 @@ function LoginMember() {
     };
 
     return (
-        <div className="login_member">
+        <div className="login_member" style={{marginTop: "30px"}}>
             <PopUp
                 open={popup.open}
                 setPopup={setPopup}
@@ -170,9 +170,9 @@ function LoginMember() {
                 <div className="yellow-line-out">
                     <div className="yellow-line-in"></div>
                 </div>
-                <label className="bb login_font">아이디</label>
+                <label className="aa login_font">아이디</label>
                 <input
-                    className="bb login_inputs"
+                    className="aa login_inputs"
                     id="Id"
                     type="id"
                     value={Id}
@@ -202,21 +202,22 @@ function LoginMember() {
                         />{" "}
                         아이디 기억하기
                     </label>
-                    <div className="aa login_search_info">
+                    <div className=" login_search_info">
                         <Link to="/login/IdSearch">아이디</Link> /
                         <Link to="/login/PasswordSearch"> 비밀번호 찾기</Link>
                     </div>
                 </div>
+                <div className="login_button_out">
+                    <button
+                        className=" login_button"
+                        type="button"
+                        onClick={onSubmitHandler}
+                    >
+                        <span>로그인</span>
+                    </button>
+                </div>
 
-                <button
-                    className="aa login_button"
-                    type="button"
-                    onClick={onSubmitHandler}
-                >
-                    로그인
-                </button>
-
-                <div className="bb social_box">
+                <div className="social_box">
                     <div className="social_google">
                         <GoogleLogin
                             clientId={
@@ -305,7 +306,7 @@ function LoginMember() {
                     </div>
                 </div>
 
-                <div className="bb login_end">
+                <div className="login_end">
                     <div className="login_line">
                         회원이 아니신가요? <Link to="/signup">회원가입</Link>
                     </div>

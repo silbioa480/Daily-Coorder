@@ -90,7 +90,7 @@ function Mainfollow() {
                 <div className="aa yellow-line-in"></div>
             </div>
             <div className="aa mainfollow-text">New Followers Feed</div>
-            <hr className="aa Line"></hr>
+            <hr className="Line"></hr>
             <div className="bb feed">
                 <Carousel fade className="carousel-dark feedcar" style={{width: "1250px"}}>
                     <Carousel.Item>

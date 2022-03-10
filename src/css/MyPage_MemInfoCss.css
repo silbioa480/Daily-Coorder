@@ -1,0 +1,71 @@
+/* 작성자: 황인성 */
+/* 최종수정 날짜 2022.3.10 */
+
+/* 버튼 */
+.mypage_btn {
+    border-radius: 20px;
+    display: inline-block;
+    width: 19%;
+    height: 32px;
+    font-size: 15px;
+    padding: 7px 15px;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    line-height: 1px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border: 1px solid #000;
+    position: relative;
+    overflow: hidden;
+
+}
+
+.mypage_btn > span {
+    display: block;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+    z-index: 1;
+
+}
+
+.mypage_btn:hover span {
+    color: white;
+
+
+}
+
+
+.mypage_btn:before,
+.mypage_btn:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #000;
+    z-index: 0;
+    transition: all 0.5s ease-in-out;
+}
+
+.mypage_btn:before {
+    transform: translateX(-100%);
+
+}
+
+.mypage_btn:after {
+    transform: translateX(100%);
+}
+
+.mypage_btn:hover:before {
+    transform: translateX(-45%);
+
+}
+
+.mypage_btn:hover:after {
+    transform: translateX(45%);
+
+}
+
+/*----------------------*/
