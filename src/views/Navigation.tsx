@@ -33,8 +33,8 @@ function Navigation() {
         padding: "0 120px",
       }}
     >
-      <div className="nav-box">
-        <NavLine>
+      <div>
+        <NavLine className="nav-box">
           <form className="search">
             <input
               type="text"
@@ -54,7 +54,6 @@ function Navigation() {
                 color: "white",
                 verticalAlign: "middle",
                 lineHeight: "65px",
-                marginLeft: "270px",
               }}
             >
               Daily Coorder
