@@ -28,31 +28,15 @@
 @keyframes hr-left {
     from {
         margin-left: 100%;
-        width: 300%
+        width: 300%;
     }
 
     to {
         margin-left: 0%;
-        width: 100%
+        width: 100%;
     }
 }
 
-@keyframes hr-right {
-    from {
-        margin-right: 100%;
-        width: 300%
-    }
-
-    to {
-        margin-left: 0%;
-        width: 100%
-    }
-}
-
-.right {
-    animation: hr-left 2s;
-    animation-fill-mode: both;
-}
 
 .left {
     animation: hr-left 2s;
@@ -64,10 +48,6 @@
     animation-fill-mode: both;
 }
 
-.right {
-    animation: hr-left 2s;
-    animation-fill-mode: both;
-}
 
 .left {
     animation: hr-left 2s;
@@ -142,3 +122,4 @@
 .bb:nth-child(8) {
     animation-delay: 0.70s;
 }
+

@@ -26,12 +26,11 @@
     flex-direction: column;
     font-size: 30px;
     display: block;
-    width: 300px;
-    padding: 30px;
+    width: 200px;
+    padding: 5px;
     font-weight: bold;
     text-align: center;
 
-    text-transform: uppercase;
 }
 
 .signup_profile_img {
@@ -180,9 +179,9 @@
 
 .signup_btn {
     display: inline-block;
-    width: 30%;
-    height: 32px;
-    font-size: 15px;
+    width: 21%;
+    height: 34px;
+    font-size: 17px;
     padding: 13px 30px;
     cursor: pointer;
     background-color: white;

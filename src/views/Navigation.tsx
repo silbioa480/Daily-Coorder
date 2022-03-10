@@ -42,7 +42,7 @@ function Navigation() {
                             type="text"
                             name="search"
                             id="search"
-                            placeholder="검색"
+                            placeholder="Search"
                             style={{height: "23px"}}
                         />
                         <BsSearch
