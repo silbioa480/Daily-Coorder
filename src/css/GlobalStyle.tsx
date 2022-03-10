@@ -53,6 +53,12 @@ const GlobalStyle = createGlobalStyle`
     color: ${({ theme }) => theme.textColor};
     margin: 0;
     max-width: 100%;
+    -ms-overflow-style: none;
+    
+ }
+ ::-webkit-scrollbar { display: none;
+
+
   }
   a {
     text-decoration: none;

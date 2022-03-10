@@ -26,45 +26,45 @@
 }
 
 .bb {
-    animation: showbox 1s;
+    animation: showbox 0.7s;
     animation-fill-mode: both;
 }
 
 .aa {
-    animation: showText 0.7s;
+    animation: showText 0.6s;
     animation-fill-mode: both;
 }
 
 .aa:nth-child(1) {
-    animation-delay: 0.07s;
+    animation-delay: 0.06s;
 }
 
 .aa:nth-child(2) {
-    animation-delay: 0.14s;
+    animation-delay: 0.12s;
 }
 
 .aa:nth-child(3) {
-    animation-delay: 0.21s;
+    animation-delay: 0.18s;
 }
 
 .aa:nth-child(4) {
-    animation-delay: 0.30s;
+    animation-delay: 0.24s;
 }
 
 .aa:nth-child(5) {
-    animation-delay: 0.39s;
+    animation-delay: 0.30s;
 }
 
 .aa:nth-child(6) {
-    animation-delay: 0.48s;
+    animation-delay: 0.36s;
 }
 
 .aa:nth-child(7) {
-    animation-delay: 0.57s;
+    animation-delay: 0.42s;
 }
 
 .aa:nth-child(8) {
-    animation-delay: 0.66s;
+    animation-delay: 0.49s;
 }
 
 .bb:nth-child(1) {

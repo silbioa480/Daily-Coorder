@@ -19,36 +19,30 @@ hr > .Line {
 
 }
 
-.blue-line-out {
+.aa blue-line-out {
     text-align: center;
-
+    height: 0;
 }
 
-.blue-line-in {
-    width: 100%;
-    height: 6px;
+.aa blue-line-in {
+    width: 80%;
+    height: 4px;
     background-color: rgba(1, 91, 187, 1);
     display: inline-block;
     border-radius: 10px;
+    margin-top: 110px;
 }
 
-.yellow-line-out {
+.aa yellow-line-out {
     text-align: center;
-    height: 6px;
+    height: 4px;
 }
 
-.yellow-line-in {
+.aa yellow-line-in {
     width: 90%;
-    height: 6px;
+    height: 4px;
     background-color: rgba(254, 213, 1, 1);
     display: inline-block;
     border-radius: 10px;
-}
-
-.blue-line-out {
-    margin-top: 15px;
-}
-
-.yellow-line-out {
-    margin-bottom: 50px;
+    margin-top: 510px;
 }
