@@ -1,36 +1,98 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+#navbar {
+  background-color: black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  width: 100%;
+  height: 6rem;
+  display: block;
+  border-bottom: 10px solid #005BBB;
+}
+
+#navbar div {
+  display: flex;
+  align-items: flex-end;
+}
+
+.navbar-box {
+  height: 4rem;
+  margin: 0 10rem;
+  margin-bottom: 0px;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 50px;
+  margin-right: 1rem;
+}
+
+.search-form {
+  font-size: 1.5rem;
+}
+
+.search-icon {
+  width: 20px;
+  height: 20px;
+  margin: 0 10px;
+  color: white;
+}
+
+.title {
+  color: white;
+}
+
 .search {
-    display: flex;
-    align-items: center;
     color: white;
 }
 
-.login {
+.login-list {
+  margin-top: 0.7rem;
+  display: flex;
+}
+
+.login-list li {
+  margin-right: 1rem;
+}
+
+.login-btn,
+.signup-btn,
+.logout-btn {
     color: white;
-    display: flex;
-    align-items: center;
     font-weight: bold;
-    font-size: 13px;
+    font-size: 15px;
+    padding: 0.7rem;
+    border: 1px solid white;
 }
 
-.header {
-    float: right;
+.login-btn a,
+.signup-btn a,
+.logout-btn a {
+  color: white;
+  padding: 0px 2rem;
 }
 
-.nav-box {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+.login-btn:hover,
+.signup-btn:hover,
+.logout-btn:hover{
+  background-color: white;
 }
 
-.signupp {
-    color: white;
-    display: flex;
-    align-items: center;
+.login-list {
+  margin-top: 0.7rem;
+  display: flex;
+  align-items: center;
 }
 
-.logoutt {
-    color: white;
-    display: flex;
-    align-items: center;
+.logo-btn a{
+  color: white;
+  font-size: 2rem;
+  width: 20px;
+  height: 20px;
 }

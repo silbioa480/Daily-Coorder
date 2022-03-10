@@ -10,27 +10,27 @@ import { NavButton } from "../css/NavStyle";
 
 function LoggedInNav() {
   return (
-    <>
-      <NavButton to="/" className="logoutt">
-        로그아웃
-      </NavButton>
+    <ul className='login-list'>
+      <li className='logo-btn'>
+        <a href="/src/routes/Upload.jsx"><BsPlusCircle /></a>
+      </li>
 
-      <NavButton to="/upload" style={{ color: "white" }}>
-        <BsPlusCircle style={{ width: "20px", height: "20px" }} />
-      </NavButton>
+      <li className='logo-btn'>
+        <a href=""><BsBookmarkHeart /></a>
+      </li>
 
-      <NavButton to="/feed" style={{ color: "white" }}>
-        <BsBookmarkHeart style={{ width: "20px", height: "20px" }} />
-      </NavButton>
+      <li className='logo-btn'>
+        <a href=""><BsBell /></a>
+      </li>
 
-      <NavButton to="#" style={{ color: "white" }}>
-        <BsBell style={{ width: "20px", height: "20px" }} />
-      </NavButton>
+      <li className='logo-btn'>
+        <a href=""><BsPerson /></a>
+      </li>
 
-      <NavButton to="member" style={{ color: "white" }}>
-        <BsPerson style={{ width: "20px", height: "20px" }} />
-      </NavButton>
-    </>
+      <li className="logout-btn">
+        <a href="">로그아웃</a>
+      </li>
+    </ul>
   );
 }
 

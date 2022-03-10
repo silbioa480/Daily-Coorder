@@ -1,16 +1,15 @@
 import "../css/Navi.css";
-import { NavButton } from "../css/NavStyle";
 
 function NotLogInNav() {
   return (
-    <>
-      <NavButton to="/login" className="login">
-        로그인
-      </NavButton>
-      <NavButton to="/signup" className="signupp">
-        회원가입
-      </NavButton>
-    </>
+    <ul className='login-list'>
+      <li className="login-btn">
+        <a href='/src/routes/LogIn.js'>로그인</a>
+      </li>
+      <li className="signup-btn">
+        <a href='/src/routes/SignUp.js'>회원가입</a>
+      </li>
+    </ul>
   );
 }
 

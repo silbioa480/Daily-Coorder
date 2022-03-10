@@ -7,66 +7,29 @@ import LoggedInNav from "../components/LoggedInNav";
 
 import "../css/Navi.css";
 
-const NavLine = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-`;
-
 function Navigation() {
   return (
-    <Navbar
-      collapseOnSelect
-      expand="lg"
-      bg="black"
-      variant="light"
-      style={{
-        display: "table",
-        flexDirection: "column",
-        position: "sticky",
-        top: "0",
-        left: "0",
-        right: "0",
-        zIndex: "100",
-        width: "100%",
-        height: "65px",
-        padding: "0 120px",
-      }}
-    >
-      <div className="nav-box">
-        <NavLine>
-          <form className="search">
+    <Navbar id='navbar'>
+      <div className="navbar-box">
+        <div>
+          <h1 className="title">
+            <a href='/src/routes/Main.tsx' className="title">Daliy Coorder</a>
+          </h1>
+          <form className="search-form">
             <input
               type="text"
               name="search"
               id="search"
               placeholder="검색"
-              style={{ height: "23px" }}
             />
-            <BsSearch
-              style={{ width: "20px", height: "20px", margin: "0 10px" }}
+            <BsSearch className='search-icon'
             />
           </form>
-          <Link to="/" style={{ margin: "0 20px" }}>
-            <Navbar.Brand
-              style={{
-                fontSize: "1.8em",
-                color: "white",
-                verticalAlign: "middle",
-                lineHeight: "65px",
-                marginLeft: "270px",
-              }}
-            >
-              Daily Coorder
-            </Navbar.Brand>
-          </Link>
-          <Nav className="login">
-            <NotLogInNav />
-            <LoggedInNav />
-          </Nav>
-        </NavLine>
+        </div>
+        {/* <NotLogInNav /> */}
+        <LoggedInNav />
       </div>
-    </Navbar>
+    </Navbar >
   );
 }
 
