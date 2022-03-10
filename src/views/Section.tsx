@@ -5,7 +5,7 @@ type Props = {
 };
 
 function Section({ children }: Props) {
-  return <div style={{ margin: "0 auto" }}>{children}</div>;
+  return <div style={{ margin: "0 auto", marginTop: "89px" }}>{children}</div>;
 }
 
 export default Section;

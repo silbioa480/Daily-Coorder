@@ -8,12 +8,6 @@ import LoggedInNav from "../components/LoggedInNav";
 import "../css/main/animation.css";
 import "../css/Navi.css";
 
-const NavLine = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-`;
-
 function Navigation() {
     return (
         <Navbar
