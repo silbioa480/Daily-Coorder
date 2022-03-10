@@ -5,13 +5,14 @@ import "../css/LoginMember.css";
 
 import NaverLogin from "react-naver-login";
 import KakaoLogin from "react-kakao-login";
+import GoogleLogin from "react-google-login";
+
 import naverlogo from "../img/login/naverlogo.png";
 import kakaologo from "../img/login/kakaologo.png";
 import googlelogo from "../img/login/googlelogo.png";
 import PopUp from "./PopUp";
 //아이디 기억하기 체크박스 때문에 install 했고, import함
 import { useCookies } from "react-cookie";
-import GoogleLogin from "react-google-login";
 
 function LoginMember() {
   //모달 설정
@@ -276,7 +277,7 @@ function LoginMember() {
 
           <div className="social_kakao">
             <KakaoLogin
-              token={"636dc8497c246f21793ea4457306dd54"}
+              token={"5fdb813f9cf6797c6ec9f03a786f26b3"}
               render={(renderProps) => (
                 <div
                   onClick={renderProps.onClick}
