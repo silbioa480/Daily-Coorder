@@ -591,7 +591,7 @@ function SignUp() {
                 className="signup_inputs"
                 id="birth"
                 name="birth"
-                type="text"
+                type="date"
                 placeholder="생년월일 6자를 입력해주세요"
                 value={birth}
                 onChange={onChangeBirth}
