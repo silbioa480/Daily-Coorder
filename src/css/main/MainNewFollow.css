@@ -5,12 +5,6 @@
     margin-bottom: 30px;
 }
 
-hr > .Line {
-    text-align: center;
-    width: 80%;
-    opacity: unset;
-}
-
 .feed {
     text-align: center;
 }
@@ -20,30 +14,3 @@ hr > .Line {
 
 }
 
-.aa blue-line-out {
-    text-align: center;
-    height: 0;
-}
-
-.aa blue-line-in {
-    width: 80%;
-    height: 4px;
-    background-color: rgba(1, 91, 187, 1);
-    display: inline-block;
-    border-radius: 10px;
-    margin-top: 110px;
-}
-
-.aa yellow-line-out {
-    text-align: center;
-    height: 4px;
-}
-
-.aa yellow-line-in {
-    width: 90%;
-    height: 4px;
-    background-color: rgba(254, 213, 1, 1);
-    display: inline-block;
-    border-radius: 10px;
-    margin-top: 510px;
-}

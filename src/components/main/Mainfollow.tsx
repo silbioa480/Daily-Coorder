@@ -83,14 +83,8 @@ function Mainfollow() {
     });
     return (
         <>
-            <div className="aa blue-line-out">
-                <div className="aa blue-line-in"></div>
-            </div>
-            <div className="aa yellow-line-out">
-                <div className="aa yellow-line-in"></div>
-            </div>
             <div className="aa mainfollow-text">New Followers Feed</div>
-            <hr className="Line"></hr>
+            <hr className="left Line" style={{opacity: "1"}}></hr>
             <div className="bb feed">
                 <Carousel fade className="carousel-dark feedcar" style={{width: "1250px"}}>
                     <Carousel.Item>
