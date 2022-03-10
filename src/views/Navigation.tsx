@@ -15,6 +15,7 @@ const NavLine = styled.div`
 `;
 
 function Navigation() {
+<<<<<<< HEAD
     return (
         <Navbar
             className="aa"
@@ -69,6 +70,35 @@ function Navigation() {
             </div>
         </Navbar>
     );
+=======
+  return (
+    <Navbar id='navbar'>
+      <div className="navbar-box">
+        <div>
+          <h1 className="title">
+            <a href='/src/routes/Main.tsx' className="title">Daliy Coorder</a>
+          </h1>
+          <form className="search-form">
+            <input
+              type="text"
+              name="search"
+              id="search"
+              placeholder="검색"
+            />
+            <BsSearch className='search-icon'
+            />
+          </form>
+        </div>
+        {/* <NotLogInNav /> */}
+        <LoggedInNav />
+      </div>
+      {/* toggle button */}
+      <button className='toggle-btn'>
+        <i className="fa-solid fa-bars"></i>
+      </button>
+    </Navbar >
+  );
+>>>>>>> 31e2b93 (CSS : Navbar)
 }
 
 export default Navigation;
