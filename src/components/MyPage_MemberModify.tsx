@@ -5,6 +5,7 @@ import ModifyCss from '../css/MyPage_ModifyCss';
 import Modal from 'react-bootstrap/Modal';
 import {useState} from 'react';
 import "../css/main/animation.css";
+import "../css/MyPage_MemInfoCss.css";
 
 function CeoModify() {
     const [imgfile, setImgFile] = useState('');
@@ -330,15 +331,17 @@ function MyPage_MemberModify() {
 
                         </Col>
                     </Row>
-
-
                 </Form>}
                 {isceo && <CeoModify/>}
+
+                {/*  작성자: 황인성  */}
+                {/*  최종수정 날짜 2022.3.10  */}
                 <div style={{width: "100%", display: "flex", justifyContent: "center"}}>
-                    <Button variant="primary" type="submit" onClick={handleShow}>
-                        회원 정보 수정
+                    <Button variant="white" className="mypage_btn" type="submit" onClick={handleShow}>
+                        <span>회원 정보 수정</span>
                     </Button>
                 </div>
+                {/*    ----------------------------    */}
             </div>
 
             <Modal show={show} onHide={handleClose}>

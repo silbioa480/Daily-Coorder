@@ -262,7 +262,7 @@ function MyPage_MemberInformation() {
                     사업자 회원 정보
                 </div>
             </div>
-            <div className="aa memberContainer">
+            <div className="aa memberContainer" style={{backgroundColor: "rgba(247,247,247,1)"}}>
                 <div style={{width: "170px", height: "200px", margin: "3vh 0", border: "1px solid #dbdbdb"}}>
                     <Figure style={{width: "170px", height: "200px"}}>
                         <Figure.Image

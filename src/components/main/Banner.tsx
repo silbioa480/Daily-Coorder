@@ -11,10 +11,15 @@ import mainBanner1 from "../../img/main/mainBanner1.png";
 import mainBanner2 from "../../img/main/mainBanner2.png";
 import mainBanner3 from "../../img/main/mainBanner3.png";
 
+
 function Banner() {
     return (
         <>
-            <div className="bb banner-out">
+            <div className="square-wrapper">
+                <div className="square"></div>
+            </div>
+
+            <div className="ww banner-out">
                 <Carousel fade className="carousel-dark BannerCar">
                     <Carousel.Item className="bannerpic">
                         <Link to="/signup">

@@ -152,7 +152,7 @@ function LoginMember() {
     };
 
     return (
-        <div className="login_member">
+        <div className="login_member" style={{marginTop: "30px"}}>
             <PopUp
                 open={popup.open}
                 setPopup={setPopup}
@@ -161,7 +161,7 @@ function LoginMember() {
                 callback={popup.callback}
             />
             <form>
-                <p className="login_upper_font">로그인</p>
+                <p className="login_upper_font">Login</p>
                 <br/>
                 <br/>
                 <div className="blue-line-out">
@@ -170,9 +170,9 @@ function LoginMember() {
                 <div className="yellow-line-out">
                     <div className="yellow-line-in"></div>
                 </div>
-                <label className="bb login_font">아이디</label>
+                <label className="aa login_font">ID</label>
                 <input
-                    className="bb login_inputs"
+                    className="aa login_inputs"
                     id="Id"
                     type="id"
                     value={Id}
@@ -181,7 +181,7 @@ function LoginMember() {
                 />
                 <br/>
                 <br/>
-                <label className="aa login_font">비밀번호</label>
+                <label className="aa login_font">Password</label>
                 <input
                     className="aa login_inputs"
                     id="Password"
@@ -202,21 +202,22 @@ function LoginMember() {
                         />{" "}
                         아이디 기억하기
                     </label>
-                    <div className="aa login_search_info">
+                    <div className=" login_search_info">
                         <Link to="/login/IdSearch">아이디</Link> /
                         <Link to="/login/PasswordSearch"> 비밀번호 찾기</Link>
                     </div>
                 </div>
+                <div className="login_button_out">
+                    <button
+                        className=" login_button"
+                        type="button"
+                        onClick={onSubmitHandler}
+                    >
+                        <span>Login</span>
+                    </button>
+                </div>
 
-                <button
-                    className="aa login_button"
-                    type="button"
-                    onClick={onSubmitHandler}
-                >
-                    로그인
-                </button>
-
-                <div className="bb social_box">
+                <div className="social_box">
                     <div className="social_google">
                         <GoogleLogin
                             clientId={
@@ -229,16 +230,17 @@ function LoginMember() {
                                     disabled={renderProps.disabled}
                                 >
                                     <img
-                                        className="social_logo"
+                                        className="social_logo" style={{marginTop: "10px"}}
                                         src={googlelogo}
                                         resizeMode={"contain"}
                                     />
                                     <button
+                                        style={{marginTop: "-17px"}}
                                         type="submit"
                                         className="social_button btn"
                                         value="로그인"
                                     >
-                                        구글 계정으로 로그인
+                                        <span style={{fontSize: "17px"}}>Google</span>
                                     </button>
                                 </div>
                             )}
@@ -258,16 +260,18 @@ function LoginMember() {
                                     disabled={renderProps.disabled}
                                 >
                                     <img
+                                        style={{marginTop: "10px"}}
                                         className="social_logo"
                                         src={naverlogo}
                                         resizeMode={"contain"}
                                     />
                                     <button
+                                        style={{marginTop: "-17px"}}
                                         type="submit"
                                         className="social_button btn"
                                         value="로그인"
                                     >
-                                        네이버 계정으로 로그인
+                                        <span style={{fontSize: "17px"}}>Naver</span>
                                     </button>
                                 </div>
                             )}
@@ -285,16 +289,18 @@ function LoginMember() {
                                     disabled={renderProps.disabled}
                                 >
                                     <img
+                                        style={{marginTop: "10px"}}
                                         className="social_logo"
                                         src={kakaologo}
                                         resizeMode={"contain"}
                                     />
                                     <button
+                                        style={{marginTop: "-17px"}}
                                         type="submit"
                                         className="social_button btn"
                                         value="로그인"
                                     >
-                                        카카오 계정으로 로그인
+                                        <span style={{fontSize: "17px"}}>KaKao</span>
                                     </button>
                                 </div>
                             )}
@@ -305,9 +311,9 @@ function LoginMember() {
                     </div>
                 </div>
 
-                <div className="bb login_end">
+                <div className="login_end">
                     <div className="login_line">
-                        회원이 아니신가요? <Link to="/signup">회원가입</Link>
+                        회원이 아니신가요? <Link to="/signup">Signup</Link>
                     </div>
                 </div>
             </form>

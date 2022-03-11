@@ -432,7 +432,7 @@ function SignUp() {
             <form className="signup_form">
                 <Tabs defaultActiveKey="first">
                     <Tab eventKey="first" title="일반회원가입" className="signup_tab">
-                        <p className="signup_upper_font"> 회원가입 </p>
+                        <p className="signup_upper_font"> Signup </p>
 
                         <div className="blue-line-out">
                             <div className="blue-line-in"></div>
@@ -460,7 +460,7 @@ function SignUp() {
                                     />
                                 </label>
                                 <label type="submit" className="signup_profile_delbtn">
-                                    삭제하기
+                                    삭제
                                     <input
                                         className="signup_profile_delbtn"
                                         style={{display: "none"}}
@@ -841,13 +841,13 @@ function SignUp() {
                             </div>
                         </details>
 
-                        <div>
+                        <div className="signup_btn_out">
                             <button
                                 type="button"
                                 onClick={onSubmitHandler}
                                 className="signup_btn"
                             >
-                                <b>회 원 가 입</b>
+                                <span><b>Signup</b></span>
                             </button>
                         </div>
                     </Tab>
@@ -858,7 +858,7 @@ function SignUp() {
                         title="사업자회원가입"
                         onSubmit={onProSubmitHandler}
                     >
-                        <p className="signup_upper_font"> 사업자 회원가입 </p>
+                        <p className="signup_upper_font"> Business Signup </p>
 
                         <div className="blue-line-out">
                             <div className="blue-line-in"></div>
@@ -1185,13 +1185,13 @@ function SignUp() {
                             </div>
                         </details>
 
-                        <div>
+                        <div className="signup_btn_out">
                             <button
                                 className="signup_btn"
                                 type="button"
                                 onClick={onProSubmitHandler}
                             >
-                                회원가입
+                                <span><b>Signup</b></span>
                             </button>
                         </div>
                     </Tab>

@@ -26,12 +26,11 @@
     flex-direction: column;
     font-size: 30px;
     display: block;
-    width: 300px;
-    padding: 30px;
+    width: 200px;
+    padding: 5px;
     font-weight: bold;
     text-align: center;
 
-    text-transform: uppercase;
 }
 
 .signup_profile_img {
@@ -169,22 +168,81 @@
     font-weight: bold;
 }
 
+/* 작성자: 황인성 */
+/* 최종수정 날짜 2022.3.10 */
+
+/* 버튼 */
+.signup_btn_out {
+    text-align: center;
+}
+
+
 .signup_btn {
     display: inline-block;
-    width: 100%;
-    height: 30px;
-    font-size: 25px;
+    width: 21%;
+    height: 34px;
+    font-size: 17px;
     padding: 13px 30px;
     cursor: pointer;
-    background-color: #044a95;
-    color: white;
+    background-color: white;
+    color: black;
     line-height: 1px;
     margin-top: 40px;
     margin-bottom: 100px;
     border-radius: 15px;
-    border-style: none;
+    border: 1px solid #000;
+    position: relative;
+    overflow: hidden;
 
 }
+
+.signup_btn > span {
+    display: block;
+    position: relative;
+    transition: all 0.4s ease-in-out;
+    z-index: 1;
+
+}
+
+.signup_btn:hover span {
+    color: white;
+
+
+}
+
+.signup_btn:before,
+.signup_btn:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #000;
+    z-index: 0;
+    transition: all 0.5s ease-in-out;
+}
+
+.signup_btn:before {
+    transform: translateX(-100%);
+
+}
+
+.signup_btn:after {
+    transform: translateX(100%);
+}
+
+.signup_btn:hover:before {
+    transform: translateX(-45%);
+
+}
+
+.signup_btn:hover:after {
+    transform: translateX(45%);
+
+}
+
+/*-------------------------------*/
 
 .term_form {
 
