@@ -19,7 +19,7 @@ const AdApplicationCss=createGlobalStyle`
     }
     .AdImg{
         width:50%;
-        height:300px;
+        height:auto;
         margin:2vw 0;
         display:flex;
         flex-direction:column;
