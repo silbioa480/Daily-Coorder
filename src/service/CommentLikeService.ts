@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import ICommentLike from "../interfaces/ICommentLike";
 
 const COMMENT_LIKE_API_BASE_URL =
-  "https://daily-coorder-backend.herokuapp.com/api/comment_likes";
+  "https://daily-coorder-backend.herokuapp.com/api/comment_like";
 
 class CommentLikeService {
   getCommentLikes() {
