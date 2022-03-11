@@ -4,6 +4,7 @@ import MemInfoCss from '../css/MyPage_MemInfoCss';
 import {Figure} from 'react-bootstrap';
 import "../css/main/animation.css";
 
+
 function Ceoinformation() {
     const [ceoInfo, setCeoInfo] = useState({
         id: "",
@@ -102,6 +103,7 @@ function Ceoinformation() {
 function MemberInformation(){
     const [memberInfo,setMemberInfo]=useState({
         id:"",
+        name:"",
         password:"",
         nickname:"",
         email:"",
@@ -141,6 +143,19 @@ function MemberInformation(){
                             fontWeight: "bold"
                         }}>아이디</p>
                         <p style={{padding: "1vh 1vw"}}>{memberInfo.id}</p>
+                    </div>
+                </div>
+
+                <div style={{border: "1px solid #f7f7f7", borderBottom: "none"}}>
+                    <div style={{display: "flex"}}>
+                        <p style={{
+                            width: "200px",
+                            padding: "1vh 1vw",
+                            borderRight: "1px solid #f7f7f7",
+                            backgroundColor: "#f7f7f7",
+                            fontWeight: "bold"
+                        }}>이름</p>
+                        <p style={{padding: "1vh 1vw"}}>{memberInfo.name}</p>
                     </div>
                 </div>
 
