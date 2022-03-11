@@ -56,12 +56,9 @@ function CardStyle() {
 
 
 function MyPage_ChartPage() {
-    const [clothesCard, setClothesCard] = useState([]);
+    const [clothesCard, setClothesCard] = useState(["1","2","3","4"]);
     const [clothesData, setClothesData] = useState();
 
-    useEffect(() => {
-
-    })
     return (
         <>
 
