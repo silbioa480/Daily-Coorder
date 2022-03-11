@@ -7,30 +7,31 @@ import {
   BsPlusCircle,
 } from "react-icons/bs";
 import { NavButton } from "../css/NavStyle";
+import { Link } from 'react-router-dom';
 
 function LoggedInNav() {
   return (
-    <>
-      <NavButton to="/" className="logoutt">
-        로그아웃
-      </NavButton>
+    <ul className='login-list'>
+      <li className='logo-btn'>
+        <Link to="/upload"><BsPlusCircle /></Link>
+      </li>
 
-      <NavButton to="/upload" style={{ color: "white" }}>
-        <BsPlusCircle style={{ width: "20px", height: "20px" }} />
-      </NavButton>
+      <li className='logo-btn'>
+        <Link to="/feed"><BsBookmarkHeart /></Link>
+      </li>
 
-      <NavButton to="/feed" style={{ color: "white" }}>
-        <BsBookmarkHeart style={{ width: "20px", height: "20px" }} />
-      </NavButton>
+      <li className='logo-btn'>
+        <Link to="#"><BsBell /></Link>
+      </li>
 
-      <NavButton to="#" style={{ color: "white" }}>
-        <BsBell style={{ width: "20px", height: "20px" }} />
-      </NavButton>
+      <li className='logo-btn'>
+        <Link to="/member"><BsPerson /></Link>
+      </li>
 
-      <NavButton to="member" style={{ color: "white" }}>
-        <BsPerson style={{ width: "20px", height: "20px" }} />
-      </NavButton>
-    </>
+      <li className="logout-btn">
+        <Link to="">로그아웃</Link>
+      </li>
+    </ul>
   );
 }
 

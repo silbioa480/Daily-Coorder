@@ -1,6 +1,5 @@
 .BannerCar {
     width: 1200px;
-
     margin-bottom: 10px;
     display: inline-block;
 }
@@ -20,4 +19,39 @@
     text-align: center;
     margin-top: 50px;
     margin-bottom: 50px;
+
+}
+
+.BannerCar > .carousel-indicators {
+    margin-bottom: -30px;
+}
+
+.BannerCar > .carousel-control-next {
+    margin-right: -80px;
+    margin-top: 120px;
+    width: 80px;
+    height: 60px;
+    transition: all .2s ease-out;
+    opacity: unset;
+}
+
+.BannerCar > .carousel-control-next:hover {
+    transform: translateX(6px);
+    transition: all .2s ease-in-out;
+
+}
+
+.BannerCar > .carousel-control-prev {
+    margin-left: -80px;
+    margin-top: 120px;
+    width: 80px;
+    height: 60px;
+    transition: all .2s ease-out;
+    opacity: unset;
+}
+
+.BannerCar > .carousel-control-prev:hover {
+    transform: translateX(-6px);
+    transition: all .2s ease-in-out;
+
 }
