@@ -304,7 +304,7 @@ function MyPage_MemberModify() {
 
                             <Form.Group className="my-3">
                                 <Form.Label>생년월일</Form.Label>
-                                <Form.Control type="text" placeholder="생년월일 6자리입력" name="birth"/>
+                                <Form.Control type="date" placeholder="생년월일 6자리입력" name="birth"/>
                             </Form.Group>
 
 

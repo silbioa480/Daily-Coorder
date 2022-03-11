@@ -99,21 +99,35 @@ function Ceoinformation() {
 }
 
 
-function MemberInformation() {
-    const [memberInfo, setMemberInfo] = useState({
-        id: "",
-        password: "",
-        nickname: "",
-        email: "",
-        phone: "",
-        gender: "",
-        birth: "",
-        body: {
-            weight: "",
-            height: ""
-        }
+function MemberInformation(){
+    const [memberInfo,setMemberInfo]=useState({
+        id:"",
+        password:"",
+        nickname:"",
+        email:"",
+        phone:"",
+        gender:"",
+        birth:"",
+        weight:"",
+        height:""
     })
-
+    
+    fetch("http://localhost:3001/MyPage_MemberInformation",{
+        method:"post",
+        headers:{
+            // "Access-Control-Allow-Origin":"*",
+            "content-type":"application/json",
+            "Accept":"application/json",
+        }
+    }).then(function(response){
+        if(!response.ok) throw new Error;
+            return response.json();
+    }).then(function(data){
+        console.log(data.res[0]);
+        setMemberInfo(data);
+    }).catch(function(error){
+        console.log(error);
+    })
     return (
         <>
             <div className="aa">
@@ -206,29 +220,15 @@ function MemberInformation() {
                         }}>생년월일</p>
                         <p style={{padding: "1vh 1vw"}}>{memberInfo.birth}</p>
                     </div>
-                </div>
-
-                <div style={{border: "1px solid #f7f7f7"}}>
-                    <p style={{margin: "1.6vh 0 0 2vh", fontWeight: "bold"}}>체형</p>
-                    <div style={{display: "flex", marginTop: "2vh", borderTop: "1px solid #f7f7f7"}}>
-                        <p style={{
-                            width: "200px",
-                            padding: "1vh 1vw",
-                            borderRight: "1px solid #f7f7f7",
-                            backgroundColor: "#f7f7f7",
-                            fontWeight: "bold"
-                        }}>키</p>
-                        <p style={{width: "125px", padding: "1vh 1vw"}}>{memberInfo.body.height}</p>
-                        <p style={{
-                            width: "150px",
-                            marginLeft: "2vw",
-                            padding: "1vh 1vw",
-                            borderRight: "1px solid #f7f7f7",
-                            backgroundColor: "#f7f7f7",
-                            borderLeft: "1px solid #f7f7f7",
-                            fontWeight: "bold"
-                        }}>몸무게</p>
-                        <p style={{padding: "1vh 1vw"}}>{memberInfo.body.weight}</p>
+            
+                    <div style={{border:"1px solid #f7f7f7"}}>
+                           <p style={{margin:"1.6vh 0 0 2vh",fontWeight:"bold"}}>체형</p>
+                            <div style={{display:"flex",marginTop:"2vh",borderTop:"1px solid #f7f7f7"}}>
+                                <p style={{width:"200px",padding:"1vh 1vw",borderRight:"1px solid #f7f7f7",backgroundColor:"#f7f7f7",fontWeight:"bold"}}>키</p>
+                                <p style={{width:"125px",padding:"1vh 1vw"}}>{memberInfo.height}</p>
+                                <p style={{width:"150px",marginLeft:"2vw",padding:"1vh 1vw",borderRight:"1px solid #f7f7f7",backgroundColor:"#f7f7f7",borderLeft:"1px solid #f7f7f7",fontWeight:"bold"}}>몸무게</p>
+                                <p style={{padding:"1vh 1vw"}}>{memberInfo.weight}</p>
+                            </div>
                     </div>
                 </div>
             </div>
