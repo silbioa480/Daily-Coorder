@@ -19,6 +19,12 @@ class FollowService {
     return axios.get(FOLLOW_API_BASE_URL + "/" + follow_id);
   }
 
+  getFollowerByUserId(
+    userId: IFollow["from_user_id"]
+  ): Promise<AxiosResponse<String[]>> {
+    return axios.get(FOLLOW_API_BASE_URL + "/follower/" + userId);
+  }
+
   updateFollow(
     follow: IFollow,
     follow_id: IFollow["follow_id"]
