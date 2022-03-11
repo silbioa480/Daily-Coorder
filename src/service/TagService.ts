@@ -16,6 +16,12 @@ class TagService {
     return axios.get(TAG_API_BASE_URL + "/" + tag_id);
   }
 
+  getBoardIdByTagName(
+    tag_name: ITag["tag_name"]
+  ): Promise<AxiosResponse<number[]>> {
+    return axios.get(TAG_API_BASE_URL + "/tag_name/" + tag_name);
+  }
+
   updateTag(tag: ITag, tag_id: ITag["tag_id"]): Promise<AxiosResponse<ITag>> {
     return axios.put(TAG_API_BASE_URL + "/" + tag_id, tag);
   }
