@@ -17,8 +17,10 @@ class BoardService {
     return axios.get(BOARD_API_BASE_URL + "/" + board_id);
   }
 
-  getBoardBytag(tag_id: IBoard["board_id"]): Promise<AxiosResponse<IBoard>> {
-    return axios.get(BOARD_API_BASE_URL + "/" + tag_id);
+  getBoardByUserId(
+    board_poster: IBoard["board_poster"]
+  ): Promise<AxiosResponse<IBoard>> {
+    return axios.get(BOARD_API_BASE_URL + "/board_poster/" + board_poster);
   }
 
   updateBoard(
