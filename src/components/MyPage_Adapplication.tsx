@@ -70,13 +70,26 @@ function MyPage_Adapplication() {
                                 <Form.Control type="url" placeholder="URL 입력"
                                               style={{width: "300px", marginTop: "1vw"}}/>
                             </div>
-                            <div className="TagSpace" style={{marginBottom: "2vw"}}>
+
+                            <div className="Adurl">
+                                <Form.Label style={{fontWeight: "bold", fontSize: "1.3vw"}}>신청자</Form.Label>
+                                <Form.Control type="text" placeholder="URL 입력"
+                                              style={{width: "300px", marginTop: "1vw"}}/>
+                            </div>
+
+                            <div className="Adurl">
+                                <Form.Label style={{fontWeight: "bold", fontSize: "1.3vw"}}>광고 기간</Form.Label>
+                                <Form.Control type="date" placeholder="URL 입력"
+                                              style={{width: "300px", marginTop: "1vw"}}/>
+                            </div>
+
+                            {/* <div className="TagSpace" style={{marginBottom: "2vw"}}>
 
                                 <Form.Label style={{fontWeight: "bold", fontSize: "1.3vw"}}>태그 선택 공간</Form.Label>
                                 <div className="tagbox" style={{marginBottom: "1vh"}}></div>
                                 <Form.Control type="text" placeholder="태그 입력" value={hashtag} onChange={onChangeHashtag}
                                               onKeyUp={onKeyUp}/>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
 

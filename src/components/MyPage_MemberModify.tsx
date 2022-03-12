@@ -74,6 +74,17 @@ function CeoModify() {
                                 프로필 사진 업로드<input type="file" style={{display: "none"}} id="ppimage" accept='image/*'
                                                  onChange={onloadfile}/>
                             </label>
+
+                            <label className="btn btn-white" htmlFor="ppimage" style={{
+                                    overflow: "hidden",
+                                    border: "1px solid #dbdbdb",
+                                    fontWeight: "bold",
+                                    padding: ".3vw .75vw",
+                                    borderRadius: "5px",
+                                    marginLeft:"1vw"
+                                }}>
+                                    프로필 사진 삭제
+                                </label>
                         </div>
 
                         <Form.Group controlId="formGridEmail">
@@ -159,7 +170,9 @@ function MyPage_MemberModify() {
         password: "",
         nickname: "",
         email: "",
-        phone: ""
+        phone: "",
+        weight:"",
+        height:""
     });
 
     const handleShow = () => {
@@ -256,7 +269,7 @@ function MyPage_MemberModify() {
                                     />
                                 </Figure>
                             </div>
-                            <div style={{margin: "1vh 0"}}>
+                            <div style={{margin: "1vh 0",display:"flex"}}>
                                 <label className="btn btn-white" htmlFor="ppimage" style={{
                                     overflow: "hidden",
                                     border: "1px solid #dbdbdb",
@@ -266,6 +279,17 @@ function MyPage_MemberModify() {
                                 }}>
                                     프로필 사진 업로드<input type="file" style={{display: "none"}} id="ppimage" accept='image/*'
                                                      onChange={onloadfile}/>
+                                </label>
+
+                                <label className="btn btn-white" htmlFor="ppimage" style={{
+                                    overflow: "hidden",
+                                    border: "1px solid #dbdbdb",
+                                    fontWeight: "bold",
+                                    padding: ".3vw .75vw",
+                                    borderRadius: "5px",
+                                    marginLeft:"1vw"
+                                }}>
+                                    프로필 사진 삭제
                                 </label>
                             </div>
 
@@ -280,6 +304,8 @@ function MyPage_MemberModify() {
 
                             </Form.Group>
 
+                            
+
 
                             <Form.Group controlId="formGridEmail" style={{marginTop: "1vh"}}>
                                 <Form.Label>닉네임</Form.Label>
@@ -290,6 +316,8 @@ function MyPage_MemberModify() {
                                         확인</Button>
                                 </div>
                             </Form.Group>
+
+
 
                             <Form.Group className="my-3" controlId="formGridPassword">
                                 <Form.Label>비밀번호</Form.Label>
@@ -326,6 +354,25 @@ function MyPage_MemberModify() {
                                                   value={userInfo.email} onChange={handleChange}/>
                                     <Button style={{width: "180px", textAlign: "center"}}
                                             onClick={assignEmail}>인증요청</Button>
+                                </div>
+                            </Form.Group>
+
+                            <Form.Group controlId="formGridEmail" style={{marginTop: "3vh",boxSizing:"border-box"}}>
+                                <label style={{margin:"1vw 0"}}>체형</label>
+                                <div style={{display:"flex"}}>
+                                    <Form.Label style={{width:"20vw",textAlign:"center",marginTop:".6vw"}}>키</Form.Label>
+                                    <div style={{width: "100%", display: "flex"}}>
+                                        <Form.Control type="text" placeholder="Enter weight" name="weight"
+                                                    value={userInfo.weight} onChange={handleChange}/>
+                                    
+                                    </div>
+
+                                    <Form.Label style={{width:"20vw",textAlign:"center",marginTop:".6vw"}}>몸무게</Form.Label>
+                                    <div style={{width: "100%", display: "flex"}}>
+                                        <Form.Control type="text" placeholder="Enter height" name="height"
+                                                    value={userInfo.height} onChange={handleChange}/>
+                                    
+                                    </div>
                                 </div>
                             </Form.Group>
 
