@@ -138,12 +138,18 @@ body {
     display: block;
   }
 
+  .toggle-btn:hover {
+    color: #20c997;
+    transition: all 0.5s ease-in;
+  }
+
   .login-list {
     background-color: black;
     position: absolute;
     right: 0px;
     top: 69px;
     padding: 10px;
+
   }
 
   .hidden-list {
@@ -152,5 +158,6 @@ body {
     right: 0px;
     top: 69px;
     padding: 10px;
+    display: none;
   }
 }

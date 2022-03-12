@@ -37,12 +37,6 @@ function Navigation() {
         {/* <NotLogInNav /> */}
         <LoggedInNav />
       </div>
-      {/* toggle button */}
-      <button
-        className='toggle-btn'
-      >
-        <i className="fa-solid fa-bars"></i>
-      </button>
     </Navbar >
   );
 }
