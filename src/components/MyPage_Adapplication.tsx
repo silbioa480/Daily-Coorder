@@ -10,6 +10,7 @@ function MyPage_Adapplication() {
     const [imgfiles, setImgFiles] = useState('');
     const [hashtag, setHashtag] = useState('');
     const [hasharr, setHasharr] = useState<String[]>([]);
+    
 
     const onloadfile = (event: any) => {
         const file = event.target.files;
