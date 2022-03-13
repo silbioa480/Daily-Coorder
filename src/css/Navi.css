@@ -108,7 +108,7 @@ body {
   font-size: 40px;
   position: absolute;
   right: 2rem;
-  top: 2rem;
+  top: 1.5rem;
   display: none;
 }
 
@@ -149,7 +149,7 @@ body {
     right: 0px;
     top: 69px;
     padding: 10px;
-
+    display: none;
   }
 
   .hidden-list {

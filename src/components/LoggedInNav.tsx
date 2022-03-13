@@ -17,7 +17,9 @@ function LoggedInNav() {
   }
   return (
     <>
-      <ul className={isOpen ? "login-list" : "hidden-list"}>
+      {/* <ul className={isOpen ? "login-list" : "hidden-list"}> */}
+      <ul className="login-list">
+
         <li className='logo-btn'>
           <Link to="/upload"><BsPlusCircle /></Link>
         </li>

@@ -21,7 +21,7 @@ function Navigation() {
       <div className="navbar-box">
         <div>
           <h1 className="title">
-            <a href='/src/routes/Main.tsx' className="title">Daliy Coorder</a>
+            <Link to="/main" className="title">Daliy Coorder</Link>
           </h1>
           <form className="search-form">
             <input
