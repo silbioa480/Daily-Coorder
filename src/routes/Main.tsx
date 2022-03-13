@@ -7,7 +7,7 @@ import {useParams} from "react-router-dom";
 
 
 interface IParams {
-    to_user_id: string;  //localhost/board/boardId 인데 url이라 첫타입은 스트링으로 가져와야함
+    to_user_id: string;
     from_user_id: string;
 }
 
