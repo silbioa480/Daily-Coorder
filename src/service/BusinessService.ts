@@ -16,7 +16,7 @@ class BusinessService {
   getBusinessById(
     business_id: IBusiness["business_id"]
   ): Promise<AxiosResponse<IBusiness>> {
-    return axios.get(BUSINESS_API_BASE_URL + "/" + business_id);
+    return axios.get<IBusiness>(BUSINESS_API_BASE_URL + "/" + business_id);
   }
 
   updateBusiness(
