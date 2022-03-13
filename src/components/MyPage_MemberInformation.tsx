@@ -3,17 +3,21 @@ import {useState} from 'react';
 import MemInfoCss from '../css/MyPage_MemInfoCss';
 import {Figure} from 'react-bootstrap';
 import "../css/main/animation.css";
+import IUser from '../interfaces/IUser';
+import IProfileImage from '../interfaces/IProfileImage';
+import UserService from "../service/UserService";
+import IBusiness from '../interfaces/IBusiness';
+import BusinessService from "../service/BusinessSevice";
+import axios from 'axios';
 
 
 function Ceoinformation() {
-    const [ceoInfo, setCeoInfo] = useState({
-        id: "",
-        brandname: "",
-        password: "",
-        ceonumber: "",
-        email: "",
-        phone: ""
-    })
+   
+    // const [ceoId,setCeoId]=useState({business_id:""});
+
+    // const CeoInfo=BusinessService.getBusinessById(ceoId);
+    
+   
     return (
         <>
             <div className="aa">
@@ -26,7 +30,7 @@ function Ceoinformation() {
                             backgroundColor: "#f7f7f7",
                             fontWeight: "bold"
                         }}>아이디</p>
-                        <p style={{padding: "1vh 1vw"}}>{ceoInfo.id}</p>
+                        <p style={{padding: "1vh 1vw"}}>{}</p>
                     </div>
                 </div>
 
@@ -39,7 +43,7 @@ function Ceoinformation() {
                             backgroundColor: "#f7f7f7",
                             fontWeight: "bold"
                         }}>비밀번호</p>
-                        <p style={{padding: "1vh 1vw"}}><strong>●●●●●●●●{ceoInfo.password}</strong></p>
+                        <p style={{padding: "1vh 1vw"}}><strong>●●●●●●●●{}</strong></p>
                     </div>
                 </div>
 
@@ -52,7 +56,7 @@ function Ceoinformation() {
                             backgroundColor: "#f7f7f7",
                             fontWeight: "bold"
                         }}>상호명</p>
-                        <p style={{padding: "1vh 1vw"}}>{ceoInfo.brandname}</p>
+                        <p style={{padding: "1vh 1vw"}}>{}</p>
                     </div>
                 </div>
 
@@ -65,7 +69,7 @@ function Ceoinformation() {
                             backgroundColor: "#f7f7f7",
                             fontWeight: "bold"
                         }}>사업자번호</p>
-                        <p style={{padding: "1vh 1vw"}}>{ceoInfo.ceonumber}</p>
+                        <p style={{padding: "1vh 1vw"}}>{}</p>
                     </div>
                 </div>
 
@@ -78,7 +82,7 @@ function Ceoinformation() {
                             backgroundColor: "#f7f7f7",
                             fontWeight: "bold"
                         }}>이메일</p>
-                        <p style={{padding: "1vh 1vw"}}>{ceoInfo.email}</p>
+                        <p style={{padding: "1vh 1vw"}}>{}</p>
                     </div>
                 </div>
 
@@ -91,7 +95,7 @@ function Ceoinformation() {
                             backgroundColor: "#f7f7f7",
                             fontWeight: "bold"
                         }}>전화번호</p>
-                        <p style={{padding: "1vh 1vw"}}>{ceoInfo.phone}</p>
+                        <p style={{padding: "1vh 1vw"}}>{}</p>
                     </div>
                 </div>
             </div>
@@ -114,22 +118,6 @@ function MemberInformation(){
         height:""
     })
     
-    fetch("http://localhost:3001/MyPage_MemberInformation",{
-        method:"post",
-        headers:{
-            // "Access-Control-Allow-Origin":"*",
-            "content-type":"application/json",
-            "Accept":"application/json",
-        }
-    }).then(function(response){
-        if(!response.ok) throw new Error;
-            return response.json();
-    }).then(function(data){
-        console.log(data.res[0]);
-        setMemberInfo(data);
-    }).catch(function(error){
-        console.log(error);
-    })
     return (
         <>
             <div className="aa">
