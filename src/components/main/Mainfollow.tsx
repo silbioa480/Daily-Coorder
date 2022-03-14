@@ -15,10 +15,11 @@ import FollowService from "../../service/FollowService";
 import BoardService from "../../service/BoardService";
 
 function Mainfollow() {
-    
+
     const [myId, setMyId] = useState<IUser["user_id"]>("");
     const [myFollowers, setMyFollowers] = useState<IUser["user_id"][]>([]);
     const [followerBoards, setFollowerBoards] = useState<IBoard[]>([]);
+
 
     // 내가 팔로우한 사람들(id)의 게시물을 가져오는 함수 getbyuserid
     // 1 세션으로 로그인된 나의 아이디를 확인 (로그인 안했다면 랜덤 데이터)
@@ -41,6 +42,7 @@ function Mainfollow() {
         getFollowersId();
         getFollowerBoard();
     }, []);
+
 
     const renderRepeat = followerBoards.map((data) => {
         return <MainComponent data={data} key={data.board_id}/>;
