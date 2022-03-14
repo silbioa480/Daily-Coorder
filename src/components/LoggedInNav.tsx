@@ -1,32 +1,54 @@
 import "../css/Navi.css";
 
-import {BsBell, BsBookmarkHeart, BsPerson, BsPlusCircle,} from "react-icons/bs";
-import {NavButton} from "../css/NavStyle";
+import {
+  BsBell,
+  BsBookmarkHeart,
+  BsPerson,
+  BsPlusCircle,
+} from "react-icons/bs";
+import { NavButton } from "../css/NavStyle";
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 function LoggedInNav() {
-    return (
-        <>
-            <NavButton to="/" className="logoutt">
-                Logout
-            </NavButton>
+  const [isOpen, setMenu] = useState(false);
+  const toggleMenu = () => {
+    setMenu(isOpen => !isOpen)
+  }
+  return (
+    <>
+      {/* <ul className={isOpen ? "login-list" : "hidden-list"}> */}
+      <ul className="login-list">
 
-            <NavButton to="/upload" style={{color: "white"}}>
-                <BsPlusCircle style={{width: "21px", height: "21px"}}/>
-            </NavButton>
+        <li className='logo-btn'>
+          <Link to="/upload"><BsPlusCircle /></Link>
+        </li>
 
-            <NavButton to="/feed" style={{color: "white"}}>
-                <BsBookmarkHeart style={{width: "21px", height: "21px"}}/>
-            </NavButton>
+        <li className='logo-btn'>
+          <Link to="/feed"><BsBookmarkHeart /></Link>
+        </li>
 
-            <NavButton to="#" style={{color: "white"}}>
-                <BsBell style={{width: "21px", height: "21px"}}/>
-            </NavButton>
+        <li className='logo-btn'>
+          <Link to="#"><BsBell /></Link>
+        </li>
 
-            <NavButton to="member" style={{color: "white"}}>
-                <BsPerson style={{width: "21px", height: "21px"}}/>
-            </NavButton>
-        </>
-    );
+        <li className='logo-btn'>
+          <Link to="/member"><BsPerson /></Link>
+        </li>
+
+        <li className="logout-btn">
+          <Link to="">로그아웃</Link>
+        </li>
+      </ul>
+      {/* toggle button */}
+      <button
+        className='toggle-btn'
+        onClick={() => toggleMenu()}
+      >
+        <i className="fa-solid fa-bars"></i>
+      </button>
+    </>
+  );
 }
 
 export default LoggedInNav;

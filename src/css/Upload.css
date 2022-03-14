@@ -70,6 +70,7 @@
   font-size: var(--font-medium);
   padding: 0.5rem 14px;
   margin: 1.5rem 0;
+  border-color: blue;
 }
 
 .textarea {
@@ -89,8 +90,8 @@
 }
 
 .img-box img {
-  width: 690px;
-  height: 690px;
+  width: 400px;
+  height: 400px;
   cursor: pointer;
 }
 
@@ -98,11 +99,17 @@
   font-size: var(--font-large);
 }
 
+.form-box {
+  display: flex;
+  justify-content: center;
+}
+
 #upload-form {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  margin: 0;
   background-color: var(--color-white);
+  width: 700px;
 }
 
 .upload-input {
@@ -110,7 +117,7 @@
 }
 
 .content-container {
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid blue;
 }
 
 .hashtag-container {
@@ -164,11 +171,12 @@
   background-color: var(--color-blue);
   font-size: var(--font-medium);
   padding: 10px 20px;
-  transition: 300ms ease-in-out;
+  transition: 100ms ease-in-out;
 }
 
 .share-button a {
   color: var(--color-orange);
+
 }
 
 .share-button:hover {
@@ -177,5 +185,5 @@
 }
 
 .share-button a:hover {
-  color: var(--color-white);
+  color: var(--color-blue);
 }
