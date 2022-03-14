@@ -9,79 +9,13 @@ import "../../css/main/MainNewFollow.css";
 import "../../css/main/animation.css";
 
 // 사진
-import mainfol1 from "../../img/main/mainfol1.png";
-import mainfol2 from "../../img/main/mainfol2.png";
-import mainfol3 from "../../img/main/mainfol3.png";
-import mainfol4 from "../../img/main/mainfol4.png";
-import mainfol5 from "../../img/main/mainfol5.png";
-import mainfol6 from "../../img/main/mainfol6.png";
-import mainfol7 from "../../img/main/mainfol7.png";
-import mainfol8 from "../../img/main/mainfol8.png";
 import IUser from "../../interfaces/IUser";
 import IBoard from "../../interfaces/IBoard";
 import FollowService from "../../service/FollowService";
 import BoardService from "../../service/BoardService";
 
 function Mainfollow() {
-    const datas = [
-        {
-            id: 1,
-            title: mainfol1,
-            name: "@shine_1",
-            liked: 117,
-            followed: 210,
-        },
-        {
-            id: 2,
-            title: mainfol2,
-            name: "@namju",
-            liked: 1019,
-            followed: 1423,
-        },
-        {
-            id: 3,
-            title: mainfol3,
-            name: "@aaa_A",
-            liked: 418,
-            followed: 847,
-        },
-        {
-            id: 4,
-            title: mainfol4,
-            name: "@tae_tae",
-            liked: 553,
-            followed: 712,
-        },
-        {
-            id: 5,
-            title: mainfol5,
-            name: "@minkue",
-            liked: 172,
-            followed: 351,
-        },
-        {
-            id: 6,
-            title: mainfol6,
-            name: "@hrsan",
-            liked: 78,
-            followed: 421,
-        },
-        {
-            id: 7,
-            title: mainfol7,
-            name: "@niks_13",
-            liked: 133,
-            followed: 1421,
-        },
-        {
-            id: 8,
-            title: mainfol8,
-            name: "@was_not",
-            liked: 1240,
-            followed: 1446,
-        },
-    ];
-
+    
     const [myId, setMyId] = useState<IUser["user_id"]>("");
     const [myFollowers, setMyFollowers] = useState<IUser["user_id"][]>([]);
     const [followerBoards, setFollowerBoards] = useState<IBoard[]>([]);
