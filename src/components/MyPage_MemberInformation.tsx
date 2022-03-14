@@ -3,20 +3,24 @@ import {useState} from 'react';
 import MemInfoCss from '../css/MyPage_MemInfoCss';
 import {Figure} from 'react-bootstrap';
 import "../css/main/animation.css";
-import IUser from '../interfaces/IUser';
-import IProfileImage from '../interfaces/IProfileImage';
+import IMemberId from '../interfaces/IMemberId';
+import MemberIdService from '../service/MemberIdService';
+import IUser from "../interfaces/IUser";
 import UserService from "../service/UserService";
 import IBusiness from '../interfaces/IBusiness';
-import BusinessService from "../service/BusinessSevice";
-import axios from 'axios';
+import BusinessSevice from '../service/BusinessSevice';
+
+type memberid={
+    infoId : IMemberId;
+}
 
 
-function Ceoinformation() {
-   
-    // const [ceoId,setCeoId]=useState({business_id:""});
-
-    // const CeoInfo=BusinessService.getBusinessById(ceoId);
+function Ceoinformation(props : IMemberId) {
     
+    const fetchCeo=async()=>{
+        const CeoInfo=await BusinessSevice.getBusinessById(props.member_id).then(res=>res.data);
+        return;
+    }
    
     return (
         <>
@@ -43,7 +47,7 @@ function Ceoinformation() {
                             backgroundColor: "#f7f7f7",
                             fontWeight: "bold"
                         }}>비밀번호</p>
-                        <p style={{padding: "1vh 1vw"}}><strong>●●●●●●●●{}</strong></p>
+                        <p style={{padding: "1vh 1vw"}}><strong>{}</strong></p>
                     </div>
                 </div>
 
@@ -105,19 +109,8 @@ function Ceoinformation() {
 
 
 function MemberInformation(){
-    const [memberInfo,setMemberInfo]=useState({
-        id:"",
-        name:"",
-        password:"",
-        nickname:"",
-        email:"",
-        phone:"",
-        gender:"",
-        birth:"",
-        weight:"",
-        height:""
-    })
-    
+   
+   
     return (
         <>
             <div className="aa">
@@ -130,7 +123,7 @@ function MemberInformation(){
                             backgroundColor: "#f7f7f7",
                             fontWeight: "bold"
                         }}>아이디</p>
-                        <p style={{padding: "1vh 1vw"}}>{memberInfo.id}</p>
+                        <p style={{padding: "1vh 1vw"}}>{}</p>
                     </div>
                 </div>
 
@@ -143,7 +136,7 @@ function MemberInformation(){
                             backgroundColor: "#f7f7f7",
                             fontWeight: "bold"
                         }}>이름</p>
-                        <p style={{padding: "1vh 1vw"}}>{memberInfo.name}</p>
+                        <p style={{padding: "1vh 1vw"}}>{}</p>
                     </div>
                 </div>
 
@@ -156,7 +149,7 @@ function MemberInformation(){
                             backgroundColor: "#f7f7f7",
                             fontWeight: "bold"
                         }}>비밀번호</p>
-                        <p style={{padding: "1vh 1vw"}}><strong>●●●●●●●●</strong></p>
+                        <p style={{padding: "1vh 1vw"}}><strong>{}</strong></p>
                     </div>
                 </div>
 
@@ -169,7 +162,7 @@ function MemberInformation(){
                             backgroundColor: "#f7f7f7",
                             fontWeight: "bold"
                         }}>닉네임</p>
-                        <p style={{padding: "1vh 1vw"}}>{memberInfo.nickname}</p>
+                        <p style={{padding: "1vh 1vw"}}>{}</p>
                     </div>
                 </div>
 
@@ -182,7 +175,7 @@ function MemberInformation(){
                             backgroundColor: "#f7f7f7",
                             fontWeight: "bold"
                         }}>이메일</p>
-                        <p style={{padding: "1vh 1vw"}}>{memberInfo.email}</p>
+                        <p style={{padding: "1vh 1vw"}}>{}</p>
                     </div>
                 </div>
 
@@ -195,7 +188,7 @@ function MemberInformation(){
                             backgroundColor: "#f7f7f7",
                             fontWeight: "bold"
                         }}>전화번호</p>
-                        <p style={{padding: "1vh 1vw"}}>{memberInfo.phone}</p>
+                        <p style={{padding: "1vh 1vw"}}>{}</p>
                     </div>
                 </div>
 
@@ -208,7 +201,7 @@ function MemberInformation(){
                             backgroundColor: "#f7f7f7",
                             fontWeight: "bold"
                         }}>성별</p>
-                        <p style={{padding: "1vh 1vw"}}>{memberInfo.gender}</p>
+                        <p style={{padding: "1vh 1vw"}}>{}</p>
                     </div>
                 </div>
 
@@ -221,16 +214,16 @@ function MemberInformation(){
                             backgroundColor: "#f7f7f7",
                             fontWeight: "bold"
                         }}>생년월일</p>
-                        <p style={{padding: "1vh 1vw"}}>{memberInfo.birth}</p>
+                        <p style={{padding: "1vh 1vw"}}>{}</p>
                     </div>
             
                     <div style={{border:"1px solid #f7f7f7"}}>
                            <p style={{margin:"1.6vh 0 0 2vh",fontWeight:"bold"}}>체형</p>
                             <div style={{display:"flex",marginTop:"2vh",borderTop:"1px solid #f7f7f7"}}>
                                 <p style={{width:"200px",padding:"1vh 1vw",borderRight:"1px solid #f7f7f7",backgroundColor:"#f7f7f7",fontWeight:"bold"}}>키</p>
-                                <p style={{width:"125px",padding:"1vh 1vw"}}>{memberInfo.height}</p>
+                                <p style={{width:"125px",padding:"1vh 1vw"}}>{}</p>
                                 <p style={{width:"150px",marginLeft:"2vw",padding:"1vh 1vw",borderRight:"1px solid #f7f7f7",backgroundColor:"#f7f7f7",borderLeft:"1px solid #f7f7f7",fontWeight:"bold"}}>몸무게</p>
-                                <p style={{padding:"1vh 1vw"}}>{memberInfo.weight}</p>
+                                <p style={{padding:"1vh 1vw"}}>{}</p>
                             </div>
                     </div>
                 </div>
@@ -240,28 +233,27 @@ function MemberInformation(){
 }
 
 
-function MyPage_MemberInformation() {
-    const [isceo, setIsceo] = useState(false);
-    const [isuser, setIsuser] = useState(true);
+function MyPage_MemberInformation(Member : memberid) {
 
-    const handleUser = () => {
-        setIsuser(true);
-        setIsceo(false);
-    }
-
-    const handleCeo = () => {
-        setIsuser(false);
-        setIsceo(true);
+    // const [memberid,setMemberId]=useState<IUser["user_id"]>("");
+    //일반인지  사업자인지 판별
+    const [isMember,setIsMember]=useState(true);
+    
+    const handleMember=async()=>{
+        const member=await UserService.getUserById(Member.infoId.member_id).then(res=>res.data);
+        if(member.user_id === undefined || member.user_is_ad===true){
+            setIsMember(false);
+        }
     }
     return (
         <>
             <MemInfoCss/>
             <div className="aa memberOrceo">
                 <div style={{padding: "1vw 2vw", borderRight: "1px solid #dbdbdb", cursor: "pointer"}}
-                     onClick={handleUser}>
+                     onClick={handleMember}>
                     일반 회원 정보
                 </div>
-                <div style={{padding: "1vw 2vw", cursor: "pointer"}} onClick={handleCeo}>
+                <div style={{padding: "1vw 2vw", cursor: "pointer"}} onClick={handleMember}>
                     사업자 회원 정보
                 </div>
             </div>
@@ -276,8 +268,8 @@ function MyPage_MemberInformation() {
                         />
                     </Figure>
                 </div>
-                {isuser && <MemberInformation/>}
-                {isceo && <Ceoinformation/>}
+                {isMember && <MemberInformation />}
+                {isMember && <Ceoinformation member_id={Member.infoId.member_id}/>}
             </div>
 
 
