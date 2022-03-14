@@ -2,12 +2,34 @@ import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
 import {Button} from "react-bootstrap";
 import "../css/main/animation.css";
+import IAd from '../interfaces/IAd';
+import IAdImage from '../interfaces/IAdImage';
+import AdService from '../service/AdService';
+import AdImageService from '../service/AdImageService';
+import IBusiness from '../interfaces/IBusiness';
+import { useEffect, useState } from 'react';
 
-function MyPage_AdProvePage() {
+type ceoid={
+    CeoId : IBusiness;
+}
+
+function MyPage_AdProvePage(props :ceoid) {
+
+    const [Ad,setAd]=useState<IAd[]>([]);
+
+    async function allsearchAd(){
+        setAd(await AdService.getAds().then(res=>res.data));
+    }
+
+    useEffect(()=>{
+        allsearchAd();
+    })
+
+
     return (
 
         <>
-            <div>
+            <div onSubmit={handleSubmit}>
                 <Table striped bordered hover style={{
                     width: "50vw",
                     position: "absolute",
@@ -95,7 +117,7 @@ function MyPage_AdProvePage() {
                          transform: "translateX(-50%)",
                          marginLeft: "-70px"
                      }}>
-                    <Button>광고 등록 승인</Button>
+                    <Button type="submit">광고 등록 승인</Button>
                 </div>
             </div>
         </>
