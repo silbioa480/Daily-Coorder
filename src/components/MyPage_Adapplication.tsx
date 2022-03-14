@@ -2,14 +2,29 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Image from 'react-bootstrap/Image';
 import AdApplicationCss from '../css/MyPage_AdapplicationCss';
 import {Button, Form, FormControl} from 'react-bootstrap';
-import {useCallback, useState} from 'react';
+import {useState} from 'react';
 import "../css/main/animation.css";
-
+import IAdImage from "../interfaces/IAdImage";
+import IAd from "../interfaces/IAd";
+import AdService from "../service/AdService";
+import AdImageService from "../service/AdImageService";
+import axios from 'axios';
 
 function MyPage_Adapplication() {
+
     const [imgfiles, setImgFiles] = useState('');
-    const [hashtag, setHashtag] = useState('');
-    const [hasharr, setHasharr] = useState<String[]>([]);
+    // const [hashtag, setHashtag] = useState('');
+    // const [hasharr, setHasharr] = useState<String[]>([]);
+
+    const Ad:IAd ={
+        ad_title : "",
+        ad_url : "",
+        ad_expire : 0,
+        ad_is_prove : false,
+        ad_image : File,
+        
+    };
+
     
 
     const onloadfile = (event: any) => {
@@ -17,26 +32,32 @@ function MyPage_Adapplication() {
         setImgFiles(URL.createObjectURL(file[0]));
     }
 
-    const onChangeHashtag = (event: any) => {
-        setHashtag(event.target.value);
+    const handleSubmit=(event : any)=>{
+        event.preventDefalut();
+        AdImageService.createAdImage(Ad.ad_image);
+        AdService.createAd(Ad);
     }
 
-    const onKeyUp = useCallback((event: any) => {
-        const domtag = document.querySelector('.tagbox');
-        const innertag = document.createElement('div');
-        innertag.className = 'innertag';
-        innertag.addEventListener('click', () => {
-            domtag?.removeChild(innertag);
-            setHasharr(hasharr.filter((hashtag) => hashtag));
-        });
+    // const onChangeHashtag = (event: any) => {
+    //     setHashtag(event.target.value);
+    // }
 
-        if (event.keyCode === 13 && event.target.value.trim() !== '') {
-            innertag.innerHTML = '#' + event.target.value;
-            domtag?.appendChild(innertag);
-            setHasharr((hasharr) => ([...hasharr, hashtag]));
-            setHashtag('');
-        }
-    }, [hashtag, hasharr]);
+    // const onKeyUp = useCallback((event: any) => {
+    //     const domtag = document.querySelector('.tagbox');
+    //     const innertag = document.createElement('div');
+    //     innertag.className = 'innertag';
+    //     innertag.addEventListener('click', () => {
+    //         domtag?.removeChild(innertag);
+    //         setHasharr(hasharr.filter((hashtag) => hashtag));
+    //     });
+
+    //     if (event.keyCode === 13 && event.target.value.trim() !== '') {
+    //         innertag.innerHTML = '#' + event.target.value;
+    //         domtag?.appendChild(innertag);
+    //         setHasharr((hasharr) => ([...hasharr, hashtag]));
+    //         setHashtag('');
+    //     }
+    // }, [hashtag, hasharr]);
     return (
         <>
             <AdApplicationCss/>
@@ -49,7 +70,7 @@ function MyPage_Adapplication() {
                         <Form.Label
                             style={{textAlign: "center", marginTop: "1vw", fontWeight: "bold", fontSize: "1.5vw"}}>광고
                             제목</Form.Label>
-                        <Form.Control type="text" placeholder="제목 입력" style={{marginTop: "1vw"}}/>
+                        <Form.Control type="text" placeholder="제목 입력" style={{marginTop: "1vw"}} value={Ad.ad_title}/>
                     </div>
                     <div style={{display: "flex"}}>
                         <div className="AdImg">
@@ -57,7 +78,7 @@ function MyPage_Adapplication() {
                             <label className="btn btn-white bg-white" htmlFor="adimage"
                                    style={{color: "black", fontWeight: "bold", fontSize: "1vw", borderRadius: "20px"}}>
                                 광고 이미지 선택<Form.Control type="file" style={{display: "none"}} onChange={onloadfile}
-                                                       id="adimage" accept="image/*"/>
+                                                       id="adimage" accept="image/*" />
                             </label>
                         </div>
                         <div style={{
@@ -69,19 +90,19 @@ function MyPage_Adapplication() {
                             <div className="Adurl">
                                 <Form.Label style={{fontWeight: "bold", fontSize: "1.3vw"}}>URL</Form.Label>
                                 <Form.Control type="url" placeholder="URL 입력"
-                                              style={{width: "300px", marginTop: "1vw"}}/>
+                                              style={{width: "300px", marginTop: "1vw"}} value={Ad.ad_url}/>
                             </div>
 
                             <div className="Adurl">
                                 <Form.Label style={{fontWeight: "bold", fontSize: "1.3vw"}}>신청자</Form.Label>
                                 <Form.Control type="text" placeholder="URL 입력"
-                                              style={{width: "300px", marginTop: "1vw"}}/>
+                                              style={{width: "300px", marginTop: "1vw"}} value={Ad.business_id}/>
                             </div>
 
                             <div className="Adurl">
                                 <Form.Label style={{fontWeight: "bold", fontSize: "1.3vw"}}>광고 기간</Form.Label>
                                 <Form.Control type="date" placeholder="URL 입력"
-                                              style={{width: "300px", marginTop: "1vw"}}/>
+                                              style={{width: "300px", marginTop: "1vw"}} value={Ad.ad_expire}/>
                             </div>
 
                             {/* <div className="TagSpace" style={{marginBottom: "2vw"}}>
@@ -98,10 +119,10 @@ function MyPage_Adapplication() {
                         <Form.Label style={{textAlign: "center", fontWeight: "bold", fontSize: "1.5vw"}}>광고 내용
                             설명</Form.Label>
                         <FormControl as="textarea" aria-label="내용 설명" placeholder="내용을 입력하세요"
-                                     style={{marginTop: "1vw"}}/>
+                                     style={{marginTop: "1vw"}} value={Ad.ad_explain}/>
                     </div>
                     <div className="buttonspace">
-                        <Button>광고 등록 신청</Button>
+                        <Button type="submit" onClick={handleSubmit}>광고 등록 신청</Button>
                     </div>
                 </div>
             </div>
