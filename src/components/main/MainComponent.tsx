@@ -1,111 +1,136 @@
 // 부트 스트랩 Carousel
 import "bootstrap/dist/css/bootstrap.min.css";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {Link} from "react-router-dom";
 
 // css
 import "../../css/main/MainComponemt.css";
 
 // 사진
-import { AiFillHeart, AiFillStar } from "react-icons/ai";
+import {AiFillHeart, AiFillStar} from "react-icons/ai";
+import IBoard from "../../interfaces/IBoard";
+import IUser from "../../interfaces/IUser";
+import UserService from "../../service/UserService";
+import FollowService from "../../service/FollowService";
 
 interface IProps {
-  data: IData;
+    data: IBoard;
 }
 
-interface IData {
-  id: number;
-  title: string;
-  name: string;
-  liked: number;
-  followed: number;
-}
 
 function MainComponent(props: IProps) {
-  const [isShow, setIsShow] = useState<boolean>(false);
-  const [isDone, setIsDone] = useState<boolean>(false);
-  const [liked, setLiked] = useState(props.data.liked);
-  const [followed, setFollowed] = useState(props.data.followed);
-  const [name, setName] = useState(props.data.name);
+    const [isShow, setIsShow] = useState<boolean>(false);
+    const [isDone, setIsDone] = useState<boolean>(false);
+    const [poster, setPoster] = useState<IUser>();
+    const [myId, setMyId] = useState<IUser["user_id"]>("");
+    const [isFollowed, setIsFollowed] = useState<boolean>(false);
 
-  const [likecolor, setLikecolor] = useState("");
-  const [followcolor, setFollowcolor] = useState("");
-
-  // 좋아요 + 1
-  function likeIn() {
-    setLiked(liked + 1);
-  }
-
-  // 좋아요 - 1
-  function likeDe() {
-    setLiked(liked - 1);
-  }
-
-  // 팔로우 + 1
-  function followIn() {
-    setFollowed(followed + 1);
-  }
-
-  // 팔로우 - 1
-  function followDe() {
-    setFollowed(followed - 1);
-  }
-
-  // 좋아요 색깔 toglle and 좋아요 + 1 or - 1
-  function toggleShow() {
-    likecolor === "" ? setLikecolor("rgba(30,66,141,1)") : setLikecolor("");
-    setIsShow(!isShow);
-    if (!isShow) {
-      likeIn();
-    } else {
-      likeDe();
+    // 유저 테이블 가져오기 Id로
+    async function getPoster() {
+        setPoster(await UserService.getUserById(props.data.board_poster).then(res => res.data));
     }
-  }
 
-  // 팔로우 색깔 toglle and 팔로우 + 1 or - 1
-  function togglefollow() {
-    followcolor === ""
-      ? setFollowcolor("rgba(254,68,161,1)")
-      : setFollowcolor("");
-    setIsDone(!isDone);
-    if (!isDone) {
-      followIn();
-    } else {
-      followDe();
+    //유저 테이블 가져옴 id를 통해서
+
+    async function checkFollow() {
+        try {
+            await FollowService.getCheckFollow(myId, poster?.user_id as string).then(res => res.data);
+            setIsFollowed(true);
+        } catch {
+            setIsFollowed(false);
+        }
     }
-  }
 
-  // 이부분을 Component화.
-  return (
-    <div className="folpic">
-      <Link to="/board/board1" className="link">
-        <img className="d-block w-100" src={props.data.title} alt="1-1 slide" />
-      </Link>
-      <div className="group_icon">
-        <div className="like_logoA">
-          <AiFillHeart onClick={toggleShow} style={{ color: likecolor }} />
-        </div>
+    useEffect(() => {
+        getPoster();
+        checkFollow();
+    }, []);
 
-        <div className="follow_logoA">
-          <AiFillStar onClick={togglefollow} style={{ color: followcolor }} />
-        </div>
-      </div>
+    // 가져온 테이블엣거 팔로우 숫자 가져오기
+    const [followed, setFollowed] = useState(poster?.user_follower_number);
+    const [liked, setLiked] = useState(props.data.board_like_number);
+    //                        ?  언디파인드 아닐떄만 접근해라
 
-      <Link to="/feed">
-        <div className="group_txt">
-          <div className="t1">{props.data.name}</div>
-          <div className="like_group">
-            <AiFillHeart className="like_icon" />
-            <span className="like_cnt">{liked}</span>
-          </div>
-          <div className="follow_group">
-            <AiFillStar className="follow_icon" />
-            <span className="follow_cnt">{followed}</span>
-          </div>
+    const [likecolor, setLikecolor] = useState("");
+    const [followcolor, setFollowcolor] = useState("");
+
+    // 좋아요 + 1
+    function likeIn() {
+        setLiked(liked + 1);
+    }
+
+    // 좋아요 - 1
+    function likeDe() {
+        setLiked(liked - 1);
+    }
+
+    // 팔로우 + 1
+    function followIn() {
+        setFollowed(followed as number + 1);
+    }
+
+    // 팔로우 - 1
+    function followDe() {
+        if (followed) {
+            setFollowed(followed - 1);
+        }
+    }
+
+    // 좋아요 색깔 toglle and 좋아요 + 1 or - 1
+    function toggleShow() {
+        likecolor === "" ? setLikecolor("rgba(30,66,141,1)") : setLikecolor("");
+        setIsShow(!isShow);
+        if (!isShow) {
+            likeIn();
+        } else {
+            likeDe();
+        }
+    }
+
+    // 팔로우 색깔 toglle and 팔로우 + 1 or - 1
+    function togglefollow() {
+        followcolor === ""
+            ? setFollowcolor("rgba(254,68,161,1)")
+            : setFollowcolor("");
+        setIsDone(!isDone);
+        if (!isDone) {
+            followIn();
+        } else {
+            followDe();
+        }
+    }
+
+    // 이부분을 Component화.
+    return (
+        <div className="folpic">
+            <Link to={`/board/{props.data.board_id}`} className="link">
+                <img className="d-block w-100" src={props.data.board_title} alt="1-1 slide"/>
+            </Link>
+            <div className="group_icon">
+                <div className="like_logoA">
+                    <AiFillHeart onClick={toggleShow} style={{color: likecolor}}/>
+                </div>
+
+                <div className="follow_logoA">
+                    <AiFillStar onClick={togglefollow} style={{color: followcolor}}/>
+                </div>
+            </div>
+
+            <Link to="/feed">
+                <div className="group_txt">
+                    <div className="t1">{props.data.board_poster}</div>
+                    <div className="like_group">
+                        <AiFillHeart className="like_icon"/>
+                        <span className="like_cnt">{liked}</span>
+                    </div>
+                    <div className="follow_group">
+                        <AiFillStar className="follow_icon"/>
+                        <span className="follow_cnt">{followed}</span>
+                    </div>
+                </div>
+            </Link>
         </div>
-      </Link>
-    </div>
-  );
+    );
 }
 
 export default MainComponent;

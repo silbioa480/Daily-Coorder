@@ -384,7 +384,9 @@ function MyPage_MemberModify() {
                 {/*  작성자: 황인성  */}
                 {/*  최종수정 날짜 2022.3.10  */}
                 <div style={{width: "100%", display: "flex", justifyContent: "center"}}>
-                    <Button variant="white" className="mypage_btn" type="submit" onClick={handleShow}>
+                    <Button style={{border: "1px solid", borderRadius: "20px"}} variant="white" className="mypage_btn"
+                            type="submit"
+                            onClick={handleShow}>
                         <span>회원 정보 수정</span>
                     </Button>
                 </div>
