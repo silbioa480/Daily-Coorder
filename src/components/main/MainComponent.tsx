@@ -54,6 +54,7 @@ function MainComponent(props: IProps) {
     const [likecolor, setLikecolor] = useState("");
     const [followcolor, setFollowcolor] = useState("");
 
+
     // 좋아요 + 1
     function likeIn() {
         setLiked(liked + 1);

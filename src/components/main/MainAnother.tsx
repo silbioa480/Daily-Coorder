@@ -10,54 +10,56 @@ import "../../css/main/animation.css";
 import MainAnotherComponent from "./MainAnotherComponent";
 import IUser from "../../interfaces/IUser";
 import IBoard from "../../interfaces/IBoard";
-import FollowService from "../../service/FollowService";
 import BoardService from "../../service/BoardService";
+import TagLikeService from "../../service/TagLikeService";
+import ITagLike from "../../interfaces/ITagLike";
+import TagService from "../../service/TagService";
+import ITag from "../../interfaces/ITag";
 
 function MainAnother() {
 
-    const [myId, setMyId] = useState<IUser["user_id"]>("");
-    const [myFollowers, setMyFollowers] = useState<IUser["user_id"][]>([]);
-    const [followerBoards, setFollowerBoards] = useState<IBoard[]>([]);
+    const [myId, setMyId] = useState<IUser["user_id"]>("1");
+    const [tagName, setTagName] = useState<ITagLike["tag_name"][]>([]);
+    const [boardId, setBoardId] = useState<ITag["board_id"][]>([]);
+    const [boards, setBoards] = useState<IBoard[]>([]);
 
-    // 내가 팔로우한 사람들(id)의 게시물을 가져오는 함수 getbyuserid
-    // 1 세션으로 로그인된 나의 아이디를 확인 (로그인 안했다면 랜덤 데이터)
-    // 2 내 아이디를 이용해서 내가 팔로우한 사람들의 id
-    async function getFollowersId() {
-        setMyFollowers(await FollowService.getFollowerByUserId(myId).then(res => res.data));
+    // NewAnother -------------------------------
+
+    // 내가 좋아하는 태그들을 count 많은순으로 가져온다.
+    async function getTagNameByMemberId() {
+        setTagName(await TagLikeService.getTagNameByMemberId(myId).then(res => res.data));
     }
 
-    //                내가 팔로우한 상대방의 아이디만 가져옴 (배열로)
-
-    // 3 그 사람들의 게시물 데이터를 가져옴
-    function getFollowerBoard() {
-        myFollowers.map(async (follower) => {
-            let boards = await BoardService.getBoardByUserId(follower).then(res => res.data);
-            setFollowerBoards([...followerBoards, ...boards]);
+    // 태그네임으로 태그 id를 배열로 가져오고 맵으로 풀어준다.
+    async function getBoardIdByTagName() {
+        tagName.map(async (boardsByTagName) => {
+            let newId = await TagService.getBoardIdByTagName(boardsByTagName).then(res => res.data)
+            setBoardId([...boardId, ...newId]);
         })
     }
 
-    useEffect(() => {
-        getFollowersId();
-        getFollowerBoard();
-    }, []);
-    const [datas, setDatas] = useState();
-    // let i = 5;
-    const load = () => {
-        let lastindex = 10;
+    // id를 풀어준 맵으로 그 id의 board를 가져온다.
+    function getBoardByBoardId() {
+        boardId.map(async (boardsByTag) => {
+            let newBoards = await BoardService.getBoardById(boardsByTag).then(res => res.data);
+            setBoards([...boards, newBoards]);
+        })
+    }
 
-        console.log(lastindex + "부터 5개 가져온다. setDatas");
-        // i += 5;
-        // return (
-        //   <div style={{ display: "inline-block" }}>
-        //     {renderRepeat.slice(i, i + 5)}
-        //   </div>
-        // );
-        // setDatas();
-        lastindex = followerBoards[followerBoards.length - 1].board_id;
-        console.log("이제 마지막 데이터의 번호는 " + lastindex);
+    // -------------------------------------------
+
+    useEffect(() => {
+        getTagNameByMemberId();
+        getBoardIdByTagName();
+        getBoardByBoardId();
+    }, [myId, tagName, boardId, boards]);
+
+    const [idx, setIdx] = useState<number>(1);
+    const load = () => {
+        setIdx(idx + 1);
     };
 
-    const renderRepeat = followerBoards.map((data) => {
+    const renderRepeat = boards.slice(0, 10 * idx).map((data) => {
         return <MainAnotherComponent data={data} key={data.board_id}/>;
     });
 
