@@ -17,27 +17,33 @@ const NavLine = styled.div`
 
 function Navigation() {
   return (
-    <Navbar id='navbar'>
-      <div className="navbar-box">
-        <div>
-          <h1 className="title">
-            <Link to="/main" className="title">Daliy Coorder</Link>
-          </h1>
-          <form className="search-form">
-            <input
-              type="text"
-              name="search"
-              id="search"
-              placeholder="검색"
-            />
-            <BsSearch className='search-icon'
-            />
-          </form>
+    <>
+      <Navbar id='navbar'>
+        <div className="navbar-box">
+          <div className='navbar-right'>
+            <h1 className="title">
+              <Link to="/main" className="title">Daliy Coorder</Link>
+            </h1>
+            <form className="search-form">
+              <input
+                type="text"
+                name="search"
+                id="search"
+                placeholder="검색"
+              />
+              <BsSearch className='search-icon'
+              />
+            </form>
+          </div>
+          {/* <NotLogInNav /> */}
+          <LoggedInNav />
         </div>
-        {/* <NotLogInNav /> */}
-        <LoggedInNav />
-      </div>
-    </Navbar >
+      </Navbar >
+      <ul className='ukraine'>
+        <li className='blue'></li>
+        <li className='yellow'></li>
+      </ul>
+    </>
   );
 }
 
