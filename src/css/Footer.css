@@ -1,0 +1,25 @@
+footer {
+  background-color: black;
+  padding: 1rem 0;
+  margin: 1rem 0 0 0;
+}
+
+.inner {
+  margin: 0px 112px;
+}
+
+.footer-message {
+  font-weight: bold;
+  color: white;
+  margin: 0.3rem 0.5rem;
+}
+
+.footer-contact {
+  color: white;
+  margin: 0 0.5rem;
+}
+
+.footer-copyright {
+  color: white;
+  margin: 1rem 0.5rem;
+}

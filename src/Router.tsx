@@ -9,6 +9,7 @@ import Upload from "./routes/Upload";
 import LogIn from "./routes/LogIn";
 import SignUp from "./routes/SignUp";
 import Follower from "./routes/Follower";
+import Footer from './routes/Footer';
 
 function Router() {
   return (
@@ -49,7 +50,10 @@ function Router() {
             <Main />
           </Route>
         </Switch>
+
       </Section>
+
+      <Footer />
     </BrowserRouter>
   );
 }

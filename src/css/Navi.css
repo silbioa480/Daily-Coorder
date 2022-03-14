@@ -13,6 +13,7 @@ body {
   width: 100%;
   height: auto;
   display: block;
+  padding: 18px 0;
 }
 
 #navbar div {
@@ -143,7 +144,7 @@ body {
     transition: all 0.5s ease-in;
   }
 
-  .login-list {
+  .open {
     background-color: black;
     position: absolute;
     right: 0px;
