@@ -10,11 +10,24 @@ import AdService from "../service/AdService";
 import AdImageService from "../service/AdImageService";
 import BusinessSevice from '../service/BusinessSevice';
 import axios from 'axios';
+import IMemberId from '../interfaces/IMemberId';
 
-function MyPage_Adapplication() {
+type memberid={
+    idsearch : IMemberId;
+}
+
+function MyPage_Adapplication(props : memberid) {
+    async function seperateId(){
+        const seperId=await BusinessSevice.getBusinessById(props.idsearch.member_id).then(res=>res.data);
+        if(seperId === undefined || seperId){
+            alert("권한이 없습니다.");
+        }
+    }
 
     const [imgfiles, setImgFiles] = useState('');
-   
+    const [Ad,setAd]=useState<IAd>();
+
+    
  
     
 
@@ -28,26 +41,7 @@ function MyPage_Adapplication() {
     
     }
 
-    // const onChangeHashtag = (event: any) => {
-    //     setHashtag(event.target.value);
-    // }
 
-    // const onKeyUp = useCallback((event: any) => {
-    //     const domtag = document.querySelector('.tagbox');
-    //     const innertag = document.createElement('div');
-    //     innertag.className = 'innertag';
-    //     innertag.addEventListener('click', () => {
-    //         domtag?.removeChild(innertag);
-    //         setHasharr(hasharr.filter((hashtag) => hashtag));
-    //     });
-
-    //     if (event.keyCode === 13 && event.target.value.trim() !== '') {
-    //         innertag.innerHTML = '#' + event.target.value;
-    //         domtag?.appendChild(innertag);
-    //         setHasharr((hasharr) => ([...hasharr, hashtag]));
-    //         setHashtag('');
-    //     }
-    // }, [hashtag, hasharr]);
     return (
         <>
             <AdApplicationCss/>
