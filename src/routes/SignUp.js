@@ -401,6 +401,16 @@ function SignUp() {
   const overSubmitHandler = async (e) => {
     e.preventDefault();
 
+    if (Id === "") {
+      setPopup({
+        open: true,
+        title: "실패!",
+        message: "아이디를 입력해주세요.",
+      });
+
+      return;
+    }
+
     let exist;
     try {
       exist = await UserService.getUserById(Id);
