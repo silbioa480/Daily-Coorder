@@ -51,7 +51,7 @@ function MyPage_Adapplication() {
                         <Form.Label
                             style={{textAlign: "center", marginTop: "1vw", fontWeight: "bold", fontSize: "1.5vw"}}>광고
                             제목</Form.Label>
-                        <Form.Control type="text" placeholder="제목 입력" style={{marginTop: "1vw"}} id={"ad_title"} />
+                        <Form.Control type="text" placeholder="제목 입력" style={{marginTop: "1vw"}}  value={adInfo?.ad_title}/>
                     </div>
                     <div style={{display: "flex"}}>
                         <div className="AdImg">
@@ -71,13 +71,13 @@ function MyPage_Adapplication() {
                             <div className="Adurl">
                                 <Form.Label style={{fontWeight: "bold", fontSize: "1.3vw"}}>URL</Form.Label>
                                 <Form.Control type="url" placeholder="URL 입력"
-                                              style={{width: "300px", marginTop: "1vw"}} value={Ad?.ad_url}/>
+                                              style={{width: "300px", marginTop: "1vw"}} value={adInfo?.ad_url}/>
                             </div>
 
                             <div className="Adurl">
                                 <Form.Label style={{fontWeight: "bold", fontSize: "1.3vw"}}>신청자</Form.Label>
                                 <Form.Control type="text" placeholder="URL 입력"
-                                              style={{width: "300px", marginTop: "1vw"}} value={Ad?.business_id}/>
+                                              style={{width: "300px", marginTop: "1vw"}} value={adInfo?.business_id}/>
                             </div>
 
                             <div className="Adurl">
@@ -93,7 +93,7 @@ function MyPage_Adapplication() {
                         <Form.Label style={{textAlign: "center", fontWeight: "bold", fontSize: "1.5vw"}}>광고 내용
                             설명</Form.Label>
                         <FormControl as="textarea" aria-label="내용 설명" placeholder="내용을 입력하세요"
-                                     style={{marginTop: "1vw"}} value={Ad?.ad_explain}/>
+                                     style={{marginTop: "1vw"}} value={adInfo?.ad_explain}/>
                     </div>
                     <div className="buttonspace">
                         <Button type="submit" onClick={handleSubmit}>광고 등록 신청</Button>
