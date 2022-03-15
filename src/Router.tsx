@@ -10,6 +10,7 @@ import LogIn from "./routes/LogIn";
 import SignUp from "./routes/SignUp";
 import Follower from "./routes/Follower";
 
+
 function Router() {
   return (
     <BrowserRouter>
