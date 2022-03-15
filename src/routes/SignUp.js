@@ -421,7 +421,7 @@ function SignUp() {
   };
 
   return (
-    <div className='signup-container' style={{ height: "1500px" }}>
+    <div className='signup-container' style={{ height: "1700px" }}>
       <div className="bb signup">
         <PopUp
           open={popup.open}

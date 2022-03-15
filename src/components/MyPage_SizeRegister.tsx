@@ -51,12 +51,13 @@ function MyPage_SizeRegister() {
   }
   return (
 
-    <>
+    <div style={{ display: "flex", justifyContent: "center" }}>
       <Container className="aa" style={{
         backgroundColor: "white",
-        borderRadius: "20px", boxShadow: "0px 10px 29px 0px #e0e0e0", paddingBottom: "10px"
+        borderRadius: "20px", boxShadow: "0px 10px 29px 0px #e0e0e0", paddingBottom: "10px",
+        width: "500px"
       }}>
-        <div style={{ marginBottom: "3em", paddingTop: "3em", display: "flex", justifyContent: "center" }}>
+        <div style={{ paddingTop: "3em" }}>
           <div>
             <label style={{
               margin: "1vh 0",
@@ -76,7 +77,7 @@ function MyPage_SizeRegister() {
             }}>{memberId.id}</p>
           </div>
         </div>
-        <div style={{ marginBottom: "3em", paddingTop: "3em", display: "flex", justifyContent: "center" }}>
+        <div style={{ paddingTop: "3em" }}>
           <div>
             <label style={{
               margin: "1vh 0",
@@ -97,13 +98,13 @@ function MyPage_SizeRegister() {
           </div>
         </div>
         <div style={{ width: "100%", display: "flex", justifyContent: "center", padding: "3em 2em" }}>
-          <label style={{ fontSize: "1.5vw" }}>체 형</label>
+          <label style={{ fontSize: "1.5vw" }}>체형</label>
         </div>
-        <div style={{ display: "flex", justifyContent: "space-around" }}>
-          <div style={{ display: "flex" }}>
+        <div style={{}}>
+          <div style={{ display: "flex", alignItems: "center", paddingBottom: "20px" }}>
             <label style={{
-              width: "250px",
-              padding: "1vw",
+              paddingLeft: "50px",
+              paddingRight: "30px",
               textAlign: "center",
               fontWeight: "bold",
               fontSize: "1vw"
@@ -111,10 +112,10 @@ function MyPage_SizeRegister() {
             <Form.Control type="text" placeholder="weight" id="weight" name="weight"
               style={{ width: "250px" }} value={userBody.weight || ""} onChange={handleChange} />
           </div>
-          <div style={{ display: "flex" }}>
+          <div style={{ display: "flex", alignItems: "center" }}>
             <label style={{
-              width: "250px",
-              padding: "1vw",
+              paddingLeft: "50px",
+              paddingRight: "30px",
               textAlign: "center",
               fontWeight: "bold",
               fontSize: "1vw"
@@ -129,7 +130,7 @@ function MyPage_SizeRegister() {
       </Container>
 
       {show && <AlertResister />}
-    </>
+    </div>
   );
 }
 
