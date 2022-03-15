@@ -18,14 +18,17 @@ import IUser from '../interfaces/IUser';
 import IBusiness from '../interfaces/IBusiness';
 import BusinessSevice from '../service/BusinessSevice';
 
-type memberid={
-    infoId : IMemberId;
-}
 
 
-function CeoModify(props : memberid) {
+function CeoModify() {
     const [imgfile, setImgFile] = useState('');
-    const [ceoInfo,setCeoInfo]=useState<IBusiness>();
+    const [businessId,setBusinessId]=useState<IBusiness["business_id"]>("");
+    const [beforeBusiness,setBeforeBusiness]=useState<IBusiness>();
+    const [updateBusiness,setUpdateBusiness]=useState<IBusiness>();
+
+    async function before(){
+        setBeforeBusiness(await BusinessSevice.getBusinessById(businessId).then(res=>res.data));
+    }
 
 
     const onloadfile = (event: any) => {
@@ -33,12 +36,10 @@ function CeoModify(props : memberid) {
         setImgFile(URL.createObjectURL(file[0]));
     }
 
-    async function beforeBusiness(){
-        setCeoInfo(await BusinessSevice.getBusinessById(props.infoId.member_id).then(res=>res.data));
-    }
+
 
     useEffect(()=>{
-        beforeBusiness();
+        before();
     })
 
     async function handleChange(event: any){
@@ -65,7 +66,7 @@ function CeoModify(props : memberid) {
     }
     return (
         <>
-            <Form className="aa pl-5" >
+            <Form className="aa pl-5">
                 <Row className="my-5">
                     <Col>
                         <div
@@ -106,7 +107,7 @@ function CeoModify(props : memberid) {
                         <Form.Group controlId="formGridEmail">
                             <Form.Label>아이디</Form.Label>
                             <div style={{width: "100%", display: "flex"}}>
-                                <Form.Control type="text" name="id" placeholder="사업자아이디를 입력하세요" value={ceoInfo?.business_id || ""} onChange={handleChange}/>
+                                <Form.Control type="text" name="id" placeholder="사업자아이디를 입력하세요" value={beforeBusiness?.business_id || ""} onChange={handleChange}/>
                                 <Button style={{width: "180px", textAlign: "center"}} onClick={compareIdCheck}>중복
                                     확인</Button>
                             </div>
@@ -117,14 +118,14 @@ function CeoModify(props : memberid) {
                         <Form.Group controlId="formGridEmail" style={{marginTop: "1vh"}}>
                             <Form.Label>상호명</Form.Label>
                             <div style={{width: "100%", display: "flex"}}>
-                                <Form.Control type="text" name="brandname" placeholder="상호명을 입력하세요" value={ceoInfo?.business_name || ""} onChange={handleChange}/>
+                                <Form.Control type="text" name="brandname" placeholder="상호명을 입력하세요" value={beforeBusiness?.business_name || ""} onChange={handleChange}/>
 
                             </div>
                         </Form.Group>
 
                         <Form.Group className="my-3" controlId="formGridPassword">
                             <Form.Label>비밀번호</Form.Label>
-                            <Form.Control type="password" name="password" placeholder='비밀번호를 입력하세요' value={ceoInfo?.business_password || ""} onChange={handleChange}/>
+                            <Form.Control type="password" name="password" placeholder='비밀번호를 입력하세요' value={beforeBusiness?.business_password || ""} onChange={handleChange}/>
                         </Form.Group>
 
                         <Form.Group className="my-3" controlId="formGridPassword">
@@ -134,14 +135,14 @@ function CeoModify(props : memberid) {
 
                         <Form.Group className="my-3" controlId="formGridPassword">
                             <Form.Label>사업자 번호</Form.Label>
-                            <Form.Control type="text"  name="ceonumber" placeholder='사업자번호를 입력하세요' value={ceoInfo?.business_number || ""} onChange={handleChange}/>
+                            <Form.Control type="text"  name="ceonumber" placeholder='사업자번호를 입력하세요' value={beforeBusiness?.business_number || ""} onChange={handleChange}/>
                         </Form.Group>
 
 
                         <Form.Group className="my-3">
                             <Form.Label>전화번호</Form.Label>
                             <div style={{width: "100%", display: "flex"}}>
-                                <Form.Control type="text" name="phoneNumber" placeholder='전화번호를 입력하세요' value={ceoInfo?.business_phone || ""} onChange={handleChange}/>
+                                <Form.Control type="text" name="phoneNumber" placeholder='전화번호를 입력하세요' value={beforeBusiness?.business_phone || ""} onChange={handleChange}/>
                                 <Button style={{width: "180px", textAlign: "center"}}
                                         onClick={assignRequest}>인증요청</Button>
                             </div>
@@ -150,7 +151,7 @@ function CeoModify(props : memberid) {
                         <Form.Group className="my-3">
                             <Form.Label>이메일</Form.Label>
                             <div style={{width: "100%", display: "flex"}}>
-                                <Form.Control type="email" name="email" placeholder='이메일을 입력하세요' value={ceoInfo?.business_email || ""} onChange={handleChange}/>
+                                <Form.Control type="email" name="email" placeholder='이메일을 입력하세요' value={beforeBusiness?.business_email || ""} onChange={handleChange}/>
                                 <Button style={{width: "180px", textAlign: "center"}}
                                         onClick={assignEmail}>인증요청</Button>
                             </div>
@@ -166,52 +167,34 @@ function CeoModify(props : memberid) {
 }
 
 
-function MyPage_MemberModify(props : memberid) {
+function MyPage_MemberModify() {
     
     const [show,setShow]=useState(true);
-    const [normalMember,setNormalMember]=useState<IUser>();
+    const [userId,setUserId]=useState<IUser["user_id"]>("");
+    const [beforeUser,setBeforeUser]=useState<IUser>();
+    const [updateUser,setUpdateUser]=useState<IUser>();
+
+    async function beforeUserinfo(){
+        setBeforeUser(await UserService.getUserById(userId).then(res=>res.data));
+    }
+
+    useEffect(()=>{
+        beforeUserinfo();
+    })
 
     //아이디조회
-    async function memberSearch(){
-        const memberid=await MemberIdService.getIdById(props.infoId.member_id).then(res=>res.data);
-        
-        return memberid.member_id;
-    }
-
+    
 
     //아이디를 가져와서  일반인인지 사업자인지 비교
-    async function compareId(){
-        const memberid=memberSearch();
-        const compareid=await UserService.getUserById(await memberid).then(res=>res.data);
-
-        if(compareid === undefined){
-            setShow(false);
-        }else{
-            setShow(true);
-        }
-    }
+  
 
     //아이디가 있으면 원래의 정보를 가져옴 그리고 반환;
-    async function userInfo() {
-        const memberid=memberSearch();
-        const userId=await UserService.getUserById(await memberid).then(res=>res.data);
-
-
-    }
+   
 
     const handleChange=()=>{
 
     }
-    
-    //본래 회원정보가져옴
-    //일반인 회원정보입력
-    //회원정보담아서 업데이트
-
-  
-
-  
-   
-
+     
     const assignRequest = () => {
         alert("입력하신 전화번호로 인증요청을 보냈습니다");
     }
@@ -278,7 +261,7 @@ function MyPage_MemberModify(props : memberid) {
                             <Form.Group controlId="formGridEmail">
                                 <Form.Label>아이디</Form.Label>
                                 <div style={{width: "100%", display: "flex"}}>
-                                    <Form.Control type="text" placeholder="Enter ID" name="id" value={normalMember?.user_id || ""} 
+                                    <Form.Control type="text" placeholder="Enter ID" name="id" value={beforeUser?.user_id || ""} 
                                                   />
                                     <Button style={{width: "180px", textAlign: "center"}} >중복
                                         확인</Button>
@@ -292,7 +275,7 @@ function MyPage_MemberModify(props : memberid) {
                             <Form.Group controlId="formGridEmail" style={{marginTop: "1vh"}}>
                                 <Form.Label>닉네임</Form.Label>
                                 <div style={{width: "100%", display: "flex"}}>
-                                    <Form.Control type="text" placeholder="Enter NickName" name="nickname" value={normalMember?.user_nickname || ""}
+                                    <Form.Control type="text" placeholder="Enter NickName" name="nickname" value={beforeUser?.user_nickname || ""}
                                                  />
                                     <Button style={{width: "180px", textAlign: "center"}} >닉네임중복
                                         확인</Button>
@@ -303,7 +286,7 @@ function MyPage_MemberModify(props : memberid) {
 
                             <Form.Group className="my-3" controlId="formGridPassword">
                                 <Form.Label>비밀번호</Form.Label>
-                                <Form.Control type="password" placeholder="Password" name="password" value={normalMember?.user_password || ""}
+                                <Form.Control type="password" placeholder="Password" name="password" value={beforeUser?.user_password || ""}
                                               />
                             </Form.Group>
 
@@ -322,17 +305,17 @@ function MyPage_MemberModify(props : memberid) {
                             <Form.Group className="my-3">
                                 <Form.Label>전화번호</Form.Label>
                                 <div style={{width: "100%", display: "flex"}}>
-                                    <Form.Control type="text" placeholder="Phone Number" name="phoneNumber" value={normalMember?.user_phone || ""}
+                                    <Form.Control type="text" placeholder="Phone Number" name="phoneNumber" value={beforeUser?.user_phone || ""}
                                                   />
                                     <Button style={{width: "180px", textAlign: "center"}}
-                                            >인증요청</Button>
+                                            onClick={assignRequest}>인증요청</Button>
                                 </div>
                             </Form.Group>
 
                             <Form.Group className="my-3">
                                 <Form.Label>이메일</Form.Label>
                                 <div style={{width: "100%", display: "flex"}}>
-                                    <Form.Control type="email" placeholder="Enter Email" name="email" value={normalMember?.user_email || ""}
+                                    <Form.Control type="email" placeholder="Enter Email" name="email" value={beforeUser?.user_email || ""}
                                                   />
                                     <Button style={{width: "180px", textAlign: "center"}}
                                             onClick={assignEmail}>인증요청</Button>
@@ -344,14 +327,14 @@ function MyPage_MemberModify(props : memberid) {
                                 <div style={{display:"flex"}}>
                                     <Form.Label style={{width:"20vw",textAlign:"center",marginTop:".6vw"}}>키</Form.Label>
                                     <div style={{width: "100%", display: "flex"}}>
-                                        <Form.Control type="text" placeholder="Enter weight" name="weight" value={normalMember?.user_weights || ""}
+                                        <Form.Control type="text" placeholder="Enter weight" name="weight" value={beforeUser?.user_weights || ""}
                                                    />
                                     
                                     </div>
 
                                     <Form.Label style={{width:"20vw",textAlign:"center",marginTop:".6vw"}}>몸무게</Form.Label>
                                     <div style={{width: "100%", display: "flex"}}>
-                                        <Form.Control type="text" placeholder="Enter height" name="height" value={normalMember?.user_height || ""}
+                                        <Form.Control type="text" placeholder="Enter height" name="height" value={beforeUser?.user_height || ""}
                                                     />
                                     
                                     </div>
@@ -361,7 +344,7 @@ function MyPage_MemberModify(props : memberid) {
                         </Col>
                     </Row>
                 </Form>}
-                {show && <CeoModify infoId={props.infoId}/>}
+                {show && <CeoModify />}
 
                 {/*  작성자: 황인성  */}
                 {/*  최종수정 날짜 2022.3.10  */}
