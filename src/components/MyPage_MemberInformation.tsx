@@ -10,16 +10,14 @@ import UserService from "../service/UserService";
 import IBusiness from '../interfaces/IBusiness';
 import BusinessSevice from '../service/BusinessSevice';
 import {useEffect} from "react";
-type memberid={
-    infoId : IMemberId;
-}
 
 
-function Ceoinformation(props : memberid) {
+function Ceoinformation() {
+    const [businessId,setBusinessId]=useState<IBusiness["business_id"]>("");
     const [businessinfo,setBusinessInfo]=useState<IBusiness>();
 
     async function ceoInfo(){
-        setBusinessInfo(await BusinessSevice.getBusinessById(props.infoId.member_id).then(res=>res.data));
+        setBusinessInfo(await BusinessSevice.getBusinessById(businessId).then(res=>res.data));
     }
 
     useEffect(()=>{
@@ -112,16 +110,17 @@ function Ceoinformation(props : memberid) {
 }
 
 
-function MemberInformation(props : memberid){
+function MemberInformation(){
+   const [userId,setUserId]=useState<IUser["user_id"]>("");
    const [userInfo,setUserInfo]=useState<IUser>();
 
    async function normalInfo(){
-       setUserInfo(await UserService.getUserById(props.infoId.member_id).then(res=>res.data));
+        setUserInfo(await UserService.getUserById(userId).then(res=>res.data));
    }
 
    useEffect(()=>{
        normalInfo();
-   })
+   },[]);
    
     return (
         <>
@@ -245,18 +244,22 @@ function MemberInformation(props : memberid){
 }
 
 
-function MyPage_MemberInformation(Member : memberid) {
+function MyPage_MemberInformation() {
 
-    // const [memberid,setMemberId]=useState<IUser["user_id"]>("");
+    const [memberid,setMemberId]=useState<IUser["user_id"]>("");
     //일반인지  사업자인지 판별
     const [isMember,setIsMember]=useState(true);
+    const [isCeo,setIsCeo]=useState(false);
     
     const handleMember=async()=>{
-        const search=await MemberIdService.getIdById(Member.infoId.member_id).then(res=>res.data);
+        const search=await UserService.getUserById(memberid).then(res=>res.data);
         if(search !== undefined){
-            const member=await UserService.getUserById(search.member_id).then(res=>res.data);
-            if(member.user_id === undefined || member.user_is_ad===true){
+            if(search.user_is_ad === true){
                 setIsMember(false);
+                setIsCeo(true);
+            }else{
+                setIsMember(true);
+                setIsCeo(false);
             }
         }
     }
@@ -283,8 +286,8 @@ function MyPage_MemberInformation(Member : memberid) {
                         />
                     </Figure>
                 </div>
-                {isMember && <MemberInformation infoId={Member.infoId}/>}
-                {isMember && <Ceoinformation infoId={Member.infoId}/>}
+                {isMember && <MemberInformation />}
+                {isCeo && <Ceoinformation />}
             </div>
 
 
