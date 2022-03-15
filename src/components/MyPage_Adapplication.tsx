@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Image from 'react-bootstrap/Image';
 import AdApplicationCss from '../css/MyPage_AdapplicationCss';
 import {Button, Form, FormControl} from 'react-bootstrap';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import "../css/main/animation.css";
 import IAdImage from "../interfaces/IAdImage";
 import IAd from "../interfaces/IAd";
@@ -12,24 +12,21 @@ import BusinessSevice from '../service/BusinessSevice';
 import axios from 'axios';
 import IMemberId from '../interfaces/IMemberId';
 
-type memberid={
-    idsearch : IMemberId;
-}
 
-function MyPage_Adapplication(props : memberid) {
-    async function seperateId(){
-        const seperId=await BusinessSevice.getBusinessById(props.idsearch.member_id).then(res=>res.data);
-        if(seperId === undefined || seperId){
-            alert("권한이 없습니다.");
-        }
-    }
+
+function MyPage_Adapplication() {
+    const [adId,setAdId]=useState<IAd["ad_id"]>(0);
+    const [adInfo,setAdInfo]=useState<IAd>();
+
+   async function adGet(){
+        setAdInfo(await AdService.getAdById(adId).then(res=>res.data));
+   }
+
+   useEffect(()=>{
+        adGet();
+   })
 
     const [imgfiles, setImgFiles] = useState('');
-    const [Ad,setAd]=useState<IAd>();
-
-    
- 
-    
 
     const onloadfile = (event: any) => {
         const file = event.target.files;
@@ -74,19 +71,19 @@ function MyPage_Adapplication(props : memberid) {
                             <div className="Adurl">
                                 <Form.Label style={{fontWeight: "bold", fontSize: "1.3vw"}}>URL</Form.Label>
                                 <Form.Control type="url" placeholder="URL 입력"
-                                              style={{width: "300px", marginTop: "1vw"}}/>
+                                              style={{width: "300px", marginTop: "1vw"}} value={Ad?.ad_url}/>
                             </div>
 
                             <div className="Adurl">
                                 <Form.Label style={{fontWeight: "bold", fontSize: "1.3vw"}}>신청자</Form.Label>
                                 <Form.Control type="text" placeholder="URL 입력"
-                                              style={{width: "300px", marginTop: "1vw"}} />
+                                              style={{width: "300px", marginTop: "1vw"}} value={Ad?.business_id}/>
                             </div>
 
                             <div className="Adurl">
                                 <Form.Label style={{fontWeight: "bold", fontSize: "1.3vw"}}>광고 기간</Form.Label>
-                                <Form.Control type="date" placeholder="URL 입력"
-                                              style={{width: "300px", marginTop: "1vw"}} />
+                                <Form.Control type="date" placeholder="기간 입력"
+                                              style={{width: "300px", marginTop: "1vw"}}/>
                             </div>
 
                         </div>
@@ -96,7 +93,7 @@ function MyPage_Adapplication(props : memberid) {
                         <Form.Label style={{textAlign: "center", fontWeight: "bold", fontSize: "1.5vw"}}>광고 내용
                             설명</Form.Label>
                         <FormControl as="textarea" aria-label="내용 설명" placeholder="내용을 입력하세요"
-                                     style={{marginTop: "1vw"}} />
+                                     style={{marginTop: "1vw"}} value={Ad?.ad_explain}/>
                     </div>
                     <div className="buttonspace">
                         <Button type="submit" onClick={handleSubmit}>광고 등록 신청</Button>
