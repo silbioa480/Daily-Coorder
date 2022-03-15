@@ -1,4 +1,4 @@
-import { Route, Switch } from "react-router-dom";
+import {  Route,Switch} from "react-router-dom";
 import MyPage_SideMenubar from "../components/MyPage_SideMenubar";
 import MyPage_Body from "../components/MyPage_Body";
 import MyPage_SizeRegister from "../components/MyPage_SizeRegister";
@@ -19,43 +19,44 @@ function MyPage() {
   return (
     <>
       <MyPage_SideMenubar />
+    
+        <MyPage_Body>
+                <Switch>
+                
+                  <Route exact path="/member/MyPage_MemberModify">
+                    <MyPage_MemberModify />
+                  </Route>
+                  <Route exact path="/member/MyPage_MemberUnregister">
+                    <MyPage_MemberUnregister />
+                  </Route>
+                  <Route exact path="/member/MyPage_SizeRegister">
+                    <MyPage_SizeRegister />
+                  </Route>  
+                  <Route exact path="/member/MyPage_Adapplication">
+                    <MyPage_Adapplication />
+                  </Route>
+                  <Route exact path="/member/MyPage_ChartPage">
+                      <MyPage_ChartPage />
+                  </Route>
+                  <Route exact path="/member/MyPage_AdProvePage">
+                      <MyPage_AdProvePage />
+                  </Route>
+                  <Route path="/member/MyPage_AdManagerPage">
+                      <MyPage_AdManagerPage />
+                  </Route>
+                  <Route path="/member/MyPage_ChartPage/MyPage_detailChartPage">
+                      <MyPage_detailChartPage />
+                  </Route>
 
-      <MyPage_Body>
-        <Switch>
-
-          <Route exact path="/member/MyPage_MemberModify">
-            <MyPage_MemberModify />
-          </Route>
-          <Route exact path="/member/MyPage_MemberUnregister">
-            <MyPage_MemberUnregister />
-          </Route>
-          <Route exact path="/member/MyPage_SizeRegister">
-            <MyPage_SizeRegister />
-          </Route>
-          <Route exact path="/member/MyPage_Adapplication">
-            <MyPage_Adapplication />
-          </Route>
-          <Route exact path="/member/MyPage_ChartPage">
-            <MyPage_ChartPage />
-          </Route>
-          <Route exact path="/member/MyPage_AdProvePage">
-            <MyPage_AdProvePage />
-          </Route>
-          <Route path="/member/MyPage_AdManagerPage">
-            <MyPage_AdManagerPage />
-          </Route>
-          <Route path="/member/MyPage_ChartPage/MyPage_detailChartPage">
-            <MyPage_detailChartPage />
-          </Route>
-
-          <Route path="/member/" >
-            <MyPage_MemberInformation />
-          </Route>
-
-
-        </Switch>
-
-      </MyPage_Body>
+                  <Route path="/member/" >
+                    <MyPage_MemberInformation />
+                  </Route>
+                  
+                  
+              </Switch>
+            
+        </MyPage_Body>
+     
     </>
   );
 }

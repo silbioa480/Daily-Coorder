@@ -120,7 +120,7 @@ body {
   background-color: #FFD500;
 }
 
-@media screen and (max-width: 920px){
+@media screen and (max-width: 1190px){
   .search-form {
     display: none;
   }
@@ -130,8 +130,7 @@ body {
   }
 }
 
-/* 글씨를 줄이니깐 반응형이 필요없어짐. */
-/* @media screen and (max-width: 0px){
+@media screen and (max-width: 780px){
   .navbar-box {
     flex-direction: column;
   }
@@ -169,4 +168,4 @@ body {
     padding: 10px;
     display: none;
   }
-} */
+}

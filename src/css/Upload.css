@@ -1,7 +1,9 @@
 :root {
-  /*Color  */
-  --color-blue: #015bbb;
-
+  /* Color */
+  --color-white: #ffffff;
+  --color-blue: #73aace;
+  --color-orange: #feb546;
+  
   /* Font size */
   --font-large: 48px;
   --font-medium: 28px;
@@ -68,7 +70,7 @@
   font-size: var(--font-medium);
   padding: 0.5rem 14px;
   margin: 1.5rem 0;
-  border-color: var(--color-blue);
+  border-color: blue;
 }
 
 .textarea {
@@ -85,12 +87,11 @@
   justify-content: center;
   align-items: flex-end;
   background-color: #ffffff;
-  border-radius: 20px;
 }
 
 .img-box img {
-  width: 350px;
-  height: 350px;
+  width: 400px;
+  height: 400px;
   cursor: pointer;
 }
 
@@ -109,9 +110,6 @@
   margin: 0;
   background-color: var(--color-white);
   width: 700px;
-  background-color: white;
-  border-radius: 20px;
-  box-shadow: 0px 10px 29px 0px #e0e0e0;
 }
 
 .upload-input {
@@ -119,7 +117,7 @@
 }
 
 .content-container {
-  border-bottom: 1px solid var(--color-blue);
+  border-bottom: 1px solid blue;
 }
 
 .hashtag-container {
@@ -137,8 +135,8 @@
   font-size: var(--font-size);
   margin: 0.5rem;
   padding: 0.5rem;
-  border: 1px solid black;
-  background-color: black;
+  border: 1px solid var(--color-blue);
+  background-color: var(--color-blue);
   color: white;
   border-radius: 5rem;
 }
@@ -152,7 +150,7 @@
 .delete-button {
   border: none;
   background-color: transparent;
-  color: #20c997;
+  color: var(--color-orange);
 }
 
 .delete-button:hover {
@@ -162,30 +160,30 @@
 .share-box {
   width: 100%;
   margin: 50px 0;
-  padding: 0 20px;
   display: flex;
+  justify-content: center;
 }
 
 .share-button {
   width: var(--input-box-width);
-  border: 1px solid black;
+  border: 1px solid var(--color-blue);
   border-radius: 1rem;
-  background-color: black;
+  background-color: var(--color-blue);
   font-size: var(--font-medium);
   padding: 10px 20px;
   transition: 100ms ease-in-out;
 }
 
 .share-button a {
-  color: white;
+  color: var(--color-orange);
+
 }
 
 .share-button:hover {
   background-color: var(--color-white);
-  color: #20c997;
+  color: var(--color-blue);
 }
 
 .share-button a:hover {
-  color: #20c997;
-  transition: all 0.4s ease-in-out;
+  color: var(--color-blue);
 }

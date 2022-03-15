@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useState } from 'react';
+import {useState} from 'react';
 import MemInfoCss from '../css/MyPage_MemInfoCss';
-import { Figure } from 'react-bootstrap';
+import {Figure} from 'react-bootstrap';
 import "../css/main/animation.css";
 import IMemberId from '../interfaces/IMemberId';
 import MemberIdService from '../service/MemberIdService';
@@ -239,11 +239,8 @@ function MemberInformation(){
                     </div>
                 </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </>
-  );
+        </>
+    );
 }
 
 
@@ -294,9 +291,9 @@ function MyPage_MemberInformation() {
             </div>
 
 
-    </>
+        </>
 
-  );
+    );
 }
 
 export default MyPage_MemberInformation;
