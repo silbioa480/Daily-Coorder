@@ -3,10 +3,14 @@ import { useState } from "react";
 import similar from "../../img/similar.png";
 import "../../css/board/followButton.css";
 import mainano1 from "../../img/main/mainano1.png";
+import IBoard from "../../interfaces/IBoard";
+interface IProps {
 
+    board: IBoard;
+}
 //팔로우버튼
 //userinformation도들어있음
-function FollowButton() {
+function FollowButton(props: IProps) {
   const [backgroundcolor, setBackgroundcolor] = useState("lightgray");
   const [color, setColor] = useState("black");
   const [content, setContent] = useState("팔로우");
