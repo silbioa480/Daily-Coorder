@@ -8,15 +8,15 @@ interface IUser {
   user_email: string;
   user_gender: boolean;
   user_birth: Date;
-  user_weights: number;
-  user_height: number;
+  user_weights?: number;
+  user_height?: number;
   user_follow_number: number;
   user_follower_number: number;
   user_is_ad: boolean;
   user_is_location: boolean;
   user_is_admin: boolean;
   user_signup_date: Date;
-  user_update_date: Date;
+  user_update_date?: Date;
 }
 
 export default IUser;
