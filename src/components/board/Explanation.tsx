@@ -1,28 +1,17 @@
 import "../../css/board/explanation.css";
 import IBoard from "../../interfaces/IBoard";
-import { useEffect, useState } from "react";
-import BoardService from "../../service/BoardService";
+import {useState} from "react";
 
 interface IProps {
-    boardId: number;
+    board: IBoard;
 }
 
 //게시물 제목,내용
 function Explanation(props: IProps) {
-    let boardId = props.boardId;
+    let board = props.board;
 
-    const [board, setBoard] = useState<IBoard>();
-
-    useEffect(() => {
-        async function getBoard() {
-            setBoard(
-                await BoardService.getBoardById(boardId).then((res) => res.data)
-            );
-        }
-
-        getBoard();
-    }, []);
-
+    const [sboard, setSboard] = useState<IBoard>(board);
+   
     return (
         <>
             {/*  ?:undefined가 아닐때만 뒤에값을 참조해라   */}

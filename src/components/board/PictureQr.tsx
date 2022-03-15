@@ -1,40 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
 import Picture_Tag from "./Picture_Tag";
 import "../../css/board/pictureQr.css";
 import IBoard from "../../interfaces/IBoard";
 
 interface IProps {
-    boardId: number;
     board: IBoard;
 }
 
 //게시물사진 및 qr코드
-function Board_Picture(props: IProps) {
-    let boardId = props.boardId;
+function PictureQr(props: IProps) {
     let board = props.board;
-    const [imageurl, setImageulr] = useState(
-        "http://localhost:8080/board_image/" + board.board_img
-    );
+    let imageurl = "http://localhost:8080/api/board_img/" + board.board_url;
 
-    // const [board, setBoard] = useState<IBoard>();
-    //
-    // useEffect(() => {
-    //   async function getBoard() {
-    //     setBoard(
-    //       await BoardService.getBoardById(boardId).then((res) => res.data)
-    //     );
-    //   }
-    //
-    //   getBoard();
-    // }, []);
     return (
         <div className="board_picture">
             <div className="picture">
-                <img src="${imageurl} " />
+                <img src={imageurl}/>
                 {/*<img src={require(`../img/${board?.board_img}`)} alt=""></img>*/}
                 {/*<Qrcode></Qrcode>*/}
             </div>
-            <Picture_Tag />
+            <Picture_Tag board={board as IBoard}/>
         </div>
     );
 }
@@ -69,4 +54,4 @@ function Board_Picture(props: IProps) {
 //     );
 // }
 
-export default Board_Picture;
+export default PictureQr;
