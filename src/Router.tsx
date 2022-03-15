@@ -11,6 +11,7 @@ import SignUp from "./routes/SignUp";
 import Follower from "./routes/Follower";
 import Footer from './routes/Footer';
 
+
 function Router() {
   return (
     <BrowserRouter>
