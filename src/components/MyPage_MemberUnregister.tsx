@@ -9,7 +9,7 @@ import IUser from '../interfaces/IUser';
 import IBusiness from '../interfaces/IBusiness';
 import IMemberId from '../interfaces/IMemberId';
 import UserService from '../service/UserService';
-import BusinessSevice from '../service/BusinessSevice';
+import BusinessSevice from '../service/BusinessService';
 import MemberIdService from '../service/MemberIdService';
 
 
