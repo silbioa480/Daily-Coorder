@@ -7,12 +7,16 @@ import IAdImage from '../interfaces/IAdImage';
 import AdService from '../service/AdService';
 import AdImageService from '../service/AdImageService';
 import IBusiness from '../interfaces/IBusiness';
-
+import { useForm } from "react-hook-form";
 import { useEffect, useState } from 'react';
 
 
 
 function MyPage_AdProvePage() {
+    const {
+        register,
+        handleSubmit
+    }=useForm<IAd>();
 
     const [Ad,setAd]=useState<IAd[]>([]);
 
@@ -24,14 +28,18 @@ function MyPage_AdProvePage() {
         allsearchAd();
     })
 
-    async function handleSubmit(){
-        
+    const onValid = async({
+        ad_is_prove
+    }:IAd) =>{
+        Ad.map(async (ad)=>{
+            ad.ad_is_prove=ad_is_prove;
+            await AdService.updateAd(ad,ad.ad_id).then(res=>res.data);
+        })
     }
-
     return (
 
         <>
-            <div onSubmit={handleSubmit}>
+            <div onSubmit={handleSubmit(onValid)}>
                 <Table striped bordered hover style={{
                     width: "50vw",
                     position: "absolute",
@@ -70,7 +78,7 @@ function MyPage_AdProvePage() {
                         {Ad.map((ad)=>{
                              <tr>
                                 <td>
-                                    <Form.Check aria-label="option 1"/>
+                                    <Form.Check aria-label="option 1" id="proveCheck" {...register("ad_is_prove",{required : false})}/>
                                 </td>
                                 <td>
                                     {ad.ad_id}

@@ -45,16 +45,18 @@ function MyPage_AdManagerPage() {
                 </thead>
                 <tbody className="bb">
                     {Ad.map((ad)=>{
-                       return (
-                        <tr>  
-                            <td>{ad.ad_id}</td>
-                            <td>{ad.business_id}</td>
-                            <td>{ad.ad_title}</td>
-                            <td>{ad.ad_explain}</td>
-                            <td>{ad.ad_url}</td>
-                            <td>{ad.ad_expire}</td>
-                        </tr>
-                       );
+                        if(ad.ad_is_prove === true){
+                            return (
+                                <tr>  
+                                    <td>{ad.ad_id}</td>
+                                    <td>{ad.business_id}</td>
+                                    <td>{ad.ad_title}</td>
+                                    <td>{ad.ad_explain}</td>
+                                    <td>{ad.ad_url}</td>
+                                    <td>{ad.ad_expire}</td>
+                                </tr>
+                            );
+                        }
                     })}
                 </tbody>
             </Table>

@@ -8,7 +8,7 @@ import MemberIdService from '../service/MemberIdService';
 import IUser from "../interfaces/IUser";
 import UserService from "../service/UserService";
 import IBusiness from '../interfaces/IBusiness';
-import BusinessSevice from '../service/BusinessSevice';
+import BusinessSevice from '../service/BusinessService';
 import {useEffect} from "react";
 
 
