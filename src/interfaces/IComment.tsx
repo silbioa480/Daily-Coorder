@@ -5,7 +5,7 @@ interface IComment {
   comment_text: string;
   comment_like_number: number;
   comment_post_date: Date;
-  comment_update_date: Date;
+  comment_update_date?: Date;
 }
 
 export default IComment;
