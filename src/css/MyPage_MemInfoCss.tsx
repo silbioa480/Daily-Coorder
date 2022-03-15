@@ -1,8 +1,8 @@
-import {createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-const MemInfoCss=createGlobalStyle`
+const MemInfoCss = createGlobalStyle`
     .memberContainer{
         width:40vw;
         height:auto;
@@ -14,7 +14,7 @@ const MemInfoCss=createGlobalStyle`
         
     }
     body{
-        background-color:#f7f7f7;
+        background-color:#FCF8FF;
     }
 
     .memberOrceo{

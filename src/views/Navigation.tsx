@@ -35,8 +35,8 @@ function Navigation() {
               />
             </form>
           </div>
-          {/* <NotLogInNav /> */}
-          <LoggedInNav />
+          <NotLogInNav />
+          {/* <LoggedInNav /> */}
         </div>
       </Navbar >
       <ul className='ukraine'>
