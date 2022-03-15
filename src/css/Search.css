@@ -1,3 +1,9 @@
+.signup_container {
+  display: flex;
+  justify-content: center;
+  margin: 61px 0;
+}
+
 .search_signup {
     display: flex;
     justify-content: center;
@@ -5,10 +11,6 @@
     background: #ffffff;
     width: 450px;
     color: #033a76;
-    top: 50%;
-    left: 50%;
-    position: absolute;
-    transform: translate(-50%, -50%);
     box-sizing: border-box;
     padding: 40px 30px;
     border-radius: 20px;

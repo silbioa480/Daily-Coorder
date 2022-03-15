@@ -22,7 +22,7 @@ function Navigation() {
         <div className="navbar-box">
           <div className='navbar-right'>
             <h1 className="title">
-              <Link to="/main" className="title">Daliy Coorder</Link>
+              <Link to="/" className="title">Daliy Coorder</Link>
             </h1>
             <form className="search-form">
               <input
@@ -35,8 +35,8 @@ function Navigation() {
               />
             </form>
           </div>
-          {/* <NotLogInNav /> */}
-          <LoggedInNav />
+          <NotLogInNav />
+          {/* <LoggedInNav /> */}
         </div>
       </Navbar >
       <ul className='ukraine'>

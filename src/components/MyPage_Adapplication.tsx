@@ -51,12 +51,10 @@ function MyPage_Adapplication() {
 
     const [imgfiles, setImgFiles] = useState('');
 
-    const onloadfile = (event: any) => {
-        const file = event.target.files;
-        setImgFiles(URL.createObjectURL(file[0]));
-    }
-
-   
+  const onloadfile = (event: any) => {
+    const file = event.target.files;
+    setImgFiles(URL.createObjectURL(file[0]));
+  }
 
     return (
         <>
@@ -119,8 +117,21 @@ function MyPage_Adapplication() {
                     </div>
                 </div>
             </div>
-        </>
-    );
+          </div>
+
+          <div className="Addescription">
+            <Form.Label style={{ textAlign: "center", fontWeight: "bold", fontSize: "1.5vw" }}>광고 내용
+              설명</Form.Label>
+            <FormControl as="textarea" aria-label="내용 설명" placeholder="내용을 입력하세요"
+              style={{ marginTop: "1vw" }} />
+          </div>
+          <div className="buttonspace">
+            <Button>광고 등록 신청</Button>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
 
 export default MyPage_Adapplication;

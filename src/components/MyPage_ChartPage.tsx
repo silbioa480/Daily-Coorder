@@ -13,12 +13,10 @@ import "../css/main/animation.css";
 
 
 function CardStyle() {
-    
     const [businessId,setBusinessId]=useState<IBusiness["business_id"]>("");
     const [Board,setBoard]=useState<IBoard[]>([]);
     const [Tag,setTag]=useState<ITag[]>([]);
     const [hide,setHide]=useState(false);
-
     async function getBoard(){}
 
     async function getTag(){
@@ -66,12 +64,11 @@ function CardStyle() {
                 </Card.Body>
             </Card>}
         </>
+  const [hashtag, setHashtag] = useState("");
 
-    );
-}
+  const [hide, setHide] = useState(true);
+  const [isHover, setIsHover] = useState(false);
 
-
-function MyPage_ChartPage() {
     const [businessId,setBusinessId]=useState<IBusiness["business_id"]>("");
     const [myBoard,setMyBoard]=useState<IBoard[]>([]);
 
@@ -97,8 +94,8 @@ function MyPage_ChartPage() {
             </Container>
 
 
-        </>
-    );
+    </>
+  );
 }
 
 export default MyPage_ChartPage;

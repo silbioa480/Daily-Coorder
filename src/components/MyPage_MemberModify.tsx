@@ -16,14 +16,11 @@ import IBusiness from '../interfaces/IBusiness';
 import BusinessSevice from '../service/BusinessService';
 import { setConstantValue } from 'typescript';
 
-
-
 function CeoModify() {
     const {
         handleSubmit,
         register,
         getValues,
-        setValue
     }=useForm<IBusiness>();
 
     const [imgfile, setImgFile] = useState('');
@@ -81,14 +78,19 @@ function CeoModify() {
         }
     }
 
-    
+function CeoModify() {
+  const [imgfile, setImgFile] = useState('');
 
-    const assignRequest = () => {
-        alert("입력하신 전화번호로 인증요청을 보냈습니다");
-    }
+  const [ceoinfo, setCeoinfo] = useState({
+    id: "",
+    password: "",
+    ceonumber: "",
 
-    const assignEmail = () => {
-        alert("입력하신 이메일로 인증메일을 보냈습니다.");
+  const compareNickName = (event: any) => {
+    if (userInfo.nickname == userNickname) {
+      alert("이미존재하는 닉네임입니다.");
+    } else {
+      alert("사용가능한 닉네임입니다.");
     }
 
 
@@ -271,9 +273,10 @@ function MyPage_MemberModify() {
         }
     }
 
-    const assignRequest = () => {
-        alert("입력하신 전화번호로 인증요청을 보냈습니다");
-    }
+              <Form.Group className="my-3">
+                <Form.Label>생년월일</Form.Label>
+                <Form.Control type="date" placeholder="생년월일 6자리입력" name="birth" />
+              </Form.Group>
 
     const assignEmail = () => {
         alert("입력하신 이메일로 인증메일을 보냈습니다.");

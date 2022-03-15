@@ -1,6 +1,6 @@
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
-import {Button} from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import "../css/main/animation.css";
 import IAd from '../interfaces/IAd';
 import IAdImage from '../interfaces/IAdImage';
