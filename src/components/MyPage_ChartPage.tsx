@@ -1,27 +1,39 @@
 import {Button, Card, Container} from 'react-bootstrap';
 import {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
+import IBoard from '../interfaces/IBoard';
+import BoardService from '../service/BoardService';
+import IBusiness from '../interfaces/IBusiness';
+import BusinessService from '../service/BusinessService';
+import IMemberId from '../interfaces/IMemberId';
+import MemberIdService from '../service/MemberIdService';
+import ITag from '../interfaces/ITag';
+import TagService from '../service/TagService';
 import "../css/main/animation.css";
 
 
 function CardStyle() {
-    const [hashtag, setHashtag] = useState("");
+    
+    const [businessId,setBusinessId]=useState<IBusiness["business_id"]>("");
+    const [Board,setBoard]=useState<IBoard[]>([]);
+    const [Tag,setTag]=useState<ITag[]>([]);
+    const [hide,setHide]=useState(false);
 
-    const [hide, setHide] = useState(true);
-    const [isHover, setIsHover] = useState(false);
+    async function getBoard(){}
 
-    const HandleClick = () => {
-        setHide(false);
+    async function getTag(){
+        setTag(await TagService.getTags().then(res=>res.data));
     }
 
-    const HandleEnter = () => {
-        setIsHover(true);
-    }
+    useEffect(()=>{
+        getBoard();
+        getTag();
+    })
 
-    const HandleLeave = () => {
-        setIsHover(false);
+    const handleClick=()=>{
+        setHide(true);
     }
-
+    
     return (
         <>
             {hide && <Card style={{width: '18rem', height: "400px", borderRadius: "20px"}}>
@@ -32,15 +44,19 @@ function CardStyle() {
                         의류 관련내용
                     </Card.Text>
                     <Card.Text style={{textAlign: "center", margin: "3vh 0"}}>
-                        {hashtag}해시태그
+                        {Tag.map((tag)=>{
+                            return (
+                                <>{tag.tag_name}</>
+                            );
+                        })}
                     </Card.Text>
                     <div style={{width: "100%", display: "flex", justifyContent: "center", marginTop: "3vw"}}>
-                        <Button onClick={HandleClick} style={{
+                        <Button onClick={handleClick} style={{
                             textAlign: "center",
                             border: "3px solid black",
                             borderRadius: "20px",
                             padding: ".5em 2em"
-                        }} className="bg-white" onMouseEnter={HandleEnter} onMouseLeave={HandleLeave}>
+                        }} className="bg-white">
                             <Link to="/member/MyPage_ChartPage/MyPage_detailChartPage"
                                   style={{color: "black", fontWeight: "bold"}}>
                                 More
@@ -56,18 +72,28 @@ function CardStyle() {
 
 
 function MyPage_ChartPage() {
-    const [clothesCard, setClothesCard] = useState(["1","2","3","4"]);
-    const [clothesData, setClothesData] = useState();
+    const [businessId,setBusinessId]=useState<IBusiness["business_id"]>("");
+    const [myBoard,setMyBoard]=useState<IBoard[]>([]);
 
+    async function getMyBoard(){
+        myBoard.map(async ()=>{
+            let myboards=await BoardService.getBoardByUserId(businessId).then(res=>res.data);
+            setMyBoard([...myBoard,...myboards]);
+        })
+    }
+
+    useEffect(()=>{
+        getMyBoard();
+    })
     return (
         <>
 
             <Container style={{display: "flex", justifyContent: "space-around", height: "auto"}}>
-                {clothesCard.map(() => {
-                    return (
-                        <CardStyle/>
-                    );
-                })}
+                    {myBoard.map(()=>{
+                        return (
+                            <CardStyle />
+                        );
+                    })}
             </Container>
 
 
