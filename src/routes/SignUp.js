@@ -7,7 +7,8 @@ import PopUp from "../components/PopUp";
 import "../css/SignUp.css";
 import "../css/main/animation.css";
 import UserService from "../service/UserService";
-import ProfileImageService from "../service/ProfileImageService";
+import MemberIdService from "../service/MemberIdService";
+import BusinessService from "../service/BusinessService";
 
 function SignUp() {
   //모달관련
@@ -375,17 +376,20 @@ function SignUp() {
       profile_image_name: "",
     };
 
-    let i = await ProfileImageService.createProfileImage(profile).then(
-      (res) => res.data
-    );
+    // let i = await ProfileImageService.createProfileImage(profile).then(
+    //   (res) => res.data
+    // );
 
     let sel = document.getElementById("gender");
     let val = sel.options[sel.selectedIndex].value === "M";
 
+    let CryptoJS = require("crypto-js");
+    let hash = CryptoJS.AES.encrypt(Password, "salt").toString();
+
     let user = {
       user_id: Id,
-      user_profile: i.profile_image_id,
-      user_password: Password,
+      user_profile: 0,
+      user_password: hash,
       user_name: name,
       user_nickname: nickname,
       user_phone: phoneNumber,
@@ -404,6 +408,13 @@ function SignUp() {
 
     await UserService.createUser(user);
 
+    let member = {
+      member_id: Id,
+      is_business: false,
+    };
+
+    await MemberIdService.createId(member);
+
     setPopup({
       open: true,
       title: "회원가입 성공♡♡",
@@ -412,7 +423,7 @@ function SignUp() {
     });
   };
 
-  const onProSubmitHandler = (e) => {
+  const onProSubmitHandler = async (e) => {
     e.preventDefault();
     if (!validation2()) {
       setPopup({
@@ -421,8 +432,44 @@ function SignUp() {
         message: "기입사항을 정확하게 기입해주세요!!",
       });
       return;
-    } else {
     }
+
+    let profile = {
+      profile_image_file: imageFile,
+      profile_image_name: "",
+    };
+
+    // let i = await ProfileImageService.createProfileImage(profile).then(
+    //   (res) => res.data
+    // );
+
+    let CryptoJS = require("crypto-js");
+    let hash = CryptoJS.AES.encrypt(Password, "salt").toString();
+
+    let pro = {
+      business_id: proId,
+      business_profile: 0,
+      business_password: hash,
+      business_name: proName,
+      business_number: proNumber,
+      business_phone: proPhone,
+      business_email: proEmail,
+      business_follow_number: 0,
+      business_follower_number: 0,
+      business_is_ad: marketingCheck,
+      business_is_location: gpsCheck,
+      business_signup_date: new Date(),
+    };
+
+    await BusinessService.createBusiness(pro);
+
+    let member = {
+      member_id: Id,
+      is_business: false,
+    };
+
+    await MemberIdService.createId(member);
+
     setPopup({
       open: true,
       title: "회원가입 성공♡♡",
