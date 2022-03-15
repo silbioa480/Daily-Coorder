@@ -1,5 +1,5 @@
 interface IBoard {
-  board_id: number;
+  board_id?: number;
   board_poster: string;
   board_img: File;
   board_title?: string;

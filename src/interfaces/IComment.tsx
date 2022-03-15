@@ -1,5 +1,5 @@
 interface IComment {
-  comment_id: number;
+  comment_id?: number;
   board_id: number;
   comment_poster: string;
   comment_text: string;
