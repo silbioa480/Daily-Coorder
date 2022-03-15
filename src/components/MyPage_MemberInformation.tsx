@@ -87,7 +87,7 @@ function Ceoinformation() {
                             borderRight: "1px solid #f7f7f7",
                             backgroundColor: "#f7f7f7",
                             fontWeight: "bold"
-                        }}>이메일</p>
+                        }}>사업자이메일</p>
                         <p style={{padding: "1vh 1vw"}}>{businessinfo?.business_email}</p>
                     </div>
                 </div>
