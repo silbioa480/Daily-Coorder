@@ -1,6 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Form from 'react-bootstrap/Form';
-import {Button, Col, Figure, Row} from 'react-bootstrap';
+import {Button, Col, Figure, Row,Form} from 'react-bootstrap';
 import ModifyCss from '../css/MyPage_ModifyCss';
 import Modal from 'react-bootstrap/Modal';
 import {useState} from 'react';
@@ -171,8 +170,13 @@ function MyPage_MemberModify() {
     
     const [show,setShow]=useState(true);
     const [userId,setUserId]=useState<IUser["user_id"]>("");
+    const [memberList,setMemberList]=useState<IMemberId[]>([]);
     const [beforeUser,setBeforeUser]=useState<IUser>();
     const [updateUser,setUpdateUser]=useState<IUser>();
+
+    async function allMemberList(){
+        setMemberList(await MemberIdService.getIds().then(res=>res.data));
+    }
 
     async function beforeUserinfo(){
         setBeforeUser(await UserService.getUserById(userId).then(res=>res.data));
@@ -180,6 +184,7 @@ function MyPage_MemberModify() {
 
     useEffect(()=>{
         beforeUserinfo();
+        allMemberList();
     })
 
     //아이디조회
@@ -189,7 +194,14 @@ function MyPage_MemberModify() {
   
 
     //아이디가 있으면 원래의 정보를 가져옴 그리고 반환;
-   
+    const compareId=(event : any)=>{
+        const value=event.target.value;
+        if(value === beforeUser?.user_id || memberList.find(value) !==undefined){
+            alert("이미 존재하는 아이디 이거나 사용불가능한 아이디입니다");
+        }else{
+            alert("사용가능한 아이디입니다");
+        }
+    }
 
     const handleChange=()=>{
 
