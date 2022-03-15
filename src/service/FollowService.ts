@@ -1,7 +1,6 @@
 import axios, {AxiosResponse} from "axios";
 import IFollow from "../interfaces/IFollow";
 import IUser from "../interfaces/IUser";
-import ILikeTag from "../interfaces/ITagLike";
 
 const FOLLOW_API_BASE_URL =
     "https://daily-coorder-backend.herokuapp.com/api/follow";
@@ -28,20 +27,19 @@ class FollowService {
     }
 
 //
-    getFollowerByUserIddd(
-        userId: ILikeTag,
-        tag_name: ILikeTag,
-        start: ILikeTag
-    ): Promise<AxiosResponse<IUser["user_id"][]>> {
-        return axios.get(FOLLOW_API_BASE_URL + "/follower/" + userId);
-    }
-
+//     getFollowerByUserIddd(
+//         userId: ILikeTag,
+//         tag_name: ILikeTag,
+//         start: ILikeTag
+//     ): Promise<AxiosResponse<IUser["user_id"][]>> {
+//         return axios.get(FOLLOW_API_BASE_URL + "/follower/" + userId);
+//     }
 //
     getCheckFollow(
         fromUserId: IFollow["from_user_id"],
         toUserId: IFollow["to_user_id"]
     ): Promise<AxiosResponse<IFollow>> {
-        return axios.get(FOLLOW_API_BASE_URL + "/follower/" + fromUserId + "&" + toUserId);
+        return axios.get(FOLLOW_API_BASE_URL + "/follower/" + fromUserId + "/" + toUserId);
     }
 
     updateFollow(

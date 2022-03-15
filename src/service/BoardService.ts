@@ -2,7 +2,7 @@ import axios, {AxiosResponse} from "axios";
 import IBoard from "../interfaces/IBoard";
 
 const BOARD_API_BASE_URL =
-    "https://daily-coorder-backend.herokuapp.com/api/board";
+    "http://localhost:8080/api/board";
 
 class BoardService {
     getBoards() {
