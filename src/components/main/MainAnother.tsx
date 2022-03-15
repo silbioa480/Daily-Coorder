@@ -32,18 +32,22 @@ function MainAnother() {
 
     // 태그네임으로 태그 id를 배열로 가져오고 맵으로 풀어준다.
     async function getBoardIdByTagName() {
+        let ids: ITag["board_id"][] = [];
         tagName.map(async (boardsByTagName) => {
             let newId = await TagService.getBoardIdByTagName(boardsByTagName).then(res => res.data)
-            setBoardId([...boardId, ...newId]);
+            ids.push(...newId);
         })
+        setBoardId(ids);
     }
 
     // id를 풀어준 맵으로 그 id의 board를 가져온다.
     function getBoardByBoardId() {
+        let b: IBoard[] = [];
         boardId.map(async (boardsByTag) => {
             let newBoards = await BoardService.getBoardById(boardsByTag).then(res => res.data);
-            setBoards([...boards, newBoards]);
+            b.push(newBoards);
         })
+        setBoards(b);
     }
 
     // -------------------------------------------
@@ -52,7 +56,8 @@ function MainAnother() {
         getTagNameByMemberId();
         getBoardIdByTagName();
         getBoardByBoardId();
-    }, [myId, tagName, boardId, boards]);
+    }, [myId, tagName,]);
+    // , boardId, boards
 
     const [idx, setIdx] = useState<number>(1);
     const load = () => {
