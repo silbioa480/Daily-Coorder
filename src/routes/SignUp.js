@@ -9,6 +9,7 @@ import "../css/main/animation.css";
 import UserService from "../service/UserService";
 import MemberIdService from "../service/MemberIdService";
 import BusinessService from "../service/BusinessService";
+import ProfileImageService from "../service/ProfileImageService";
 
 function SignUp() {
   //모달관련
@@ -434,21 +435,16 @@ function SignUp() {
       return;
     }
 
-    let profile = {
-      profile_image_file: imageFile,
-      profile_image_name: "",
-    };
-
-    // let i = await ProfileImageService.createProfileImage(profile).then(
-    //   (res) => res.data
-    // );
+    let i = await ProfileImageService.createProfileImage(imageFile).then(
+      (res) => res.data
+    );
 
     let CryptoJS = require("crypto-js");
     let hash = CryptoJS.AES.encrypt(Password, "salt").toString();
 
     let pro = {
       business_id: proId,
-      business_profile: 0,
+      business_profile: i,
       business_password: hash,
       business_name: proName,
       business_number: proNumber,
