@@ -17,33 +17,14 @@ import IUser from "../../interfaces/IUser";
 
 function MainNewBrand() {
 
-    // const [myId, setMyId] = useState<IUser["user_id"]>("1");
-    const [businessName, setBusinessName] = useState<IBusiness>();
-    const [brand, setBrand] = useState<IBoard[]>([]);
+    const [business, setBusiness] = useState<IBusiness>();
+    const [board, setBoard] = useState<IBoard[]>([]);
 
 
     // 비즈니스 테이블 다 가져온다.
     // 게시물 다 가져와서 10개 자르고
     // 맵으로 돌려서 getBoardByUserId
     // 최근 데이트순으로 5개 혹은 10개 가져온다.
-
-
-    // business_id 를 가져온다.
-    // async function getBusinessByName() {
-    //     setBusinessName(await BusinessService.getBusinessById(myId).then(res => res.data));
-    // }
-    //
-    // // business_name 을 가져온다. 최근 10개만
-    // async function getBoardByBusinessName() {
-    //     setBusinessName(await BusinessService.findTop10OrderByBusinessNameDesc(myId).then(res => res.data));
-    // }
-
-    // business_name의 board를
-
-
-    // async function getBusinessById() {
-    //     setBusinessName(await businessService.getBusinessById(myId).then(res => res.data));
-    // }
 
 
     const [myId, setMyId] = useState<IUser["user_id"]>("1");
@@ -78,7 +59,7 @@ function MainNewBrand() {
     });
     return (
         <>
-            <div className="bb mainfollow-text">New In Thursday Island</div>
+            <div className="bb mainfollow-text">New Brand</div>
             <hr className="bb Line"></hr>
             <div className="bb wth">
                 <Carousel fade className="carousel-dark anothercar" style={{width: "1400px"}}>

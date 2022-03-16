@@ -26,19 +26,20 @@ function MainComponent(props: IProps) {
     const [myId, setMyId] = useState<IUser["user_id"]>("1");
     const [isFollowed, setIsFollowed] = useState<boolean>(false);
     const [isLiked, setIsLiked] = useState<boolean>(false);
-    const [board, setBoard] = useState<IBoard>({
-        board_id: 0,
-        board_poster: "",
-        board_img: new File([], ""),
-        board_title: "",
-        board_content: "",
-        board_url: "",
-        board_like_number: 0,
-        board_view: 0,
-        board_post_date: new Date(),
-        board_update_date: new Date(),
-
-    });
+    let board = props.data;
+    // const [board, setBoard] = useState<IBoard>({
+    //     board_id: 0,
+    //     board_poster: "",
+    //     board_img: new File([], ""),
+    //     board_title: "",
+    //     board_content: "",
+    //     board_url: "",
+    //     board_like_number: 0,
+    //     board_view: 0,
+    //     board_post_date: new Date(),
+    //     board_update_date: new Date(),
+    //
+    // });
 
     let imageurl = "http://localhost:8080/api/board_img/" + board.board_url;
 
@@ -47,7 +48,7 @@ function MainComponent(props: IProps) {
 
     // User_id 가져온다.
     async function getUser() {
-        setUser(await UserService.getUserById(props.data.board_poster).then(res => res.data));
+        setUser(await UserService.getUserById(board?.board_poster).then(res => res.data));
     }
 
     // User_id로 follow 테이블 가져와서 isFollow 확인
@@ -78,9 +79,14 @@ function MainComponent(props: IProps) {
 
     useEffect(() => {
         getUser();
+    }, [board]);
+    useEffect(() => {
         checkFollow();
+    }, [user]);
+    useEffect(() => {
         checkLike();
-    }, []);
+    }, [isFollowed]);
+
 
     // 가져온 테이블에서 팔로우 숫자 가져오기
     const [followed, setFollowed] = useState(user?.user_follower_number);
@@ -160,7 +166,7 @@ function MainComponent(props: IProps) {
 
                 <Link to="/feed">
                     <div className="ano-group_txt5">
-                        <div className="t1">{props.data.board_poster}</div>
+                        <div className="t1">{board.board_poster}</div>
                         <div className="like_group">
                             <AiFillHeart className="like_icon"/>
                             <span className="like_cnt">{liked}</span>

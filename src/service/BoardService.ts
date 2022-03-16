@@ -17,6 +17,14 @@ class BoardService {
         return axios.get(BOARD_API_BASE_URL + "/" + board_id);
     }
 
+    getBoardCount(): Promise<AxiosResponse<number>> {
+        return axios.get(BOARD_API_BASE_URL + "/board/cnt");
+    }
+
+    getBoardPage(startrow: number): Promise<AxiosResponse<IBoard[]>> {
+        return axios.get(BOARD_API_BASE_URL + "/page/" + startrow);
+    }
+
     getBoardByUserId(
         board_poster: IBoard["board_poster"]
     ): Promise<AxiosResponse<IBoard[]>> {
