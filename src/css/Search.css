@@ -1,7 +1,7 @@
 .signup_container {
-  display: flex;
-  justify-content: center;
-  margin: 61px 0;
+    display: flex;
+    justify-content: center;
+    margin: 61px 0;
 }
 
 .search_signup {
@@ -57,14 +57,14 @@
 .search_button {
     margin-top: 20px;
     color: #fff;
-    font-size: 20px;
+    /*font-size: 20px;*/
     width: 100%;
     height: 30px;
-    /*font-size: 14px;*/
+    font-size: 14px;
     border-radius: 20px;
     padding: 7px 15px;
     cursor: pointer;
-    background-color: #044a95;
+    background-color: #0f0f0f;
     line-height: 1px;
     border-style: none;
     margin-bottom: 10px;
