@@ -1,5 +1,5 @@
 interface ITagLike {
-  member_id?: string;
+  member_id: string;
   tag_name: string;
   start: number;
 }
