@@ -30,8 +30,7 @@ class FollowService {
         fromUserId: IFollow["from_user_id"],
         toUserId: IFollow["to_user_id"]
     ): Promise<AxiosResponse<IFollow>> {
-
-        console.log(fromUserId + ":" + toUserId);
+        
         let url = FOLLOW_API_BASE_URL + "/follower/" + fromUserId + "/" + toUserId;
         return axios.get(url);
     }

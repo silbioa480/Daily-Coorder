@@ -17,10 +17,12 @@ class BoardService {
         return axios.get(BOARD_API_BASE_URL + "/" + board_id);
     }
 
+    // 게시물 좋아요 순으로 가져오기
     getBoardCount(): Promise<AxiosResponse<number>> {
         return axios.get(BOARD_API_BASE_URL + "/board/cnt");
     }
 
+    // 게시물 10개씩 (10개가 없다면 나머지 전부) 가져오고 데이터 없으면 플러스 버튼 사라진다.
     getBoardPage(startrow: number): Promise<AxiosResponse<IBoard[]>> {
         return axios.get(BOARD_API_BASE_URL + "/page/" + startrow);
     }
