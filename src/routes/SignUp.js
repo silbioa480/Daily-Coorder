@@ -372,14 +372,9 @@ function SignUp() {
       return;
     }
 
-    let profile = {
-      profile_image_file: imageFile,
-      profile_image_name: "",
-    };
-
-    // let i = await ProfileImageService.createProfileImage(profile).then(
-    //   (res) => res.data
-    // );
+    let i = await ProfileImageService.createProfileImage(imageFile).then(
+      (res) => res.data
+    );
 
     let sel = document.getElementById("gender");
     let val = sel.options[sel.selectedIndex].value === "M";
@@ -389,7 +384,7 @@ function SignUp() {
 
     let user = {
       user_id: Id,
-      user_profile: 0,
+      user_profile: i,
       user_password: hash,
       user_name: name,
       user_nickname: nickname,
@@ -491,7 +486,7 @@ function SignUp() {
 
     let exist;
     try {
-      exist = await UserService.getUserById(Id);
+      exist = await MemberIdService.getIdById(Id);
     } catch (err) {}
     if (exist !== undefined) {
       setPopup({
