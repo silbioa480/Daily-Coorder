@@ -1,5 +1,5 @@
 interface ITag {
-  tag_id: number;
+  tag_id?: number;
   board_id: number;
   tag_name: string;
 }

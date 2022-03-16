@@ -13,6 +13,7 @@ import googlelogo from "../img/login/googlelogo.png";
 import PopUp from "./PopUp";
 //아이디 기억하기 체크박스 때문에 install 했고, import함
 import { useCookies } from "react-cookie";
+import MemberIdService from "../service/MemberIdService";
 
 function LoginMember() {
   //모달 설정
@@ -111,10 +112,10 @@ function LoginMember() {
     }
   };
 
-  const onSubmitHandler = (e) => {
+  const onSubmitHandler = async (e) => {
     e.preventDefault();
 
-    if (validCheckId("")) {
+    if (Id === "") {
       setPopup({
         open: true,
         title: "로그인 실패ㅠㅠㅠㅠ",
@@ -123,7 +124,7 @@ function LoginMember() {
       return;
     }
 
-    if (validCheckPassword("")) {
+    if (Password === "") {
       setPopup({
         open: true,
         title: "로그인 실패ㅠㅠㅠㅠ",
@@ -132,27 +133,42 @@ function LoginMember() {
       return;
     }
 
-    if (!validation3()) {
+    let memberId = await MemberIdService.getIdById(Id).then((res) => res.data);
+    if (memberId === undefined) {
       setPopup({
         open: true,
-        title: "로그인 실패ㅠㅠㅠㅠ",
-        message: "정보가 일치하지 않아요!!",
+        title: "로그인 실패",
+        message: "등록되지 않은 아이디 입니다.",
       });
       return;
-    } else {
     }
+
+    let CryptoJS = require("crypto-js");
+    let decrypted = CryptoJS.AES.decrypt(
+      memberId.member_password,
+      "salt"
+    ).toString(CryptoJS.enc.Utf8);
+    if (decrypted !== Password) {
+      setPopup({
+        open: true,
+        title: "로그인 실패",
+        message: "잘못된 비밀번호입니다.",
+      });
+
+      return;
+    }
+
     setPopup({
       open: true,
       title: "축축!! 로그인 성공",
       message: "환영합니다!!!!",
-      callback: function () {
-      },
+      callback: function () {},
     });
     if (validation3()) return;
   };
 
   return (
-    <div className='login-container' style={{ height: "880px" }}>
+    <div className="login-container" style={{ height: "880px" }}>
       <div className="login_member">
         <PopUp
           open={popup.open}
@@ -231,7 +247,8 @@ function LoginMember() {
                     disabled={renderProps.disabled}
                   >
                     <img
-                      className="social_logo" style={{ marginTop: "10px" }}
+                      className="social_logo"
+                      style={{ marginTop: "10px" }}
                       src={googlelogo}
                       resizeMode={"contain"}
                     />
@@ -318,8 +335,8 @@ function LoginMember() {
             </div>
           </div>
         </form>
-      </div >
-    </div >
+      </div>
+    </div>
   );
 }
 
