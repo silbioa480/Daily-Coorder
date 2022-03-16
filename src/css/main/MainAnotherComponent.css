@@ -114,7 +114,6 @@
 .like_icon,
 .follow_icon {
     width: 13px;
-
 }
 
 .like_icon {
@@ -127,8 +126,10 @@
 
 .like_cnt {
     margin-left: 5px;
+    font-size: 0.8em;
 }
 
 .follow_cnt {
     margin-left: 5px;
+    font-size: 0.8em;
 }
