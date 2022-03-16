@@ -5,45 +5,52 @@ import {Link} from 'react-router-dom';
 import {BsPlusLg} from 'react-icons/bs';
 import {useEffect, useState} from 'react';
 import "../css/main/animation.css";
-import IMemberId from "../interfaces/IMemberId";
 import IUser from '../interfaces/IUser';
 import UserService from '../service/UserService';
+import IMemberId from '../interfaces/IMemberId';
 import MemberIdService from '../service/MemberIdService';
 
 
 
+
 function MyPage_SideMenubar() {
-    const [show, setShow] = useState(true);
-    const [show1, setShow1] = useState(false);
-    const [show2, setShow2] = useState(false);
-    const [userId,setUserId]=useState<IUser["user_id"]>("");
+    const [user, setUser] = useState(true);
+    const [ceo, setCeo] = useState(false);
+    const [admin, setAdmin] = useState(false);
+    const [memberId,setMemberId]=useState<IMemberId["member_id"]>("");
+    const [isPeople,setIsPeople]=useState<IMemberId>();
     const [userInfo,setUserInfo]=useState<IUser>();
 
     async function getUser(){
-        setUserInfo(await UserService.getUserById(userId).then(res=>res.data));
+        setUserInfo(await UserService.getUserById(memberId).then(res=>res.data));
+    }
+
+    async function booleanUser(){
+        if(memberId !== undefined){
+            setIsPeople(await MemberIdService.getIdById(memberId).then(res=>res.data));
+        }
     }
 
     useEffect(()=>{
         getUser();
-    })
-
-
-    async function handleInfo(){        
-        if(userInfo?.user_is_ad === true ){
-            setShow(false);
-            setShow1(true);
-            setShow2(false);
-
-        }else if(userInfo?.user_is_admin === true){
-            setShow2(true);
-            setShow(false);
-            setShow1(false);
-        }else{
-            setShow2(false);
-            setShow(true);
-            setShow1(false);
+        booleanUser();
+        if(isPeople !== undefined){
+            if(isPeople.is_business === true){
+               setUser(true);
+               setCeo(true);
+               setAdmin(false);
+            }else if(isPeople.is_business === false){
+                if(userInfo !== undefined){
+                    if(userInfo.user_is_admin === true){
+                        setUser(false);
+                        setCeo(false);
+                        setAdmin(true);
+                    }
+                }
+            }
         }
-    }           
+    },[])
+
 
 
     
@@ -53,7 +60,7 @@ function MyPage_SideMenubar() {
         <>
             <MyPage_SideMenubarCss/>
             <div className="aa sdBar" style={{marginTop: "-250px"}}>
-                {show && <Nav className="flex-column">
+                {user && <Nav className="flex-column">
                     <Nav.Link style={{color: "black"}}>
                         <div style={{
                             width: "100%",
@@ -61,8 +68,8 @@ function MyPage_SideMenubar() {
                             justifyContent: "space-between",
                             padding: ".5vw 0",
                             margin: ".2vw 0"
-                        }} onClick={handleInfo}>
-                            회원 관련<BsPlusLg onClick={handleInfo}/>
+                        }}>
+                            회원 관련<BsPlusLg />
                         </div>
                     </Nav.Link>
                     <div className="membermenu">
@@ -73,7 +80,7 @@ function MyPage_SideMenubar() {
                     </div>
                 </Nav>}
 
-                {show1 && <Nav className="flex-column">
+                {ceo && <Nav className="flex-column">
                     <Nav.Link style={{color: "black"}}>
                         <div style={{
                             width: "100%",
@@ -81,17 +88,17 @@ function MyPage_SideMenubar() {
                             justifyContent: "space-between",
                             padding: ".5vw 0",
                             margin: ".2vw 0"
-                        }} onClick={handleInfo}>
-                            사업자 관련 광고<BsPlusLg onClick={handleInfo}/>
+                        }} >
+                            사업자 관련 광고<BsPlusLg />
                         </div>
                     </Nav.Link>
                      <div className="ceomenu">
                         <Nav.Link as={Link} className="text-dark" to="/member/MyPage_Adapplication">광고 등록 신청</Nav.Link>
-                        <Nav.Link as={Link} className="text-dark" to="/member/MyPage_ChartPage">게시물 차트 표시</Nav.Link>
+                        <Nav.Link as={Link} className="text-dark" to="/member/MyPage_ChartPage">내가 올린 게시물 보기</Nav.Link>
                     </div>
                 </Nav>}
 
-                {show2 && <Nav className="flex-column">
+                {admin && <Nav className="flex-column">
 
                     <Nav.Link style={{color: "black"}}>
                         <div style={{
@@ -100,8 +107,8 @@ function MyPage_SideMenubar() {
                             justifyContent: "space-between",
                             padding: ".5vw 0",
                             margin: ".2vw 0"
-                        }} onClick={handleInfo}>
-                            관리자 관련 광고<BsPlusLg onClick={handleInfo}/>
+                        }} >
+                            관리자 관련 광고<BsPlusLg />
                         </div>
                     </Nav.Link>
                     <div className="adminmenu">
