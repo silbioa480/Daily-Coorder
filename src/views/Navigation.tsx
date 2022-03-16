@@ -24,7 +24,7 @@ function Navigation() {
             <h1 className="title">
               <Link to="/" className="title">Daliy Coorder</Link>
             </h1>
-            <form className="search-form">
+            {/* <form className="search-form">
               <input
                 type="text"
                 name="search"
@@ -33,7 +33,7 @@ function Navigation() {
               />
               <BsSearch className='search-icon'
               />
-            </form>
+            </form> */}
           </div>
           {/* <NotLogInNav /> */}
           <LoggedInNav />
