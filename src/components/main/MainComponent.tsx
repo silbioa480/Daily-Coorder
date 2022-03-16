@@ -67,7 +67,7 @@ function MainComponent(props: IProps) {
         getUser();
         checkFollow();
         checkLike();
-    }, [isShow, isDone, user, myId, isFollowed, isLiked]);
+    }, []);
 
     // 가져온 테이블엣거 팔로우 숫자 가져오기
     const [followed, setFollowed] = useState(user?.user_follower_number);

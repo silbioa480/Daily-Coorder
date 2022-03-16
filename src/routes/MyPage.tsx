@@ -11,7 +11,11 @@ import MyPage_AdManagerPage from "../components/MyPage_AdManagerPage";
 import MyPage_Adapplication from "../components/MyPage_Adapplication";
 import MyPage_detailChartPage from "../components/MyPage_detailChartPage";
 
+
+
 function MyPage() {
+  
+  
   return (
     <>
       <MyPage_SideMenubar />

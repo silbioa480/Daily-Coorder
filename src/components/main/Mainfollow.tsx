@@ -39,6 +39,9 @@ function Mainfollow() {
 
     useEffect(() => {
         getFollowersId();
+    }, []);
+
+    useEffect(() => {
         getFollowerBoard();
     }, []);
 

@@ -5,19 +5,33 @@ import Modal from 'react-bootstrap/Modal';
 import {Link} from 'react-router-dom';
 import MyPage_MemberInformation from './MyPage_MemberInformation';
 import "../css/main/animation.css";
+import IUser from '../interfaces/IUser';
+import IBusiness from '../interfaces/IBusiness';
+import IMemberId from '../interfaces/IMemberId';
+import UserService from '../service/UserService';
+import BusinessSevice from '../service/BusinessService';
+import MemberIdService from '../service/MemberIdService';
+
+
 
 function MyPage_MemberUnregister() {
+
+    const [memberId,setMemberId]=useState<IMemberId["member_id"]>("");
     const [show, setShow] = useState(false);
-    const handleShow = () => {
-        setShow(true);
-    }
+   async function handleUnregister(){
+       await MemberIdService.deleteId(memberId).then(res=>res.data);
+   }
+
+   const handleShow=()=>{
+       setShow(true);
+   }
     const handleClose = () => {
         setShow(false);
     }
     return (
         <>
             <div className="aa" style={{width: "60%", margin: "4em auto", height: "750px"}}>
-                <MyPage_MemberInformation/>
+                <MyPage_MemberInformation />
 
                 <div style={{width: "100%", display: "flex", justifyContent: "center", marginTop: "1vw"}}>
                     <div className="d-grid gap-2">
@@ -40,7 +54,7 @@ function MyPage_MemberUnregister() {
                             <Button variant="secondary" onClick={handleClose}>
                                 이전
                             </Button>
-                            <Button variant="primary" onClick={handleClose}>
+                            <Button variant="primary" onClick={handleUnregister}>
                                 <Link to="/">회원 탈퇴</Link>
                             </Button>
                         </Modal.Footer>
