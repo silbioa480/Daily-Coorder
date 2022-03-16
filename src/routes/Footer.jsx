@@ -10,12 +10,12 @@ const Footer = (props) => {
         <li className='yellow'></li>
       </ul>
       <footer>
-        <div class="inner">
-          <div class="footer-message">
+        <div className="inner">
+          <div className="footer-message">
             의류 추천 커뮤니티 사이트입니다. 현재 상업적 목적이 없는 서비스입니다.
           </div>
-          <div class="footer-contact">contact: email@email.com</div>
-          <div class="footer-copyright">
+          <div className="footer-contact">contact: email@email.com</div>
+          <div className="footer-copyright">
             Copyright 2022 © All rights reserved.
           </div>
         </div>

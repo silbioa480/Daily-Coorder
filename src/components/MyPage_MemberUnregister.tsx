@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {Button} from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
 import {Link} from 'react-router-dom';
@@ -17,10 +17,45 @@ import MemberIdService from '../service/MemberIdService';
 function MyPage_MemberUnregister() {
 
     const [memberId,setMemberId]=useState<IMemberId["member_id"]>("");
+    const [isPeolple,setIsPeople]=useState<IMemberId>();
+    const [userInfo,setUserInfo]=useState<IUser>();
+    const [businessInfo,setBusinessInfo]=useState<IBusiness>();
     const [show, setShow] = useState(false);
-   async function handleUnregister(){
-       await MemberIdService.deleteId(memberId).then(res=>res.data);
+
+    async function getPeople(){
+        if(memberId !== undefined){
+            setIsPeople(await MemberIdService.getIdById(memberId).then(res=>res.data));
+            setUserInfo(await UserService.getUserById(memberId).then(res=>res.data));
+            
+        }
+    }
+
+    async function getBusiness(){
+        setBusinessInfo(await BusinessSevice.getBusinessById(memberId).then(res=>res.data));
+    }
+ 
+    async function handleUnregister(){
+        if(isPeolple !== undefined){
+            if(isPeolple.is_business === true){
+                await BusinessSevice.deleteBusiness(memberId).then(res=>res.data);
+            }else{
+                await UserService.deleteUser(memberId).then(res=>res.data);
+            }
+        }
    }
+
+    useEffect(()=>{
+        getPeople();
+        if(isPeolple !== undefined){
+            if(isPeolple.is_business === true){
+                getBusiness();
+            }
+        }
+        
+    });
+
+
+
 
    const handleShow=()=>{
        setShow(true);

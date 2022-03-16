@@ -11,7 +11,8 @@ interface IBusiness {
   business_is_ad: boolean;
   business_is_location: boolean;
   business_signup_date: Date;
-  business_update_date: Date;
+  business_update_date?: Date;
+  [key :string] :any;
 }
 
 export default IBusiness;

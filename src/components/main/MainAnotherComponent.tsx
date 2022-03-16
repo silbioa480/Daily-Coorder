@@ -27,7 +27,7 @@ function MainComponent(props: IProps) {
     const [isLiked, setIsLiked] = useState<boolean>(false);
 
     let board = props.data;
-    let imageurl = "http://localhost:8080/api/board_img/" + board.board_url;
+    let imageurl = "https://daily-coorder-backend.herokuapp.com/api/board_img/" + board.board_url;
 
 
     // isFollow ---------------------------------------------

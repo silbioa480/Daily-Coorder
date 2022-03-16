@@ -22,9 +22,9 @@ function Navigation() {
         <div className="navbar-box">
           <div className='navbar-right'>
             <h1 className="title">
-              <Link to="/main" className="title">Daliy Coorder</Link>
+              <Link to="/" className="title">Daliy Coorder</Link>
             </h1>
-            <form className="search-form">
+            {/* <form className="search-form">
               <input
                 type="text"
                 name="search"
@@ -33,7 +33,7 @@ function Navigation() {
               />
               <BsSearch className='search-icon'
               />
-            </form>
+            </form> */}
           </div>
           {/* <NotLogInNav /> */}
           <LoggedInNav />

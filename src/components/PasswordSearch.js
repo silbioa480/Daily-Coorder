@@ -119,13 +119,13 @@ function PasswordSearch() {
       open: true,
       title: "비밀번호 찾기 성공!!",
       message: "회원님의 비밀번호는 '♡♡♡♡' 입니다!!",
-      callback: function () {},
+      callback: function () { },
     });
     if (validation5()) return;
   };
 
   return (
-    <>
+    <div className="signup_container">
       <div className="search_signup">
         <PopUp
           open={popup.open}
@@ -201,7 +201,7 @@ function PasswordSearch() {
           </div>
         </form>
       </div>
-    </>
+    </div>
   );
 }
 
