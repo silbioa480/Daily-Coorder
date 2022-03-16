@@ -18,7 +18,6 @@ interface IProps {
     data: IBoard;
 }
 
-
 function MainComponent(props: IProps) {
     const [isShow, setIsShow] = useState<boolean>(false);
     const [isDone, setIsDone] = useState<boolean>(false);
@@ -26,21 +25,8 @@ function MainComponent(props: IProps) {
     const [myId, setMyId] = useState<IUser["user_id"]>("1");
     const [isFollowed, setIsFollowed] = useState<boolean>(false);
     const [isLiked, setIsLiked] = useState<boolean>(false);
-    let board = props.data;
-    // const [board, setBoard] = useState<IBoard>({
-    //     board_id: 0,
-    //     board_poster: "",
-    //     board_img: new File([], ""),
-    //     board_title: "",
-    //     board_content: "",
-    //     board_url: "",
-    //     board_like_number: 0,
-    //     board_view: 0,
-    //     board_post_date: new Date(),
-    //     board_update_date: new Date(),
-    //
-    // });
 
+    let board = props.data;
     let imageurl = "http://localhost:8080/api/board_img/" + board.board_url;
 
 
@@ -68,7 +54,7 @@ function MainComponent(props: IProps) {
 
     async function checkLike() {
         try {
-            await BoardLikeService.getCheckLike(props.data.board_id, myId).then(res => res.data);
+            await BoardLikeService.getCheckLike(board.board_id, myId).then(res => res.data);
             setIsLiked(true);
         } catch {
             setIsLiked(false);
@@ -90,7 +76,7 @@ function MainComponent(props: IProps) {
 
     // 가져온 테이블에서 팔로우 숫자 가져오기
     const [followed, setFollowed] = useState(user?.user_follower_number);
-    const [liked, setLiked] = useState(props.data.board_like_number);
+    const [liked, setLiked] = useState(board.board_like_number);
     //                        ?  언디파인드 아닐떄만 접근해라
 
     const [likecolor, setLikecolor] = useState("");
@@ -113,9 +99,8 @@ function MainComponent(props: IProps) {
 
     // 팔로우 - 1
     function followDe() {
-        if (followed) {
-            setFollowed(followed - 1);
-        }
+        setFollowed(followed as number - 1);
+
     }
 
     // 좋아요 색깔 toglle and 좋아요 + 1 or - 1
@@ -166,7 +151,7 @@ function MainComponent(props: IProps) {
 
                 <Link to="/feed">
                     <div className="ano-group_txt5">
-                        <div className="t1">{board.board_poster}</div>
+                        <div className="t1" style={{fontSize: "0.8em"}}>{board.board_poster}</div>
                         <div className="like_group">
                             <AiFillHeart className="like_icon"/>
                             <span className="like_cnt">{liked}</span>
