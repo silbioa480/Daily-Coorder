@@ -25,42 +25,53 @@ function CeoModify() {
         register,
         getValues,
         setValue
-    }=useForm<IBusiness>();
+    }=useForm<IBusiness,IProfileImage>();
 
-    const [imgfile, setImgFile] = useState('');
     const [businessId,setBusinessId]=useState<IBusiness["business_id"]>("");
-    const [memberList,setMemberList]=useState<IMemberId[]>([]);
     const [updateBusiness,setUpdateBusiness]=useState<IBusiness>();
+    const [normalProfileId,setNormalFileId]=useState<IProfileImage["profile_image_id"]>();
+    const [normalProfile,setNormalProfile]=useState<IProfileImage>();
 
-    async function allMemberList(){
-        setMemberList(await MemberIdService.getIds().then(res=>res.data));
-    }
+
 
    async function getBeforeBusinessInfo(){
        setUpdateBusiness(await BusinessSevice.getBusinessById(businessId).then(res=>res.data));
    }
-
-    const onloadfile = (event: any) => {
-        const file = event?.target.files;
-        setImgFile(URL.createObjectURL(file[0]));
+   
+   async function updateImage(){
+        if(normalProfileId !== undefined){
+            setNormalProfile(await ProfileImageService.getProfileImageById(normalProfileId).then(res=>res.data));
+        }
     }
+
+    async function deleteImage(){
+        if(normalProfileId !==undefined){
+            await ProfileImageService.deleteProfileImage(normalProfileId).then(res=>res.data);
+        }
+    }
+
+
     useEffect(()=>{
         getBeforeBusinessInfo();
-        allMemberList();
+        updateImage();
         setValue("business_name","business_name");
         setValue("business_number","business_number");
         setValue("business_password","business_password");
         setValue("business_phone","business_phone");
         setValue("business_name","business_name");
+        setValue("profile_image_id","profile_image_id");
     })
 
-    const onValid=async({
+    const onValid : any=async({
         business_name,
         business_number,
         business_password,
         business_phone,
         business_email
-    }:IBusiness)=>{
+    }:IBusiness,{
+        profile_image_file,
+        profile_image_name
+    }:IProfileImage)=>{
         if(updateBusiness !== undefined){
             let updateCeo : IBusiness ={
                 business_id:updateBusiness.business_id,
@@ -80,6 +91,17 @@ function CeoModify() {
 
             await BusinessSevice.updateBusiness(updateCeo,businessId).then(res=>res.data);
         }
+
+        if(normalProfileId !== undefined){
+            if(normalProfile !== undefined){
+                let updateProfile : IProfileImage ={
+                    profile_image_file,
+                    profile_image_id : normalProfile.profile_image_id,
+                    profile_image_name
+                }
+                await ProfileImageService.updateProfileImage(updateProfile,normalProfileId).then(res=>res.data);
+            }
+        }
     }
 
     
@@ -93,10 +115,6 @@ function CeoModify() {
     }
 
 
-
-    const deleteImage=()=>{
-        setImgFile('');
-    }
     return (
         <>
             <Form className="aa pl-5" onSubmit={handleSubmit(onValid)}>
@@ -109,7 +127,6 @@ function CeoModify() {
                                     width={170}
                                     height={200}
                                     alt="프로필 사진"
-                                    src={imgfile}
                                 />
                             </Figure>
                         </div>
@@ -122,7 +139,7 @@ function CeoModify() {
                                 borderRadius: "5px"
                             }}>
                                 프로필 사진 업로드<input type="file" style={{display: "none"}} id="ppimage" accept='image/*'
-                                                 onChange={onloadfile}/>
+                                                 {...register("profile_image_id")}/>
                             </label>
 
                             <label className="btn btn-white" htmlFor="ppimage" style={{
@@ -133,7 +150,7 @@ function CeoModify() {
                                     borderRadius: "5px",
                                     marginLeft:"1vw"
                                 }}>
-                                    프로필 사진 삭제<input type="reset" onClick={deleteImage}/>
+                                    프로필 사진 삭제<input type="reset" style={{display: "none"}} onClick={deleteImage}/>
                                 </label>
                         </div>
 
@@ -218,6 +235,12 @@ function MyPage_MemberModify() {
     async function updateImage(){
         if(normalProfileId !== undefined){
             setNormalProfile(await ProfileImageService.getProfileImageById(normalProfileId).then(res=>res.data));
+        }
+    }
+
+    async function deleteImage(){
+        if(normalProfileId!==undefined){
+            await ProfileImageService.deleteProfileImage(normalProfileId).then(res=>res.data);
         }
     }
 
@@ -361,7 +384,7 @@ function MyPage_MemberModify() {
                                     borderRadius: "5px",
                                     marginLeft:"1vw"
                                 }}>
-                                    프로필 사진 삭제
+                                    프로필 사진 삭제<input type="reset" style={{display: "none"}} onClick={deleteImage}/>
                                 </label>
                             </div>
 
