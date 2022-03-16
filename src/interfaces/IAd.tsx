@@ -1,5 +1,5 @@
 interface IAd {
-  ad_id?: number;
+  ad_id: number;
   business_id: string;
   ad_image: File;
   ad_title: string;
