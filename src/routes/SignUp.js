@@ -456,6 +456,7 @@ function SignUp() {
 
     let member = {
       member_id: Id,
+      member_password: hash,
       is_business: false,
     };
 
