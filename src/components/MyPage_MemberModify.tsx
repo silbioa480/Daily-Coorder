@@ -14,7 +14,8 @@ import UserService from '../service/UserService';
 import IUser from '../interfaces/IUser';
 import IBusiness from '../interfaces/IBusiness';
 import BusinessSevice from '../service/BusinessService';
-import { setConstantValue } from 'typescript';
+import ProfileImageService from '../service/ProfileImageService';
+import IProfileImage from "../interfaces/IProfileImage";
 
 
 
@@ -146,7 +147,7 @@ function CeoModify() {
 
                         <Form.Group className="my-3" controlId="formGridPassword">
                             <Form.Label>비밀번호</Form.Label>
-                            <Form.Control type="password" name="business_password" id="business_password" {...register("business_password",{required:"비밀번호를 입력하세요"})}/>
+                            <Form.Control type="password" name="business_password" id="business_password" {...register("business_password",{required:"비밀번호를 입력하세요",pattern:{value:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,message:" 8자리 이상 문자,숫자,특수문자를 섞어서 입력하세요."}})}/>
                         </Form.Group>
 
                         <Form.Group className="my-3" controlId="formGridPassword">
@@ -172,7 +173,7 @@ function CeoModify() {
                         <Form.Group className="my-3">
                             <Form.Label>이메일</Form.Label>
                             <div style={{width: "100%", display: "flex"}}>
-                                <Form.Control type="email" name="business_email" id="" />
+                                <Form.Control type="email" name="business_email" id="business_email" {...register("business_email",{required:"사업자이메일을 입력하세요",pattern:{value:/^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/,message:"이메일 형식이 아닙니다."}})} />
                                 <Button style={{width: "180px", textAlign: "center"}}
                                         onClick={assignEmail}>인증요청</Button>
                             </div>
@@ -199,31 +200,33 @@ function MyPage_MemberModify() {
     const {
         setValue,
         register,
-        handleSubmit
-    } =useForm<IUser>();
+        handleSubmit,
+    } =useForm<IUser,IProfileImage>();
     
-    const [show,setShow]=useState(true);
+    const [show,setShow]=useState(false);
     const [isCeo,setIsCeo]=useState(false);
     const [isUser,setIsUser]=useState(true);
     const [userId,setUserId]=useState<IUser["user_id"]>("");
-    const [memberList,setMemberList]=useState<IMemberId[]>([]);
     const [updateUserInfo,setUpdateUser]=useState<IUser>();
+    const [normalProfileId,setNormalFileId]=useState<IProfileImage["profile_image_id"]>();
+    const [normalProfile,setNormalProfile]=useState<IProfileImage>();
 
     async function updateInfo(){
         setUpdateUser(await UserService.getUserById(userId).then(res=>res.data));
     }
 
-
-    async function allMemberList(){
-        setMemberList(await MemberIdService.getIds().then(res=>res.data));
+    async function updateImage(){
+        if(normalProfileId !== undefined){
+            setNormalProfile(await ProfileImageService.getProfileImageById(normalProfileId).then(res=>res.data));
+        }
     }
 
     useEffect(()=>{
-        allMemberList();
+        updateImage();
         updateInfo();
-    })
+    },[]);
 
-    const onValid =async({
+    const onValid : any=async({
         user_password,
         user_birth,
         user_email,
@@ -231,7 +234,10 @@ function MyPage_MemberModify() {
         user_nickname,
         user_phone,
         user_weights
-    }:IUser)=>{
+    }:IUser,{
+        profile_image_file,
+        profile_image_name
+    }:IProfileImage)=>{
         if(updateUserInfo !== undefined){
             let updateUsers : IUser= {
                 user_id:updateUserInfo.user_id,
@@ -257,6 +263,24 @@ function MyPage_MemberModify() {
             await UserService.updateUser(updateUsers,userId).then(res=>res.data);
         }
 
+        if(normalProfileId !== undefined){
+            if(normalProfile !== undefined){
+                let updateProfile : IProfileImage ={
+                    profile_image_file,
+                    profile_image_id : normalProfile.profile_image_id,
+                    profile_image_name
+                }
+                await ProfileImageService.updateProfileImage(updateProfile,normalProfileId).then(res=>res.data);
+            }
+        }
+    }
+
+    const onImageChange=async ({
+        profile_image_file,
+        profile_image_name
+    }:IProfileImage)=>{
+        
+
     }
 
     const compareId=()=>{
@@ -279,7 +303,11 @@ function MyPage_MemberModify() {
         alert("입력하신 이메일로 인증메일을 보냈습니다.");
     }
    
-    const handleModal=()=>{
+    const openModal=()=>{
+        setShow(true);
+    }
+
+    const closeModal=()=>{
         setShow(false);
     }
     return (
@@ -322,7 +350,7 @@ function MyPage_MemberModify() {
                                     borderRadius: "5px"
                                 }}>
                                     프로필 사진 업로드<input type="file" style={{display: "none"}} id="ppimage" accept='image/*'
-                                                    />
+                                                    {...register("profile_image_id")}/>
                                 </label>
 
                                 <label className="btn btn-white" htmlFor="ppimage" style={{
@@ -344,7 +372,7 @@ function MyPage_MemberModify() {
                             <Form.Group controlId="formGridEmail" style={{marginTop: "1vh"}}>
                                 <Form.Label>닉네임</Form.Label>
                                 <div style={{width: "100%", display: "flex"}}>
-                                    <Form.Control type="text" name="nickname" id="user_nickname" {...register("user_nickname",{required : "닉네임을 입력하세요"})}
+                                    <Form.Control type="text" name="nickname" id="user_nickname" {...register("user_nickname",{required : "닉네임을 입력하세요",minLength:8})}
                                                  />
                                     <Button style={{width: "180px", textAlign: "center"}} >닉네임중복
                                         확인</Button>
@@ -355,13 +383,14 @@ function MyPage_MemberModify() {
 
                             <Form.Group className="my-3" controlId="formGridPassword">
                                 <Form.Label>비밀번호</Form.Label>
-                                <Form.Control type="password" name="password" id="user_password" {...register("user_password",{required:"비밀번호를 입력하세요"})}
+                                <Form.Control type="password" name="password" id="user_password"
+                                        {...register("user_password",{required:"비밀번호를 입력하세요",pattern:{value:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,message:" 8자리 이상 문자,숫자,특수문자를 섞어서 입력하세요."}})}
                                               />
                             </Form.Group>
 
                             <Form.Group className="my-3" controlId="formGridPassword">
                                 <Form.Label>비밀번호 확인</Form.Label>
-                                <Form.Control type="password" placeholder="Password check" name="passwordCheck"
+                                <Form.Control type="password" placeholder="Password check" name="passwordCheck" {...register({minLength:8,maxLength:12})} 
                                               />
                             </Form.Group>
 
@@ -384,7 +413,7 @@ function MyPage_MemberModify() {
                             <Form.Group className="my-3">
                                 <Form.Label>이메일</Form.Label>
                                 <div style={{width: "100%", display: "flex"}}>
-                                    <Form.Control type="email" name="email" id="user_email" {...register("user_email",{required :"이메일을 입력하세요"})}
+                                    <Form.Control type="email" name="email" id="user_email" {...register("user_email",{required :"이메일을 입력하세요",pattern:{value:/^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/,message:"이메일 형식이 아닙니다."}})}
                                                   />
                                     <Button style={{width: "180px", textAlign: "center"}}
                                             onClick={assignEmail}>인증요청</Button>
@@ -416,7 +445,7 @@ function MyPage_MemberModify() {
                         {/*  작성자: 황인성  */}
                         {/*  최종수정 날짜 2022.3.10  */}
                         <div style={{width: "100%", display: "flex", justifyContent: "center"}}>
-                            <Button variant="white" className="mypage_btn">
+                            <Button variant="white" className="mypage_btn" onClick={openModal}>
                                 <span>회원 정보 수정</span>
                             </Button>
                         </div>
@@ -433,7 +462,7 @@ function MyPage_MemberModify() {
                 </Modal.Header>
                 <Modal.Body>회원정보를 정말 수정하시겠습니까?</Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleModal}>
+                    <Button variant="secondary" onClick={closeModal}>
                         이전
                     </Button>
                     <Button variant="primary" type="submit">
