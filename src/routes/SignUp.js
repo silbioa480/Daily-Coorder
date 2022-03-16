@@ -504,24 +504,6 @@ function SignUp() {
       message: "사용가능 합니다!",
     });
   };
-  //     if (inputs.Id === value.Id) {
-  //         setPopup({
-  //             open: true,
-  //             title: "통과 !!",
-  //             message: "사용가능 합니다!",
-  //         });
-  //         return;
-  //     } else {
-  //     }
-  //     setPopup({
-  //         open: true,
-  //         title: "실패!",
-  //         message: "이미 사용중인 아이디입니다!!",
-  //         callback: function () {
-  //         },
-  //     });
-  // };
-
   return (
     <div className="bb signup">
       <PopUp
@@ -552,21 +534,13 @@ function SignUp() {
               </div>
               <div>
                 <label type="submit" className="signup_profile_upbtn">
-                  업로드
+                  프로필등록
                   <input
                     className="signup_profile_upbtn"
                     type="file"
                     accept="image/*"
                     style={{ display: "none" }}
                     onChange={saveFileImage}
-                  />
-                </label>
-                <label type="submit" className="signup_profile_delbtn">
-                  삭제하기
-                  <input
-                    className="signup_profile_delbtn"
-                    style={{ display: "none" }}
-                    onClick={() => deleteFileImage()}
                   />
                 </label>
               </div>
@@ -978,21 +952,13 @@ function SignUp() {
               </div>
               <div>
                 <label type="submit" className="signup_profile_upbtn">
-                  업로드
+                  로고등록
                   <input
                     className="signup_profile_upbtn"
                     type="file"
                     accept="image/*"
                     style={{ display: "none" }}
                     onChange={saveFileImage}
-                  />
-                </label>
-                <label type="submit" className="signup_profile_delbtn">
-                  삭제하기
-                  <input
-                    className="signup_profile_delbtn"
-                    style={{ display: "none" }}
-                    onClick={() => deleteFileImage()}
                   />
                 </label>
               </div>

@@ -42,7 +42,7 @@
 
 
 .signup_profile_upbtn {
-    margin-left: 120px;
+    margin-left: 200px;
     width: 150px;
     height: 30px;
     font-size: 14px;
@@ -57,23 +57,6 @@
     border-style: none;
     text-align: center;
 
-}
-
-.signup_profile_delbtn {
-    margin-left: 10px;
-    width: 150px;
-    height: 30px;
-    font-size: 14px;
-    padding: 13px 30px;
-    cursor: pointer;
-    background-color: #044a95;
-    color: white;
-    line-height: 1px;
-    margin-top: 20px;
-    margin-bottom: 12px;
-    border-radius: 15px;
-    border-style: none;
-    text-align: center;
 }
 
 .signup_font {

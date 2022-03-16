@@ -5,11 +5,9 @@ import "../css/LoginMember.css";
 
 import NaverLogin from "react-naver-login";
 import KakaoLogin from "react-kakao-login";
-import GoogleLogin from "react-google-login";
 
 import naverlogo from "../img/login/naverlogo.png";
 import kakaologo from "../img/login/kakaologo.png";
-import googlelogo from "../img/login/googlelogo.png";
 import PopUp from "./PopUp";
 //아이디 기억하기 체크박스 때문에 install 했고, import함
 import { useCookies } from "react-cookie";
@@ -235,39 +233,6 @@ function LoginMember() {
           </div>
 
           <div className="social_box">
-            <div className="social_google">
-              <GoogleLogin
-                clientId={
-                  "549626971624-5ph29id2ioj9veqq6ut6bel3sa1vq9nf.apps.googleusercontent.com"
-                }
-                buttonText="Login"
-                render={(renderProps) => (
-                  <div
-                    onClick={renderProps.onClick}
-                    disabled={renderProps.disabled}
-                  >
-                    <img
-                      className="social_logo"
-                      style={{ marginTop: "10px" }}
-                      src={googlelogo}
-                      resizeMode={"contain"}
-                    />
-                    <button
-                      style={{ marginTop: "-17px" }}
-                      type="submit"
-                      className="social_button btn"
-                      value="로그인"
-                    >
-                      <span style={{ fontSize: "17px" }}>Google</span>
-                    </button>
-                  </div>
-                )}
-                onSuccess={(e) => clickSnsLoginGoogle(e)}
-                onFailure={console.log}
-                cookiePolicy={"single_host_origin"}
-              />
-            </div>
-
             <div className="social_naver">
               <NaverLogin
                 clientId={"elBauADvgkBV6aphmaxs"}
