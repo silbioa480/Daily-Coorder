@@ -1,7 +1,6 @@
 import axios, {AxiosResponse} from "axios";
 import IFollow from "../interfaces/IFollow";
 import IUser from "../interfaces/IUser";
-import ILikeTag from "../interfaces/ITagLike";
 
 const FOLLOW_API_BASE_URL =
     "http://localhost:8080/api/follow";
@@ -31,9 +30,7 @@ class FollowService {
         fromUserId: IFollow["from_user_id"],
         toUserId: IFollow["to_user_id"]
     ): Promise<AxiosResponse<IFollow>> {
-        console.log(fromUserId + ":" + toUserId);
-        let url = FOLLOW_API_BASE_URL + "/follower/" + fromUserId + "/" + toUserId;
-        return axios.get(url);
+        return axios.get(FOLLOW_API_BASE_URL + "/follower/" + fromUserId + "/" + toUserId);
     }
 
     updateFollow(

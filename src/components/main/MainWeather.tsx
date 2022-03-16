@@ -82,7 +82,7 @@ function MainWeather() {
         },
     ];
 
-    const [myId, setMyId] = useState<IUser["user_id"]>("");
+    const [myId, setMyId] = useState<IUser["user_id"]>("1");
     const [myFollowers, setMyFollowers] = useState<IUser["user_id"][]>([]);
     const [followerBoards, setFollowerBoards] = useState<IBoard[]>([]);
 
