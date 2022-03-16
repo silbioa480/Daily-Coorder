@@ -14,7 +14,6 @@ class UserService {
     }
 
     getUserById(user_id: IUser["user_id"]): Promise<AxiosResponse<IUser>> {
-        console.log("aaaa:" + user_id);
         return axios.get(USER_API_BASE_URL + "/one/" + user_id);
     }
 

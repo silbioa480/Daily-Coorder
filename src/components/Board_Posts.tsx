@@ -5,7 +5,7 @@ import DownBtn from "./board/DownBtn";
 import {useEffect, useState} from "react";
 import IBoard from "../interfaces/IBoard";
 import BoardService from "../service/BoardService";
-import FollowButton from "./board/FollowButton";
+import UserFollower from "./board/UserFollower";
 
 interface IProps {
     boardId: number;
@@ -57,11 +57,13 @@ function Board_Posts(props: IProps) {
     return (
         <>
             <div className="aa Board_Posts">
+
                 <PictureQr board={board}/>
                 <div className="aa">
                     <DownBtn/>
                     <Explanation board={board}/>
-                    <FollowButton board={board}/>
+                    <UserFollower board={board}/>
+
 
                     <Comment/>
                 </div>
