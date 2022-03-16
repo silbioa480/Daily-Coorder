@@ -27,9 +27,9 @@ function LoggedInNav() {
           <Link to="/feed"><BsBookmarkHeart /></Link>
         </li>
 
-        <li className='logo-btn'>
+        {/* <li className='logo-btn'>
           <Link to="#"><BsBell /></Link>
-        </li>
+        </li> */}
 
         <li className='logo-btn'>
           <Link to="/member"><BsPerson /></Link>
