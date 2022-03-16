@@ -16,7 +16,7 @@ import BoardService from "../../service/BoardService";
 
 function Mainfollow() {
 
-    const [myId, setMyId] = useState<IUser["user_id"]>("");
+    const [myId, setMyId] = useState<IUser["user_id"]>("1");
     const [myFollowers, setMyFollowers] = useState<IUser["user_id"][]>([]);
     const [followerBoards, setFollowerBoards] = useState<IBoard[]>([]);
 
@@ -26,9 +26,8 @@ function Mainfollow() {
     // 2 내 아이디를 이용해서 내가 팔로우한 사람들의 id
     async function getFollowersId() {
         setMyFollowers(await FollowService.getFollowerByUserId(myId).then(res => res.data));
+        // 내가 팔로우한 상대방의 아이디만 가져옴 (배열로)
     }
-
-    //                내가 팔로우한 상대방의 아이디만 가져옴 (배열로)
 
     // 3 그 사람들의 게시물 데이터를 가져옴
     function getFollowerBoard() {

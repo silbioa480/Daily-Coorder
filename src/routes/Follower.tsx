@@ -40,21 +40,10 @@ function Follower() {
         getFollowersId();
         getFollowerBoard();
     }, []);
-    const [datas, setDatas] = useState();
-    // let i = 5;
-    const load = () => {
-        let lastindex = 10;
 
-        console.log(lastindex + "부터 5개 가져온다. setDatas");
-        // i += 5;
-        // return (
-        //   <div style={{ display: "inline-block" }}>
-        //     {renderRepeat.slice(i, i + 5)}
-        //   </div>
-        // );
-        // setDatas();
-        lastindex = followerBoards[followerBoards.length - 1].board_id + 5;
-        console.log("이제 마지막 데이터의 번호는 " + lastindex);
+    const [idx, setIdx] = useState<number>(1);
+    const load = () => {
+        setIdx(idx + 1);
     };
 
     const renderRepeat = followerBoards.map((data) => {
