@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import $ from "jquery";
 import "../css/LoginMember.css";
 
@@ -12,6 +12,8 @@ import PopUp from "./PopUp";
 //아이디 기억하기 체크박스 때문에 install 했고, import함
 import { useCookies } from "react-cookie";
 import MemberIdService from "../service/MemberIdService";
+import { useSetRecoilState } from "recoil";
+import { isLoginAtom, memberAtom } from "../atom";
 
 function LoginMember() {
   //모달 설정
@@ -21,6 +23,11 @@ function LoginMember() {
     message: "",
     callback: false,
   });
+
+  const history = useHistory();
+
+  const setIsLogin = useSetRecoilState(isLoginAtom);
+  const setMemberId = useSetRecoilState(memberAtom);
 
   //아이디 기억하기(로그인 페이지 내 체크박스)
   const [cookies, setCookie, removeCookie] = useCookies(["rememberId"]);
@@ -162,6 +169,12 @@ function LoginMember() {
       message: "환영합니다!!!!",
       callback: function () {},
     });
+
+    setIsLogin(true);
+    setMemberId(memberId);
+
+    history.push("/");
+
     if (validation3()) return;
   };
 
