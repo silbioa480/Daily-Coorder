@@ -8,8 +8,8 @@ import "../css/main/animation.css";
 import "../css/MyPage_MemInfoCss.css";
 import { useForm } from "react-hook-form";
 import { useEffect } from 'react';
-// import IMemberId from "../interfaces/IMemberId";
-// import MemberIdService from '../service/MemberIdService';
+import IMemberId from "../interfaces/IMemberId";
+import MemberIdService from '../service/MemberIdService';
 import UserService from '../service/UserService';
 import IUser from '../interfaces/IUser';
 import IBusiness from '../interfaces/IBusiness';
@@ -114,97 +114,6 @@ function CeoModify() {
     alert("입력하신 이메일로 인증메일을 보냈습니다.");
   }
 
-    return (
-        <>
-            <Form className="aa pl-5" onSubmit={handleSubmit(onValid)}>
-                <Row className="my-5">
-                    <Col>
-                        <div
-                            style={{width: "170px", height: "200px", margin: "3vh 0 0 0", border: "1px solid #dbdbdb"}}>
-                            <Figure style={{width: "170px", height: "200px"}}>
-                                <Figure.Image
-                                    width={170}
-                                    height={200}
-                                    alt="프로필 사진"
-                                />
-                            </Figure>
-                        </div>
-                        <div style={{margin: "1vh 0"}}>
-                            <label className="btn btn-white" htmlFor="ppimage" style={{
-                                overflow: "hidden",
-                                border: "1px solid #dbdbdb",
-                                fontWeight: "bold",
-                                padding: ".3vw .75vw",
-                                borderRadius: "5px"
-                            }}>
-                                프로필 사진 업로드<input type="file" style={{display: "none"}} id="ppimage" accept='image/*'
-                                                 {...register("profile_image_id")}/>
-                            </label>
-
-                            <label className="btn btn-white" htmlFor="ppimage" style={{
-                                    overflow: "hidden",
-                                    border: "1px solid #dbdbdb",
-                                    fontWeight: "bold",
-                                    padding: ".3vw .75vw",
-                                    borderRadius: "5px",
-                                    marginLeft:"1vw"
-                                }}>
-                                    프로필 사진 삭제<input type="reset" style={{display: "none"}} onClick={deleteImage}/>
-                                </label>
-                        </div>
-
-                        <Form.Group style={{marginTop: "1vh"}}>
-                            <Form.Label>상호명</Form.Label>
-                            <div style={{width: "100%", display: "flex"}}>
-                                <Form.Control type="text" name="business_name" id="business_name" {...register("business_name",{required:"상호명을 입력하세요"})}/>
-
-                            </div>
-                        </Form.Group>
-
-                        <Form.Group className="my-3">
-                            <Form.Label>비밀번호</Form.Label>
-                            <Form.Control type="password" name="business_password" id="business_password" {...register("business_password",{required:"비밀번호를 입력하세요",pattern:{value:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,message:" 8자리 이상 문자,숫자,특수문자를 섞어서 입력하세요."}})}/>
-                        </Form.Group>
-
-                        <Form.Group className="my-3">
-                            <Form.Label>비밀번호 확인</Form.Label>
-                            <Form.Control type="password" placeholder="Password check" name="passwordCheck"/>
-                        </Form.Group>
-
-                        <Form.Group className="my-3">
-                            <Form.Label>사업자 번호</Form.Label>
-                            <Form.Control type="text"  name="business_number" id="business_number" {...register("business_number",{required:"사업자 번호를 입력하세요"})}/>
-                        </Form.Group>
-
-
-                        <Form.Group className="my-3">
-                            <Form.Label>전화번호</Form.Label>
-                            <div style={{width: "100%", display: "flex"}}>
-                                <Form.Control type="text" name="business_phone" id="business_phone" {...register("business_phone",{required:"전화번호를 입력하세요"})}/>
-                                <Button style={{width: "180px", textAlign: "center"}}
-                                        onClick={assignRequest}>인증요청</Button>
-                            </div>
-                        </Form.Group>
-
-                        <Form.Group className="my-3">
-                            <Form.Label>이메일</Form.Label>
-                            <div style={{width: "100%", display: "flex"}}>
-                                <Form.Control type="email" name="business_email" id="business_email" {...register("business_email",{required:"사업자이메일을 입력하세요",pattern:{value:/^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/,message:"이메일 형식이 아닙니다."}})} />
-                                <Button style={{width: "180px", textAlign: "center"}}
-                                        onClick={assignEmail}>인증요청</Button>
-                            </div>
-                        </Form.Group>
-
-                    </Col>
-                </Row>
-                 {/*  작성자: 황인성  */}
-                {/*  최종수정 날짜 2022.3.10  */}
-                <div style={{width: "100%", display: "flex", justifyContent: "center"}}>
-                    <Button variant="white" className="mypage_btn" type="submit" >
-                        <span>회원 정보 수정</span>
-                    </Button>
-                </div>
-                {/*    ----------------------------    */}
 
   return (
     <>
@@ -305,57 +214,56 @@ function CeoModify() {
 
 
 function MyPage_MemberModify() {
-    const {
-        setValue,
-        getValues,
-        register,
-        handleSubmit,
-        formState : {
-            errors
-        },
-        watch
-    } =useForm<IUser,IProfileImage>();
-    
-    const [show,setShow]=useState(false);
-    const [isCeo,setIsCeo]=useState(false);
-    const [isUser,setIsUser]=useState(true);
-    const [userId,setUserId]=useState<IUser["user_id"]>("1");
-    const [updateUserInfo,setUpdateUser]=useState<IUser>();
-    const [allUser,setAllUser]=useState<IUser[]>([]);
-    const [normalProfileId,setNormalFileId]=useState<IProfileImage["profile_image_id"]>();
-    const [normalProfile,setNormalProfile]=useState<IProfileImage>();
+  const {
+    setValue,
+    register,
+    handleSubmit,
+  } = useForm<IUser, IProfileImage>();
 
-    async function updateInfo(){
-        setUpdateUser(await UserService.getUserById(userId).then(res=>res.data));
+  const [show, setShow] = useState(false);
+  const [isCeo, setIsCeo] = useState(false);
+  const [isUser, setIsUser] = useState(true);
+  const [userId, setUserId] = useState<IUser["user_id"]>("");
+  const [updateUserInfo, setUpdateUser] = useState<IUser>();
+  const [normalProfileId, setNormalFileId] = useState<IProfileImage["profile_image_id"]>();
+  const [normalProfile, setNormalProfile] = useState<IProfileImage>();
+
+  async function updateInfo() {
+    setUpdateUser(await UserService.getUserById(userId).then(res => res.data));
+  }
+
+  async function updateImage() {
+    if (normalProfileId !== undefined) {
+      setNormalProfile(await ProfileImageService.getProfileImageById(normalProfileId).then(res => res.data));
     }
   }
 
-    async function getAllUser(){
-        setAllUser(await UserService.getUsers().then(res=>res.data));
+  async function deleteImage() {
+    if (normalProfileId !== undefined) {
+      await ProfileImageService.deleteProfileImage(normalProfileId).then(res => res.data);
     }
+  }
 
-    async function updateImage(){
-        if(normalProfileId !== undefined){
-            setNormalProfile(await ProfileImageService.getProfileImageById(normalProfileId).then(res=>res.data));
-        }
-    }
+  useEffect(() => {
+    updateImage();
+    updateInfo();
+  }, []);
 
-  
-
-    async function deleteImage(){
-        if(normalProfileId!==undefined){
-            await ProfileImageService.deleteProfileImage(normalProfileId).then(res=>res.data);
-        }
-    }
-
-    useEffect(()=>{
-        getAllUser();
-
-        updateImage();
-        updateInfo();
-    },[]);
-
-    const onValid : any=async({
+  const onValid: any = async ({
+    user_password,
+    user_birth,
+    user_email,
+    user_height,
+    user_nickname,
+    user_phone,
+    user_weights
+  }: IUser, {
+    profile_image_file,
+    profile_image_name
+  }: IProfileImage) => {
+    if (updateUserInfo !== undefined) {
+      let updateUsers: IUser = {
+        user_id: updateUserInfo.user_id,
         user_password,
         user_birth,
         user_email,
@@ -390,24 +298,23 @@ function MyPage_MemberModify() {
     }
   }
 
-  
+  const onImageChange = async ({
+    profile_image_file,
+    profile_image_name
+  }: IProfileImage) => {
+
 
   }
 
-    const compareNickname=()=>{
-        if(updateUserInfo !== undefined){
-            const newNickname=watch("user_nickname");
-            console.log(newNickname);
-            if(updateUserInfo.user_nickname === newNickname){
-                alert("이미 존재하는 닉네임 이거나 사용불가능한 닉네임입니다");
-            }else{
-                alert("사용가능한 닉네임입니다.");
-            }
-        }
-    }
-
-    const assignRequest = () => {
-        alert("입력하신 전화번호로 인증요청을 보냈습니다");
+  const compareId = () => {
+    if (updateUserInfo !== undefined) {
+      if (updateUserInfo.user_is_ad === true) {
+        setIsUser(false);
+        setIsCeo(true);
+      } else {
+        setIsUser(true);
+        setIsCeo(false);
+      }
     }
   }
 
@@ -540,142 +447,17 @@ function MyPage_MemberModify() {
                   <Button style={{ width: "180px", textAlign: "center" }}
                     onClick={assignEmail}>인증요청</Button>
                 </div>
-            </div>
-            <div className="aa containerCss">
-                {isUser && <Form className="pl-5" onSubmit={handleSubmit(onValid)}>
-                    <Row className="my-5">
-                        <Col>
-                            <div style={{
-                                width: "170px",
-                                height: "200px",
-                                margin: "3vh 0 0 0",
-                                border: "1px solid #dbdbdb"
-                            }}>
-                                <Figure style={{width: "170px", height: "200px"}}>
-                                    <Figure.Image
-                                        width={170}
-                                        height={200}
-                                        alt="프로필 사진"
-                                        {...normalProfile?.profile_image_file}
-                                    />
-                                </Figure>
-                            </div>
-                            <div style={{margin: "1vh 0",display:"flex"}}>
-                                <label className="btn btn-white" htmlFor="ppimage" style={{
-                                    overflow: "hidden",
-                                    border: "1px solid #dbdbdb",
-                                    fontWeight: "bold",
-                                    padding: ".3vw .75vw",
-                                    borderRadius: "5px"
-                                }}>
-                                    프로필 사진 업로드<input type="file" style={{display: "none"}} id="ppimage" accept='image/*'
-                                                    {...register("profile_image_id")}/>
-                                </label>
+              </Form.Group>
 
-                                <label className="btn btn-white" htmlFor="ppimage" style={{
-                                    overflow: "hidden",
-                                    border: "1px solid #dbdbdb",
-                                    fontWeight: "bold",
-                                    padding: ".3vw .75vw",
-                                    borderRadius: "5px",
-                                    marginLeft:"1vw"
-                                }}>
-                                    프로필 사진 삭제<input type="reset" style={{display: "none"}} onClick={deleteImage}/>
-                                </label>
-                            </div>
+              <Form.Group controlId="formGridEmail" style={{ marginTop: "3vh", boxSizing: "border-box" }}>
+                <label style={{ margin: "1vw 0" }}>체형</label>
+                <div style={{ display: "flex" }}>
+                  <Form.Label style={{ width: "20vw", textAlign: "center", marginTop: ".6vw" }}>키</Form.Label>
+                  <div style={{ width: "100%", display: "flex" }}>
+                    <Form.Control type="text" name="height" id="user_height" {...register("user_height", { required: "키를 입력하세요" })}
+                    />
 
-
-                            
-
-
-                            <Form.Group style={{marginTop: "1vh"}}>
-                                <Form.Label>닉네임</Form.Label>
-                                <div style={{width: "100%", display: "flex"}}>
-                                    <Form.Control type="text" name="nickname" id="user_nickname" {...register("user_nickname",{required : "닉네임을 입력하세요",minLength:8})}
-                                                 />
-                                    <Button style={{width: "180px", textAlign: "center"}} onClick={compareNickname}>닉네임중복
-                                        확인</Button>
-                                </div>
-                    
-                            </Form.Group>
-
-
-
-                            <Form.Group className="my-3">
-                                <Form.Label>비밀번호</Form.Label>
-                                <Form.Control type="password" name="password" id="user_password"
-                                        {...register("user_password",{required:"비밀번호를 입력하세요",pattern:{value:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,message:" 8자리 이상 문자,숫자,특수문자를 섞어서 입력하세요."}})}
-                                              />
-                                {errors && <h1>{errors?.user_password?.message}</h1>}
-                            </Form.Group>
-
-                            <Form.Group className="my-3">
-                                <Form.Label>비밀번호 확인</Form.Label>
-                                <Form.Control type="password" placeholder="Password check" name="passwordCheck" id="user_passwordCheck" {...register({minLength:8,maxLength:12})} 
-                                              />
-                            </Form.Group>
-
-                            <Form.Group className="my-3">
-                                <Form.Label>생년월일</Form.Label>
-                                <Form.Control type="date" name="birth" id="user_birth" {...register("user_birth",{required:"생년월일을 입력하세요"})}/>
-                            </Form.Group>
-
-
-                            <Form.Group className="my-3">
-                                <Form.Label>전화번호</Form.Label>
-                                <div style={{width: "100%", display: "flex"}}>
-                                    <Form.Control type="text" name="phoneNumber" id="user_phone" {...register("user_phone",{required:"전화번호를 입력하세요"})}
-                                                  />
-                                    <Button style={{width: "180px", textAlign: "center"}}
-                                            onClick={assignRequest}>인증요청</Button>
-                                </div>
-                            </Form.Group>
-
-                            <Form.Group className="my-3">
-                                <Form.Label>이메일</Form.Label>
-                                <div style={{width: "100%", display: "flex"}}>
-                                    <Form.Control type="email" name="email" id="user_email" {...register("user_email",{required :"이메일을 입력하세요",pattern:{value:/^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/,message:"이메일 형식이 아닙니다."}})}
-                                                  />
-                                    <Button style={{width: "180px", textAlign: "center"}}
-                                            onClick={assignEmail}>인증요청</Button>
-                                </div>
-                            </Form.Group>
-
-                            <Form.Group style={{marginTop: "3vh",boxSizing:"border-box"}}>
-                                <label style={{margin:"1vw 0"}}>체형</label>
-                                <div style={{display:"flex"}}>
-                                    <Form.Label style={{width:"20vw",textAlign:"center",marginTop:".6vw"}}>키</Form.Label>
-                                    <div style={{width: "100%", display: "flex"}}>
-                                        <Form.Control type="text" name="height" id="user_height" {...register("user_height",{required:"키를 입력하세요"})}
-                                                   />
-                                    
-                                    </div>
-
-                                    <Form.Label style={{width:"20vw",textAlign:"center",marginTop:".6vw"}}>몸무게</Form.Label>
-                                    <div style={{width: "100%", display: "flex"}}>
-                                        <Form.Control type="text" name="weight" id="user_weights" {...register("user_weights",{required:"몸무게를입력하세요"})}
-                                                    />
-                                    
-                                    </div>
-                                </div>
-                            </Form.Group>
-
-                        </Col>
-                    </Row>
-
-                        {/*  작성자: 황인성  */}
-                        {/*  최종수정 날짜 2022.3.10  */}
-                        <div style={{width: "100%", display: "flex", justifyContent: "center"}}>
-                            <Button variant="white" className="mypage_btn" onClick={openModal}>
-                                <span>회원 정보 수정</span>
-                            </Button>
-                        </div>
-                        {/*    ----------------------------    */}
-                </Form>}
-                {isCeo && <CeoModify />}
-
-               
-            </div>
+                  </div>
 
                   <Form.Label style={{ width: "20vw", textAlign: "center", marginTop: ".6vw" }}>몸무게</Form.Label>
                   <div style={{ width: "100%", display: "flex" }}>
