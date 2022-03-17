@@ -52,10 +52,6 @@ function LoginMember() {
     let kakaoid = e.profile.id;
   };
 
-  const clickSnsLoginGoogle = (e) => {
-    let googleid = e.Ft.NT;
-  };
-
   const onIdHandler = (e) => {
     setId(e.currentTarget.value);
   };
