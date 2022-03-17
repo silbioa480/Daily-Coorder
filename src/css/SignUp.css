@@ -148,11 +148,16 @@
     font-weight: bold;
 }
 
+.signup_btn {
+  
+}
+
+
 /* 작성자: 황인성 */
 /* 최종수정 날짜 2022.3.10 */
 
 /* 버튼 */
-.signup_btn_out {
+/* .signup_btn_out {
     text-align: center;
 }
 
@@ -224,7 +229,7 @@
 .signup_btn:hover:after {
     transform: translateX(45%);
 
-}
+} */
 
 /*-------------------------------*/
 
