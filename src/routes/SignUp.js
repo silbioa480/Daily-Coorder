@@ -11,6 +11,8 @@ import MemberIdService from "../service/MemberIdService";
 import BusinessService from "../service/BusinessService";
 import ProfileImageService from "../service/ProfileImageService";
 import { useHistory } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { saltKey } from "../atom";
 
 function SignUp() {
   //모달관련
@@ -22,6 +24,8 @@ function SignUp() {
   });
 
   const history = new useHistory();
+
+  const salt = useRecoilValue(saltKey);
 
   //일반회원
   const [fileImage, setFileImage] = useState("/signup/profile.png");
@@ -421,7 +425,7 @@ function SignUp() {
       open: true,
       title: "회원가입 성공♡♡",
       message: "회원가입에 성공했습니다!!!!",
-      callback: function () { },
+      callback: function () {},
     });
 
     history.push("/login");
@@ -446,7 +450,7 @@ function SignUp() {
     );
 
     let CryptoJS = require("crypto-js");
-    let hash = CryptoJS.AES.encrypt(Password, "salt").toString();
+    let hash = CryptoJS.AES.encrypt(Password, salt).toString();
 
     let pro = {
       business_id: proId,
@@ -477,7 +481,7 @@ function SignUp() {
       open: true,
       title: "회원가입 성공♡♡",
       message: "회원가입에 성공했습니다!!!!",
-      callback: function () { },
+      callback: function () {},
     });
 
     history.push("/login");
@@ -501,7 +505,7 @@ function SignUp() {
     let exist;
     try {
       exist = await MemberIdService.getIdById(Id);
-    } catch (err) { }
+    } catch (err) {}
     if (exist !== undefined) {
       setPopup({
         open: true,
