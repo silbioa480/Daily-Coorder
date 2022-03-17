@@ -154,7 +154,7 @@ function CeoModify() {
                                 </label>
                         </div>
 
-                        <Form.Group controlId="formGridEmail" style={{marginTop: "1vh"}}>
+                        <Form.Group style={{marginTop: "1vh"}}>
                             <Form.Label>상호명</Form.Label>
                             <div style={{width: "100%", display: "flex"}}>
                                 <Form.Control type="text" name="business_name" id="business_name" {...register("business_name",{required:"상호명을 입력하세요"})}/>
@@ -162,17 +162,17 @@ function CeoModify() {
                             </div>
                         </Form.Group>
 
-                        <Form.Group className="my-3" controlId="formGridPassword">
+                        <Form.Group className="my-3">
                             <Form.Label>비밀번호</Form.Label>
                             <Form.Control type="password" name="business_password" id="business_password" {...register("business_password",{required:"비밀번호를 입력하세요",pattern:{value:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,message:" 8자리 이상 문자,숫자,특수문자를 섞어서 입력하세요."}})}/>
                         </Form.Group>
 
-                        <Form.Group className="my-3" controlId="formGridPassword">
+                        <Form.Group className="my-3">
                             <Form.Label>비밀번호 확인</Form.Label>
                             <Form.Control type="password" placeholder="Password check" name="passwordCheck"/>
                         </Form.Group>
 
-                        <Form.Group className="my-3" controlId="formGridPassword">
+                        <Form.Group className="my-3">
                             <Form.Label>사업자 번호</Form.Label>
                             <Form.Control type="text"  name="business_number" id="business_number" {...register("business_number",{required:"사업자 번호를 입력하세요"})}/>
                         </Form.Group>
@@ -216,6 +216,7 @@ function CeoModify() {
 function MyPage_MemberModify() {
     const {
         setValue,
+        getValues,
         register,
         handleSubmit,
     } =useForm<IUser,IProfileImage>();
@@ -225,11 +226,16 @@ function MyPage_MemberModify() {
     const [isUser,setIsUser]=useState(true);
     const [userId,setUserId]=useState<IUser["user_id"]>("");
     const [updateUserInfo,setUpdateUser]=useState<IUser>();
+    const [allUser,setAllUser]=useState<IUser[]>([]);
     const [normalProfileId,setNormalFileId]=useState<IProfileImage["profile_image_id"]>();
     const [normalProfile,setNormalProfile]=useState<IProfileImage>();
 
     async function updateInfo(){
         setUpdateUser(await UserService.getUserById(userId).then(res=>res.data));
+    }
+
+    async function getAllUser(){
+        setAllUser(await UserService.getUsers().then(res=>res.data));
     }
 
     async function updateImage(){
@@ -238,6 +244,8 @@ function MyPage_MemberModify() {
         }
     }
 
+  
+
     async function deleteImage(){
         if(normalProfileId!==undefined){
             await ProfileImageService.deleteProfileImage(normalProfileId).then(res=>res.data);
@@ -245,6 +253,8 @@ function MyPage_MemberModify() {
     }
 
     useEffect(()=>{
+        getAllUser();
+
         updateImage();
         updateInfo();
     },[]);
@@ -298,13 +308,7 @@ function MyPage_MemberModify() {
         }
     }
 
-    const onImageChange=async ({
-        profile_image_file,
-        profile_image_name
-    }:IProfileImage)=>{
-        
-
-    }
+  
 
     const compareId=()=>{
         if(updateUserInfo !== undefined){
@@ -315,6 +319,18 @@ function MyPage_MemberModify() {
             setIsUser(true);
             setIsCeo(false);
            }
+        }
+    }
+
+    const compareNickname=()=>{
+        if(updateUserInfo !== undefined){
+            const newNickname=getValues("user_nickname");
+            console.log(newNickname);
+            if(updateUserInfo.user_nickname === newNickname){
+                alert("이미 존재하는 닉네임 이거나 사용불가능한 닉네임입니다");
+            }else{
+                alert("사용가능한 닉네임입니다.");
+            }
         }
     }
 
@@ -392,28 +408,28 @@ function MyPage_MemberModify() {
                             
 
 
-                            <Form.Group controlId="formGridEmail" style={{marginTop: "1vh"}}>
+                            <Form.Group style={{marginTop: "1vh"}}>
                                 <Form.Label>닉네임</Form.Label>
                                 <div style={{width: "100%", display: "flex"}}>
                                     <Form.Control type="text" name="nickname" id="user_nickname" {...register("user_nickname",{required : "닉네임을 입력하세요",minLength:8})}
                                                  />
-                                    <Button style={{width: "180px", textAlign: "center"}} >닉네임중복
+                                    <Button style={{width: "180px", textAlign: "center"}} onClick={compareNickname}>닉네임중복
                                         확인</Button>
                                 </div>
                             </Form.Group>
 
 
 
-                            <Form.Group className="my-3" controlId="formGridPassword">
+                            <Form.Group className="my-3">
                                 <Form.Label>비밀번호</Form.Label>
                                 <Form.Control type="password" name="password" id="user_password"
                                         {...register("user_password",{required:"비밀번호를 입력하세요",pattern:{value:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,message:" 8자리 이상 문자,숫자,특수문자를 섞어서 입력하세요."}})}
                                               />
                             </Form.Group>
 
-                            <Form.Group className="my-3" controlId="formGridPassword">
+                            <Form.Group className="my-3">
                                 <Form.Label>비밀번호 확인</Form.Label>
-                                <Form.Control type="password" placeholder="Password check" name="passwordCheck" {...register({minLength:8,maxLength:12})} 
+                                <Form.Control type="password" placeholder="Password check" name="passwordCheck" id="user_passwordCheck" {...register({minLength:8,maxLength:12})} 
                                               />
                             </Form.Group>
 
@@ -443,7 +459,7 @@ function MyPage_MemberModify() {
                                 </div>
                             </Form.Group>
 
-                            <Form.Group controlId="formGridEmail" style={{marginTop: "3vh",boxSizing:"border-box"}}>
+                            <Form.Group style={{marginTop: "3vh",boxSizing:"border-box"}}>
                                 <label style={{margin:"1vw 0"}}>체형</label>
                                 <div style={{display:"flex"}}>
                                     <Form.Label style={{width:"20vw",textAlign:"center",marginTop:".6vw"}}>키</Form.Label>
