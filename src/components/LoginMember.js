@@ -163,15 +163,15 @@ function LoginMember() {
       return;
     }
 
+    setIsLogin(true);
+    setMemberId(memberId);
+
     setPopup({
       open: true,
       title: "축축!! 로그인 성공",
       message: "환영합니다!!!!",
       callback: function () {},
     });
-
-    setIsLogin(true);
-    setMemberId(memberId);
 
     history.push("/");
 
