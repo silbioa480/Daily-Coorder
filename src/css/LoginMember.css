@@ -57,10 +57,15 @@
 /* 최종수정 날짜 2022.3.10 */
 
 /* 버튼 */
-.login_button {
+.common_button_box {
+  display: flex;
+  justify-content: center;
+}
+
+.common_button {
     border-radius: 20px;
     display: inline-block;
-    width: 32%;
+    width: 50%;
     height: 34px;
     font-size: 17px;
     padding: 7px 15px;
@@ -76,7 +81,7 @@
 
 }
 
-.login_button > span {
+.common_button > span {
     display: block;
     position: relative;
     transition: all 0.4s ease-in-out;
@@ -84,19 +89,19 @@
 
 }
 
-.login_button:hover span {
+.common_button:hover span {
     color: white;
 
 
 }
 
-.login_button_out {
+.common_button_out {
     text-align: center;
 
 }
 
-.login_button:before,
-.login_button:after {
+.common_button:before,
+.common_button:after {
     content: '';
     position: absolute;
     top: 0;
@@ -108,21 +113,21 @@
     transition: all 0.5s ease-in-out;
 }
 
-.login_button:before {
+.common_button:before {
     transform: translateX(-100%);
 
 }
 
-.login_button:after {
+.common_button:after {
     transform: translateX(100%);
 }
 
-.login_button:hover:before {
+.common_button:hover:before {
     transform: translateX(-45%);
 
 }
 
-.login_button:hover:after {
+.common_button:hover:after {
     transform: translateX(45%);
 
 }

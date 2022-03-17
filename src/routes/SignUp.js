@@ -1266,9 +1266,9 @@ function SignUp() {
               </div>
             </details>
 
-            <div className='btn-box'>
+            <div className="common_button_out">
               <button
-                className="signup_btn"
+                className="common_button"
                 type="button"
                 onClick={onProSubmitHandler}
               >

@@ -170,7 +170,7 @@ function LoginMember() {
       open: true,
       title: "축축!! 로그인 성공",
       message: "환영합니다!!!!",
-      callback: function () {},
+      callback: function () { },
     });
 
     history.push("/");
@@ -235,9 +235,9 @@ function LoginMember() {
               <Link to="/login/PasswordSearch"> 비밀번호 찾기</Link>
             </div>
           </div>
-          <div className="login_button_out">
+          <div className="common_button_out">
             <button
-              className=" login_button"
+              className="common_button"
               type="button"
               onClick={onSubmitHandler}
             >
