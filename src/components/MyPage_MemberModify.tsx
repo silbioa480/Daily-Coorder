@@ -471,14 +471,11 @@ function MyPage_MemberModify() {
             </Col>
           </Row>
 
-          {/*  작성자: 황인성  */}
-          {/*  최종수정 날짜 2022.3.10  */}
-          <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
-            <Button variant="white" className="mypage_btn" onClick={openModal}>
-              <span>회원 정보 수정</span>
-            </Button>
+          <div style={{ width: "100%", display: "flex", justifyContent: "center", marginBottom: "30px" }}>
+            <button className="mypage_btn" onClick={openModal}>
+              회원 정보 수정
+            </button>
           </div>
-          {/*    ----------------------------    */}
         </Form>}
         {isCeo && <CeoModify />}
 

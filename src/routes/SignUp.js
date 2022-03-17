@@ -1266,13 +1266,13 @@ function SignUp() {
               </div>
             </details>
 
-            <div className="common_button_out">
+            <div className="btn-box">
               <button
                 className="common_button"
                 type="button"
                 onClick={onProSubmitHandler}
               >
-                회원가입
+                <span>회 원 가 입</span>
               </button>
             </div>
           </Tab>

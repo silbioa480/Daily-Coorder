@@ -222,13 +222,13 @@ function LoginMember() {
               <Link to="/login/PasswordSearch"> 비밀번호 찾기</Link>
             </div>
           </div>
-          <div className="common_button_out">
+          <div className="common_button_box">
             <button
               className="common_button"
               type="button"
               onClick={onSubmitHandler}
             >
-              <span>Login</span>
+              <span>Log In</span>
             </button>
           </div>
 
