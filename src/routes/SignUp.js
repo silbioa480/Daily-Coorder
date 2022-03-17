@@ -422,7 +422,7 @@ function SignUp() {
       open: true,
       title: "회원가입 성공♡♡",
       message: "회원가입에 성공했습니다!!!!",
-      callback: function () {},
+      callback: function () { },
     });
 
     history.push("/login");
@@ -500,7 +500,7 @@ function SignUp() {
     let exist;
     try {
       exist = await MemberIdService.getIdById(Id);
-    } catch (err) {}
+    } catch (err) { }
     if (exist !== undefined) {
       setPopup({
         open: true,
@@ -923,11 +923,11 @@ function SignUp() {
               </div>
             </details>
 
-            <div>
+            <div className='common_button_box'>
               <button
                 type="button"
                 onClick={onSubmitHandler}
-                className="signup_btn"
+                className="common_button"
               >
                 <b>회 원 가 입</b>
               </button>
@@ -1253,11 +1253,11 @@ function SignUp() {
               </div>
             </details>
 
-            <div className="btn-box">
+            <div className="common_button_box">
               <button
-                className="common_button"
                 type="button"
                 onClick={onProSubmitHandler}
+                className="common_button"
               >
                 <span>회 원 가 입</span>
               </button>

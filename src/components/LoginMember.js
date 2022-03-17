@@ -169,7 +169,7 @@ function LoginMember() {
       open: true,
       title: "축축!! 로그인 성공",
       message: "환영합니다!!!!",
-      callback: function () {},
+      callback: function () { },
     });
 
     history.push("/");
@@ -178,7 +178,7 @@ function LoginMember() {
   };
 
   return (
-    <div className="login-container" style={{ height: "880px" }}>
+    <div className="login-container">
       <div className="login_member">
         <PopUp
           open={popup.open}
