@@ -16,7 +16,7 @@ interface IUser {
   user_is_location: boolean;
   user_is_admin: boolean;
   user_signup_date: Date;
-  user_update_date: Date;
+  user_update_date?: Date;
 
   [key: string]: any;
 }
