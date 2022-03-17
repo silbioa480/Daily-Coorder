@@ -9,7 +9,7 @@ class AdImageService {
     return axios.get<IAdImage[]>(AD_IMAGE_API_BASE_URL);
   }
 
-  createAdImage(ad_image: IAdImage) {
+  createAdImage(ad_image: FormData) {
     return axios.post(AD_IMAGE_API_BASE_URL, ad_image);
   }
 

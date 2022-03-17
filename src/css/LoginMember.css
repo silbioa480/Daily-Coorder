@@ -133,19 +133,6 @@
     margin-bottom: 30px;
 }
 
-.social_google {
-    border-radius: 20px;
-    background-color: white;
-    filter: brightness(85%);
-    border-color: black;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
-    margin-bottom: 10px;
-
-}
 
 .social_naver {
     border-radius: 20px;

@@ -1,4 +1,4 @@
-import {createGlobalStyle} from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
   html, body, div, span, applet, object, iframe,
@@ -49,16 +49,24 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
   
-    font-family: 'Ageo', sans-serif;
-    background-color: ${({theme}) => theme.bgColor};
-    color: ${({theme}) => theme.textColor};
+   font-family: 'EliceDigitalBaeum';
+    background-color: ${({ theme }) => theme.bgColor};
+    color: ${({ theme }) => theme.textColor};
     margin: 0;
     max-width: 100%;
     -ms-overflow-style: none;
     
-    @font-face {
-    src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/2479807/ageo-regular.woff2') format('woff2');
-    font-family: 'Ageo';
+@font-face {
+    font-family: 'EliceDigitalBaeum';
+    font-weight: 400;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/elice/EliceDigitalBaeumRegular.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/elice/EliceDigitalBaeumRegular.eot?#iefix') format('embedded-opentype'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/elice/EliceDigitalBaeumRegular.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/elice/EliceDigitalBaeumRegular.woff') format('woff'),
+         url('https://cdn.jsdelivr.net/gh/webfontworld/elice/EliceDigitalBaeumRegular.ttf') format("truetype");
+    font-display: swap;
+} 
     
 }
 }
@@ -74,9 +82,9 @@ const GlobalStyle = createGlobalStyle`
   a {
     text-decoration: none;
     transition: color 0.3s ease-in;
-    color: ${({theme}) => theme.textColor};
+    color: ${({ theme }) => theme.textColor};
     &:hover {
-      color: #00C8A1;
+      color: #FED501;
     }
   }
 `;

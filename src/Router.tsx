@@ -9,11 +9,13 @@ import Upload from "./routes/Upload";
 import LogIn from "./routes/LogIn";
 import SignUp from "./routes/SignUp";
 import Follower from "./routes/Follower";
-import Footer from './routes/Footer';
+import Footer from "./routes/Footer";
+import ScrollTop from "./ScrollTop";
 
 function Router() {
   return (
     <BrowserRouter>
+      <ScrollTop />
       <Navigation />
 
       <Section>
@@ -50,7 +52,6 @@ function Router() {
             <Main />
           </Route>
         </Switch>
-
       </Section>
 
       <Footer />

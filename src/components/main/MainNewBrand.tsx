@@ -7,98 +7,27 @@ import MainComponent5 from "./MainComponent5";
 // css
 import "../../css/main/MainNewBrand.css";
 import "../../css/main/animation.css";
-
-// 사진
-import mainbran1 from "../../img/main/mainbran1.png";
-import mainbran2 from "../../img/main/mainbran2.png";
-import mainbran3 from "../../img/main/mainbran3.png";
-import mainbran4 from "../../img/main/mainbran4.png";
-import mainbran5 from "../../img/main/mainbran5.png";
-import mainbran6 from "../../img/main/mainbran6.png";
-import mainbran7 from "../../img/main/mainbran7.png";
-import mainbran8 from "../../img/main/mainbran8.png";
-import mainbran9 from "../../img/main/mainbran9.png";
-import mainbran10 from "../../img/main/mainbran10.png";
-import IUser from "../../interfaces/IUser";
 import IBoard from "../../interfaces/IBoard";
+import IBusiness from "../../interfaces/IBusiness";
 import FollowService from "../../service/FollowService";
 import BoardService from "../../service/BoardService";
+import IUser from "../../interfaces/IUser";
 
-function MainAnother() {
-    const datas = [
-        {
-            id: 1,
-            title: mainbran1,
-            name: "@official_Thursday Island",
-            liked: 142,
-            followed: 312,
-        },
-        {
-            id: 2,
-            title: mainbran2,
-            name: "@official_Thursday Island",
-            liked: 109,
-            followed: 312,
-        },
-        {
-            id: 3,
-            title: mainbran3,
-            name: "@official_Thursday Island",
-            liked: 46,
-            followed: 312,
-        },
-        {
-            id: 4,
-            title: mainbran4,
-            name: "@official_Thursday Island",
-            liked: 79,
-            followed: 312,
-        },
-        {
-            id: 5,
-            title: mainbran5,
-            name: "@official_Thursday Island",
-            liked: 167,
-            followed: 312,
-        },
-        {
-            id: 6,
-            title: mainbran6,
-            name: "@official_Thursday Island",
-            liked: 82,
-            followed: 312,
-        },
-        {
-            id: 7,
-            title: mainbran7,
-            name: "@official_Thursday Island",
-            liked: 51,
-            followed: 312,
-        },
-        {
-            id: 8,
-            title: mainbran8,
-            name: "@official_Thursday Island",
-            liked: 83,
-            followed: 312,
-        },
-        {
-            id: 9,
-            title: mainbran9,
-            name: "@official_Thursday Island",
-            liked: 143,
-            followed: 312,
-        },
-        {
-            id: 10,
-            title: mainbran10,
-            name: "@official_Thursday Island",
-            liked: 174,
-            followed: 312,
-        },
-    ];
+// 사진
 
-    const [myId, setMyId] = useState<IUser["user_id"]>("");
+function MainNewBrand() {
+
+    const [business, setBusiness] = useState<IBusiness>();
+    const [board, setBoard] = useState<IBoard[]>([]);
+
+
+    // 비즈니스 테이블 다 가져온다.
+    // 게시물 다 가져와서 10개 자르고
+    // 맵으로 돌려서 getBoardByUserId
+    // 최근 데이트순으로 5개 혹은 10개 가져온다.
+
+
+    const [myId, setMyId] = useState<IUser["user_id"]>("1");
     const [myFollowers, setMyFollowers] = useState<IUser["user_id"][]>([]);
     const [followerBoards, setFollowerBoards] = useState<IBoard[]>([]);
 
@@ -120,8 +49,9 @@ function MainAnother() {
     }
 
     useEffect(() => {
-        getFollowersId();
-        getFollowerBoard();
+        // getBusinessByName();
+        // getBoardByBusinessName();
+
     }, []);
 
     const renderRepeat = followerBoards.map((data) => {
@@ -129,7 +59,7 @@ function MainAnother() {
     });
     return (
         <>
-            <div className="bb mainfollow-text">New In Thursday Island</div>
+            <div className="bb mainfollow-text">New Brand</div>
             <hr className="bb Line"></hr>
             <div className="bb wth">
                 <Carousel fade className="carousel-dark anothercar" style={{width: "1400px"}}>
@@ -145,4 +75,4 @@ function MainAnother() {
     );
 }
 
-export default MainAnother;
+export default MainNewBrand;

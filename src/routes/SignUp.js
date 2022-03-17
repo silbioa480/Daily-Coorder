@@ -7,6 +7,10 @@ import PopUp from "../components/PopUp";
 import "../css/SignUp.css";
 import "../css/main/animation.css";
 import UserService from "../service/UserService";
+import MemberIdService from "../service/MemberIdService";
+import BusinessService from "../service/BusinessService";
+import ProfileImageService from "../service/ProfileImageService";
+import { useHistory } from "react-router-dom";
 
 function SignUp() {
   //모달관련
@@ -17,6 +21,8 @@ function SignUp() {
     callback: false,
   });
 
+  const history = new useHistory();
+
   //일반회원
   const [fileImage, setFileImage] = useState("/signup/profile.png");
   const [name, setName] = useState("");
@@ -25,9 +31,10 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [nickname, setNickname] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [height, setHeight] = useState("");
-  const [weight, setWeight] = useState("");
+  const [height, setHeight] = useState(0);
+  const [weight, setWeight] = useState(0);
   const [birth, setBirth] = useState("");
+  const [imageFile, setImageFile] = useState();
 
   const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -90,6 +97,7 @@ function SignUp() {
     setProName(e.currentTarget.value);
   };
   const saveFileImage = (e) => {
+    setImageFile(e.target.files[0]);
     setFileImage(URL.createObjectURL(e.target.files[0]));
   };
 
@@ -355,7 +363,7 @@ function SignUp() {
     else return false;
   };
 
-  const onSubmitHandler = (e) => {
+  const onSubmitHandler = async (e) => {
     e.preventDefault();
 
     if (!validation1()) {
@@ -365,18 +373,61 @@ function SignUp() {
         message: "기입사항을 정확하게 기입해주세요!!",
       });
       return;
-    } else {
     }
+
+    let formData = new FormData();
+    formData.append("file", imageFile);
+
+    let i = await ProfileImageService.createProfileImage(formData).then(
+      (res) => res.data
+    );
+
+    let sel = document.getElementById("gender");
+    let val = sel.options[sel.selectedIndex].value === "M";
+
+    let CryptoJS = require("crypto-js");
+    let hash = CryptoJS.AES.encrypt(Password, "salt").toString();
+
+    let user = {
+      user_id: Id,
+      user_profile: i,
+      user_password: hash,
+      user_name: name,
+      user_nickname: nickname,
+      user_phone: phoneNumber,
+      user_email: email,
+      user_gender: val,
+      user_birth: new Date(birth),
+      user_weights: weight,
+      user_height: height,
+      user_follow_number: 0,
+      user_follower_number: 0,
+      user_is_ad: marketingCheck,
+      user_is_location: gpsCheck,
+      user_is_admin: false,
+      user_signup_date: new Date(),
+    };
+
+    await UserService.createUser(user);
+
+    let member = {
+      member_id: Id,
+      is_business: false,
+    };
+
+    await MemberIdService.createId(member);
+
     setPopup({
       open: true,
       title: "회원가입 성공♡♡",
       message: "회원가입에 성공했습니다!!!!",
       callback: function () {},
     });
-    if (validation1()) return;
+
+    history.push("/login");
   };
 
-  const onProSubmitHandler = (e) => {
+  const onProSubmitHandler = async (e) => {
     e.preventDefault();
     if (!validation2()) {
       setPopup({
@@ -385,15 +436,51 @@ function SignUp() {
         message: "기입사항을 정확하게 기입해주세요!!",
       });
       return;
-    } else {
     }
+
+    let formData = new FormData();
+    formData.append("file", imageFile);
+
+    let i = await ProfileImageService.createProfileImage(formData).then(
+      (res) => res.data
+    );
+
+    let CryptoJS = require("crypto-js");
+    let hash = CryptoJS.AES.encrypt(Password, "salt").toString();
+
+    let pro = {
+      business_id: proId,
+      business_profile: i,
+      business_password: hash,
+      business_name: proName,
+      business_number: proNumber,
+      business_phone: proPhone,
+      business_email: proEmail,
+      business_follow_number: 0,
+      business_follower_number: 0,
+      business_is_ad: marketingCheck,
+      business_is_location: gpsCheck,
+      business_signup_date: new Date(),
+    };
+
+    await BusinessService.createBusiness(pro);
+
+    let member = {
+      member_id: Id,
+      member_password: hash,
+      is_business: false,
+    };
+
+    await MemberIdService.createId(member);
+
     setPopup({
       open: true,
       title: "회원가입 성공♡♡",
       message: "회원가입에 성공했습니다!!!!",
       callback: function () {},
     });
-    if (validation2()) return;
+
+    history.push("/login");
   };
 
   //아이디 중복확인 샘플 데이터가 없어서 일단 이렇게 만들었음
@@ -413,7 +500,7 @@ function SignUp() {
 
     let exist;
     try {
-      exist = await UserService.getUserById(Id);
+      exist = await MemberIdService.getIdById(Id);
     } catch (err) {}
     if (exist !== undefined) {
       setPopup({
@@ -430,24 +517,6 @@ function SignUp() {
       message: "사용가능 합니다!",
     });
   };
-  //     if (inputs.Id === value.Id) {
-  //         setPopup({
-  //             open: true,
-  //             title: "통과 !!",
-  //             message: "사용가능 합니다!",
-  //         });
-  //         return;
-  //     } else {
-  //     }
-  //     setPopup({
-  //         open: true,
-  //         title: "실패!",
-  //         message: "이미 사용중인 아이디입니다!!",
-  //         callback: function () {
-  //         },
-  //     });
-  // };
-
   return (
     <div className="bb signup">
       <PopUp
@@ -478,21 +547,13 @@ function SignUp() {
               </div>
               <div>
                 <label type="submit" className="signup_profile_upbtn">
-                  업로드
+                  프로필등록
                   <input
                     className="signup_profile_upbtn"
                     type="file"
                     accept="image/*"
                     style={{ display: "none" }}
                     onChange={saveFileImage}
-                  />
-                </label>
-                <label type="submit" className="signup_profile_delbtn">
-                  삭제하기
-                  <input
-                    className="signup_profile_delbtn"
-                    style={{ display: "none" }}
-                    onClick={() => deleteFileImage()}
                   />
                 </label>
               </div>
@@ -640,7 +701,7 @@ function SignUp() {
                 성별
               </label>
               <select className="signup_gender_control" id="gender">
-                <option value="M"> 남</option>
+                <option value="M">남</option>
                 <option value="F">여</option>
               </select>
             </div>
@@ -904,21 +965,13 @@ function SignUp() {
               </div>
               <div>
                 <label type="submit" className="signup_profile_upbtn">
-                  업로드
+                  로고등록
                   <input
                     className="signup_profile_upbtn"
                     type="file"
                     accept="image/*"
                     style={{ display: "none" }}
                     onChange={saveFileImage}
-                  />
-                </label>
-                <label type="submit" className="signup_profile_delbtn">
-                  삭제하기
-                  <input
-                    className="signup_profile_delbtn"
-                    style={{ display: "none" }}
-                    onClick={() => deleteFileImage()}
                   />
                 </label>
               </div>

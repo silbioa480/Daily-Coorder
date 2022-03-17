@@ -12,6 +12,7 @@ import IBoard from "../../interfaces/IBoard";
 import IUser from "../../interfaces/IUser";
 import UserService from "../../service/UserService";
 import FollowService from "../../service/FollowService";
+import BoardLikeService from "../../service/BoardLikeService";
 
 interface IProps {
     data: IBoard;
@@ -21,33 +22,55 @@ interface IProps {
 function MainComponent(props: IProps) {
     const [isShow, setIsShow] = useState<boolean>(false);
     const [isDone, setIsDone] = useState<boolean>(false);
-    const [poster, setPoster] = useState<IUser>();
-    const [myId, setMyId] = useState<IUser["user_id"]>("");
+    const [user, setUser] = useState<IUser>();
+    const [myId, setMyId] = useState<IUser["user_id"]>("1");
     const [isFollowed, setIsFollowed] = useState<boolean>(false);
+    const [isLiked, setIsLiked] = useState<boolean>(false);
 
-    // 유저 테이블 가져오기 Id로
-    async function getPoster() {
-        setPoster(await UserService.getUserById(props.data.board_poster).then(res => res.data));
+    let board = props.data;
+    let imageurl = "http://localhost:8080/api/board_img/" + board.board_url;
+
+    // isFollow ---------------------------------------------
+
+    // User_id 가져온다.
+    async function getUser() {
+        setUser(await UserService.getUserById(props.data.board_poster).then(res => res.data));
     }
 
-    //유저 테이블 가져옴 id를 통해서
-
+    // User_id로 follow 테이블 가져와서 isFollow 확인
     async function checkFollow() {
         try {
-            await FollowService.getCheckFollow(myId, poster?.user_id as string).then(res => res.data);
+            await FollowService.getCheckFollow(myId, user?.user_id as string).then(res => res.data);
             setIsFollowed(true);
         } catch {
             setIsFollowed(false);
         }
     }
 
+    // ----------------------------------------------------
+
+    // isLike ------------------------------------------------
+
+
+    async function checkLike() {
+        try {
+            await BoardLikeService.getCheckLike(props.data.board_id, myId).then(res => res.data);
+            setIsLiked(true);
+        } catch {
+            setIsLiked(false);
+        }
+    }
+
+    // ---------------------------------------------------------
+
     useEffect(() => {
-        getPoster();
+        getUser();
         checkFollow();
+        checkLike();
     }, []);
 
     // 가져온 테이블엣거 팔로우 숫자 가져오기
-    const [followed, setFollowed] = useState(poster?.user_follower_number);
+    const [followed, setFollowed] = useState(user?.user_follower_number);
     const [liked, setLiked] = useState(props.data.board_like_number);
     //                        ?  언디파인드 아닐떄만 접근해라
 
@@ -105,7 +128,7 @@ function MainComponent(props: IProps) {
     return (
         <div className="folpic">
             <Link to={`/board/{props.data.board_id}`} className="link">
-                <img className="d-block w-100" src={props.data.board_title} alt="1-1 slide"/>
+                <img className="d-block w-100" src={imageurl} alt="1-1 slide"/>
             </Link>
             <div className="group_icon">
                 <div className="like_logoA">
