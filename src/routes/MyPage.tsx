@@ -14,8 +14,8 @@ import MyPage_detailChartPage from "../components/MyPage_detailChartPage";
 
 
 function MyPage() {
-  
-  
+
+
   return (
     <>
       <MyPage_SideMenubar />
