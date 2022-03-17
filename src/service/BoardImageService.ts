@@ -9,7 +9,7 @@ class BoardImageService {
     return axios.get<IBoardImage[]>(BOARD_IMAGE_API_BASE_URL);
   }
 
-  createBoardImage(board_image: File) {
+  createBoardImage(board_image: FormData) {
     return axios.post(BOARD_IMAGE_API_BASE_URL, board_image);
   }
 
