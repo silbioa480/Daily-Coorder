@@ -8,8 +8,8 @@ import "../css/main/animation.css";
 import "../css/MyPage_MemInfoCss.css";
 import { useForm } from "react-hook-form";
 import { useEffect } from 'react';
-import IMemberId from "../interfaces/IMemberId";
-import MemberIdService from '../service/MemberIdService';
+// import IMemberId from "../interfaces/IMemberId";
+// import MemberIdService from '../service/MemberIdService';
 import UserService from '../service/UserService';
 import IUser from '../interfaces/IUser';
 import IBusiness from '../interfaces/IBusiness';
@@ -219,12 +219,16 @@ function MyPage_MemberModify() {
         getValues,
         register,
         handleSubmit,
+        formState : {
+            errors
+        },
+        watch
     } =useForm<IUser,IProfileImage>();
     
     const [show,setShow]=useState(false);
     const [isCeo,setIsCeo]=useState(false);
     const [isUser,setIsUser]=useState(true);
-    const [userId,setUserId]=useState<IUser["user_id"]>("");
+    const [userId,setUserId]=useState<IUser["user_id"]>("1");
     const [updateUserInfo,setUpdateUser]=useState<IUser>();
     const [allUser,setAllUser]=useState<IUser[]>([]);
     const [normalProfileId,setNormalFileId]=useState<IProfileImage["profile_image_id"]>();
@@ -324,7 +328,7 @@ function MyPage_MemberModify() {
 
     const compareNickname=()=>{
         if(updateUserInfo !== undefined){
-            const newNickname=getValues("user_nickname");
+            const newNickname=watch("user_nickname");
             console.log(newNickname);
             if(updateUserInfo.user_nickname === newNickname){
                 alert("이미 존재하는 닉네임 이거나 사용불가능한 닉네임입니다");
@@ -376,7 +380,7 @@ function MyPage_MemberModify() {
                                         width={170}
                                         height={200}
                                         alt="프로필 사진"
-                                    
+                                        {...normalProfile?.profile_image_file}
                                     />
                                 </Figure>
                             </div>
@@ -416,6 +420,7 @@ function MyPage_MemberModify() {
                                     <Button style={{width: "180px", textAlign: "center"}} onClick={compareNickname}>닉네임중복
                                         확인</Button>
                                 </div>
+                    
                             </Form.Group>
 
 
@@ -425,6 +430,7 @@ function MyPage_MemberModify() {
                                 <Form.Control type="password" name="password" id="user_password"
                                         {...register("user_password",{required:"비밀번호를 입력하세요",pattern:{value:/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,message:" 8자리 이상 문자,숫자,특수문자를 섞어서 입력하세요."}})}
                                               />
+                                {errors && <h1>{errors?.user_password?.message}</h1>}
                             </Form.Group>
 
                             <Form.Group className="my-3">
