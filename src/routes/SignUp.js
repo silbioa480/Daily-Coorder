@@ -106,11 +106,6 @@ function SignUp() {
     setFileImage(URL.createObjectURL(e.target.files[0]));
   };
 
-  const deleteFileImage = () => {
-    URL.revokeObjectURL(fileImage);
-    setFileImage("/signup/profile.png");
-  };
-
   const onChangeBirth = (e) => {
     const birthRegex = /^[0-9+]{6,}$/;
     if (!e.target.value || birthRegex.test(e.target.value))
@@ -577,12 +572,6 @@ function SignUp() {
                 value={Id}
                 onChange={onChangeId}
               />{" "}
-              {errorId && (
-                <div className="signup_input_valid">
-                  {" "}
-                  아이디는 숫자를 포함하여 최소 5자 이상
-                </div>
-              )}
               <button
                 type="submit"
                 className="signup_idchk_btn"
@@ -996,12 +985,6 @@ function SignUp() {
                 value={proId}
                 onChange={onChangeProId}
               />{" "}
-              {errorProId && (
-                <div className="signup_input_valid">
-                  {" "}
-                  아이디는 숫자를 포함하여 최소 5자 이상
-                </div>
-              )}
               <button
                 className="signup_idchk_btn"
                 style={{ width: "27%" }}
