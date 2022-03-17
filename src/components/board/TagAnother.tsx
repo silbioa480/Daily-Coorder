@@ -7,13 +7,13 @@ import "../../css/main/MainAnother.css";
 import "../../css/main/animation.css";
 
 // 사진
-import MainAnotherComponent from "./MainAnotherComponent";
 import IUser from "../../interfaces/IUser";
 import IBoard from "../../interfaces/IBoard";
 import ITag from "../../interfaces/ITag";
 import BoardService from "../../service/BoardService";
+import TagAnotherComponent from "./TagAnotherComponent";
 
-function MainAnother() {
+function TagAnother() {
 
     const [myId, setMyId] = useState<IUser["user_id"]>("1");
     const [boardId, setBoardId] = useState<ITag["board_id"][]>([]);
@@ -58,12 +58,12 @@ function MainAnother() {
 
     const renderRepeat = boards.slice(0, idx + 10).map((data) => {
         console.log("data.board_id:" + data.board_id);
-        return <MainAnotherComponent data={data} key={data.board_id}/>;
+        return <TagAnotherComponent data={data} key={data.board_id}/>;
     });
 
     return (
         <>
-            <div className="bb mainfollow-text">New Another</div>
+            <div className="bb mainfollow-text">유사한 핀 더보기</div>
             <hr className="bb Line"></hr>
             <div className="bb wth">
                 <div className="anothercar">
@@ -80,4 +80,5 @@ function MainAnother() {
     );
 }
 
-export default MainAnother;
+
+export default TagAnother;

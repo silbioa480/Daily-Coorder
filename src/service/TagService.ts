@@ -1,7 +1,7 @@
 import axios, {AxiosResponse} from "axios";
 import ITag from "../interfaces/ITag";
 
-const TAG_API_BASE_URL = "http://localhost:8080/api/tag";
+const TAG_API_BASE_URL = "https://daily-coorder-backend.herokuapp.com/api/tag";
 
 class TagService {
     getTags() {
@@ -18,7 +18,7 @@ class TagService {
 
     getBoardIdByTagName(
         tag_name: ITag["tag_name"]
-    ): Promise<AxiosResponse<number[]>> {
+    ): Promise<AxiosResponse<ITag[]>> {
         return axios.get(TAG_API_BASE_URL + "/tag_name/" + tag_name);
     }
 
@@ -27,7 +27,6 @@ class TagService {
     ): Promise<AxiosResponse<string[]>> {
         return axios.get(TAG_API_BASE_URL + "/tag_names/" + board_id);
     }
-
 
     updateTag(tag: ITag, tag_id: ITag["tag_id"]): Promise<AxiosResponse<ITag>> {
         return axios.put(TAG_API_BASE_URL + "/" + tag_id, tag);

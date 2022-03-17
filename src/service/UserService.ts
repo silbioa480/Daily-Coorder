@@ -2,7 +2,7 @@ import axios, {AxiosResponse} from "axios";
 import IUser from "../interfaces/IUser";
 
 const USER_API_BASE_URL =
-    "http://localhost:8080/api/users";
+    "https://daily-coorder-backend.herokuapp.com/api/users";
 
 class UserService {
     getUsers() {
@@ -13,8 +13,9 @@ class UserService {
         return axios.post(USER_API_BASE_URL, user);
     }
 
+
     getUserById(user_id: IUser["user_id"]): Promise<AxiosResponse<IUser>> {
-        return axios.get(USER_API_BASE_URL + "/one/" + user_id);
+        return axios.get(USER_API_BASE_URL + "/" + user_id);
     }
 
     updateUser(

@@ -3,12 +3,12 @@ import {useState} from 'react';
 import MemInfoCss from '../css/MyPage_MemInfoCss';
 import {Figure} from 'react-bootstrap';
 import "../css/main/animation.css";
-import IMemberId from '../interfaces/IMemberId';
-import MemberIdService from '../service/MemberIdService';
 import IUser from "../interfaces/IUser";
 import UserService from "../service/UserService";
 import IBusiness from '../interfaces/IBusiness';
 import BusinessSevice from '../service/BusinessService';
+import IMemberId from '../interfaces/IMemberId';
+import MemberIdService from '../service/MemberIdService';
 import {useEffect} from "react";
 
 
@@ -22,7 +22,7 @@ function Ceoinformation() {
 
     useEffect(()=>{
         ceoInfo();
-    })
+    },[]);
    
     return (
         <>
@@ -111,11 +111,13 @@ function Ceoinformation() {
 
 
 function MemberInformation(){
-   const [userId,setUserId]=useState<IUser["user_id"]>("");
+   const [userId,setUserId]=useState<IUser["user_id"]>("1");
    const [userInfo,setUserInfo]=useState<IUser>();
 
    async function normalInfo(){
-        setUserInfo(await UserService.getUserById(userId).then(res=>res.data));
+        if(userId !==undefined){
+            setUserInfo(await UserService.getUserById(userId).then(res=>res.data));
+        }
    }
 
    useEffect(()=>{
@@ -246,32 +248,40 @@ function MemberInformation(){
 
 function MyPage_MemberInformation() {
 
-    const [memberid,setMemberId]=useState<IUser["user_id"]>("");
+    const [memberid,setMemberId]=useState<IMemberId["member_id"]>("");
+    const [isPeople,setIsPeople]=useState<IMemberId>();
     //일반인지  사업자인지 판별
     const [isMember,setIsMember]=useState(true);
     const [isCeo,setIsCeo]=useState(false);
-    
-    const handleMember=async()=>{
-        const search=await UserService.getUserById(memberid).then(res=>res.data);
-        if(search !== undefined){
-            if(search.user_is_ad === true){
+
+    async function booleanUser(){
+        if(memberid !== undefined){
+            setIsPeople(await MemberIdService.getIdById(memberid).then(res=>res.data));
+        }
+    }
+
+    useEffect(()=>{
+        booleanUser();
+        if(isPeople !== undefined){
+            if(isPeople.is_business === true){
                 setIsMember(false);
                 setIsCeo(true);
             }else{
                 setIsMember(true);
-                setIsCeo(false);
+                setIsCeo(false); 
             }
         }
-    }
+    },[]);
+    
     return (
         <>
             <MemInfoCss/>
             <div className="aa memberOrceo">
                 <div style={{padding: "1vw 2vw", borderRight: "1px solid #dbdbdb", cursor: "pointer"}}
-                     onClick={handleMember}>
+                     >
                     일반 회원 정보
                 </div>
-                <div style={{padding: "1vw 2vw", cursor: "pointer"}} onClick={handleMember}>
+                <div style={{padding: "1vw 2vw", cursor: "pointer"}} >
                     사업자 회원 정보
                 </div>
             </div>

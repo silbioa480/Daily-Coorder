@@ -33,7 +33,7 @@ function UserFollower(props: IProps) {
 
 
     //user_profile 이용 프로필이미지파일
-    let profileurl = "http://localhost:8080/api/board_img/" + user?.user_profile;
+    let profileurl = "https://daily-coorder-backend.herokuapp.com/api/board_img/" + user?.user_profile;
 
 
     return (
