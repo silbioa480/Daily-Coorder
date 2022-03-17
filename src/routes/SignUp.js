@@ -421,7 +421,7 @@ function SignUp() {
       open: true,
       title: "회원가입 성공♡♡",
       message: "회원가입에 성공했습니다!!!!",
-      callback: function () {},
+      callback: function () { },
     });
 
     history.push("/");
@@ -477,7 +477,7 @@ function SignUp() {
       open: true,
       title: "회원가입 성공♡♡",
       message: "회원가입에 성공했습니다!!!!",
-      callback: function () {},
+      callback: function () { },
     });
 
     history.push("/");
@@ -501,7 +501,7 @@ function SignUp() {
     let exist;
     try {
       exist = await MemberIdService.getIdById(Id);
-    } catch (err) {}
+    } catch (err) { }
     if (exist !== undefined) {
       setPopup({
         open: true,
@@ -1266,7 +1266,7 @@ function SignUp() {
               </div>
             </details>
 
-            <div>
+            <div className='btn-box'>
               <button
                 className="signup_btn"
                 type="button"
