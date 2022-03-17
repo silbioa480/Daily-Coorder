@@ -12,7 +12,7 @@ import IBoard from "../../interfaces/IBoard";
 import IUser from "../../interfaces/IUser";
 import UserService from "../../service/UserService";
 import FollowService from "../../service/FollowService";
-import BoardLikeService from "../../service/BoardLikeService";
+import IFollow from "../../interfaces/IFollow";
 
 interface IProps {
     data: IBoard;
@@ -25,6 +25,11 @@ function MainComponent(props: IProps) {
     const [myId, setMyId] = useState<IUser["user_id"]>("1");
     const [isFollowed, setIsFollowed] = useState<boolean>(false);
     const [isLiked, setIsLiked] = useState<boolean>(false);
+    const [follow, setFollow] = useState<IFollow>({
+        follow_id: 0,
+        from_user_id: "",
+        to_user_id: ""
+    });
 
     let board = props.data;
     let imageurl = "https://daily-coorder-backend.herokuapp.com/api/board_img/" + board.board_url;
@@ -32,47 +37,95 @@ function MainComponent(props: IProps) {
 
     // isFollow ---------------------------------------------
 
-    // User_id 가져온다.
+    // 보드의 User_id 가져온다.
     async function getUser() {
         setUser(await UserService.getUserById(board?.board_poster).then(res => res.data));
     }
 
     // User_id로 follow 테이블 가져와서 isFollow 확인
-    async function checkFollow() {
-        try {
-            await FollowService.getCheckFollow(myId, user?.user_id as string).then(res => res.data);
-            setIsFollowed(true);
-        } catch {
-            setIsFollowed(false);
-        }
-    }
+    // async function checkFollow() {
+    //     try {
+    //         await FollowService.getCheckFollow(myId, user?.user_id as string).then(res => res.data);
+    //         setIsFollowed(true);
+    //     } catch {
+    //         setIsFollowed(false);
+    //     }
+    // }
 
     // ----------------------------------------------------
 
     // isLike ------------------------------------------------
 
 
-    async function checkLike() {
-        try {
-            await BoardLikeService.getCheckLike(board.board_id, myId).then(res => res.data);
-            setIsLiked(true);
-        } catch {
-            setIsLiked(false);
-        }
-    }
+    // async function checkLike() {
+    //     try {
+    //         await BoardLikeService.getCheckLike(board.board_id, myId).then(res => res.data);
+    //         setIsLiked(true);
+    //     } catch {
+    //         setIsLiked(false);
+    //     }
+    // }
 
     // ---------------------------------------------------------
 
-    useEffect(() => {
-        getUser();
-    }, [board]);
-    useEffect(() => {
-        checkFollow();
-    }, [user]);
-    useEffect(() => {
-        checkLike();
-    }, [isFollowed]);
+    // 팔로우 버튼 ----------------------------------------------
 
+    async function createFollow() {
+        setFollow(await FollowService.createFollow(follow).then(res => res.data));
+    }
+
+    //팔로우된 상태에서 버튼을 누르면 테이블delete
+    async function deleteFollow() {
+        await FollowService.deleteFollow(follow.follow_id).then(res => {
+
+            if (res.data.delete === true) {
+                follow.follow_id = 0;
+            }
+        });
+    }
+
+    async function selectFollow() {
+        await FollowService.getCheckFollow("2", user?.user_id as IUser["user_id"]).then(res => {
+            // await FollowService.getCheckFollow("2", "1").then(res => {
+
+            setFollow(res.data);
+        });
+    }
+
+
+    // useEffect(() => {
+    //      getUser();
+    // }, [board]);
+    // useEffect(() => {
+    //     // checkFollow();
+    // }, [user]);
+    // useEffect(() => {
+    //     // checkLike();
+    // }, [isFollowed]);
+
+
+    useEffect(() => {
+        getUser().then(() => {
+
+        });
+    }, [board])
+
+    useEffect(() => {
+        selectFollow().then(() => {
+
+        })
+    }, [user]);
+
+    useEffect(() => {
+        console.log("follow.follow_id:" + follow);
+        if (follow.follow_id == undefined) {
+            setLikecolor("");
+            setFollowcolor("");
+        } else {
+            setLikecolor("rgba(30,66,141,1)")
+            setFollowcolor("rgba(254,68,161,1)")
+        }
+    }, [follow])
 
     // 가져온 테이블에서 팔로우 숫자 가져오기
     const [followed, setFollowed] = useState(user?.user_follower_number);
@@ -107,12 +160,27 @@ function MainComponent(props: IProps) {
     function toggleShow() {
         likecolor === "" ? setLikecolor("rgba(30,66,141,1)") : setLikecolor("");
         setIsShow(!isShow);
+        createFollow();
         if (!isShow) {
             likeIn();
         } else {
             likeDe();
         }
     }
+
+    // const onClick = () => {
+    //     likecolor === "" ? setLikecolor("rgba(30,66,141,1)") : setLikecolor("");
+    //     followcolor === ""
+    //         ? setFollowcolor("rgba(254,68,161,1)")
+    //         : setFollowcolor("");
+    //
+    //     // 팔로우테이블에 from_user_id와 to_user_id가 순서에맞게(?) 없으면 create 있으면 delete
+    //     if (follow.follow_id === 0) {
+    //         createFollow();
+    //     } else {
+    //         deleteFollow();
+    //     }
+    // };
 
     // 팔로우 색깔 toglle and 팔로우 + 1 or - 1
     function togglefollow() {
@@ -125,13 +193,18 @@ function MainComponent(props: IProps) {
         } else {
             followDe();
         }
+        if (follow.follow_id === 0) {
+            createFollow();
+        } else {
+            deleteFollow();
+        }
     }
 
     // 이부분을 Component화.
     return (
         <div className="anotherpic-out">
             <div className="anotherpic">
-                <Link to="/board/board1" className="link">
+                <Link to="/board/board_poster/{board.board_poster}" className="link">
                     <img
                         className="d-block w-100"
                         src={imageurl}
