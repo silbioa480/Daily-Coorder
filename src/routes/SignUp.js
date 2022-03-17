@@ -10,6 +10,7 @@ import UserService from "../service/UserService";
 import MemberIdService from "../service/MemberIdService";
 import BusinessService from "../service/BusinessService";
 import ProfileImageService from "../service/ProfileImageService";
+import { useHistory } from "react-router-dom";
 
 function SignUp() {
   //모달관련
@@ -19,6 +20,8 @@ function SignUp() {
     message: "",
     callback: false,
   });
+
+  const history = new useHistory();
 
   //일반회원
   const [fileImage, setFileImage] = useState("/signup/profile.png");
@@ -372,7 +375,10 @@ function SignUp() {
       return;
     }
 
-    let i = await ProfileImageService.createProfileImage(imageFile).then(
+    let formData = new FormData();
+    formData.append("file", imageFile);
+
+    let i = await ProfileImageService.createProfileImage(formData).then(
       (res) => res.data
     );
 
@@ -468,6 +474,8 @@ function SignUp() {
       message: "회원가입에 성공했습니다!!!!",
       callback: function () {},
     });
+
+    history.push("/");
   };
 
   //아이디 중복확인 샘플 데이터가 없어서 일단 이렇게 만들었음
