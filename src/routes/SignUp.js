@@ -13,6 +13,7 @@ import ProfileImageService from "../service/ProfileImageService";
 import { useHistory } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { saltKey } from "../atom";
+import Swal from "sweetalert2";
 
 function SignUp() {
   //모달관련
@@ -478,11 +479,9 @@ function SignUp() {
 
     await MemberIdService.createId(member);
 
-    setPopup({
-      open: true,
-      title: "회원가입 성공♡♡",
-      message: "회원가입에 성공했습니다!!!!",
-      callback: function () {},
+    await Swal.fire({
+      icon: "success",
+      title: "회원가입이 완료되었습니다.",
     });
 
     history.push("/login");
