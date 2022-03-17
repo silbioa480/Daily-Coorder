@@ -106,11 +106,6 @@ function SignUp() {
     setFileImage(URL.createObjectURL(e.target.files[0]));
   };
 
-  const deleteFileImage = () => {
-    URL.revokeObjectURL(fileImage);
-    setFileImage("/signup/profile.png");
-  };
-
   const onChangeBirth = (e) => {
     const birthRegex = /^[0-9+]{6,}$/;
     if (!e.target.value || birthRegex.test(e.target.value))
@@ -427,7 +422,7 @@ function SignUp() {
       open: true,
       title: "회원가입 성공♡♡",
       message: "회원가입에 성공했습니다!!!!",
-      callback: function () {},
+      callback: function () { },
     });
 
     history.push("/login");
@@ -505,7 +500,7 @@ function SignUp() {
     let exist;
     try {
       exist = await MemberIdService.getIdById(Id);
-    } catch (err) {}
+    } catch (err) { }
     if (exist !== undefined) {
       setPopup({
         open: true,
@@ -577,12 +572,6 @@ function SignUp() {
                 value={Id}
                 onChange={onChangeId}
               />{" "}
-              {errorId && (
-                <div className="signup_input_valid">
-                  {" "}
-                  아이디는 숫자를 포함하여 최소 5자 이상
-                </div>
-              )}
               <button
                 type="submit"
                 className="signup_idchk_btn"
@@ -934,11 +923,11 @@ function SignUp() {
               </div>
             </details>
 
-            <div>
+            <div className='common_button_box'>
               <button
                 type="button"
                 onClick={onSubmitHandler}
-                className="signup_btn"
+                className="common_button"
               >
                 <b>회 원 가 입</b>
               </button>
@@ -996,12 +985,6 @@ function SignUp() {
                 value={proId}
                 onChange={onChangeProId}
               />{" "}
-              {errorProId && (
-                <div className="signup_input_valid">
-                  {" "}
-                  아이디는 숫자를 포함하여 최소 5자 이상
-                </div>
-              )}
               <button
                 className="signup_idchk_btn"
                 style={{ width: "27%" }}
@@ -1270,13 +1253,13 @@ function SignUp() {
               </div>
             </details>
 
-            <div className="common_button_out">
+            <div className="common_button_box">
               <button
-                className="common_button"
                 type="button"
                 onClick={onProSubmitHandler}
+                className="common_button"
               >
-                회원가입
+                <span>회 원 가 입</span>
               </button>
             </div>
           </Tab>

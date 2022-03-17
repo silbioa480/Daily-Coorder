@@ -52,10 +52,6 @@ function LoginMember() {
     let kakaoid = e.profile.id;
   };
 
-  const clickSnsLoginGoogle = (e) => {
-    let googleid = e.Ft.NT;
-  };
-
   const onIdHandler = (e) => {
     setId(e.currentTarget.value);
   };
@@ -173,7 +169,7 @@ function LoginMember() {
       open: true,
       title: "축축!! 로그인 성공",
       message: "환영합니다!!!!",
-      callback: function () {},
+      callback: function () { },
     });
 
     history.push("/");
@@ -182,7 +178,7 @@ function LoginMember() {
   };
 
   return (
-    <div className="login-container" style={{ height: "880px" }}>
+    <div className="login-container">
       <div className="login_member">
         <PopUp
           open={popup.open}
@@ -238,13 +234,13 @@ function LoginMember() {
               <Link to="/login/PasswordSearch"> 비밀번호 찾기</Link>
             </div>
           </div>
-          <div className="common_button_out">
+          <div className="common_button_box">
             <button
               className="common_button"
               type="button"
               onClick={onSubmitHandler}
             >
-              <span>Login</span>
+              <span>Log In</span>
             </button>
           </div>
 

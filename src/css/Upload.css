@@ -152,7 +152,7 @@
 .delete-button {
   border: none;
   background-color: transparent;
-  color: #20c997;
+  color: #0D6EFD;
 }
 
 .delete-button:hover {
@@ -164,16 +164,19 @@
   margin: 50px 0;
   padding: 0 20px;
   display: flex;
+  justify-content: center;
 }
 
 .share-button {
-  width: var(--input-box-width);
+  width: 80%;
+  background-color: #111;
+  color: white;
+  padding: 15px 30px;
+  border-radius: 50px;
   border: 1px solid black;
-  border-radius: 1rem;
-  background-color: black;
-  font-size: var(--font-medium);
-  padding: 10px 20px;
-  transition: 100ms ease-in-out;
+  font-weight: bold;
+  margin: 30px;
+  font-size: 2rem;
 }
 
 .share-button a {
@@ -181,8 +184,8 @@
 }
 
 .share-button:hover {
-  background-color: var(--color-white);
-  color: #20c997;
+  background-color: #0D6EFD;
+  transition: all 0.3s ease-in-out;
 }
 
 .share-button a:hover {

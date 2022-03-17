@@ -148,39 +148,45 @@
     font-weight: bold;
 }
 
+.signup_btn {
+  
+}
+
+
 /* 작성자: 황인성 */
 /* 최종수정 날짜 2022.3.10 */
 
 /* 버튼 */
-.signup_btn_out {
+/* .signup_btn_out {
     text-align: center;
 }
 
 .btn-box {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 .signup_btn {
-  border-radius: 20px;
-  display: inline-block;
-  width: 32%;
-  height: 34px;
-  font-size: 17px;
-  padding: 7px 15px;
-  cursor: pointer;
-  background-color: white;
-  color: black;
-  line-height: 1px;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  border: 1px solid #000;
-  position: relative;
-  overflow: hidden;
+    border-radius: 20px;
+    display: inline-block;
+    width: 50%;
+    height: 34px;
+    font-size: 17px;
+    padding: 7px 15px;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    line-height: 1px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border: 1px solid #000;
+    position: relative;
+    overflow: hidden;
+    margin-left: 150px;
 }
 
 .signup_btn:hover {
-  color: white;
+    color: white;
 }
 
 .signup_btn > span {
@@ -224,7 +230,7 @@
 .signup_btn:hover:after {
     transform: translateX(45%);
 
-}
+} */
 
 /*-------------------------------*/
 

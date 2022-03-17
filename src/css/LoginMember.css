@@ -1,11 +1,13 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  height: auto;
+}
+
 .login_member {
     background: #ffffff;
     width: 450px;
     color: #033a76;
-    top: 50%;
-    left: 50%;
-    position: absolute;
-    transform: translate(-50%, -50%);
     box-sizing: border-box;
     padding: 40px 30px;
     border-radius: 20px;
@@ -63,7 +65,7 @@
 }
 
 .common_button {
-    border-radius: 20px;
+    /* border-radius: 20px;
     display: inline-block;
     width: 50%;
     height: 34px;
@@ -77,10 +79,22 @@
     margin-bottom: 30px;
     border: 1px solid #000;
     position: relative;
-    overflow: hidden;
-
+    overflow: hidden; */
+    width: 50%;
+    background-color: #111;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 50px;
+    border: 1px solid black;
+    font-weight: bold;
+    margin: 30px;
 }
 
+.common_button:hover {
+  background-color: #0D6EFD;
+  transition: all 0.3s ease-in-out;
+}
+/* 
 .common_button > span {
     display: block;
     position: relative;
@@ -130,7 +144,7 @@
 .common_button:hover:after {
     transform: translateX(45%);
 
-}
+} */
 
 /*----------------------------------*/
 
