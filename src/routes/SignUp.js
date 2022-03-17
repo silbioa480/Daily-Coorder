@@ -424,7 +424,7 @@ function SignUp() {
       callback: function () {},
     });
 
-    history.push("/");
+    history.push("/login");
   };
 
   const onProSubmitHandler = async (e) => {
@@ -480,7 +480,7 @@ function SignUp() {
       callback: function () {},
     });
 
-    history.push("/");
+    history.push("/login");
   };
 
   //아이디 중복확인 샘플 데이터가 없어서 일단 이렇게 만들었음
