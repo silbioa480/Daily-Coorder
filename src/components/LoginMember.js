@@ -12,8 +12,8 @@ import PopUp from "./PopUp";
 //아이디 기억하기 체크박스 때문에 install 했고, import함
 import { useCookies } from "react-cookie";
 import MemberIdService from "../service/MemberIdService";
-import { useSetRecoilState } from "recoil";
-import { isLoginAtom, memberAtom } from "../atom";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { isLoginAtom, memberAtom, saltKey } from "../atom";
 
 function LoginMember() {
   //모달 설정
@@ -28,6 +28,7 @@ function LoginMember() {
 
   const setIsLogin = useSetRecoilState(isLoginAtom);
   const setMemberId = useSetRecoilState(memberAtom);
+  const salt = useRecoilValue(saltKey);
 
   //아이디 기억하기(로그인 페이지 내 체크박스)
   const [cookies, setCookie, removeCookie] = useCookies(["rememberId"]);
@@ -138,8 +139,10 @@ function LoginMember() {
       return;
     }
 
-    let memberId = await MemberIdService.getIdById(Id).then((res) => res.data);
-    if (memberId === undefined) {
+    let memberId;
+    try {
+      memberId = await MemberIdService.getIdById(Id).then((res) => res.data);
+    } catch (e) {
       setPopup({
         open: true,
         title: "로그인 실패",
@@ -151,7 +154,7 @@ function LoginMember() {
     let CryptoJS = require("crypto-js");
     let decrypted = CryptoJS.AES.decrypt(
       memberId.member_password,
-      "salt"
+      salt
     ).toString(CryptoJS.enc.Utf8);
     if (decrypted !== Password) {
       setPopup({
@@ -170,7 +173,7 @@ function LoginMember() {
       open: true,
       title: "축축!! 로그인 성공",
       message: "환영합니다!!!!",
-      callback: function () { },
+      callback: function () {},
     });
 
     history.push("/");
