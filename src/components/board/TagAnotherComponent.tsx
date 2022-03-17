@@ -28,33 +28,43 @@ function TagAnotherComponent(props: IProps) {
     let board = props.data;
 
     const [tags, setTags] = useState<string[]>([]);
-    const [boardId, setBoardId] = useState<IBoard[]>([]);
+    const [boardId, setBoardId] = useState<number[]>([]);
+    const [boards, setBoards] = useState<IBoard>();
     let imageurl = "https://daily-coorder-backend.herokuapp.com/api/board_img/" + board.board_url;
 
 
     // 1. 현재 게시물의 태그이름 가져오기
-    async function getBoardByTagName() {
-        setTags(await TagService.getTageNamesByBoardId(board.board_id).then(res => res.data));
+    async function getTagNameByBoardId() {
+        setTags(await TagService.getTageNamesByBoardId(board.board_id).then(res => {
+            console.log("tags" + tags);
+            return res.data;
+        }));
     }
 
 
-    // 2. 가져온 태그로  다른 게시물의 board_id 가져오기
-    // function getBoardId() {
-    //     tags.map(async (tagName) => {
-    //         let boards = await TagService.getBoardIdByTagName(tagName).then(res => res.data);
-    //         setBoardId(boards);
-    //     })
-    // }
+    // 2. 가져온 태그가 들어있는 다른 게시물의 board_id 가져오기
+    function getBoardId() {
+        let ids: number[] = []
+        tags.map(async (tagName) => {
+            let tag = await TagService.getBoardIdByTagName(tagName).then(res => res.data);
+            //지금이게 보드아이디를 가져오는게 아니라 태그배열을가져옴 그래서 그태그배열을 맵을돌림 보드아이디 넘버배열을 넣어줌
+            tag.map((t) => {
+                ids.push(t.board_id);
+            })
+        })
+        setBoardId(ids); //boardid배열이들어감
+        console.log("가져온태그가 들어있는 보드아이디:" + boardId);
+    }
 
-    // 3. board_id로 board 가져오기
+    // 3. board_id로 board 가져오기  //boardId에 태그이름이 들어간 board_id를 가져왔움?
+    async function getBoardByBoardId() {
+        // setBoards(await BoardService.getBoardById(board.board_id).then(res => res.data));
+    }
 
+    useEffect(() => {
+        getTagNameByBoardId();
+    }, [board])
 
-    // 2. 가져온 태그로  다른 게시물의 board_id 가져오기
-    // function getBoardId() {
-    //     tags.map(async (tagName) => {
-    //         setBoardId([...boardId, ...await TagService.getBoardIdByTagName(tagName).then(res => res.data)]);
-    //     });
-    // }
 
     // User_id로 follow 테이블 가져와서 isFollow 확인
     async function checkFollow() {
@@ -85,10 +95,14 @@ function TagAnotherComponent(props: IProps) {
 
     // ---------------------------------------------------------
 
-    useEffect(() => {
+    // useEffect(() => {
+    //     getTagNameByBoardId();
+    // }, [board])
 
-        // getBoardId();
-    }, [board]);
+    // useEffect(() => {
+    //     getBoardId();
+    // }, [board])
+
     useEffect(() => {
         checkFollow();
     }, [user]);

@@ -10,6 +10,10 @@ import UserService from "../service/UserService";
 import MemberIdService from "../service/MemberIdService";
 import BusinessService from "../service/BusinessService";
 import ProfileImageService from "../service/ProfileImageService";
+import { useHistory } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { saltKey } from "../atom";
+import Swal from "sweetalert2";
 
 function SignUp() {
   //모달관련
@@ -19,6 +23,10 @@ function SignUp() {
     message: "",
     callback: false,
   });
+
+  const history = new useHistory();
+
+  const salt = useRecoilValue(saltKey);
 
   //일반회원
   const [fileImage, setFileImage] = useState("/signup/profile.png");
@@ -372,7 +380,10 @@ function SignUp() {
       return;
     }
 
-    let i = await ProfileImageService.createProfileImage(imageFile).then(
+    let formData = new FormData();
+    formData.append("file", imageFile);
+
+    let i = await ProfileImageService.createProfileImage(formData).then(
       (res) => res.data
     );
 
@@ -380,7 +391,7 @@ function SignUp() {
     let val = sel.options[sel.selectedIndex].value === "M";
 
     let CryptoJS = require("crypto-js");
-    let hash = CryptoJS.AES.encrypt(Password, "salt").toString();
+    let hash = CryptoJS.AES.encrypt(Password, salt).toString();
 
     let user = {
       user_id: Id,
@@ -406,6 +417,7 @@ function SignUp() {
 
     let member = {
       member_id: Id,
+      member_password: hash,
       is_business: false,
     };
 
@@ -417,6 +429,8 @@ function SignUp() {
       message: "회원가입에 성공했습니다!!!!",
       callback: function () {},
     });
+
+    history.push("/login");
   };
 
   const onProSubmitHandler = async (e) => {
@@ -430,12 +444,15 @@ function SignUp() {
       return;
     }
 
-    let i = await ProfileImageService.createProfileImage(imageFile).then(
+    let formData = new FormData();
+    formData.append("file", imageFile);
+
+    let i = await ProfileImageService.createProfileImage(formData).then(
       (res) => res.data
     );
 
     let CryptoJS = require("crypto-js");
-    let hash = CryptoJS.AES.encrypt(Password, "salt").toString();
+    let hash = CryptoJS.AES.encrypt(Password, salt).toString();
 
     let pro = {
       business_id: proId,
@@ -462,12 +479,12 @@ function SignUp() {
 
     await MemberIdService.createId(member);
 
-    setPopup({
-      open: true,
-      title: "회원가입 성공♡♡",
-      message: "회원가입에 성공했습니다!!!!",
-      callback: function () {},
+    await Swal.fire({
+      icon: "success",
+      title: "회원가입이 완료되었습니다.",
     });
+
+    history.push("/login");
   };
 
   //아이디 중복확인 샘플 데이터가 없어서 일단 이렇게 만들었음
@@ -504,24 +521,6 @@ function SignUp() {
       message: "사용가능 합니다!",
     });
   };
-  //     if (inputs.Id === value.Id) {
-  //         setPopup({
-  //             open: true,
-  //             title: "통과 !!",
-  //             message: "사용가능 합니다!",
-  //         });
-  //         return;
-  //     } else {
-  //     }
-  //     setPopup({
-  //         open: true,
-  //         title: "실패!",
-  //         message: "이미 사용중인 아이디입니다!!",
-  //         callback: function () {
-  //         },
-  //     });
-  // };
-
   return (
     <div className="bb signup">
       <PopUp
@@ -552,21 +551,13 @@ function SignUp() {
               </div>
               <div>
                 <label type="submit" className="signup_profile_upbtn">
-                  업로드
+                  프로필등록
                   <input
                     className="signup_profile_upbtn"
                     type="file"
                     accept="image/*"
                     style={{ display: "none" }}
                     onChange={saveFileImage}
-                  />
-                </label>
-                <label type="submit" className="signup_profile_delbtn">
-                  삭제하기
-                  <input
-                    className="signup_profile_delbtn"
-                    style={{ display: "none" }}
-                    onClick={() => deleteFileImage()}
                   />
                 </label>
               </div>
@@ -978,21 +969,13 @@ function SignUp() {
               </div>
               <div>
                 <label type="submit" className="signup_profile_upbtn">
-                  업로드
+                  로고등록
                   <input
                     className="signup_profile_upbtn"
                     type="file"
                     accept="image/*"
                     style={{ display: "none" }}
                     onChange={saveFileImage}
-                  />
-                </label>
-                <label type="submit" className="signup_profile_delbtn">
-                  삭제하기
-                  <input
-                    className="signup_profile_delbtn"
-                    style={{ display: "none" }}
-                    onClick={() => deleteFileImage()}
                   />
                 </label>
               </div>
@@ -1287,9 +1270,9 @@ function SignUp() {
               </div>
             </details>
 
-            <div>
+            <div className="common_button_out">
               <button
-                className="signup_btn"
+                className="common_button"
                 type="button"
                 onClick={onProSubmitHandler}
               >

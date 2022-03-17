@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import $ from "jquery";
 import "../css/LoginMember.css";
 
 import NaverLogin from "react-naver-login";
 import KakaoLogin from "react-kakao-login";
-import GoogleLogin from "react-google-login";
 
 import naverlogo from "../img/login/naverlogo.png";
 import kakaologo from "../img/login/kakaologo.png";
-import googlelogo from "../img/login/googlelogo.png";
 import PopUp from "./PopUp";
 //아이디 기억하기 체크박스 때문에 install 했고, import함
 import { useCookies } from "react-cookie";
 import MemberIdService from "../service/MemberIdService";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { isLoginAtom, memberAtom, saltKey } from "../atom";
 
 function LoginMember() {
   //모달 설정
@@ -23,6 +23,12 @@ function LoginMember() {
     message: "",
     callback: false,
   });
+
+  const history = useHistory();
+
+  const setIsLogin = useSetRecoilState(isLoginAtom);
+  const setMemberId = useSetRecoilState(memberAtom);
+  const salt = useRecoilValue(saltKey);
 
   //아이디 기억하기(로그인 페이지 내 체크박스)
   const [cookies, setCookie, removeCookie] = useCookies(["rememberId"]);
@@ -133,8 +139,10 @@ function LoginMember() {
       return;
     }
 
-    let memberId = await MemberIdService.getIdById(Id).then((res) => res.data);
-    if (memberId === undefined) {
+    let memberId;
+    try {
+      memberId = await MemberIdService.getIdById(Id).then((res) => res.data);
+    } catch (e) {
       setPopup({
         open: true,
         title: "로그인 실패",
@@ -146,7 +154,7 @@ function LoginMember() {
     let CryptoJS = require("crypto-js");
     let decrypted = CryptoJS.AES.decrypt(
       memberId.member_password,
-      "salt"
+      salt
     ).toString(CryptoJS.enc.Utf8);
     if (decrypted !== Password) {
       setPopup({
@@ -158,12 +166,18 @@ function LoginMember() {
       return;
     }
 
+    setIsLogin(true);
+    setMemberId(memberId);
+
     setPopup({
       open: true,
       title: "축축!! 로그인 성공",
       message: "환영합니다!!!!",
       callback: function () {},
     });
+
+    history.push("/");
+
     if (validation3()) return;
   };
 
@@ -224,9 +238,9 @@ function LoginMember() {
               <Link to="/login/PasswordSearch"> 비밀번호 찾기</Link>
             </div>
           </div>
-          <div className="login_button_out">
+          <div className="common_button_out">
             <button
-              className=" login_button"
+              className="common_button"
               type="button"
               onClick={onSubmitHandler}
             >
@@ -235,39 +249,6 @@ function LoginMember() {
           </div>
 
           <div className="social_box">
-            <div className="social_google">
-              <GoogleLogin
-                clientId={
-                  "549626971624-5ph29id2ioj9veqq6ut6bel3sa1vq9nf.apps.googleusercontent.com"
-                }
-                buttonText="Login"
-                render={(renderProps) => (
-                  <div
-                    onClick={renderProps.onClick}
-                    disabled={renderProps.disabled}
-                  >
-                    <img
-                      className="social_logo"
-                      style={{ marginTop: "10px" }}
-                      src={googlelogo}
-                      resizeMode={"contain"}
-                    />
-                    <button
-                      style={{ marginTop: "-17px" }}
-                      type="submit"
-                      className="social_button btn"
-                      value="로그인"
-                    >
-                      <span style={{ fontSize: "17px" }}>Google</span>
-                    </button>
-                  </div>
-                )}
-                onSuccess={(e) => clickSnsLoginGoogle(e)}
-                onFailure={console.log}
-                cookiePolicy={"single_host_origin"}
-              />
-            </div>
-
             <div className="social_naver">
               <NaverLogin
                 clientId={"elBauADvgkBV6aphmaxs"}

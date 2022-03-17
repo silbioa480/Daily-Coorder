@@ -63,7 +63,7 @@ function TagAnother() {
 
     return (
         <>
-            <div className="bb mainfollow-text">유사한 핀 더보기</div>
+            <div className="bb mainfollow-text">유사한 게시물 더보기</div>
             <hr className="bb Line"></hr>
             <div className="bb wth">
                 <div className="anothercar">

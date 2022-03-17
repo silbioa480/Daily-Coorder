@@ -18,7 +18,7 @@ function Board_Posts(props: IProps) {
     const [board, setBoard] = useState<IBoard>({
         board_id: 0,
         board_poster: "",
-        board_img: new File([], ""),
+        board_img: 0,
         board_title: "",
         board_content: "",
         board_url: "",
@@ -26,10 +26,10 @@ function Board_Posts(props: IProps) {
         board_view: 0,
         board_post_date: new Date(),
         board_update_date: new Date(),
-
     });
 
     /*const [user, setUser] = useState<IUser>();*/
+
 
     //board아이디를 이용해 board:number에맞는 게시판을 가져옴
     async function getBoard() {
@@ -70,6 +70,7 @@ function Board_Posts(props: IProps) {
             </div>
         </>
     );
+
 }
 
 export default Board_Posts;
