@@ -390,7 +390,7 @@ function SignUp() {
     let val = sel.options[sel.selectedIndex].value === "M";
 
     let CryptoJS = require("crypto-js");
-    let hash = CryptoJS.AES.encrypt(Password, "salt").toString();
+    let hash = CryptoJS.AES.encrypt(Password, salt).toString();
 
     let user = {
       user_id: Id,
@@ -416,6 +416,7 @@ function SignUp() {
 
     let member = {
       member_id: Id,
+      member_password: hash,
       is_business: false,
     };
 
