@@ -9,9 +9,7 @@ class ProfileImageService {
     return axios.get<IProfileImage[]>(PROFILE_IMAGE_API_BASE_URL);
   }
 
-  createProfileImage(
-    profileImage: File
-  ): Promise<AxiosResponse<IProfileImage>> {
+  createProfileImage(profileImage: FormData): Promise<AxiosResponse<number>> {
     return axios.post(PROFILE_IMAGE_API_BASE_URL, profileImage);
   }
 

@@ -188,9 +188,9 @@ function PasswordSearch() {
               <div className="search_input_valid">숫자만 입력하세요</div>
             )}
           </div>
-          <div>
+          <div className="common_button_box">
             <input
-              className="search_button"
+              className="common_button"
               type="submit"
               value="비밀번호 찾기"
             />

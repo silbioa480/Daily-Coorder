@@ -10,6 +10,10 @@ import UserService from "../service/UserService";
 import MemberIdService from "../service/MemberIdService";
 import BusinessService from "../service/BusinessService";
 import ProfileImageService from "../service/ProfileImageService";
+import { useHistory } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { saltKey } from "../atom";
+import Swal from "sweetalert2";
 
 function SignUp() {
   //모달관련
@@ -19,6 +23,10 @@ function SignUp() {
     message: "",
     callback: false,
   });
+
+  const history = new useHistory();
+
+  const salt = useRecoilValue(saltKey);
 
   //일반회원
   const [fileImage, setFileImage] = useState("/signup/profile.png");
@@ -96,11 +104,6 @@ function SignUp() {
   const saveFileImage = (e) => {
     setImageFile(e.target.files[0]);
     setFileImage(URL.createObjectURL(e.target.files[0]));
-  };
-
-  const deleteFileImage = () => {
-    URL.revokeObjectURL(fileImage);
-    setFileImage("/signup/profile.png");
   };
 
   const onChangeBirth = (e) => {
@@ -372,7 +375,10 @@ function SignUp() {
       return;
     }
 
-    let i = await ProfileImageService.createProfileImage(imageFile).then(
+    let formData = new FormData();
+    formData.append("file", imageFile);
+
+    let i = await ProfileImageService.createProfileImage(formData).then(
       (res) => res.data
     );
 
@@ -380,7 +386,7 @@ function SignUp() {
     let val = sel.options[sel.selectedIndex].value === "M";
 
     let CryptoJS = require("crypto-js");
-    let hash = CryptoJS.AES.encrypt(Password, "salt").toString();
+    let hash = CryptoJS.AES.encrypt(Password, salt).toString();
 
     let user = {
       user_id: Id,
@@ -406,6 +412,7 @@ function SignUp() {
 
     let member = {
       member_id: Id,
+      member_password: hash,
       is_business: false,
     };
 
@@ -415,8 +422,10 @@ function SignUp() {
       open: true,
       title: "회원가입 성공♡♡",
       message: "회원가입에 성공했습니다!!!!",
-      callback: function () {},
+      callback: function () { },
     });
+
+    history.push("/login");
   };
 
   const onProSubmitHandler = async (e) => {
@@ -430,12 +439,15 @@ function SignUp() {
       return;
     }
 
-    let i = await ProfileImageService.createProfileImage(imageFile).then(
+    let formData = new FormData();
+    formData.append("file", imageFile);
+
+    let i = await ProfileImageService.createProfileImage(formData).then(
       (res) => res.data
     );
 
     let CryptoJS = require("crypto-js");
-    let hash = CryptoJS.AES.encrypt(Password, "salt").toString();
+    let hash = CryptoJS.AES.encrypt(Password, salt).toString();
 
     let pro = {
       business_id: proId,
@@ -462,12 +474,12 @@ function SignUp() {
 
     await MemberIdService.createId(member);
 
-    setPopup({
-      open: true,
-      title: "회원가입 성공♡♡",
-      message: "회원가입에 성공했습니다!!!!",
-      callback: function () {},
+    await Swal.fire({
+      icon: "success",
+      title: "회원가입이 완료되었습니다.",
     });
+
+    history.push("/login");
   };
 
   //아이디 중복확인 샘플 데이터가 없어서 일단 이렇게 만들었음
@@ -488,7 +500,7 @@ function SignUp() {
     let exist;
     try {
       exist = await MemberIdService.getIdById(Id);
-    } catch (err) {}
+    } catch (err) { }
     if (exist !== undefined) {
       setPopup({
         open: true,
@@ -560,12 +572,6 @@ function SignUp() {
                 value={Id}
                 onChange={onChangeId}
               />{" "}
-              {errorId && (
-                <div className="signup_input_valid">
-                  {" "}
-                  아이디는 숫자를 포함하여 최소 5자 이상
-                </div>
-              )}
               <button
                 type="submit"
                 className="signup_idchk_btn"
@@ -917,11 +923,11 @@ function SignUp() {
               </div>
             </details>
 
-            <div>
+            <div className='common_button_box'>
               <button
                 type="button"
                 onClick={onSubmitHandler}
-                className="signup_btn"
+                className="common_button"
               >
                 <b>회 원 가 입</b>
               </button>
@@ -979,12 +985,6 @@ function SignUp() {
                 value={proId}
                 onChange={onChangeProId}
               />{" "}
-              {errorProId && (
-                <div className="signup_input_valid">
-                  {" "}
-                  아이디는 숫자를 포함하여 최소 5자 이상
-                </div>
-              )}
               <button
                 className="signup_idchk_btn"
                 style={{ width: "27%" }}
@@ -1253,13 +1253,13 @@ function SignUp() {
               </div>
             </details>
 
-            <div>
+            <div className="common_button_box">
               <button
-                className="signup_btn"
                 type="button"
                 onClick={onProSubmitHandler}
+                className="common_button"
               >
-                회원가입
+                <span>회 원 가 입</span>
               </button>
             </div>
           </Tab>
