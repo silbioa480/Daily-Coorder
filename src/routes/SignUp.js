@@ -423,6 +423,8 @@ function SignUp() {
       message: "회원가입에 성공했습니다!!!!",
       callback: function () {},
     });
+
+    history.push("/");
   };
 
   const onProSubmitHandler = async (e) => {
@@ -436,7 +438,10 @@ function SignUp() {
       return;
     }
 
-    let i = await ProfileImageService.createProfileImage(imageFile).then(
+    let formData = new FormData();
+    formData.append("file", imageFile);
+
+    let i = await ProfileImageService.createProfileImage(formData).then(
       (res) => res.data
     );
 
