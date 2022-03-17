@@ -20,6 +20,7 @@ function Mainfollow() {
     const [myFollowers, setMyFollowers] = useState<IUser["user_id"][]>([]);
     const [followerBoards, setFollowerBoards] = useState<IBoard[]>([]);
 
+
     // 내가 팔로우한 사람들(id)의 게시물을 가져오는 함수 getbyuserid
     // 1 세션으로 로그인된 나의 아이디를 확인 (로그인 안했다면 랜덤 데이터)
     // 2 내 아이디를 이용해서 내가 팔로우한 사람들의 id
@@ -30,13 +31,10 @@ function Mainfollow() {
 
     // 3 그 사람들의 게시물 데이터를 가져옴
     function getFollowerBoard() {
-        let followBoard: IBoard[] = [];
         myFollowers.map(async (follower) => {
             let boards = await BoardService.getBoardByUserId(follower).then(res => res.data);
-            followBoard.push(...boards);
-
+            setFollowerBoards([...followerBoards, ...boards]);
         })
-        setFollowerBoards(followBoard);
     }
 
     useEffect(() => {
@@ -45,11 +43,11 @@ function Mainfollow() {
 
     useEffect(() => {
         getFollowerBoard();
-    }, []);
+    }, [myFollowers]);
 
     const renderRepeat = followerBoards.map((data) => {
 
-        console.log(data);
+        // console.log(data);
         return <MainComponent data={data} key={data.board_id}/>;
     });
 
