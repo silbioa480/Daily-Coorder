@@ -1,4 +1,4 @@
-import Pie_chart from "./Pie_chart";
+// import Pie_chart from "./Pie_chart";
 import ClothesDetailCss from "../css/MyPage_detailPageCss";
 import { Image } from "react-bootstrap";
 
@@ -67,9 +67,9 @@ function MyPage_detailChartPage(){
                                 </div>
                             </div>
                     </div>
-                    <div className="chartContainer">
+                    {/* <div className="chartContainer">
                         <Pie_chart />
-                    </div> 
+                    </div>  */}
             </div>
         </>
     );
