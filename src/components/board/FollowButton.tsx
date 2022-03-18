@@ -42,7 +42,6 @@ function FollowButton(props: IProps) {
     async function selectFollow() {
         await FollowService.getCheckFollow("2", user?.user_id as IUser["user_id"]).then(res => {
             // await FollowService.getCheckFollow("2", "1").then(res => {
-
             console.log(res.data);
             if (res.data === null) {
                 follow.follow_id = 0;
