@@ -8,28 +8,33 @@ import "../../css/main/MainAnotherComponent.css";
 
 // 사진
 import {AiFillHeart, AiFillStar} from "react-icons/ai";
-import IBoard from "../../interfaces/IBoard";
-import IUser from "../../interfaces/IUser";
-import IFollow from "../../interfaces/IFollow";
 
 interface IProps {
-    data: IBoard;
+    data: IData;
+}
+
+interface IData {
+    id: number;
+    title: string;
+    name: string;
+    liked: number;
+    followed: number;
 }
 
 function MainComponent(props: IProps) {
     const [isShow, setIsShow] = useState<boolean>(false);
     const [isDone, setIsDone] = useState<boolean>(false);
-    const [user, setUser] = useState<IUser>();
-    const [myId, setMyId] = useState<IUser["user_id"]>("1");
-    const [isFollowed, setIsFollowed] = useState<boolean>(false);
-    const [isLiked, setIsLiked] = useState<boolean>(false);
-    const [follow, setFollow] = useState<IFollow>({
-        follow_id: 0,
-        from_user_id: "",
-        to_user_id: ""
-    });
+    // const [user, setUser] = useState<IUser>();
+    // const [myId, setMyId] = useState<IUser["user_id"]>("1");
+    // const [isFollowed, setIsFollowed] = useState<boolean>(false);
+    // const [isLiked, setIsLiked] = useState<boolean>(false);
+    // const [follow, setFollow] = useState<IFollow>({
+    //     follow_id: 0,
+    //     from_user_id: "",
+    //     to_user_id: ""
+    // });
 
-    // let board = props.data;
+    let board = props.data;
     // let imageurl = "https://daily-coorder-backend.herokuapp.com/api/board_img/" + board.board_url;
 
 
@@ -126,44 +131,44 @@ function MainComponent(props: IProps) {
     // }, [follow])
 
     // 가져온 테이블에서 팔로우 숫자 가져오기
-    // const [followed, setFollowed] = useState(props.data.followed);
-    // const [liked, setLiked] = useState(props.data.liked);
+    const [liked, setLiked] = useState(props.data.liked);
+    const [followed, setFollowed] = useState(props.data.followed);
     //                        ?  언디파인드 아닐떄만 접근해라
 
     const [likecolor, setLikecolor] = useState("");
     const [followcolor, setFollowcolor] = useState("");
 
     // 좋아요 + 1
-    // function likeIn() {
-    //     setLiked(liked + 1);
-    // }
-    //
-    // // 좋아요 - 1
-    // function likeDe() {
-    //     setLiked(liked - 1);
-    // }
-    //
-    // // 팔로우 + 1
-    // function followIn() {
-    //     setFollowed(followed as number + 1);
-    // }
-    //
-    // // 팔로우 - 1
-    // function followDe() {
-    //     setFollowed(followed as number - 1);
-    //
-    // }
+    function likeIn() {
+        setLiked(liked + 1);
+    }
+
+    // 좋아요 - 1
+    function likeDe() {
+        setLiked(liked - 1);
+    }
+
+    // 팔로우 + 1
+    function followIn() {
+        setFollowed(followed + 1);
+    }
+
+    // 팔로우 - 1
+    function followDe() {
+        setFollowed(followed - 1);
+
+    }
 
     // 좋아요 색깔 toglle and 좋아요 + 1 or - 1
     function toggleShow() {
         likecolor === "" ? setLikecolor("rgba(30,66,141,1)") : setLikecolor("");
         setIsShow(!isShow);
         // createFollow();
-        // if (!isShow) {
-        //     likeIn();
-        // } else {
-        //     likeDe();
-        // }
+        if (!isShow) {
+            likeIn();
+        } else {
+            likeDe();
+        }
     }
 
     // const onClick = () => {
@@ -186,11 +191,11 @@ function MainComponent(props: IProps) {
             ? setFollowcolor("rgba(254,68,161,1)")
             : setFollowcolor("");
         setIsDone(!isDone);
-        // if (!isDone) {
-        //     followIn();
-        // } else {
-        //     followDe();
-        // }
+        if (!isDone) {
+            followIn();
+        } else {
+            followDe();
+        }
         // if (follow.follow_id === 0) {
         //     createFollow();
         // } else {
@@ -202,10 +207,10 @@ function MainComponent(props: IProps) {
     return (
         <div className="anotherpic-out">
             <div className="anotherpic">
-                <Link to="/board/board_poster/{board.board_poster}" className="link">
+                <Link to="/board/board1" className="link">
                     <img
                         className="d-block w-100"
-                        // src={imageurl}
+                        src={props.data.title}
                         alt="1-1 slide"
                     />
                 </Link>
@@ -222,14 +227,14 @@ function MainComponent(props: IProps) {
 
                 <Link to="/feed">
                     <div className="ano-group_txt5">
-                        {/*<div className="t1">{props.data.name}</div>*/}
+                        <div className="t1">{props.data.name}</div>
                         <div className="like_group">
                             <AiFillHeart className="like_icon"/>
-                            {/*<span className="like_cnt">{liked}</span>*/}
+                            <span className="like_cnt">{liked}</span>
                         </div>
                         <div className="follow_group">
                             <AiFillStar className="follow_icon"/>
-                            {/*<span className="follow_cnt">{followed}</span>*/}
+                            <span className="follow_cnt">{followed}</span>
                         </div>
                     </div>
                 </Link>
