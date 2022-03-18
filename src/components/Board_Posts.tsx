@@ -2,7 +2,7 @@ import Comment from "../components/Board_Comment";
 import Explanation from "./board/Explanation";
 import PictureQr from "./board/PictureQr";
 import DownBtn from "./board/DownBtn";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import IBoard from "../interfaces/IBoard";
 import BoardService from "../service/BoardService";
 import UserFollower from "./board/UserFollower";
@@ -39,20 +39,12 @@ function Board_Posts(props: IProps) {
         );
     };
 
-    /*    // 게시물작성자()를 이용해 유저닉네임을 가져옴
-        async function getUser() {
-            await UserService.getUserById(board.board_poster).then(res => {
-                setUser(res.data)
-            })
-        };*/
-
-
-    useEffect(() => {
-        getBoard().then(() => {
-            // getUser();
-            console.log("board_poster:" + board.board_poster)
-        });
-    }, []);
+    // useEffect(() => {
+    //     getBoard().then(() => {
+    //         // getUser();
+    //         console.log("board_poster:" + board.board_poster)
+    //     });
+    // }, []);
 
     return (
         <>

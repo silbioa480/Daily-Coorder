@@ -1,10 +1,11 @@
 import {Circle} from "../../css/Board_Posts";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import "../../css/board/followButton.css";
 import UserService from "../../service/UserService";
 import IUser from "../../interfaces/IUser";
 import IBoard from "../../interfaces/IBoard";
 import FollowButton from "./FollowButton";
+import mainno1 from "../../img/main/mainano1.png"
 
 interface IProps {
     board: IBoard;
@@ -24,32 +25,36 @@ function UserFollower(props: IProps) {
     }
 
 
-    useEffect(() => {
-        console.log(board.board_poster);
-        console.log(user);
-        getUser();
-
-    }, [board])
+    // useEffect(() => {
+    //     console.log(board.board_poster);
+    //     console.log(user);
+    //     getUser();
+    //
+    // }, [board])
 
 
     //user_profile 이용 프로필이미지파일
-    let profileurl = "https://daily-coorder-backend.herokuapp.com/api/board_img/" + user?.user_profile;
+    // let profileurl = "https://daily-coorder-backend.herokuapp.com/api/board_img/" + user?.user_profile;
 
+    //<Circle src={profileurl} style={{marginLeft: "20px"}}></Circle>
 
     return (
         <>
             <div className="information_button">
                 <div className="information">
-                    <div>
+                    <div style={{marginLeft: "20px"}}>
                         <a href="#">
-                            <Circle src={profileurl} style={{marginLeft: "20px"}}></Circle>
+                            <Circle src={mainno1} alt=""></Circle>
+
+                            {/*<Circle src={mainno10.png} style={{marginLeft: "20px"}}></Circle>*/}
                         </a>
                     </div>
                     <div style={{margin: "auto 0", marginLeft: "7px"}}>
                         <a href="#">
-                            <p>{user?.user_nickname}</p>
+                            <p style={{fontWeight: "bold", fontSize: "16px", padding: "3px "}}>JamesKim
+                            </p>
                         </a>
-                        <p>팔로워 {user?.user_follower_number}명</p>
+                        <p style={{fontSize: "13px", padding: "3px"}}>팔로워 234명</p>
                     </div>
                 </div>
 
