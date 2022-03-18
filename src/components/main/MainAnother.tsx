@@ -16,8 +16,194 @@ import mainano6 from "../../img/main/mainano6.png";
 import mainano7 from "../../img/main/mainano7.png";
 import mainano8 from "../../img/main/mainano8.png";
 import mainano9 from "../../img/main/mainano9.png";
+import mainano18 from "../../img/main/mainano18.png";
+import mainano19 from "../../img/main/mainano19.png";
+import mainano20 from "../../img/main/mainano20.png";
+import mainano21 from "../../img/main/mainano21.png";
+import mainano22 from "../../img/main/mainano22.png";
 import mainano10 from "../../img/main/mainano10.png";
+
+
 import MainAnotherComponent from "./MainAnotherComponent";
+
+let d = [
+
+    {
+        id: 11,
+        title: mainano6,
+        name: "@likeso",
+        liked: 11,
+        followed: 275,
+    },
+    {
+        id: 12,
+        title: mainano7,
+        name: "@goodbye",
+        liked: 12,
+        followed: 145,
+    },
+    {
+        id: 13,
+        title: mainano8,
+        name: "@Sor_but",
+        liked: 13,
+        followed: 431,
+    },
+    {
+        id: 14,
+        title: mainano3,
+        name: "@son_mi",
+        liked: 14,
+        followed: 196,
+    },
+    {
+        id: 15,
+        title: mainano10,
+        name: "@gong_0",
+        liked: 15,
+        followed: 1041,
+    },
+    {
+        id: 16,
+        title: mainano6,
+        name: "@likeso",
+        liked: 11,
+        followed: 275,
+    },
+    {
+        id: 17,
+        title: mainano7,
+        name: "@goodbye",
+        liked: 12,
+        followed: 145,
+    },
+    {
+        id: 18,
+        title: mainano18,
+        name: "@Sor_but",
+        liked: 13,
+        followed: 431,
+    },
+    {
+        id: 19,
+        title: mainano19,
+        name: "@son_mi",
+        liked: 14,
+        followed: 196,
+    },
+    {
+        id: 20,
+        title: mainano20,
+        name: "@gong_0",
+        liked: 15,
+        followed: 1041,
+    },
+    {
+        id: 21,
+        title: mainano21,
+        name: "@likeso",
+        liked: 11,
+        followed: 275,
+    },
+    {
+        id: 22,
+        title: mainano22,
+        name: "@goodbye",
+        liked: 12,
+        followed: 145,
+    },
+    {
+        id: 23,
+        title: mainano23,
+        name: "@Sor_but",
+        liked: 13,
+        followed: 431,
+    },
+    {
+        id: 24,
+        title: mainano24,
+        name: "@son_mi",
+        liked: 14,
+        followed: 196,
+    },
+    {
+        id: 25,
+        title: mainano25,
+        name: "@gong_0",
+        liked: 15,
+        followed: 1041,
+    },
+    {
+        id: 26,
+        title: mainano26,
+        name: "@likeso",
+        liked: 11,
+        followed: 275,
+    },
+    {
+        id: 27,
+        title: mainano27,
+        name: "@goodbye",
+        liked: 12,
+        followed: 145,
+    },
+    {
+        id: 28,
+        title: mainano28,
+        name: "@Sor_but",
+        liked: 13,
+        followed: 431,
+    },
+    {
+        id: 29,
+        title: mainano29,
+        name: "@son_mi",
+        liked: 14,
+        followed: 196,
+    },
+    {
+        id: 30,
+        title: mainano30,
+        name: "@gong_0",
+        liked: 15,
+        followed: 1041,
+    },
+    {
+        id: 31,
+        title: mainano31,
+        name: "@likeso",
+        liked: 11,
+        followed: 275,
+    },
+    {
+        id: 32,
+        title: mainano32,
+        name: "@goodbye",
+        liked: 12,
+        followed: 145,
+    },
+    {
+        id: 33,
+        title: mainano33,
+        name: "@Sor_but",
+        liked: 13,
+        followed: 431,
+    },
+    {
+        id: 34,
+        title: mainano34,
+        name: "@son_mi",
+        liked: 14,
+        followed: 196,
+    },
+    {
+        id: 35,
+        title: mainano35,
+        name: "@gong_0",
+        liked: 15,
+        followed: 1041,
+    },
+]
 
 function MainAnother() {
     // user 가져오기
@@ -61,6 +247,10 @@ function MainAnother() {
     // -----------------------------------------------
 
     // component.slice.map -------------------------------------
+
+    const [start, setStart] = useState(0);
+    const [end, setEnd] = useState(10);
+    const [randomArray, setRandomArray] = useState<number[]>([]);
 
     const [datas, setDatas] = useState([
         {
@@ -139,6 +329,9 @@ function MainAnother() {
     // let i = 5;
     const load = () => {
 
+        setStart(start + 10);
+        setEnd(end + 10);
+
         setDatas([
             ...datas,
             {
@@ -215,7 +408,26 @@ function MainAnother() {
         lastindex = datas[datas.length - 1].id + 5;
     };
 
+    const selectIndex = (totalIndex: number, selectingNumber: number) => {
+        let randomIndexArray = []
+        for (let i = 0; i < selectingNumber; i++) {   //check if there is any duplicate index
+            let randomNum = Math.floor(Math.random() * totalIndex)
+            if (randomIndexArray.indexOf(randomNum) === -1) {
+                randomIndexArray.push(randomNum)
+            } else { //if the randomNum is already in the array retry
+                i--
+            }
+        }
+
+        setRandomArray(randomIndexArray);
+        return randomIndexArray
+    }
+
     const renderRepeat = datas.map((data) => {
+
+        for (let i = start; i < end; i++) {
+
+        }
         return <MainAnotherComponent data={data} key={data.id}/>;
     });
 
