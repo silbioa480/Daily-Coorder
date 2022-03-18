@@ -1,55 +1,97 @@
-import { useState } from "react";
-import { Button, Container, Modal } from "react-bootstrap";
+import {useEffect, useState} from "react";
+import {Button, Container, Modal} from "react-bootstrap";
 import Form from 'react-bootstrap/Form';
 import "../css/main/animation.css";
-
+import IUser from "../interfaces/IUser";
+import UserService from "../service/UserService";
+import { useForm } from "react-hook-form";
+import {Link} from 'react-router-dom';
 function AlertResister() {
-  const [close, setClose] = useState(false);
+    const [close, setClose] = useState(false);
+    
 
-  const handleClose = () => {
-    setClose(true);
-  }
-  return (
-    <>
-      <Modal close={close} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>정보 수정 확인</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>회원정보를 정말 수정하시겠습니까?</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            이전
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            수정 완료
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </>
-  );
+    const handleClose = () => {
+        setClose(true);
+    }
+    return (
+        <>
+            { close && <Modal onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>체형 수정 확인</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>체형정보를 정말 수정하시겠습니까?</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        이전
+                    </Button>
+                    <Button variant="primary" onClick={handleClose}>
+                        <Link to="/member/MyPage_MemberInformation">
+                            수정 하기
+                        </Link>
+                    </Button>
+                </Modal.Footer>
+            </Modal>}
+        </>
+    );
 }
 
+
+
+
 function MyPage_SizeRegister() {
-  const [memberId, setMemberId] = useState({ id: "" });
-  const [memberNickName, setMemberNickname] = useState({ nickname: "" });
-  const [userBody, setBody] = useState({
-    weight: "",
-    height: ""
-  });
+    const {
+      register,
+      handleSubmit
+    }=useForm<IUser>();
+    const [show, setShow] = useState(false);
+    const [userId,setUserId]=useState<IUser["user_id"]>("");
+    const [userInfo,setUserInfo]=useState<IUser>();
 
-  const [show, setShow] = useState(false);
+    async function getUser(){
+        if(userId !== undefined){
+          setUserInfo(await UserService.getUserById(userId).then(res=>res.data));
+        }
+    }
 
-  const handleChange = (event: any) => {
-    const name = event.target.name;
-    const value = event.target.value;
+    useEffect(()=>{
+        getUser();
+    },[]);
+  
+    const onValid=async({
+        user_weights,
+        user_height
+    } : IUser)=>{
+        if(userInfo !== undefined){
+          let body : IUser = {
+              user_weights,
+              user_height,
+              user_id:userId,
+              user_password:userInfo.user_password,
+              user_email:userInfo.user_email,
+              user_birth:userInfo.user_birth,
+              user_is_ad:userInfo.user_is_ad,
+              user_is_admin:userInfo.user_is_admin,
+              user_follow_number:userInfo.user_follow_number,
+              user_follower_number:userInfo.user_follower_number,
+              user_gender:userInfo.user_gender,
+              user_is_location:userInfo.user_is_location,
+              user_name:userInfo.user_name,
+              user_nickname:userInfo.user_nickname,
+              user_phone:userInfo.user_phone,
+              user_profile:userInfo.user_profile,
+              user_update_date:userInfo.user_update_date,
+              user_signup_date:userInfo.user_signup_date
+          }
 
-    setBody((values) => ({ ...values, [name]: [value] }));
-  }
+          await UserService.updateUser(body,userId).then(res=>res.data);
+        }
 
-  const handleResister = () => {
-    setShow(true);
-  }
-  return (
+    }
+    
+    const handleResister = () => {
+        setShow(true);
+    }
+    return (
 
     <div style={{ display: "flex", justifyContent: "center" }}>
       <Container className="aa" style={{
@@ -72,9 +114,8 @@ function MyPage_SizeRegister() {
             <p style={{
               marginLeft: "1vw",
               display: "inline-block",
-              width: "140px",
-              backgroundColor: "green"
-            }}>{memberId.id}</p>
+              width: "140px"
+            }}>{userInfo?.user_id}</p>
           </div>
         </div>
         <div style={{ paddingTop: "3em" }}>
@@ -94,38 +135,42 @@ function MyPage_SizeRegister() {
               display: "inline-block",
               width: "140px",
               backgroundColor: "green"
-            }}>{memberNickName.nickname}</p>
+            }}>{userInfo?.user_nickname}</p>
           </div>
         </div>
         <div style={{ width: "100%", display: "flex", justifyContent: "center", padding: "3em 2em" }}>
           <label style={{ fontSize: "1.5vw" }}>체형</label>
         </div>
         <div style={{}}>
-          <div style={{ display: "flex", alignItems: "center", paddingBottom: "20px" }}>
-            <label style={{
-              paddingLeft: "50px",
-              paddingRight: "30px",
-              textAlign: "center",
-              fontWeight: "bold",
-              fontSize: "1vw"
-            }}>weight</label>
-            <Form.Control type="text" placeholder="weight" id="weight" name="weight"
-              style={{ width: "250px" }} value={userBody.weight || ""} onChange={handleChange} />
-          </div>
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <label style={{
-              paddingLeft: "50px",
-              paddingRight: "30px",
-              textAlign: "center",
-              fontWeight: "bold",
-              fontSize: "1vw"
-            }}>height</label>
-            <Form.Control type="text" placeholder="height" id="height" name="height"
-              style={{ width: "250px" }} value={userBody.height || ""} onChange={handleChange} />
-          </div>
+              <Form onSubmit={handleSubmit(onValid)}>
+                  <div style={{ display: "flex", alignItems: "center", paddingBottom: "20px" }}>
+                    <label style={{
+                      paddingLeft: "50px",
+                      paddingRight: "30px",
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      fontSize: "1vw"
+                    }}>weight</label>
+                    <Form.Control type="text" placeholder="weight" id="weight" name="weight"
+                      style={{ width: "250px" }} {...register("user_weights",{required : "몸무게를 입력하세요"})}/>
+                  </div>
+                  <div style={{ display: "flex", alignItems: "center" }}>
+                    <label style={{
+                      paddingLeft: "50px",
+                      paddingRight: "30px",
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      fontSize: "1vw"
+                    }}>height</label>
+                    <Form.Control type="text" placeholder="height" id="height" name="height"
+                      style={{ width: "250px" }} {...register("user_height",{required:"키를 입력하세요"})}/>
+                  </div>
+              </Form>
         </div>
         <div style={{ width: "100%", display: "flex", justifyContent: "center", margin: "3.5em 0" }}>
-          <button className='mypage_btn' onClick={handleResister}>체형 등록 하기</button>
+          <Button type="submit" onClick={handleResister}>
+              체형 등록 하기
+          </Button>
         </div>
       </Container>
 

@@ -13,9 +13,7 @@ const MemInfoCss=createGlobalStyle`
         border-radius:20px;
         
     }
-    body{
-        background-color:#f7f7f7;
-    }
+    
 
     .memberOrceo{
         width:20.5vw;

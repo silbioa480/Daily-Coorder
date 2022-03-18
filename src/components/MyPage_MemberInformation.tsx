@@ -1,22 +1,26 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
 import MemInfoCss from '../css/MyPage_MemInfoCss';
-import { Figure } from 'react-bootstrap';
+import { Figure, Modal ,Button} from 'react-bootstrap';
 import "../css/main/animation.css";
 import IUser from "../interfaces/IUser";
 import UserService from "../service/UserService";
 import IBusiness from '../interfaces/IBusiness';
 import BusinessSevice from '../service/BusinessService';
-import IMemberId from '../interfaces/IMemberId';
-import MemberIdService from '../service/MemberIdService';
+import { Link } from 'react-router-dom';
 import { useEffect } from "react";
+import { memberAtom , isLoginAtom } from '../atom';
+import { useRecoilValue } from 'recoil';
 
 
 function Ceoinformation() {
-  const [businessId, setBusinessId] = useState<IBusiness["business_id"]>("");
+  const memberId = useRecoilValue(memberAtom);
+
+  const [businessId, setBusinessId] = useState<IBusiness["business_id"]>(memberId.member_id);
   const [businessinfo, setBusinessInfo] = useState<IBusiness>();
 
   async function ceoInfo() {
+    console.log("ceoInfo");
     setBusinessInfo(await BusinessSevice.getBusinessById(businessId).then(res => res.data));
   }
 
@@ -111,7 +115,10 @@ function Ceoinformation() {
 
 
 function MemberInformation() {
-  const [userId, setUserId] = useState<IUser["user_id"]>("1");
+
+  const memberId = useRecoilValue(memberAtom);
+
+  const [userId, setUserId] = useState<IUser["user_id"]>("10");
   const [userInfo, setUserInfo] = useState<IUser>();
 
   async function normalInfo() {
@@ -122,7 +129,7 @@ function MemberInformation() {
 
   useEffect(() => {
     normalInfo();
-  }, []);
+  }, [userInfo]);
 
   return (
     <>
@@ -248,31 +255,46 @@ function MemberInformation() {
 
 function MyPage_MemberInformation() {
 
-  const [memberid, setMemberId] = useState<IMemberId["member_id"]>("");
-  const [isPeople, setIsPeople] = useState<IMemberId>();
   //일반인지  사업자인지 판별
+
+  const isLogin = useRecoilValue(isLoginAtom);
+  const memberId = useRecoilValue(memberAtom);
+
   const [isMember, setIsMember] = useState(true);
   const [isCeo, setIsCeo] = useState(false);
 
-  async function booleanUser() {
-    if (memberid !== undefined) {
-      setIsPeople(await MemberIdService.getIdById(memberid).then(res => res.data));
-    }
+
+  function userOrBusiness(){
+        if(isLogin === false){
+          <Modal>
+                <Modal.Header closeButton>
+                  <Modal.Title>로그인 오류</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>로그인 먼저 하세요</Modal.Body>
+                <Modal.Footer>
+                  <Button variant="primary">
+                      <Link to="/login">로그인 하기</Link>
+                  </Button>
+            </Modal.Footer>
+          </Modal>
+      }else if(isLogin === true){
+          if(memberId.is_business === true){
+              setIsMember(false);
+              setIsCeo(true);
+          }else{
+              setIsMember(true);
+              setIsCeo(false);
+          }
+      }
   }
 
-  useEffect(() => {
-    booleanUser();
-    if (isPeople !== undefined) {
-      if (isPeople.is_business === true) {
-        setIsMember(false);
-        setIsCeo(true);
-      } else {
-        setIsMember(true);
-        setIsCeo(false);
-      }
-    }
-  }, []);
+  useEffect(()=>{
+    userOrBusiness();
+    console.log(isLogin);
+  },[]);
 
+ 
+ 
   return (
     <>
       <MemInfoCss />
