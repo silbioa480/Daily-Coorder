@@ -62,6 +62,7 @@ function MyPage_SizeRegister() {
               user_signup_date:userInfo.user_signup_date
           }
         }
+    }
 
   const onValid = async ({
     user_weights,
@@ -91,6 +92,7 @@ function MyPage_SizeRegister() {
 
       await UserService.updateUser(body, userId).then(res => res.data);
     }
+  }
  
     return (
 
