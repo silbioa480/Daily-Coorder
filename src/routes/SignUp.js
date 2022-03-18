@@ -418,11 +418,9 @@ function SignUp() {
 
     await MemberIdService.createId(member);
 
-    setPopup({
-      open: true,
-      title: "회원가입 성공♡♡",
-      message: "회원가입에 성공했습니다!!!!",
-      callback: function () { },
+    await Swal.fire({
+      icon: "success",
+      title: "회원가입이 완료되었습니다.",
     });
 
     history.push("/login");
@@ -500,7 +498,7 @@ function SignUp() {
     let exist;
     try {
       exist = await MemberIdService.getIdById(Id);
-    } catch (err) { }
+    } catch (err) {}
     if (exist !== undefined) {
       setPopup({
         open: true,
@@ -923,7 +921,7 @@ function SignUp() {
               </div>
             </details>
 
-            <div className='common_button_box'>
+            <div className="common_button_box">
               <button
                 type="button"
                 onClick={onSubmitHandler}
