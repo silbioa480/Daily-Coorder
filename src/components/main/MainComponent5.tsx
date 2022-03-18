@@ -129,9 +129,11 @@ function MainComponent(props: IProps) {
     // 이부분을 Component화.
     return (
         <div className="anopic">
-            <Link to="/board/board1" className="link">
+            <a
+                href="http://www.gncostyle.com/brandshop/thursdayisland"
+                className="link">
                 <img className="d-block w-100" src={props.data.title} alt="1-1 slide"/>
-            </Link>
+            </a>
 
             <div className="group_icon5">
                 <div className="like_logoA">
