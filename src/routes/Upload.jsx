@@ -64,7 +64,7 @@ const Upload = (props) => {
   };
 
   // 해시태그
-  const [tags, setTags] = useState([]);
+  const [tags, setTags] = useState(['데일리코더', 'OOTD']);
   const tagInput = useRef();
 
   const inputKeyDown = (e) => {
@@ -111,7 +111,7 @@ const Upload = (props) => {
             </button>
           </div>
         </label>
-        {errors.upload && <h4 className="errorMsg">사진을 업로드하세요.</h4>}
+        {/* {errors.upload && <h4 className="errorMsg">사진을 업로드하세요.</h4>} */}
         {/* 제목 */}
         <div className="aa title-container">
           <input
@@ -119,12 +119,12 @@ const Upload = (props) => {
             className="input"
             type="text"
             placeholder="제목을 입력하세요"
-            {...register("title", { required: true })}
+          // {...register("title", { required: true })}
           />
           {/* <label for="title">제목을 입력하세요</label> */}
-          {errors.title && (
+          {/* {errors.title && (
             <h4 className="errorMsg">제목은 필수입력 항목입니다.</h4>
-          )}
+          )} */}
         </div>
         {/* 내용 */}
         <div className="aa content-container">

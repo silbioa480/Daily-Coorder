@@ -12,8 +12,8 @@ import PopUp from "./PopUp";
 //아이디 기억하기 체크박스 때문에 install 했고, import함
 import { useCookies } from "react-cookie";
 import MemberIdService from "../service/MemberIdService";
-import { useSetRecoilState } from "recoil";
-import { isLoginAtom, memberAtom } from "../atom";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { isLoginAtom, memberAtom, saltKey } from "../atom";
 
 function LoginMember() {
   //모달 설정
@@ -28,6 +28,7 @@ function LoginMember() {
 
   const setIsLogin = useSetRecoilState(isLoginAtom);
   const setMemberId = useSetRecoilState(memberAtom);
+  const salt = useRecoilValue(saltKey);
 
   //아이디 기억하기(로그인 페이지 내 체크박스)
   const [cookies, setCookie, removeCookie] = useCookies(["rememberId"]);
@@ -49,10 +50,6 @@ function LoginMember() {
 
   const clickSnsLoginKakao = (e) => {
     let kakaoid = e.profile.id;
-  };
-
-  const clickSnsLoginGoogle = (e) => {
-    let googleid = e.Ft.NT;
   };
 
   const onIdHandler = (e) => {
@@ -138,8 +135,10 @@ function LoginMember() {
       return;
     }
 
-    let memberId = await MemberIdService.getIdById(Id).then((res) => res.data);
-    if (memberId === undefined) {
+    let memberId;
+    try {
+      memberId = await MemberIdService.getIdById(Id).then((res) => res.data);
+    } catch (e) {
       setPopup({
         open: true,
         title: "로그인 실패",
@@ -151,7 +150,7 @@ function LoginMember() {
     let CryptoJS = require("crypto-js");
     let decrypted = CryptoJS.AES.decrypt(
       memberId.member_password,
-      "salt"
+      salt
     ).toString(CryptoJS.enc.Utf8);
     if (decrypted !== Password) {
       setPopup({
@@ -179,7 +178,7 @@ function LoginMember() {
   };
 
   return (
-    <div className="login-container" style={{ height: "880px" }}>
+    <div className="login-container">
       <div className="login_member">
         <PopUp
           open={popup.open}
@@ -235,13 +234,13 @@ function LoginMember() {
               <Link to="/login/PasswordSearch"> 비밀번호 찾기</Link>
             </div>
           </div>
-          <div className="common_button_out">
+          <div className="common_button_box">
             <button
               className="common_button"
               type="button"
               onClick={onSubmitHandler}
             >
-              <span>Login</span>
+              <span>Log In</span>
             </button>
           </div>
 

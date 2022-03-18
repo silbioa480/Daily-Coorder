@@ -43,10 +43,11 @@ function Mainfollow() {
 
     useEffect(() => {
         getFollowerBoard();
-    }, []);
-
+    }, [myFollowers]);
 
     const renderRepeat = followerBoards.map((data) => {
+
+        // console.log(data);
         return <MainComponent data={data} key={data.board_id}/>;
     });
 

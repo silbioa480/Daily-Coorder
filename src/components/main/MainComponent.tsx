@@ -18,7 +18,6 @@ interface IProps {
     data: IBoard;
 }
 
-
 function MainComponent(props: IProps) {
     const [isShow, setIsShow] = useState<boolean>(false);
     const [isDone, setIsDone] = useState<boolean>(false);
@@ -34,7 +33,7 @@ function MainComponent(props: IProps) {
 
     // User_id 가져온다.
     async function getUser() {
-        setUser(await UserService.getUserById(props.data.board_poster).then(res => res.data));
+        setUser(await UserService.getUserById(board.board_poster).then(res => res.data));
     }
 
     // User_id로 follow 테이블 가져와서 isFollow 확인
@@ -54,7 +53,7 @@ function MainComponent(props: IProps) {
 
     async function checkLike() {
         try {
-            await BoardLikeService.getCheckLike(props.data.board_id, myId).then(res => res.data);
+            await BoardLikeService.getCheckLike(board.board_id, myId).then(res => res.data);
             setIsLiked(true);
         } catch {
             setIsLiked(false);
@@ -65,13 +64,17 @@ function MainComponent(props: IProps) {
 
     useEffect(() => {
         getUser();
+    }, [board]);
+    useEffect(() => {
         checkFollow();
+    }, [user]);
+    useEffect(() => {
         checkLike();
-    }, []);
+    }, [isFollowed]);
 
     // 가져온 테이블엣거 팔로우 숫자 가져오기
     const [followed, setFollowed] = useState(user?.user_follower_number);
-    const [liked, setLiked] = useState(props.data.board_like_number);
+    const [liked, setLiked] = useState(board.board_like_number);
     //                        ?  언디파인드 아닐떄만 접근해라
 
     const [likecolor, setLikecolor] = useState("");
@@ -142,7 +145,7 @@ function MainComponent(props: IProps) {
 
             <Link to="/feed">
                 <div className="group_txt">
-                    <div className="t1">{props.data.board_poster}</div>
+                    <div className="t1">{board.board_poster}</div>
                     <div className="like_group">
                         <AiFillHeart className="like_icon"/>
                         <span className="like_cnt">{liked}</span>

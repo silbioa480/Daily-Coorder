@@ -53,7 +53,7 @@ function Picture_Tag(props: IProps) {
 
     useEffect(() => {
         getTag();
-    }, [])
+    }, [board])
 
 
     const boardTag = tag.map((data) => {

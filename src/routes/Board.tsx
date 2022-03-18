@@ -1,6 +1,6 @@
 import Board_Posts from "../components/Board_Posts";
-import MainAnother from "../components/main/MainAnother";
 import {useParams} from "react-router-dom";
+import TagAnother from "../components/board/TagAnother";
 
 interface IParams {
     boardNumber: string;
@@ -14,7 +14,7 @@ function Board() {
     return (
         <div>
             <Board_Posts boardId={boardId}/>
-            <MainAnother/>
+            <TagAnother/>
         </div>
     );
 }

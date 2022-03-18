@@ -1,8 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {useEffect, useState} from 'react';
-import {Button} from 'react-bootstrap';
+import { useEffect, useState } from 'react';
+import { Button } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import MyPage_MemberInformation from './MyPage_MemberInformation';
 import "../css/main/animation.css";
 import IUser from '../interfaces/IUser';
@@ -66,10 +66,10 @@ function MyPage_MemberUnregister() {
     }
     return (
         <>
-            <div className="aa" style={{width: "60%", margin: "4em auto", height: "750px"}}>
+            <div className="aa" style={{width: "60%", margin: "4em auto", height: "900px"}}>
                 <MyPage_MemberInformation />
 
-                <div style={{width: "100%", display: "flex", justifyContent: "center"}}>
+                <div style={{width: "100%", display: "flex", justifyContent: "center", marginTop: "1vw"}}>
                     <div className="d-grid gap-2">
                         <Button variant="white" onClick={handleShow} style={{
                             padding: ".3vw 2vw",
