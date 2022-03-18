@@ -139,7 +139,7 @@ function MainNewBrand() {
     });
     return (
         <>
-            <div className="bb mainfollow-text">New Brand</div>
+            <div className="bb mainfollow-text">Brand</div>
             <hr className="bb Line"></hr>
             <div className="bb wth">
                 <Carousel fade className="carousel-dark anothercar" style={{width: "1400px"}}>

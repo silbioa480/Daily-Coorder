@@ -118,7 +118,7 @@ function Mainfollow() {
 
     return (
         <>
-            <div className="aa mainfollow-text">New Followers Feed</div>
+            <div className="aa mainfollow-text">Feed</div>
             <hr className="left Line" style={{opacity: "1"}}></hr>
             <div className="bb feed">
                 <Carousel fade className="carousel-dark feedcar" style={{width: "1250px"}}>

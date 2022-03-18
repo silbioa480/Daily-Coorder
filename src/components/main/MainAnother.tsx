@@ -368,7 +368,7 @@ function MainAnother() {
     // ---------------------------------------------------------
     return (
         <>
-            <div className="bb mainfollow-text">New Another</div>
+            <div className="bb mainfollow-text">More</div>
             <hr className="bb Line"></hr>
             <div className="bb wth">
                 <div className="anothercar">
