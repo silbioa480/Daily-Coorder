@@ -13,7 +13,7 @@ import BusinessSevice from '../service/BusinessService';
 import MemberIdService from '../service/MemberIdService';
 import { memberAtom , isLoginAtom } from '../atom';
 import { useRecoilValue } from 'recoil';
-
+import { useSetRecoilState } from "recoil";
 
 function MyPage_MemberUnregister() {
     const isLogin = useRecoilValue(isLoginAtom);
@@ -22,11 +22,13 @@ function MyPage_MemberUnregister() {
     
     const [userInfo,setUserInfo]=useState<IUser>();
     const [businessInfo,setBusinessInfo]=useState<IBusiness>();
+    const [memberInfo,setMemberInfo]=useState<IMemberId>();
     const [show, setShow] = useState(false);
-
+    const setIsLogin = useSetRecoilState(isLoginAtom);
     async function getPeople(){
         if(memberId !== undefined){
             setUserInfo(await UserService.getUserById(memberId.member_id).then(res=>res.data));
+            setMemberInfo(await MemberIdService.getIdById(memberId.member_id).then(res=>res.data));
             
         }
     }
@@ -36,13 +38,16 @@ function MyPage_MemberUnregister() {
     }
  
     async function handleUnregister(){
-       
+            
             if(memberId.is_business === true){
                 await BusinessSevice.deleteBusiness(memberId.member_id).then(res=>res.data);
             }else{
                 await UserService.deleteUser(memberId.member_id).then(res=>res.data);
             }
-        
+            await MemberIdService.deleteId(memberId.member_id);
+
+           
+            setIsLogin(false);
     }
 
     useEffect(()=>{
