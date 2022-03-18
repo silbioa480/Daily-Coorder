@@ -16,12 +16,32 @@ import mainano6 from "../../img/main/mainano6.png";
 import mainano7 from "../../img/main/mainano7.png";
 import mainano8 from "../../img/main/mainano8.png";
 import mainano9 from "../../img/main/mainano9.png";
+import mainano10 from "../../img/main/mainano10.png";
+import mainano11 from "../../img/main/mainano11.png";
+import mainano12 from "../../img/main/mainano12.png";
+import mainano13 from "../../img/main/mainano13.png";
+import mainano14 from "../../img/main/mainano14.png";
+import mainano15 from "../../img/main/mainano15.png";
+import mainano16 from "../../img/main/mainano16.png";
+import mainano17 from "../../img/main/mainano17.png";
 import mainano18 from "../../img/main/mainano18.png";
 import mainano19 from "../../img/main/mainano19.png";
 import mainano20 from "../../img/main/mainano20.png";
 import mainano21 from "../../img/main/mainano21.png";
 import mainano22 from "../../img/main/mainano22.png";
-import mainano10 from "../../img/main/mainano10.png";
+import mainano23 from "../../img/main/mainano23.png";
+import mainano24 from "../../img/main/mainano24.png";
+import mainano25 from "../../img/main/mainano25.png";
+import mainano26 from "../../img/main/mainano26.png";
+import mainano27 from "../../img/main/mainano27.png";
+import mainano28 from "../../img/main/mainano28.png";
+import mainano29 from "../../img/main/mainano29.png";
+import mainano30 from "../../img/main/mainano30.png";
+import mainano31 from "../../img/main/mainano31.png";
+import mainano32 from "../../img/main/mainano32.png";
+import mainano33 from "../../img/main/mainano33.png";
+import mainano34 from "../../img/main/mainano34.png";
+import mainano35 from "../../img/main/mainano35.png";
 
 
 import MainAnotherComponent from "./MainAnotherComponent";
@@ -30,51 +50,51 @@ let d = [
 
     {
         id: 11,
-        title: mainano6,
-        name: "@likeso",
-        liked: 11,
+        title: mainano11,
+        name: "@likecolor",
+        liked: 513,
         followed: 275,
     },
     {
         id: 12,
-        title: mainano7,
-        name: "@goodbye",
-        liked: 12,
-        followed: 145,
+        title: mainano12,
+        name: "@good",
+        liked: 165,
+        followed: 1445,
     },
     {
         id: 13,
-        title: mainano8,
-        name: "@Sor_but",
-        liked: 13,
-        followed: 431,
+        title: mainano13,
+        name: "@Sort",
+        liked: 73,
+        followed: 131,
     },
     {
         id: 14,
-        title: mainano3,
-        name: "@son_mi",
-        liked: 14,
-        followed: 196,
+        title: mainano14,
+        name: "@sqare",
+        liked: 624,
+        followed: 1196,
     },
     {
         id: 15,
-        title: mainano10,
-        name: "@gong_0",
-        liked: 15,
-        followed: 1041,
+        title: mainano15,
+        name: "@gogos",
+        liked: 235,
+        followed: 541,
     },
     {
         id: 16,
-        title: mainano6,
-        name: "@likeso",
-        liked: 11,
-        followed: 275,
+        title: mainano16,
+        name: "@trkeso",
+        liked: 751,
+        followed: 1175,
     },
     {
         id: 17,
-        title: mainano7,
+        title: mainano17,
         name: "@goodbye",
-        liked: 12,
+        liked: 72,
         followed: 145,
     },
     {
@@ -248,9 +268,11 @@ function MainAnother() {
 
     // component.slice.map -------------------------------------
 
+
     const [start, setStart] = useState(0);
     const [end, setEnd] = useState(10);
-    const [randomArray, setRandomArray] = useState<number[]>([]);
+
+    let c = d.sort(() => Math.random() - 0.5);
 
     const [datas, setDatas] = useState([
         {
@@ -269,7 +291,7 @@ function MainAnother() {
         },
         {
             id: 3,
-            title: mainano9,
+            title: mainano3,
             name: "@ch_bely",
             liked: 3,
             followed: 447,
@@ -311,7 +333,7 @@ function MainAnother() {
         },
         {
             id: 9,
-            title: mainano3,
+            title: mainano9,
             name: "@son_mi",
             liked: 9,
             followed: 196,
@@ -324,110 +346,21 @@ function MainAnother() {
             followed: 1041,
         },
     ]);
-    let lastindex = 10;
 
-    // let i = 5;
     const load = () => {
+        let temp = datas;
+
+        for (let i = start; i < end; i++) {
+            temp.push(d[i]);
+        }
+
+        setDatas(temp);
 
         setStart(start + 10);
         setEnd(end + 10);
-
-        setDatas([
-            ...datas,
-            {
-                id: 11,
-                title: mainano6,
-                name: "@likeso",
-                liked: 11,
-                followed: 275,
-            },
-            {
-                id: 12,
-                title: mainano7,
-                name: "@goodbye",
-                liked: 12,
-                followed: 145,
-            },
-            {
-                id: 13,
-                title: mainano8,
-                name: "@Sor_but",
-                liked: 13,
-                followed: 431,
-            },
-            {
-                id: 14,
-                title: mainano3,
-                name: "@son_mi",
-                liked: 14,
-                followed: 196,
-            },
-            {
-                id: 15,
-                title: mainano10,
-                name: "@gong_0",
-                liked: 15,
-                followed: 1041,
-            },
-            {
-                id: 16,
-                title: mainano6,
-                name: "@likeso",
-                liked: 11,
-                followed: 275,
-            },
-            {
-                id: 17,
-                title: mainano7,
-                name: "@goodbye",
-                liked: 12,
-                followed: 145,
-            },
-            {
-                id: 18,
-                title: mainano8,
-                name: "@Sor_but",
-                liked: 13,
-                followed: 431,
-            },
-            {
-                id: 19,
-                title: mainano3,
-                name: "@son_mi",
-                liked: 14,
-                followed: 196,
-            },
-            {
-                id: 20,
-                title: mainano10,
-                name: "@gong_0",
-                liked: 15,
-                followed: 1041,
-            },
-        ]);
-        lastindex = datas[datas.length - 1].id + 5;
-    };
-
-    const selectIndex = (totalIndex: number, selectingNumber: number) => {
-        let randomIndexArray = []
-        for (let i = 0; i < selectingNumber; i++) {   //check if there is any duplicate index
-            let randomNum = Math.floor(Math.random() * totalIndex)
-            if (randomIndexArray.indexOf(randomNum) === -1) {
-                randomIndexArray.push(randomNum)
-            } else { //if the randomNum is already in the array retry
-                i--
-            }
-        }
-
-        setRandomArray(randomIndexArray);
-        return randomIndexArray
     }
 
     const renderRepeat = datas.map((data) => {
-
-        for (let i = start; i < end; i++) {
-
-        }
         return <MainAnotherComponent data={data} key={data.id}/>;
     });
 

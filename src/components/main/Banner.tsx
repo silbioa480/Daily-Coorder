@@ -6,8 +6,7 @@ import {Link} from "react-router-dom";
 
 import "../../css/main/Banner.css";
 import "../../css/main/animation.css";
-
-import mainBanner1 from "../../img/main/mainBanner1.png";
+import mainBanner5 from "../../img/main/mainBanner5.png";
 import mainBanner2 from "../../img/main/mainBanner2.png";
 import mainBanner3 from "../../img/main/mainBanner3.png";
 
@@ -25,7 +24,7 @@ function Banner() {
                         <Link to="/signup">
                             <img
                                 className="d-block w-100"
-                                src={mainBanner1}
+                                src={mainBanner5}
                                 alt="First slide"
                             />
                         </Link>
