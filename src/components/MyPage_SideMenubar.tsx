@@ -5,54 +5,41 @@ import {Link} from 'react-router-dom';
 import {BsPlusLg} from 'react-icons/bs';
 import {useEffect, useState} from 'react';
 import "../css/main/animation.css";
-import IUser from '../interfaces/IUser';
-import UserService from '../service/UserService';
-import IMemberId from '../interfaces/IMemberId';
-import MemberIdService from '../service/MemberIdService';
-
+import { Modal ,Button } from 'react-bootstrap';
+import { memberAtom , isLoginAtom } from '../atom';
+import { useRecoilValue } from 'recoil';
 
 
 
 function MyPage_SideMenubar() {
+
+    const isLogin = useRecoilValue(isLoginAtom);
+    const memberId = useRecoilValue(memberAtom);
     const [user, setUser] = useState(true);
     const [ceo, setCeo] = useState(false);
-    const [admin, setAdmin] = useState(false);
-    const [memberId,setMemberId]=useState<IMemberId["member_id"]>("");
-    const [isPeople,setIsPeople]=useState<IMemberId>();
-    const [userInfo,setUserInfo]=useState<IUser>();
 
-    async function getUser(){
-        setUserInfo(await UserService.getUserById(memberId).then(res=>res.data));
-    }
-
-    async function booleanUser(){
-        if(memberId !== undefined){
-            setIsPeople(await MemberIdService.getIdById(memberId).then(res=>res.data));
-        }
-    }
-
-    useEffect(()=>{
-        getUser();
-        booleanUser();
-        if(isPeople !== undefined){
-            if(isPeople.is_business === true){
-               setUser(true);
-               setCeo(true);
-               setAdmin(false);
-            }else if(isPeople.is_business === false){
-                if(userInfo !== undefined){
-                    if(userInfo.user_is_admin === true){
-                        setUser(false);
-                        setCeo(false);
-                        setAdmin(true);
-                    }
-                }
+  
+        if(isLogin !== false){
+            if(memberId.is_business === true){
+                setUser(true);
+                setCeo(true);
+            }else{
+                setUser(true);
+                setCeo(false);
             }
+        }else if(isLogin === false){
+            <Modal>
+                    <Modal.Header closeButton>
+                    <Modal.Title>로그인 오류</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>로그인 먼저 하세요</Modal.Body>
+                    <Modal.Footer>
+                    <Button variant="primary">
+                        <Link to="/login">로그인 하기</Link>
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         }
-    },[])
-
-
-
     
     return (
 
@@ -93,12 +80,12 @@ function MyPage_SideMenubar() {
                         </div>
                     </Nav.Link>
                      <div className="ceomenu">
-                        <Nav.Link as={Link} className="text-dark" to="/member/MyPage_Adapplication">광고 등록 신청</Nav.Link>
+                        {/* <Nav.Link as={Link} className="text-dark" to="/member/MyPage_Adapplication">광고 등록 신청</Nav.Link> */}
                         <Nav.Link as={Link} className="text-dark" to="/member/MyPage_ChartPage">내가 올린 게시물 보기</Nav.Link>
                     </div>
                 </Nav>}
 
-                {admin && <Nav className="flex-column">
+                {/* {admin && <Nav className="flex-column">
 
                     <Nav.Link style={{color: "black"}}>
                         <div style={{
@@ -116,7 +103,7 @@ function MyPage_SideMenubar() {
                         <Nav.Link as={Link} className="text-dark" to="/member/MyPage_AdProvePage">광고 등록 승인</Nav.Link>
                     </div>
 
-                    </Nav>}
+                    </Nav>} */}
 
             </div>
         </>
