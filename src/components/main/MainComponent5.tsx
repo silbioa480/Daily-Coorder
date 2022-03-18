@@ -1,6 +1,6 @@
 // 부트 스트랩 Carousel
 import "bootstrap/dist/css/bootstrap.min.css";
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {Link} from "react-router-dom";
 
 // css
@@ -8,14 +8,18 @@ import "../../css/main/MainComponent5.css";
 
 // 사진
 import {AiFillHeart, AiFillStar} from "react-icons/ai";
-import IBoard from "../../interfaces/IBoard";
 import IUser from "../../interfaces/IUser";
-import UserService from "../../service/UserService";
-import FollowService from "../../service/FollowService";
-import BoardLikeService from "../../service/BoardLikeService";
 
 interface IProps {
-    data: IBoard;
+    data: IData;
+}
+
+interface IData {
+    id: number;
+    title: string;
+    name: string;
+    liked: number;
+    followed: number;
 }
 
 
@@ -30,46 +34,47 @@ function MainComponent(props: IProps) {
     // isFollow ---------------------------------------------
 
     // User_id 가져온다.
-    async function getUser() {
-        setUser(await UserService.getUserById(props.data.board_poster).then(res => res.data));
-    }
+    // async function getUser() {
+    //     setUser(await UserService.getUserById(props.data.board_poster).then(res => res.data));
+    // }
 
     // User_id로 follow 테이블 가져와서 isFollow 확인
-    async function checkFollow() {
-        try {
-            await FollowService.getCheckFollow(myId, user?.user_id as string).then(res => res.data);
-            setIsFollowed(true);
-        } catch {
-            setIsFollowed(false);
-        }
-    }
+    // async function checkFollow() {
+    //     try {
+    //         await FollowService.getCheckFollow(myId, user?.user_id as string).then(res => res.data);
+    //         setIsFollowed(true);
+    //     } catch {
+    //         setIsFollowed(false);
+    //     }
+    // }
 
     // ----------------------------------------------------
 
     // isLike ------------------------------------------------
 
 
-    async function checkLike() {
-        try {
-            await BoardLikeService.getCheckLike(props.data.board_id, myId).then(res => res.data);
-            setIsLiked(true);
-        } catch {
-            setIsLiked(false);
-        }
-    }
+    // async function checkLike() {
+    //     try {
+    //         await BoardLikeService.getCheckLike(props.data.board_id, myId).then(res => res.data);
+    //         setIsLiked(true);
+    //     } catch {
+    //         setIsLiked(false);
+    //     }
+    // }
 
     // ---------------------------------------------------------
 
-    useEffect(() => {
-        getUser();
-        checkFollow();
-        checkLike();
-    }, []);
+    // useEffect(() => {
+    //     getUser();
+    //     checkFollow();
+    //     checkLike();
+    // }, []);
 
 
     // 가져온 테이블엣거 팔로우 숫자 가져오기
-    const [followed, setFollowed] = useState(user?.user_follower_number);
-    const [liked, setLiked] = useState(props.data.board_like_number);
+    const [liked, setLiked] = useState(props.data.liked);
+    const [followed, setFollowed] = useState(props.data.followed);
+    const [name, setName] = useState(props.data.name);
     //                        ?  언디파인드 아닐떄만 접근해라
 
     const [likecolor, setLikecolor] = useState("");
@@ -125,7 +130,7 @@ function MainComponent(props: IProps) {
     return (
         <div className="anopic">
             <Link to="/board/board1" className="link">
-                <img className="d-block w-100" src={props.data.board_title} alt="1-1 slide"/>
+                <img className="d-block w-100" src={props.data.title} alt="1-1 slide"/>
             </Link>
 
             <div className="group_icon5">
@@ -140,7 +145,7 @@ function MainComponent(props: IProps) {
 
             <Link to="/feed">
                 <div className="group_txt5">
-                    <div className="t1">{props.data.board_poster}</div>
+                    <div className="t1">{props.data.name}</div>
                     <div className="like_group">
                         <AiFillHeart className="like_icon"/>
                         <span className="like_cnt">{liked}</span>
