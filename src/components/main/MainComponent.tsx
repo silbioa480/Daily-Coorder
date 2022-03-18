@@ -1,6 +1,6 @@
 // 부트 스트랩 Carousel
 import "bootstrap/dist/css/bootstrap.min.css";
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {Link} from "react-router-dom";
 
 // css
@@ -8,15 +8,20 @@ import "../../css/main/MainComponemt.css";
 
 // 사진
 import {AiFillHeart, AiFillStar} from "react-icons/ai";
-import IBoard from "../../interfaces/IBoard";
 import IUser from "../../interfaces/IUser";
-import UserService from "../../service/UserService";
-import FollowService from "../../service/FollowService";
-import BoardLikeService from "../../service/BoardLikeService";
 
 interface IProps {
-    data: IBoard;
+    data: IData;
 }
+
+interface IData {
+    id: number;
+    title: string;
+    name: string;
+    liked: number;
+    followed: number;
+}
+
 
 function MainComponent(props: IProps) {
     const [isShow, setIsShow] = useState<boolean>(false);
@@ -26,56 +31,58 @@ function MainComponent(props: IProps) {
     const [isFollowed, setIsFollowed] = useState<boolean>(false);
     const [isLiked, setIsLiked] = useState<boolean>(false);
 
-    let board = props.data;
-    let imageurl = "http://localhost:8080/api/board_img/" + board.board_url;
+    // let board = props.data;
+    // let imageurl = "http://localhost:8080/api/board_img/" + board.board_url;
 
     // isFollow ---------------------------------------------
 
     // User_id 가져온다.
-    async function getUser() {
-        setUser(await UserService.getUserById(board.board_poster).then(res => res.data));
-    }
+    // async function getUser() {
+    //     setUser(await UserService.getUserById(board.board_poster).then(res => res.data));
+    // }
 
     // User_id로 follow 테이블 가져와서 isFollow 확인
-    async function checkFollow() {
-        try {
-            await FollowService.getCheckFollow(myId, user?.user_id as string).then(res => res.data);
-            setIsFollowed(true);
-        } catch {
-            setIsFollowed(false);
-        }
-    }
+    // async function checkFollow() {
+    //     try {
+    //         await FollowService.getCheckFollow(myId, user?.user_id as string).then(res => res.data);
+    //         setIsFollowed(true);
+    //     } catch {
+    //         setIsFollowed(false);
+    //     }
+    // }
 
     // ----------------------------------------------------
 
     // isLike ------------------------------------------------
 
 
-    async function checkLike() {
-        try {
-            await BoardLikeService.getCheckLike(board.board_id, myId).then(res => res.data);
-            setIsLiked(true);
-        } catch {
-            setIsLiked(false);
-        }
-    }
+    // async function checkLike() {
+    //     try {
+    //         await BoardLikeService.getCheckLike(board.board_id, myId).then(res => res.data);
+    //         setIsLiked(true);
+    //     } catch {
+    //         setIsLiked(false);
+    //     }
+    // }
 
     // ---------------------------------------------------------
 
-    useEffect(() => {
-        getUser();
-    }, [board]);
-    useEffect(() => {
-        checkFollow();
-    }, [user]);
-    useEffect(() => {
-        checkLike();
-    }, [isFollowed]);
+    // useEffect(() => {
+    //     getUser();
+    // }, [board]);
+    // useEffect(() => {
+    //     checkFollow();
+    // }, [user]);
+    // useEffect(() => {
+    //     checkLike();
+    // }, [isFollowed]);
 
     // 가져온 테이블엣거 팔로우 숫자 가져오기
-    const [followed, setFollowed] = useState(user?.user_follower_number);
-    const [liked, setLiked] = useState(board.board_like_number);
+
     //                        ?  언디파인드 아닐떄만 접근해라
+    const [liked, setLiked] = useState(props.data.liked);
+    const [followed, setFollowed] = useState(props.data.followed);
+    const [name, setName] = useState(props.data.name);
 
     const [likecolor, setLikecolor] = useState("");
     const [followcolor, setFollowcolor] = useState("");
@@ -131,7 +138,7 @@ function MainComponent(props: IProps) {
     return (
         <div className="folpic">
             <Link to={`/board/{props.data.board_id}`} className="link">
-                <img className="d-block w-100" src={imageurl} alt="1-1 slide"/>
+                <img className="d-block w-100" src={props.data.title} alt="1-1 slide"/>
             </Link>
             <div className="group_icon">
                 <div className="like_logoA">
@@ -145,7 +152,7 @@ function MainComponent(props: IProps) {
 
             <Link to="/feed">
                 <div className="group_txt">
-                    <div className="t1">{board.board_poster}</div>
+                    <div className="t1">{props.data.name}</div>
                     <div className="like_group">
                         <AiFillHeart className="like_icon"/>
                         <span className="like_cnt">{liked}</span>

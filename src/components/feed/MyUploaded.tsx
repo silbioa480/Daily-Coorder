@@ -11,9 +11,19 @@ import IUser from "../../interfaces/IUser";
 import IBoard from "../../interfaces/IBoard";
 import FollowService from "../../service/FollowService";
 import BoardService from "../../service/BoardService";
+import mainano1 from "../../img/main/mainano1.png";
+import mainano2 from "../../img/main/mainano2.png";
+import mainano9 from "../../img/main/mainano9.png";
+import mainano4 from "../../img/main/mainano4.png";
+import mainano5 from "../../img/main/mainano5.png";
+import mainano6 from "../../img/main/mainano6.png";
+import mainano7 from "../../img/main/mainano7.png";
+import mainano8 from "../../img/main/mainano8.png";
+import mainano3 from "../../img/main/mainano3.png";
+import mainano10 from "../../img/main/mainano10.png";
 
 function MyUploaded() {
-    const [datas, setDatas] = useState();
+    // const [datas, setDatas] = useState();
     // let i = 5;
 
     const [myId, setMyId] = useState<IUser["user_id"]>("1");
@@ -46,8 +56,81 @@ function MyUploaded() {
         setIdx(idx + 1);
     };
 
-    const renderRepeat = followerBoards.map((data) => {
-        return <MainAnotherComponent data={data} key={data.board_id}/>;
+    const [datas, setDatas] = useState([
+        {
+            id: 1,
+            title: mainano1,
+            name: "@Grilsan",
+            liked: 1,
+            followed: 674,
+        },
+        {
+            id: 2,
+            title: mainano2,
+            name: "@hello_11",
+            liked: 2,
+            followed: 215,
+        },
+        {
+            id: 3,
+            title: mainano9,
+            name: "@ch_bely",
+            liked: 3,
+            followed: 447,
+        },
+        {
+            id: 4,
+            title: mainano4,
+            name: "@zzzqe11",
+            liked: 4,
+            followed: 95,
+        },
+        {
+            id: 5,
+            title: mainano5,
+            name: "@Oo_oO",
+            liked: 5,
+            followed: 72,
+        },
+        {
+            id: 6,
+            title: mainano6,
+            name: "@likeso",
+            liked: 6,
+            followed: 275,
+        },
+        {
+            id: 7,
+            title: mainano7,
+            name: "@goodbye",
+            liked: 7,
+            followed: 145,
+        },
+        {
+            id: 8,
+            title: mainano8,
+            name: "@Sor_but",
+            liked: 8,
+            followed: 431,
+        },
+        {
+            id: 9,
+            title: mainano3,
+            name: "@son_mi",
+            liked: 9,
+            followed: 196,
+        },
+        {
+            id: 10,
+            title: mainano10,
+            name: "@gong_0",
+            liked: 10,
+            followed: 1041,
+        },
+    ]);
+
+    const renderRepeat = datas.map((data) => {
+        return <MainAnotherComponent data={data} key={data.id}/>;
     });
 
     return (
