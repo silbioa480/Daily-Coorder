@@ -11,46 +11,47 @@ import IMemberId from '../interfaces/IMemberId';
 import UserService from '../service/UserService';
 import BusinessSevice from '../service/BusinessService';
 import MemberIdService from '../service/MemberIdService';
-
+import { memberAtom , isLoginAtom } from '../atom';
+import { useRecoilValue } from 'recoil';
 
 
 function MyPage_MemberUnregister() {
-
-    const [memberId,setMemberId]=useState<IMemberId["member_id"]>("");
-    const [isPeolple,setIsPeople]=useState<IMemberId>();
+    const isLogin = useRecoilValue(isLoginAtom);
+    const memberId = useRecoilValue(memberAtom);
+  
+    
     const [userInfo,setUserInfo]=useState<IUser>();
     const [businessInfo,setBusinessInfo]=useState<IBusiness>();
     const [show, setShow] = useState(false);
 
     async function getPeople(){
         if(memberId !== undefined){
-            setIsPeople(await MemberIdService.getIdById(memberId).then(res=>res.data));
-            setUserInfo(await UserService.getUserById(memberId).then(res=>res.data));
+            setUserInfo(await UserService.getUserById(memberId.member_id).then(res=>res.data));
             
         }
     }
 
     async function getBusiness(){
-        setBusinessInfo(await BusinessSevice.getBusinessById(memberId).then(res=>res.data));
+        setBusinessInfo(await BusinessSevice.getBusinessById(memberId.member_id).then(res=>res.data));
     }
  
     async function handleUnregister(){
-        if(isPeolple !== undefined){
-            if(isPeolple.is_business === true){
-                await BusinessSevice.deleteBusiness(memberId).then(res=>res.data);
+       
+            if(memberId.is_business === true){
+                await BusinessSevice.deleteBusiness(memberId.member_id).then(res=>res.data);
             }else{
-                await UserService.deleteUser(memberId).then(res=>res.data);
+                await UserService.deleteUser(memberId.member_id).then(res=>res.data);
             }
-        }
-   }
+        
+    }
 
     useEffect(()=>{
         getPeople();
-        if(isPeolple !== undefined){
-            if(isPeolple.is_business === true){
+        
+            if(memberId.is_business === true){
                 getBusiness();
             }
-        }
+        
         
     });
 
