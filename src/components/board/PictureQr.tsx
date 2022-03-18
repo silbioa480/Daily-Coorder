@@ -2,6 +2,7 @@ import React from "react";
 import Picture_Tag from "./Picture_Tag";
 import "../../css/board/pictureQr.css";
 import IBoard from "../../interfaces/IBoard";
+import mainno1 from "../../img/main/mainano1.png"
 
 interface IProps {
     board: IBoard;
@@ -15,8 +16,8 @@ function PictureQr(props: IProps) {
     return (
         <div className="board_picture">
             <div className="picture">
-                <img src={imageurl}/>
-                {/*<img src={require(`../img/${board?.board_img}`)} alt=""></img>*/}
+                {/*<img src={imageurl}/>*/}
+                <img src={mainno1}/>
                 {/*<Qrcode></Qrcode>*/}
             </div>
             <Picture_Tag board={board as IBoard}/>

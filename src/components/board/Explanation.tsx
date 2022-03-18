@@ -1,6 +1,5 @@
 import "../../css/board/explanation.css";
 import IBoard from "../../interfaces/IBoard";
-import {useState} from "react";
 
 interface IProps {
     board: IBoard;
@@ -10,13 +9,14 @@ interface IProps {
 function Explanation(props: IProps) {
     let board = props.board;
 
-    const [sboard, setSboard] = useState<IBoard>(board);
-   
     return (
         <>
             {/*  ?:undefined가 아닐때만 뒤에값을 참조해라   */}
-            <div className="explanation_title">{board?.board_title}</div>
-            <div className="explanation_content">{board?.board_content}</div>
+            <div className="explanation_title">How To Wear A Women's Suit Casually & 10 Outfit Ideas - Stella ASteria
+            </div>
+            {/*{board?.board_title}*/}
+            <div className="explanation_content">Glitters and Sparkles | Denim fashion, Kläder och Accessoarer</div>
+            {/*{board?.board_content}*/}
         </>
     );
 }
