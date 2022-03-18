@@ -6,6 +6,10 @@ import IUser from "../interfaces/IUser";
 import UserService from "../service/UserService";
 import { useForm } from "react-hook-form";
 import {Link} from 'react-router-dom';
+import { memberAtom , isLoginAtom } from '../atom';
+import { useRecoilValue } from 'recoil';
+
+
 function AlertResister() {
     const [close, setClose] = useState(false);
     
@@ -43,8 +47,10 @@ function MyPage_SizeRegister() {
       register,
       handleSubmit
     }=useForm<IUser>();
+    const isLogin = useRecoilValue(isLoginAtom);
+    const memberId = useRecoilValue(memberAtom);
     const [show, setShow] = useState(false);
-    const [userId,setUserId]=useState<IUser["user_id"]>("");
+    const [userId,setUserId]=useState<IUser["user_id"]>(memberId.member_id);
     const [userInfo,setUserInfo]=useState<IUser>();
 
     async function getUser(){
