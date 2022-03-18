@@ -351,7 +351,7 @@ function MainAnother() {
         let temp = datas;
 
         for (let i = start; i < end; i++) {
-            temp.push(d[i]);
+            temp.push(c[i]);
         }
 
         setDatas(temp);
