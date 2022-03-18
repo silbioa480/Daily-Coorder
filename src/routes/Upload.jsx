@@ -5,6 +5,7 @@ import "../css/main/animation.css";
 import boardService from "../service/BoardService";
 import BoardImageService from "../service/BoardImageService";
 import TagService from "../service/TagService";
+import { Link } from 'react-router-dom';
 
 const Upload = (props) => {
   // 유효성 체크
@@ -177,7 +178,7 @@ const Upload = (props) => {
         {/* 업로드 버튼 */}
         <div className="bb share-box ">
           <button type="submit" className="share-button">
-            공유
+            <Link to="/">공유</Link>
           </button>
         </div>
       </form>
