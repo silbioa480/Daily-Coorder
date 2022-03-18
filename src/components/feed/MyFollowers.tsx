@@ -3,23 +3,12 @@ import FollowerBox from "./FollowerBox";
 function MyFollowers() {
   const followers = [
     {
-      name: "홍길동",
-      followCount: 0,
-    },
-    {
-      name: "강길동",
-      followCount: 24,
-    },
-    {
-      name: "윤길동",
-      followCount: 546,
-    },
-    {
-      name: "검길동",
-      followCount: 12,
+      name: "김민규",
+      followCount: 352,
     },
   ];
 
+  // mainfol5
   const repeat = () => {
     const result = [];
     for (let f of followers) {
@@ -31,7 +20,8 @@ function MyFollowers() {
 
   return (
     <div>
-      <div style={{ margin: "20px", textAlign: "center" }}>팔로워 {0}</div>
+      <div style={{ margin: "20px", textAlign: "center" }}>팔로워 {1}</div>
+      <hr />
       {repeat()}
     </div>
   );
