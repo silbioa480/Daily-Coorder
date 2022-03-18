@@ -16,6 +16,9 @@ import IBusiness from '../interfaces/IBusiness';
 import BusinessSevice from '../service/BusinessService';
 import ProfileImageService from '../service/ProfileImageService';
 import IProfileImage from "../interfaces/IProfileImage";
+import { memberAtom } from '../atom';
+import { isLoginAtom } from '../atom';
+import { useRecoilValue } from 'recoil';
 
 
 
@@ -27,7 +30,10 @@ function CeoModify() {
     setValue
   } = useForm<IBusiness, IProfileImage>();
 
-  const [businessId, setBusinessId] = useState<IBusiness["business_id"]>("");
+  
+const isLogin = useRecoilValue(isLoginAtom);
+const memberId = useRecoilValue(memberAtom);
+  const [businessId, setBusinessId] = useState<IBusiness["business_id"]>(memberId.member_id);
   const [updateBusiness, setUpdateBusiness] = useState<IBusiness>();
   const [normalProfileId, setNormalFileId] = useState<IProfileImage["profile_image_id"]>();
   const [normalProfile, setNormalProfile] = useState<IProfileImage>();
@@ -218,15 +224,18 @@ function MyPage_MemberModify() {
     setValue,
     register,
     handleSubmit,
+    watch
   } = useForm<IUser, IProfileImage>();
-
+  const isLogin = useRecoilValue(isLoginAtom);
+  const memberId = useRecoilValue(memberAtom);
   const [show, setShow] = useState(false);
   const [isCeo, setIsCeo] = useState(false);
   const [isUser, setIsUser] = useState(true);
-  const [userId, setUserId] = useState<IUser["user_id"]>("");
+  const [userId, setUserId] = useState<IUser["user_id"]>("10");
   const [updateUserInfo, setUpdateUser] = useState<IUser>();
   const [normalProfileId, setNormalFileId] = useState<IProfileImage["profile_image_id"]>();
   const [normalProfile, setNormalProfile] = useState<IProfileImage>();
+   
 
   async function updateInfo() {
     setUpdateUser(await UserService.getUserById(userId).then(res => res.data));
@@ -247,7 +256,14 @@ function MyPage_MemberModify() {
   useEffect(() => {
     updateImage();
     updateInfo();
-  }, []);
+    setValue("user_password",watch("user_password"));
+    setValue("user_birth",watch("user_birth"));
+    setValue("user_email",watch("user_email"));
+    setValue("user_nickname",watch("user_nickname"));
+    setValue("user_height",watch("user_height"));
+    setValue("user_weights",watch("user_weights"));
+    setValue("user_phone",watch("user_phone"));
+  }, [updateUserInfo]);
 
   const onValid: any = async ({
     user_password,
@@ -307,14 +323,8 @@ function MyPage_MemberModify() {
   }
 
   const compareId = () => {
-    if (updateUserInfo !== undefined) {
-      if (updateUserInfo.user_is_ad === true) {
-        setIsUser(false);
-        setIsCeo(true);
-      } else {
-        setIsUser(true);
-        setIsCeo(false);
-      }
+    if(memberId.is_business === true){
+
     }
   }
 
@@ -393,15 +403,10 @@ function MyPage_MemberModify() {
                   프로필 사진 삭제<input type="reset" style={{ display: "none" }} onClick={deleteImage} />
                 </label>
               </div>
-
-
-
-
-
-              <Form.Group controlId="formGridEmail" style={{ marginTop: "1vh" }}>
+              <Form.Group controlId="formGroupText" style={{ marginTop: "1vh" }}>
                 <Form.Label>닉네임</Form.Label>
                 <div style={{ width: "100%", display: "flex" }}>
-                  <Form.Control type="text" name="nickname" id="user_nickname" {...register("user_nickname", { required: "닉네임을 입력하세요", minLength: 8 })}
+                  <Form.Control type="text" name="nickname" {...register("user_nickname", { required: "닉네임을 입력하세요", minLength: 8 })}
                   />
                   <Button style={{ width: "180px", textAlign: "center" }} >닉네임중복
                     확인</Button>
@@ -410,58 +415,58 @@ function MyPage_MemberModify() {
 
 
 
-              <Form.Group className="my-3" controlId="formGridPassword">
+              <Form.Group className="my-3" controlId="formGroupPassword">
                 <Form.Label>비밀번호</Form.Label>
-                <Form.Control type="password" name="password" id="user_password"
+                <Form.Control type="password" name="password"
                   {...register("user_password", { required: "비밀번호를 입력하세요", pattern: { value: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/, message: " 8자리 이상 문자,숫자,특수문자를 섞어서 입력하세요." } })}
                 />
               </Form.Group>
 
-              <Form.Group className="my-3" controlId="formGridPassword">
+              <Form.Group className="my-3" controlId="formGroupPassword">
                 <Form.Label>비밀번호 확인</Form.Label>
                 <Form.Control type="password" placeholder="Password check" name="passwordCheck" {...register({ minLength: 8, maxLength: 12 })}
                 />
               </Form.Group>
 
-              <Form.Group className="my-3">
+              <Form.Group className="my-3" controlId='formGroupDate'>
                 <Form.Label>생년월일</Form.Label>
-                <Form.Control type="date" name="birth" id="user_birth" {...register("user_birth", { required: "생년월일을 입력하세요" })} />
+                <Form.Control type="date" name="birth"  {...register("user_birth", { required: "생년월일을 입력하세요" })} />
               </Form.Group>
 
 
-              <Form.Group className="my-3">
+              <Form.Group className="my-3" controlId='formGroupText'>
                 <Form.Label>전화번호</Form.Label>
                 <div style={{ width: "100%", display: "flex" }}>
-                  <Form.Control type="text" name="phoneNumber" id="user_phone" {...register("user_phone", { required: "전화번호를 입력하세요" })}
+                  <Form.Control type="text" name="phoneNumber" {...register("user_phone", { required: "전화번호를 입력하세요" })}
                   />
                   <Button style={{ width: "180px", textAlign: "center" }}
                     onClick={assignRequest}>인증요청</Button>
                 </div>
               </Form.Group>
 
-              <Form.Group className="my-3">
+              <Form.Group className="my-3" controlId='formGroupEmail'>
                 <Form.Label>이메일</Form.Label>
                 <div style={{ width: "100%", display: "flex" }}>
-                  <Form.Control type="email" name="email" id="user_email" {...register("user_email", { required: "이메일을 입력하세요", pattern: { value: /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/, message: "이메일 형식이 아닙니다." } })}
+                  <Form.Control type="email" name="email" {...register("user_email", { required: "이메일을 입력하세요", pattern: { value: /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/, message: "이메일 형식이 아닙니다." } })}
                   />
                   <Button style={{ width: "180px", textAlign: "center" }}
                     onClick={assignEmail}>인증요청</Button>
                 </div>
               </Form.Group>
 
-              <Form.Group controlId="formGridEmail" style={{ marginTop: "3vh", boxSizing: "border-box" }}>
+              <Form.Group controlId="formGridText" style={{ marginTop: "3vh", boxSizing: "border-box" }}>
                 <label style={{ margin: "1vw 0" }}>체형</label>
                 <div style={{ display: "flex" }}>
                   <Form.Label style={{ width: "20vw", textAlign: "center", marginTop: ".6vw" }}>키</Form.Label>
                   <div style={{ width: "100%", display: "flex" }}>
-                    <Form.Control type="text" name="height" id="user_height" {...register("user_height", { required: "키를 입력하세요" })}
+                    <Form.Control type="text" name="height" {...register("user_height", { required: "키를 입력하세요" })}
                     />
 
                   </div>
 
                   <Form.Label style={{ width: "20vw", textAlign: "center", marginTop: ".6vw" }}>몸무게</Form.Label>
                   <div style={{ width: "100%", display: "flex" }}>
-                    <Form.Control type="text" name="weight" id="user_weights" {...register("user_weights", { required: "몸무게를입력하세요" })}
+                    <Form.Control type="text" name="weight" {...register("user_weights", { required: "몸무게를입력하세요" })}
                     />
 
                   </div>
