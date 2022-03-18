@@ -5,7 +5,9 @@ import UserService from "../../service/UserService";
 import IUser from "../../interfaces/IUser";
 import IBoard from "../../interfaces/IBoard";
 import FollowButton from "./FollowButton";
-import mainno1 from "../../img/main/mainano1.png"
+import {useRecoilValue} from "recoil";
+import {isLoginAtom} from "../../atom";
+import mainno10 from "../../img/main/mainano10.png";
 
 interface IProps {
     board: IBoard;
@@ -17,8 +19,8 @@ function UserFollower(props: IProps) {
     let board = props.board;
 
     const [user, setUser] = useState<IUser>();
-    const [like, setLike] = useState(235);
-
+    const [like, setLike] = useState(0);
+    const isLogin = useRecoilValue(isLoginAtom);
 
     function likeln() {
         setLike(like + 1)
@@ -55,21 +57,21 @@ function UserFollower(props: IProps) {
                 <div className="information">
                     <div style={{marginLeft: "20px"}}>
                         <a href="#">
-                            <Circle src={mainno1} alt=""></Circle>
+                            <Circle src={mainno10} alt=""></Circle>
 
                             {/*<Circle src={mainno10.png} style={{marginLeft: "20px"}}></Circle>*/}
                         </a>
                     </div>
                     <div style={{margin: "auto 0", marginLeft: "7px"}}>
                         <a href="#">
-                            <p style={{fontWeight: "bold", fontSize: "16px", padding: "3px "}}>JamesKim
+                            <p style={{fontWeight: "bold", fontSize: "16px", padding: "3px "}}>마마마
                             </p>
                         </a>
                         <p style={{fontSize: "13px", padding: "3px"}}>팔로워 {like}명</p>
                     </div>
                 </div>
 
-                <FollowButton likeln={likeln} likeDe={likeDe} like={like} user={user as IUser}/>
+                {isLogin ? "" : <FollowButton likeln={likeln} likeDe={likeDe} like={like} user={user as IUser}/>}
             </div>
         </>
     );

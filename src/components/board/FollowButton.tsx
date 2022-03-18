@@ -86,7 +86,7 @@ function FollowButton(props: IProps) {
         // }
         // setIsShow(!isShow);
         // createFollow();
-        if (props.like === 235) {
+        if (props.like === 0) {
             props.likeln();
         } else {
             props.likeDe();
