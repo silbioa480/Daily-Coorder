@@ -15,7 +15,7 @@ function AlertResister() {
     }
     return (
         <>
-            <Modal close={close} onHide={handleClose}>
+            { close && <Modal onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>체형 수정 확인</Modal.Title>
                 </Modal.Header>
@@ -30,7 +30,7 @@ function AlertResister() {
                         </Link>
                     </Button>
                 </Modal.Footer>
-            </Modal>
+            </Modal>}
         </>
     );
 }
@@ -114,8 +114,7 @@ function MyPage_SizeRegister() {
             <p style={{
               marginLeft: "1vw",
               display: "inline-block",
-              width: "140px",
-              backgroundColor: "green"
+              width: "140px"
             }}>{userInfo?.user_id}</p>
           </div>
         </div>
@@ -143,31 +142,35 @@ function MyPage_SizeRegister() {
           <label style={{ fontSize: "1.5vw" }}>체형</label>
         </div>
         <div style={{}}>
-          <div style={{ display: "flex", alignItems: "center", paddingBottom: "20px" }}>
-            <label style={{
-              paddingLeft: "50px",
-              paddingRight: "30px",
-              textAlign: "center",
-              fontWeight: "bold",
-              fontSize: "1vw"
-            }}>weight</label>
-            <Form.Control type="text" placeholder="weight" id="weight" name="weight"
-              style={{ width: "250px" }} {...register("user_weights",{required : "몸무게를 입력하세요"})}/>
-          </div>
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <label style={{
-              paddingLeft: "50px",
-              paddingRight: "30px",
-              textAlign: "center",
-              fontWeight: "bold",
-              fontSize: "1vw"
-            }}>height</label>
-            <Form.Control type="text" placeholder="height" id="height" name="height"
-              style={{ width: "250px" }} {...register("user_height",{required:"키를 입력하세요"})}/>
-          </div>
+              <Form onSubmit={handleSubmit(onValid)}>
+                  <div style={{ display: "flex", alignItems: "center", paddingBottom: "20px" }}>
+                    <label style={{
+                      paddingLeft: "50px",
+                      paddingRight: "30px",
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      fontSize: "1vw"
+                    }}>weight</label>
+                    <Form.Control type="text" placeholder="weight" id="weight" name="weight"
+                      style={{ width: "250px" }} {...register("user_weights",{required : "몸무게를 입력하세요"})}/>
+                  </div>
+                  <div style={{ display: "flex", alignItems: "center" }}>
+                    <label style={{
+                      paddingLeft: "50px",
+                      paddingRight: "30px",
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      fontSize: "1vw"
+                    }}>height</label>
+                    <Form.Control type="text" placeholder="height" id="height" name="height"
+                      style={{ width: "250px" }} {...register("user_height",{required:"키를 입력하세요"})}/>
+                  </div>
+              </Form>
         </div>
         <div style={{ width: "100%", display: "flex", justifyContent: "center", margin: "3.5em 0" }}>
-          <Button type="submit" onClick={handleResister} onSubmit={handleSubmit(onValid)}>체형 등록 하기</Button>
+          <Button type="submit" onClick={handleResister}>
+              체형 등록 하기
+          </Button>
         </div>
       </Container>
 
