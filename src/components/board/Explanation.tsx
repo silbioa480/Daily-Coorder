@@ -12,10 +12,10 @@ function Explanation(props: IProps) {
     return (
         <>
             {/*  ?:undefined가 아닐때만 뒤에값을 참조해라   */}
-            <div className="explanation_title">How To Wear A Women's Suit Casually & 10 Outfit Ideas - Stella ASteria
+            <div className="explanation_title">hi
             </div>
             {/*{board?.board_title}*/}
-            <div className="explanation_content">Glitters and Sparkles | Denim fashion, Kläder och Accessoarer</div>
+            <div className="explanation_content">hi</div>
             {/*{board?.board_content}*/}
         </>
     );
