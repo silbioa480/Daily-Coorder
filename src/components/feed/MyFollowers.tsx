@@ -20,7 +20,7 @@ function MyFollowers() {
 
   return (
     <div>
-      <div style={{ margin: "20px", textAlign: "center" }}>팔로워 {1}</div>
+      <div style={{ margin: "20px", textAlign: "center" }}>팔로잉 {1}</div>
       <hr />
       {repeat()}
     </div>
