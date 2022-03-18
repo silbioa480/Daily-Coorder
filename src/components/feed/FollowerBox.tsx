@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import IUser from "../../interfaces/IUser";
 import IBoard from "../../interfaces/IBoard";
+import mingu1 from "../../img/main/mingu1.png";
 import mingu2 from "../../img/main/mingu2.png";
-import mingu3 from "../../img/main/mingu3.png";
 import mingu4 from "../../img/main/mingu4.png";
 import mingu5 from "../../img/main/mingu5.png";
 import mainfol5 from "../../img/main/mainfol5.png";
@@ -166,7 +166,7 @@ function FollowerBox(props: IProps) {
     },
     {
       id: 3,
-      title: mingu3,
+      title: mingu1,
       name: "@aaa_A",
       liked: 418,
       followed: 352,
