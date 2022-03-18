@@ -273,8 +273,7 @@ function MainAnother() {
     const [end, setEnd] = useState(10);
 
     let c = d.sort(() => Math.random() - 0.5);
-
-    const [datas, setDatas] = useState([
+    let e = [
         {
             id: 1,
             title: mainano1,
@@ -345,7 +344,9 @@ function MainAnother() {
             liked: 10,
             followed: 1041,
         },
-    ]);
+    ];
+
+    const [datas, setDatas] = useState(e.sort(() => Math.random() - 0.5));
 
     const load = () => {
         let temp = datas;
