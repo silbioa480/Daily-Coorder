@@ -289,6 +289,23 @@ function MyPage_MemberModify() {
 
       console.log(changeInfo);
   }
+
+
+
+  const compareNickName=()=>{
+      if(updateUserInfo !==undefined){
+        
+        if(updateUserInfo.user_nickname == changeInfo.user_nickname ){
+          console.log(updateUserInfo.user_nickname);
+          alert("중복닉네임 입니다.");
+      }else{
+          alert("사용가능한 닉네임입니다");
+      }
+      }
+  }
+
+ 
+
   const openModal = () => {
     setShow(true);
   }
@@ -361,6 +378,8 @@ function MyPage_MemberModify() {
                 <div style={{ width: "100%", display: "flex" }}>
                   <Form.Control type="text" placeholder={updateUserInfo?.user_nickname} name="nickname" onChange={handleChange} {...register("user_nickname", { required: "닉네임을 입력하세요" })}
                   />
+                  <Button style={{ width: "180px", textAlign: "center" }} onClick={compareNickName}>닉네임중복
+                    확인</Button>
                 </div>
 
     
