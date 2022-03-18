@@ -8,7 +8,7 @@ import "../../css/main/MainAnother.css";
 // 사진
 import MainAnotherComponent from "../main/MainAnotherComponent";
 
-import mainano10 from "../../img/main/mainano10.png";
+import mainano1 from "../../img/main/mainano1.png";
 import mainano11 from "../../img/main/mainano11.png";
 import mainano12 from "../../img/main/mainano12.png";
 import mainano13 from "../../img/main/mainano13.png";
@@ -213,6 +213,7 @@ let d = [
   },
 ];
 
+// mainano1
 function MyUploaded() {
   const [start, setStart] = useState(0);
   const [end, setEnd] = useState(10);
@@ -221,89 +222,26 @@ function MyUploaded() {
   let e = [
     {
       id: 1,
-      title: mainano31,
-      name: "@Grilsan",
-      liked: 1,
-      followed: 674,
-    },
-    {
-      id: 2,
-      title: mainano22,
-      name: "@hello_11",
-      liked: 2,
-      followed: 215,
-    },
-    {
-      id: 3,
-      title: mainano23,
-      name: "@ch_bely",
-      liked: 3,
-      followed: 447,
-    },
-    {
-      id: 4,
-      title: mainano14,
-      name: "@zzzqe11",
-      liked: 4,
-      followed: 95,
-    },
-    {
-      id: 5,
-      title: mainano35,
-      name: "@Oo_oO",
-      liked: 5,
-      followed: 72,
-    },
-    {
-      id: 6,
-      title: mainano16,
-      name: "@likeso",
-      liked: 6,
-      followed: 275,
-    },
-    {
-      id: 7,
-      title: mainano17,
-      name: "@goodbye",
-      liked: 7,
-      followed: 145,
-    },
-    {
-      id: 8,
-      title: mainano28,
-      name: "@Sor_but",
-      liked: 8,
-      followed: 431,
-    },
-    {
-      id: 9,
-      title: mainano19,
-      name: "@son_mi",
-      liked: 9,
-      followed: 196,
-    },
-    {
-      id: 10,
-      title: mainano10,
-      name: "@gong_0",
-      liked: 10,
-      followed: 1041,
+      title: mainano1,
+      name: "@mains",
+      liked: 0,
+      followed: 0,
     },
   ];
 
   const [datas, setDatas] = useState(e.sort(() => Math.random() - 0.5));
 
   const load = () => {
-    let temp = datas;
-
-    for (let i = start; i < end; i++) {
-      temp.push(c[i]);
-    }
-
-    setDatas(temp);
-
-    setStart(start + 10);
-    setEnd(end + 10);
+    // let temp = datas;
+    //
+    // for (let i = start; i < end; i++) {
+    //   temp.push(c[i]);
+    // }
+    //
+    // setDatas(temp);
+    //
+    // setStart(start + 10);
+    // setEnd(end + 10);
   };
 
   const renderRepeat = datas.map((data) => {
