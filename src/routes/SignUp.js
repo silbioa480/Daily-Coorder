@@ -609,15 +609,15 @@ function SignUp() {
                 value={nickname}
                 onChange={onNicknameHandler}
               />
-              <button
-                type="submit"
-                className="signup_idchk_btn"
-                hidden={show}
-                onClick={overSubmitHandler}
-                style={{ marginLeft: "5px" }}
-              >
-                중복확인
-              </button>
+              {/*<button*/}
+              {/*  type="submit"*/}
+              {/*  className="signup_idchk_btn"*/}
+              {/*  hidden={show}*/}
+              {/*  onClick={overSubmitHandler}*/}
+              {/*  style={{ marginLeft: "5px" }}*/}
+              {/*>*/}
+              {/*  중복확인*/}
+              {/*</button>*/}
               {show && <Result data={value} />}
             </div>
 

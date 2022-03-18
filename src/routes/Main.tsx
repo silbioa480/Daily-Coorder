@@ -8,8 +8,8 @@ function Main() {
     return (
         <>
             <Mainfollow/>
-            <Banner/>
             <MainNewBrand/>
+            <Banner/>
             <MainAnother/>
         </>
     );

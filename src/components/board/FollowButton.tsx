@@ -7,6 +7,9 @@ import IUser from "../../interfaces/IUser";
 
 interface IProps {
     user: IUser;
+    likeln: Function;
+    likeDe: Function;
+    like: number;
 }
 
 //팔로우버튼
@@ -22,6 +25,7 @@ function FollowButton(props: IProps) {
         from_user_id: "",
         to_user_id: ""
     });
+
 
     // 1 세션으로 로그인된 나의 아이디를 확인 (로그인 안했다면 랜덤 데이터)
     //팔로우 버튼을 누르면 팔로워테이블에 내아이디 상대방아이디 생성 (post create)
@@ -75,11 +79,19 @@ function FollowButton(props: IProps) {
         content === "팔로우" ? setContent("팔로잉") : setContent("팔로우");
 
         // 팔로우테이블에 from_user_id와 to_user_id가 순서에맞게(?) 없으면 create 있으면 delete
-        if (follow.follow_id === 0) {
-            createFollow();
+        // if (follow.follow_id === 0) {
+        //     createFollow();
+        // } else {
+        //     deleteFollow();
+        // }
+        // setIsShow(!isShow);
+        // createFollow();
+        if (props.like === 235) {
+            props.likeln();
         } else {
-            deleteFollow();
+            props.likeDe();
         }
+
     };
     return (
         <>
