@@ -17,6 +17,17 @@ function UserFollower(props: IProps) {
     let board = props.board;
 
     const [user, setUser] = useState<IUser>();
+    const [like, setLike] = useState(235);
+
+
+    function likeln() {
+        setLike(like + 1)
+    }
+
+    function likeDe() {
+        setLike(like - 1);
+    }
+
 
     // 게시물작성자()를 이용해 유저닉네임을 가져옴
     async function getUser() {
@@ -54,11 +65,11 @@ function UserFollower(props: IProps) {
                             <p style={{fontWeight: "bold", fontSize: "16px", padding: "3px "}}>JamesKim
                             </p>
                         </a>
-                        <p style={{fontSize: "13px", padding: "3px"}}>팔로워 234명</p>
+                        <p style={{fontSize: "13px", padding: "3px"}}>팔로워 {like}명</p>
                     </div>
                 </div>
 
-                <FollowButton user={user as IUser}/>
+                <FollowButton likeln={likeln} likeDe={likeDe} like={like} user={user as IUser}/>
             </div>
         </>
     );
