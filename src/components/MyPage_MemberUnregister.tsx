@@ -68,7 +68,7 @@ function MyPage_MemberUnregister() {
             <div className="aa" style={{width: "60%", margin: "4em auto", height: "750px"}}>
                 <MyPage_MemberInformation />
 
-                <div style={{width: "100%", display: "flex", justifyContent: "center", marginTop: "1vw"}}>
+                <div style={{width: "100%", display: "flex", justifyContent: "center"}}>
                     <div className="d-grid gap-2">
                         <Button variant="white" onClick={handleShow} style={{
                             padding: ".3vw 2vw",
@@ -79,8 +79,11 @@ function MyPage_MemberUnregister() {
                             회원 탈퇴
                         </Button>
                     </div>
+                </div>
+            </div>
 
-                    <Modal show={show} onHide={handleClose}>
+
+            <Modal show={show} onHide={handleClose}>
                         <Modal.Header closeButton>
                             <Modal.Title>회원탈퇴 확인</Modal.Title>
                         </Modal.Header>
@@ -93,9 +96,7 @@ function MyPage_MemberUnregister() {
                                 <Link to="/">회원 탈퇴</Link>
                             </Button>
                         </Modal.Footer>
-                    </Modal>
-                </div>
-            </div>
+            </Modal>
 
 
         </>
