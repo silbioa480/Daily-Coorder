@@ -932,335 +932,335 @@ function SignUp() {
             </div>
           </Tab>
 
-          <Tab
-            className="signup_tab"
-            eventKey="second"
-            title="사업자회원가입"
-            onSubmit={onProSubmitHandler}
-          >
-            <p className="signup_upper_font"> 사업자 회원가입 </p>
+          {/*<Tab*/}
+          {/*  className="signup_tab"*/}
+          {/*  eventKey="second"*/}
+          {/*  title="사업자회원가입"*/}
+          {/*  onSubmit={onProSubmitHandler}*/}
+          {/*>*/}
+          {/*  <p className="signup_upper_font"> 사업자 회원가입 </p>*/}
 
-            <div className="blue-line-out">
-              <div className="blue-line-in"></div>
-            </div>
-            <div className="yellow-line-out">
-              <div className="yellow-line-in"></div>
-            </div>
-            <div className="signup_profile">
-              <div className="avatar stagger-item">
-                <img
-                  src={fileImage}
-                  alt="sample"
-                  className="signup_profile_img rounded-circle"
-                />
-              </div>
-              <div>
-                <label type="submit" className="signup_profile_upbtn">
-                  로고등록
-                  <input
-                    className="signup_profile_upbtn"
-                    type="file"
-                    accept="image/*"
-                    style={{ display: "none" }}
-                    onChange={saveFileImage}
-                  />
-                </label>
-              </div>
-            </div>
+          {/*  <div className="blue-line-out">*/}
+          {/*    <div className="blue-line-in"></div>*/}
+          {/*  </div>*/}
+          {/*  <div className="yellow-line-out">*/}
+          {/*    <div className="yellow-line-in"></div>*/}
+          {/*  </div>*/}
+          {/*  <div className="signup_profile">*/}
+          {/*    <div className="avatar stagger-item">*/}
+          {/*      <img*/}
+          {/*        src={fileImage}*/}
+          {/*        alt="sample"*/}
+          {/*        className="signup_profile_img rounded-circle"*/}
+          {/*      />*/}
+          {/*    </div>*/}
+          {/*    <div>*/}
+          {/*      <label type="submit" className="signup_profile_upbtn">*/}
+          {/*        로고등록*/}
+          {/*        <input*/}
+          {/*          className="signup_profile_upbtn"*/}
+          {/*          type="file"*/}
+          {/*          accept="image/*"*/}
+          {/*          style={{ display: "none" }}*/}
+          {/*          onChange={saveFileImage}*/}
+          {/*        />*/}
+          {/*      </label>*/}
+          {/*    </div>*/}
+          {/*  </div>*/}
 
-            <div>
-              <label className="signup_font" htmlFor="pro-id">
-                아이디
-              </label>
-              <br />
-              <input
-                className="signup_id_inputs"
-                style={{ width: "70%" }}
-                id="proId"
-                name="pro-id"
-                type="id"
-                placeholder="아이디"
-                value={proId}
-                onChange={onChangeProId}
-              />{" "}
-              <button
-                className="signup_idchk_btn"
-                style={{ width: "27%" }}
-                type="submit"
-                onClick={overSubmitHandler}
-              >
-                중복확인
-              </button>
-            </div>
+          {/*  <div>*/}
+          {/*    <label className="signup_font" htmlFor="pro-id">*/}
+          {/*      아이디*/}
+          {/*    </label>*/}
+          {/*    <br />*/}
+          {/*    <input*/}
+          {/*      className="signup_id_inputs"*/}
+          {/*      style={{ width: "70%" }}*/}
+          {/*      id="proId"*/}
+          {/*      name="pro-id"*/}
+          {/*      type="id"*/}
+          {/*      placeholder="아이디"*/}
+          {/*      value={proId}*/}
+          {/*      onChange={onChangeProId}*/}
+          {/*    />{" "}*/}
+          {/*    <button*/}
+          {/*      className="signup_idchk_btn"*/}
+          {/*      style={{ width: "27%" }}*/}
+          {/*      type="submit"*/}
+          {/*      onClick={overSubmitHandler}*/}
+          {/*    >*/}
+          {/*      중복확인*/}
+          {/*    </button>*/}
+          {/*  </div>*/}
 
-            <div>
-              <label className="signup_font" htmlFor="pro-name">
-                상호명
-              </label>
-              <input
-                className="signup_inputs"
-                id="proName"
-                name="pro-name"
-                type="text"
-                placeholder="이름"
-                value={proName}
-                onChange={onProNameHandler}
-              />{" "}
-              {errorProName && (
-                <div className="signup_input_valid">
-                  상호명 형식이 올바르지 않습니다.
-                </div>
-              )}
-            </div>
+          {/*  <div>*/}
+          {/*    <label className="signup_font" htmlFor="pro-name">*/}
+          {/*      상호명*/}
+          {/*    </label>*/}
+          {/*    <input*/}
+          {/*      className="signup_inputs"*/}
+          {/*      id="proName"*/}
+          {/*      name="pro-name"*/}
+          {/*      type="text"*/}
+          {/*      placeholder="이름"*/}
+          {/*      value={proName}*/}
+          {/*      onChange={onProNameHandler}*/}
+          {/*    />{" "}*/}
+          {/*    {errorProName && (*/}
+          {/*      <div className="signup_input_valid">*/}
+          {/*        상호명 형식이 올바르지 않습니다.*/}
+          {/*      </div>*/}
+          {/*    )}*/}
+          {/*  </div>*/}
 
-            <div>
-              <label className="signup_font" htmlFor="pro-password">
-                비밀번호
-              </label>
-              <input
-                className="signup_inputs"
-                id="proPassword"
-                name="pro-password"
-                type="password"
-                placeholder="비밀번호"
-                value={proPassword}
-                onChange={onChangeProPassword}
-              />
-              {errorProPassword && (
-                <div className="signup_input_valid">
-                  비밀번호는 숫자와 문자를 포함하여 최소 8자 이상{" "}
-                </div>
-              )}{" "}
-            </div>
+          {/*  <div>*/}
+          {/*    <label className="signup_font" htmlFor="pro-password">*/}
+          {/*      비밀번호*/}
+          {/*    </label>*/}
+          {/*    <input*/}
+          {/*      className="signup_inputs"*/}
+          {/*      id="proPassword"*/}
+          {/*      name="pro-password"*/}
+          {/*      type="password"*/}
+          {/*      placeholder="비밀번호"*/}
+          {/*      value={proPassword}*/}
+          {/*      onChange={onChangeProPassword}*/}
+          {/*    />*/}
+          {/*    {errorProPassword && (*/}
+          {/*      <div className="signup_input_valid">*/}
+          {/*        비밀번호는 숫자와 문자를 포함하여 최소 8자 이상{" "}*/}
+          {/*      </div>*/}
+          {/*    )}{" "}*/}
+          {/*  </div>*/}
 
-            <div>
-              <label className="signup_font" htmlFor="confirmProPassword">
-                비밀번호 확인
-              </label>
-              <input
-                className="signup_inputs"
-                id="confirmProPassword"
-                name="confirmProPassword"
-                type="password"
-                placeholder="비밀번호 확인"
-                value={confirmProPassword}
-                onChange={onChangeConfirmProPassword}
-              />
-              {confirmProPasswordError && (
-                <div className="signup_input_valid">
-                  {" "}
-                  비밀번호가 일치하지 않습니다.
-                </div>
-              )}
-            </div>
+          {/*  <div>*/}
+          {/*    <label className="signup_font" htmlFor="confirmProPassword">*/}
+          {/*      비밀번호 확인*/}
+          {/*    </label>*/}
+          {/*    <input*/}
+          {/*      className="signup_inputs"*/}
+          {/*      id="confirmProPassword"*/}
+          {/*      name="confirmProPassword"*/}
+          {/*      type="password"*/}
+          {/*      placeholder="비밀번호 확인"*/}
+          {/*      value={confirmProPassword}*/}
+          {/*      onChange={onChangeConfirmProPassword}*/}
+          {/*    />*/}
+          {/*    {confirmProPasswordError && (*/}
+          {/*      <div className="signup_input_valid">*/}
+          {/*        {" "}*/}
+          {/*        비밀번호가 일치하지 않습니다.*/}
+          {/*      </div>*/}
+          {/*    )}*/}
+          {/*  </div>*/}
 
-            <div>
-              <label className="signup_font" htmlFor="pro-phone">
-                사업자 번호
-              </label>
-              <input
-                className="signup_inputs"
-                id="proNumber"
-                name="pro-number"
-                type="text"
-                placeholder="-를 제외하고 숫자만 입력하세요"
-                value={proNumber}
-                onChange={onChangeProNumber}
-              />{" "}
-              {errorProNumber && (
-                <div className="signup_input_valid">숫자만 입력하세요</div>
-              )}
-            </div>
+          {/*  <div>*/}
+          {/*    <label className="signup_font" htmlFor="pro-phone">*/}
+          {/*      사업자 번호*/}
+          {/*    </label>*/}
+          {/*    <input*/}
+          {/*      className="signup_inputs"*/}
+          {/*      id="proNumber"*/}
+          {/*      name="pro-number"*/}
+          {/*      type="text"*/}
+          {/*      placeholder="-를 제외하고 숫자만 입력하세요"*/}
+          {/*      value={proNumber}*/}
+          {/*      onChange={onChangeProNumber}*/}
+          {/*    />{" "}*/}
+          {/*    {errorProNumber && (*/}
+          {/*      <div className="signup_input_valid">숫자만 입력하세요</div>*/}
+          {/*    )}*/}
+          {/*  </div>*/}
 
-            <div>
-              <label className="signup_font" htmlFor="pro-email">
-                이메일
-              </label>
-              <input
-                className="signup_inputs"
-                id="proEmail"
-                name="pro-email"
-                type="email"
-                placeholder="이메일"
-                value={proEmail}
-                onChange={onChangeProEmail}
-              />
-              {errorProEmail && (
-                <div className="signup_input_valid">
-                  올바른 형식이 아닙니다.
-                </div>
-              )}
-            </div>
+          {/*  <div>*/}
+          {/*    <label className="signup_font" htmlFor="pro-email">*/}
+          {/*      이메일*/}
+          {/*    </label>*/}
+          {/*    <input*/}
+          {/*      className="signup_inputs"*/}
+          {/*      id="proEmail"*/}
+          {/*      name="pro-email"*/}
+          {/*      type="email"*/}
+          {/*      placeholder="이메일"*/}
+          {/*      value={proEmail}*/}
+          {/*      onChange={onChangeProEmail}*/}
+          {/*    />*/}
+          {/*    {errorProEmail && (*/}
+          {/*      <div className="signup_input_valid">*/}
+          {/*        올바른 형식이 아닙니다.*/}
+          {/*      </div>*/}
+          {/*    )}*/}
+          {/*  </div>*/}
 
-            <div>
-              <label className="signup_font" htmlFor="pro-phone">
-                휴대폰 번호
-              </label>
-              <input
-                className="signup_inputs"
-                id="proPhone"
-                name="pro-phone"
-                type="text"
-                placeholder="-를 제외하고 숫자만 입력하세요"
-                value={proPhone}
-                onChange={onChangeProPhone}
-                style={{ marginBottom: "15px" }}
-              />
-              {errorProPhone && (
-                <div className="signup_input_valid">숫자만 입력하세요</div>
-              )}
-            </div>
-            <div className="blue-line-out">
-              <div className="blue-line-in"></div>
-            </div>
-            <div className="yellow-line-out">
-              <div className="yellow-line-in"></div>
-            </div>
+          {/*  <div>*/}
+          {/*    <label className="signup_font" htmlFor="pro-phone">*/}
+          {/*      휴대폰 번호*/}
+          {/*    </label>*/}
+          {/*    <input*/}
+          {/*      className="signup_inputs"*/}
+          {/*      id="proPhone"*/}
+          {/*      name="pro-phone"*/}
+          {/*      type="text"*/}
+          {/*      placeholder="-를 제외하고 숫자만 입력하세요"*/}
+          {/*      value={proPhone}*/}
+          {/*      onChange={onChangeProPhone}*/}
+          {/*      style={{ marginBottom: "15px" }}*/}
+          {/*    />*/}
+          {/*    {errorProPhone && (*/}
+          {/*      <div className="signup_input_valid">숫자만 입력하세요</div>*/}
+          {/*    )}*/}
+          {/*  </div>*/}
+          {/*  <div className="blue-line-out">*/}
+          {/*    <div className="blue-line-in"></div>*/}
+          {/*  </div>*/}
+          {/*  <div className="yellow-line-out">*/}
+          {/*    <div className="yellow-line-in"></div>*/}
+          {/*  </div>*/}
 
-            <details>
-              <summary className="signup_summary">
-                사업자회원 약관동의{" "}
-                <span style={{ color: "gray" }} className="stylesgray">
-                  (펼쳐보기)
-                </span>
-              </summary>
-              <div className="term_form">
-                <h2 className="term_font">
-                  데일리코더(Daily Cooder)
-                  <br />
-                  서비스 약관에 동의해 주세요!
-                </h2>
-                <hr />
+          {/*  <details>*/}
+          {/*    <summary className="signup_summary">*/}
+          {/*      사업자회원 약관동의{" "}*/}
+          {/*      <span style={{ color: "gray" }} className="stylesgray">*/}
+          {/*        (펼쳐보기)*/}
+          {/*      </span>*/}
+          {/*    </summary>*/}
+          {/*    <div className="term_form">*/}
+          {/*      <h2 className="term_font">*/}
+          {/*        데일리코더(Daily Cooder)*/}
+          {/*        <br />*/}
+          {/*        서비스 약관에 동의해 주세요!*/}
+          {/*      </h2>*/}
+          {/*      <hr />*/}
 
-                <div>
-                  <input
-                    style={{
-                      marginBottom: "5px",
-                    }}
-                    type="checkbox"
-                    id="all-check"
-                    checked={allCheck}
-                    onChange={allBtnEvent}
-                  />
-                  <label className="chk_font" htmlFor="all-check">
-                    모두 동의합니다!
-                  </label>
-                  <p className="term_low_font">
-                    전체 동의는 필수 및 선택정보에 대한 동의도 포함되어 있으며,
-                    개별적으로도 동의를 선택하실 수 있습니다.
-                    <br />
-                    선택항목에 대한 동의를 거부하시는 경우에도 서비스는 이용이
-                    가능합니다.
-                  </p>
-                </div>
+          {/*      <div>*/}
+          {/*        <input*/}
+          {/*          style={{*/}
+          {/*            marginBottom: "5px",*/}
+          {/*          }}*/}
+          {/*          type="checkbox"*/}
+          {/*          id="all-check"*/}
+          {/*          checked={allCheck}*/}
+          {/*          onChange={allBtnEvent}*/}
+          {/*        />*/}
+          {/*        <label className="chk_font" htmlFor="all-check">*/}
+          {/*          모두 동의합니다!*/}
+          {/*        </label>*/}
+          {/*        <p className="term_low_font">*/}
+          {/*          전체 동의는 필수 및 선택정보에 대한 동의도 포함되어 있으며,*/}
+          {/*          개별적으로도 동의를 선택하실 수 있습니다.*/}
+          {/*          <br />*/}
+          {/*          선택항목에 대한 동의를 거부하시는 경우에도 서비스는 이용이*/}
+          {/*          가능합니다.*/}
+          {/*        </p>*/}
+          {/*      </div>*/}
 
-                <div>
-                  <input
-                    style={{
-                      marginBottom: "5px",
-                    }}
-                    type="checkbox"
-                    id="check1"
-                    checked={ageCheck}
-                    onChange={ageBtnEvent}
-                  />
-                  <label style={{ fontSize: "14px" }} htmlFor="check1">
-                    <span className="chk_font_blue">[필수]</span>만 14세
-                    이상입니다{" "}
-                  </label>
-                </div>
+          {/*      <div>*/}
+          {/*        <input*/}
+          {/*          style={{*/}
+          {/*            marginBottom: "5px",*/}
+          {/*          }}*/}
+          {/*          type="checkbox"*/}
+          {/*          id="check1"*/}
+          {/*          checked={ageCheck}*/}
+          {/*          onChange={ageBtnEvent}*/}
+          {/*        />*/}
+          {/*        <label style={{ fontSize: "14px" }} htmlFor="check1">*/}
+          {/*          <span className="chk_font_blue">[필수]</span>만 14세*/}
+          {/*          이상입니다{" "}*/}
+          {/*        </label>*/}
+          {/*      </div>*/}
 
-                <input
-                  style={{
-                    marginBottom: "5px",
-                  }}
-                  type="checkbox"
-                  id="check2"
-                  checked={useCheck}
-                  onChange={useBtnEvent}
-                />
-                <label style={{ fontSize: "14px" }} htmlFor="check2">
-                  <span className="chk_font_blue">[필수]</span>
-                  데일리코더계정 약관{" "}
-                </label>
+          {/*      <input*/}
+          {/*        style={{*/}
+          {/*          marginBottom: "5px",*/}
+          {/*        }}*/}
+          {/*        type="checkbox"*/}
+          {/*        id="check2"*/}
+          {/*        checked={useCheck}*/}
+          {/*        onChange={useBtnEvent}*/}
+          {/*      />*/}
+          {/*      <label style={{ fontSize: "14px" }} htmlFor="check2">*/}
+          {/*        <span className="chk_font_blue">[필수]</span>*/}
+          {/*        데일리코더계정 약관{" "}*/}
+          {/*      </label>*/}
 
-                <div>
-                  <input
-                    style={{
-                      marginBottom: "5px",
-                    }}
-                    type="checkbox"
-                    id="check4"
-                    checked={totalCheck}
-                    onChange={totalBtnEvent}
-                  />
-                  <label style={{ fontSize: "14px" }} htmlFor="check4">
-                    <span className="chk_font_blue">[필수]</span>
-                    데일리코더 통합서비스 약관{" "}
-                  </label>
-                </div>
-                <p className="term_low_font">
-                  본 약관은 데일리코더가 제공하는 서비스에 적용되며, 본 약관에
-                  동의함으로써 해당 서비스들을 이용할 수 있습니다.
-                </p>
+          {/*      <div>*/}
+          {/*        <input*/}
+          {/*          style={{*/}
+          {/*            marginBottom: "5px",*/}
+          {/*          }}*/}
+          {/*          type="checkbox"*/}
+          {/*          id="check4"*/}
+          {/*          checked={totalCheck}*/}
+          {/*          onChange={totalBtnEvent}*/}
+          {/*        />*/}
+          {/*        <label style={{ fontSize: "14px" }} htmlFor="check4">*/}
+          {/*          <span className="chk_font_blue">[필수]</span>*/}
+          {/*          데일리코더 통합서비스 약관{" "}*/}
+          {/*        </label>*/}
+          {/*      </div>*/}
+          {/*      <p className="term_low_font">*/}
+          {/*        본 약관은 데일리코더가 제공하는 서비스에 적용되며, 본 약관에*/}
+          {/*        동의함으로써 해당 서비스들을 이용할 수 있습니다.*/}
+          {/*      </p>*/}
 
-                <div>
-                  <input
-                    type="checkbox"
-                    id="check3"
-                    checked={marketingCheck}
-                    onChange={marketingBtnEvent}
-                  />
-                  <label style={{ fontSize: "14px" }} htmlFor="check3">
-                    <span className="chk_font_gray">[선택]</span>
-                    광고메세지 수신{" "}
-                  </label>
-                </div>
+          {/*      <div>*/}
+          {/*        <input*/}
+          {/*          type="checkbox"*/}
+          {/*          id="check3"*/}
+          {/*          checked={marketingCheck}*/}
+          {/*          onChange={marketingBtnEvent}*/}
+          {/*        />*/}
+          {/*        <label style={{ fontSize: "14px" }} htmlFor="check3">*/}
+          {/*          <span className="chk_font_gray">[선택]</span>*/}
+          {/*          광고메세지 수신{" "}*/}
+          {/*        </label>*/}
+          {/*      </div>*/}
 
-                <div>
-                  <input
-                    style={{
-                      marginBottom: "5px",
-                    }}
-                    type="checkbox"
-                    id="check5"
-                    checked={personCheck}
-                    onChange={personBtnEvent}
-                  />
-                  <label style={{ fontSize: "14px" }} htmlFor="check5">
-                    <span className="chk_font_blue">[필수]</span>
-                    개인정보 수집 및 이용 동의{" "}
-                  </label>
-                </div>
+          {/*      <div>*/}
+          {/*        <input*/}
+          {/*          style={{*/}
+          {/*            marginBottom: "5px",*/}
+          {/*          }}*/}
+          {/*          type="checkbox"*/}
+          {/*          id="check5"*/}
+          {/*          checked={personCheck}*/}
+          {/*          onChange={personBtnEvent}*/}
+          {/*        />*/}
+          {/*        <label style={{ fontSize: "14px" }} htmlFor="check5">*/}
+          {/*          <span className="chk_font_blue">[필수]</span>*/}
+          {/*          개인정보 수집 및 이용 동의{" "}*/}
+          {/*        </label>*/}
+          {/*      </div>*/}
 
-                <div>
-                  <input
-                    style={{
-                      marginBottom: "5px",
-                    }}
-                    type="checkbox"
-                    id="check6"
-                    checked={gpsCheck}
-                    onChange={gpsBtnEvent}
-                  />
-                  <label style={{ fontSize: "14px" }} htmlFor="check6">
-                    <span className="chk_font_gray">[선택]</span>
-                    위치정보 수집 및 이용 동의{" "}
-                  </label>
-                </div>
-              </div>
-            </details>
+          {/*      <div>*/}
+          {/*        <input*/}
+          {/*          style={{*/}
+          {/*            marginBottom: "5px",*/}
+          {/*          }}*/}
+          {/*          type="checkbox"*/}
+          {/*          id="check6"*/}
+          {/*          checked={gpsCheck}*/}
+          {/*          onChange={gpsBtnEvent}*/}
+          {/*        />*/}
+          {/*        <label style={{ fontSize: "14px" }} htmlFor="check6">*/}
+          {/*          <span className="chk_font_gray">[선택]</span>*/}
+          {/*          위치정보 수집 및 이용 동의{" "}*/}
+          {/*        </label>*/}
+          {/*      </div>*/}
+          {/*    </div>*/}
+          {/*  </details>*/}
 
-            <div className="common_button_box">
-              <button
-                type="button"
-                onClick={onProSubmitHandler}
-                className="common_button"
-              >
-                <span>회 원 가 입</span>
-              </button>
-            </div>
-          </Tab>
+          {/*  <div className="common_button_box">*/}
+          {/*    <button*/}
+          {/*      type="button"*/}
+          {/*      onClick={onProSubmitHandler}*/}
+          {/*      className="common_button"*/}
+          {/*    >*/}
+          {/*      <span>회 원 가 입</span>*/}
+          {/*    </button>*/}
+          {/*  </div>*/}
+          {/*</Tab>*/}
         </Tabs>
       </form>
     </div>
