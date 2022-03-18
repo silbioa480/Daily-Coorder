@@ -10,7 +10,7 @@ interface IProps {
 //게시물사진 및 qr코드
 function PictureQr(props: IProps) {
     let board = props.board;
-    let imageurl = "http://localhost:8080/api/board_img/" + board.board_url;
+    let imageurl = "https://daily-coorder-backend.herokuapp.com/api/board_img/" + board.board_url;
 
     return (
         <div className="board_picture">
