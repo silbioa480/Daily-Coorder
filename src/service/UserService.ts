@@ -2,8 +2,9 @@ import axios, {AxiosResponse} from "axios";
 import IUser from "../interfaces/IUser";
 
 const USER_API_BASE_URL =
-    // "https://daily-coorder-backend.herokuapp.com/api/users";
-    "http://localhost:8080/api/users";
+    "https://daily-coorder-backend.herokuapp.com/api/users";
+
+// "http://localhost:8080/api/users";
 
 class UserService {
     getUsers() {
