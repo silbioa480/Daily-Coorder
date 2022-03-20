@@ -23,7 +23,7 @@ function ReplyForm({comments, removeComment, modification}) {
                         <div className="reply_nick_content">
                             {/*닉네임  */}
                             <a href="#">
-                                <span>인성</span>
+                                <span>마마마</span>
                             </a>
                             {/* 시간 */}
                             <span>{comments.time}</span>
