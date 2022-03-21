@@ -89,6 +89,8 @@ github: https://github.com/silbioa480/Daily-Coorder-Backend
 
 ### Login, SignUp Page
 
+- 노션 스케쥴 및 작업일지 틀 구축, 관리 담당
+- 발표 자료 준비 및 발표 담당
 - 로그인 및 회원가입 페이지 프론트 담당 및 구현
 - 로그인 페이지 # 아이디, 비밀번호 정규성 검사
 - 로그인 페이지 # Naver API 활용 로그인
@@ -130,6 +132,7 @@ github: https://github.com/silbioa480/Daily-Coorder-Backend
 
 ### Main Page
 
+- 발표때 시연 담당
 - 전체 페이지 애니메이션 및 +버튼, 게시물 디자인 담당
 - 메인 페이지 프론트 담당 및 구현
 - 메인 페이지 # 피드 : 8개의 게시물을 고정으로 노출
