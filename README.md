@@ -60,6 +60,8 @@ github: https://github.com/silbioa480/Daily-Coorder-Backend
 
 # 시연 영상
 
+https://www.youtube.com/watch?v=KvTFuod0364
+
 ## 간단한 팀 구성
 
 - [원종호](#원종호)
